@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERIDIAN — Deep Intelligence Synthesis · March 7, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#0b0f07;--f2:#0f1409;--f3:#14190c;--f4:#191f10;--f5:#1f2714;
+  --gold:#c9a84c;--gold-l:#e0c46e;--gold-d:#7a6020;--gold-f:rgba(201,168,76,.07);
+  --mg:#4a7c3f;--mg-l:#6aaa5e;--mg-d:rgba(74,124,63,.12);
+  --red:#c84c3f;--red-l:#e07060;--red-f:rgba(200,76,63,.08);
+  --amber:#d4890a;--amb-l:#f0a820;
+  --blue:#2a6aaf;--blue-l:#5a9fdf;
+  --rule:rgba(201,168,76,.1);--rule2:rgba(201,168,76,.045);
+  --text:#98a88e;--dim:#4a5840;--white:#eaf2e2;
+  --serif:'Cormorant Garamond',serif;
+  --sans:'Outfit',sans-serif;
+  --mono:'DM Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--forest);color:var(--text);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(201,168,76,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.015) 1px,transparent 1px);background-size:52px 52px;pointer-events:none;z-index:0}
+
+/* MASTHEAD */
+.mast{position:relative;z-index:1;border-bottom:1px solid var(--rule);background:var(--f2);padding:2rem 2.5rem}
+.mast-i{max-width:1240px;margin:0 auto}
+.mast-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:.8rem}
+.brand{font-family:var(--serif);font-size:3rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;line-height:1}
+.brand em{font-weight:400;font-style:italic;color:var(--gold-l);font-size:2.2rem}
+.brand-sub{font-family:var(--serif);font-size:.85rem;font-style:italic;color:var(--dim);margin-top:.2rem}
+.mast-r{text-align:right}
+.mast-type{font-family:var(--mono);font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--red-l);margin-bottom:.3rem}
+.mast-title{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--white);line-height:1.1}
+.mast-date{font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;margin-top:.3rem}
+.mast-rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold-d),transparent);margin:.7rem 0}
+.mast-deck{font-size:.85rem;color:var(--dim);max-width:700px;line-height:1.75;font-weight:300}
+.mast-deck strong{color:var(--text)}
+
+/* PAGE */
+.page{max-width:1240px;margin:0 auto;padding:3rem 2.5rem 6rem;position:relative;z-index:1}
+
+/* INTELLIGENCE THREAD — the main format */
+.thread{margin-bottom:4.5rem}
+.thread-head{display:flex;align-items:flex-start;gap:1.5rem;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--rule)}
+.th-num{font-family:var(--serif);font-size:5rem;font-weight:700;color:rgba(201,168,76,.12);line-height:1;flex-shrink:0;margin-top:-.5rem}
+.th-text{flex:1}
+.th-kicker{font-family:var(--mono);font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;margin-bottom:.5rem;display:flex;align-items:center;gap:.6rem}
+.tk-red{color:var(--red-l)}.tk-gold{color:var(--gold)}.tk-green{color:var(--mg-l)}.tk-blue{color:var(--blue-l)}.tk-amb{color:var(--amb-l)}
+.th-kicker::before{content:'';width:12px;height:1px}
+.tk-red::before{background:var(--red-l)}.tk-gold::before{background:var(--gold)}.tk-green::before{background:var(--mg-l)}.tk-blue::before{background:var(--blue-l)}.tk-amb::before{background:var(--amb-l)}
+.th-hed{font-family:var(--serif);font-size:clamp(1.6rem,2.5vw,2.4rem);font-weight:700;color:var(--white);line-height:1.05;letter-spacing:-.01em;margin-bottom:.5rem}
+.th-sub{font-size:.88rem;color:var(--dim);line-height:1.75;max-width:640px;font-weight:300}
+
+/* BODY PROSE */
+.prose{font-size:.88rem;color:var(--text);line-height:1.9;margin-bottom:1.5rem}
+.prose strong{color:var(--white)}
+.prose .hot{color:var(--red-l);font-weight:600}
+.prose .warn{color:var(--amb-l);font-weight:600}
+.prose .ok{color:var(--mg-l);font-weight:600}
+.prose .blue{color:var(--blue-l);font-weight:600}
+.prose em{font-style:italic;color:var(--gold-l)}
+
+/* INSIGHT BOXES */
+.insight{background:var(--f3);border:1px solid var(--rule);border-left:3px solid;padding:1.4rem 1.8rem;margin:1.5rem 0;position:relative;overflow:hidden}
+.insight-r{border-left-color:var(--red-l)}.insight-g{border-left-color:var(--gold)}.insight-gr{border-left-color:var(--mg-l)}.insight-b{border-left-color:var(--blue-l)}.insight-a{border-left-color:var(--amb-l)}
+.ins-label{font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem}
+.ins-label.red{color:var(--red-l)}.ins-label.gold{color:var(--gold)}.ins-label.green{color:var(--mg-l)}.ins-label.blue{color:var(--blue-l)}.ins-label.amb{color:var(--amb-l)}
+.ins-body{font-size:.84rem;color:var(--text);line-height:1.8}
+.ins-body strong{color:var(--white)}
+.ins-body .hot{color:var(--red-l);font-weight:600}
+.ins-body .ok{color:var(--mg-l);font-weight:600}
+.ins-body .warn{color:var(--amb-l);font-weight:600}
+
+/* DATA ROW */
+.data-row{display:flex;align-items:flex-start;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--rule2);font-size:.82rem}
+.data-row:last-child{border-bottom:none;padding-bottom:0}
+.dr-label{color:var(--dim);flex:1;line-height:1.5}
+.dr-val{font-family:var(--mono);font-weight:700;white-space:nowrap;flex-shrink:0}
+.dv-r{color:var(--red-l)}.dv-g{color:var(--mg-l)}.dv-gold{color:var(--gold-l)}.dv-w{color:var(--white)}.dv-a{color:var(--amb-l)}.dv-b{color:var(--blue-l)}
+
+/* CASCADE DIAGRAM */
+.cascade{display:flex;flex-direction:column;gap:0;margin:1.5rem 0}
+.casc-step{display:flex;align-items:stretch;gap:0}
+.cs-left{display:flex;flex-direction:column;align-items:center;width:40px;flex-shrink:0}
+.cs-dot{width:12px;height:12px;border-radius:50%;border:2px solid;flex-shrink:0}
+.cd-r{background:var(--red);border-color:var(--red-l)}.cd-a{background:var(--amber);border-color:var(--amb-l)}.cd-gold{background:var(--gold-d);border-color:var(--gold)}.cd-gr{background:var(--mg);border-color:var(--mg-l)}.cd-w{background:var(--f5);border-color:var(--dim)}
+.cs-line{flex:1;width:1px;background:var(--rule);margin:3px 0}
+.casc-step:last-child .cs-line{display:none}
+.cs-body{flex:1;padding:0 0 1.5rem 1rem}
+.csb-head{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.3rem}
+.ch-r{color:var(--red-l)}.ch-a{color:var(--amb-l)}.ch-gold{color:var(--gold)}.ch-gr{color:var(--mg-l)}.ch-w{color:var(--dim)}
+.csb-text{font-size:.82rem;color:var(--text);line-height:1.7}
+.csb-text strong{color:var(--white)}
+.csb-text .hot{color:var(--red-l);font-weight:600}
+
+/* SPLIT */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.5rem 0}
+.split-box{background:var(--f3);padding:1.5rem}
+.sb-head{font-family:var(--mono);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:1px solid var(--rule2)}
+.sbh-r{color:var(--red-l)}.sbh-g{color:var(--gold)}.sbh-gr{color:var(--mg-l)}.sbh-b{color:var(--blue-l)}
+
+/* STAT BLOCK */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.5rem 0}
+.stat{background:var(--f3);padding:1.2rem;text-align:center}
+.stat-val{font-family:var(--serif);font-size:1.8rem;font-weight:700;line-height:1;margin-bottom:.3rem}
+.sv-r{color:var(--red-l)}.sv-g{color:var(--mg-l)}.sv-gold{color:var(--gold-l)}.sv-w{color:var(--white)}.sv-a{color:var(--amb-l)}.sv-b{color:var(--blue-l)}
+.stat-lbl{font-family:var(--mono);font-size:.48rem;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;line-height:1.5}
+
+/* QUOTE */
+.qblock{background:var(--f4);border-left:3px solid var(--gold);padding:1rem 1.4rem;margin:1rem 0}
+.qb-txt{font-family:var(--serif);font-size:.95rem;font-style:italic;color:var(--white);line-height:1.7;margin-bottom:.3rem}
+.qb-src{font-family:var(--mono);font-size:.5rem;letter-spacing:.12em;color:var(--dim);text-transform:uppercase}
+
+/* REGION ROW */
+.rrow{display:flex;gap:.8rem;align-items:flex-start;padding:.9rem 0;border-bottom:1px solid var(--rule2)}
+.rrow:last-child{border-bottom:none;padding-bottom:0}
+.rr-flag{font-size:1.1rem;flex-shrink:0;padding-top:.1rem}
+.rr-body{flex:1}
+.rr-name{font-size:.84rem;font-weight:600;color:var(--white);margin-bottom:.2rem}
+.rr-txt{font-size:.78rem;color:var(--text);line-height:1.7}
+.rr-txt strong{color:var(--white)}
+.rr-txt .hot{color:var(--red-l);font-weight:600}
+.rr-txt .warn{color:var(--amb-l);font-weight:600}
+.rr-txt .ok{color:var(--mg-l);font-weight:600}
+.rr-badge{font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .4rem;border-radius:2px;border:1px solid;white-space:nowrap;flex-shrink:0;margin-top:.1rem}
+.rb-r{color:var(--red-l);border-color:rgba(200,76,63,.25);background:var(--red-f)}
+.rb-a{color:var(--amb-l);border-color:rgba(212,137,10,.2);background:rgba(212,137,10,.05)}
+.rb-g{color:var(--gold-l);border-color:var(--gold-d);background:var(--gold-f)}
+.rb-gr{color:var(--mg-l);border-color:rgba(74,124,63,.25);background:var(--mg-d)}
+.rb-b{color:var(--blue-l);border-color:rgba(58,122,191,.2);background:rgba(58,122,191,.05)}
+
+/* CONCLUSION */
+.conclusion{background:var(--f2);border:1px solid var(--rule);padding:3rem;margin-top:3rem;position:relative;overflow:hidden}
+.concl-bg{position:absolute;right:-3rem;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:12rem;font-weight:700;color:rgba(201,168,76,.02);line-height:1;pointer-events:none;user-select:none}
+.cl-eye{font-family:var(--mono);font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.cl-eye::before{content:'';width:20px;height:1px;background:var(--gold-d)}
+.cl-hed{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:700;color:var(--white);line-height:1;margin-bottom:1.2rem}
+.cl-hed .gold{color:var(--gold);font-style:italic}
+.cl-body{font-size:.88rem;color:var(--text);line-height:1.95;max-width:780px}
+.cl-body strong{color:var(--white)}
+.cl-body .hot{color:var(--red-l);font-weight:600}
+.cl-body .ok{color:var(--mg-l);font-weight:600}
+.cl-body .warn{color:var(--amb-l);font-weight:600}
+.cl-body p{margin-bottom:1rem}.cl-body p:last-child{margin-bottom:0}
+
+footer{border-top:1px solid var(--rule);padding:2rem 2.5rem;position:relative;z-index:1;background:var(--f2)}
+.ft-i{max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.ft-logo{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.ft-tag{font-family:var(--serif);font-size:.78rem;font-style:italic;color:var(--dim)}
+.ft-meta{font-family:var(--mono);font-size:.5rem;letter-spacing:.08em;color:var(--dim);text-align:right;line-height:1.9;text-transform:uppercase}
+
+@media(max-width:800px){.split,.stats{grid-template-columns:1fr}.th-num{font-size:3rem}}
+</style>
+</head>
+<body>
+
+<div class="mast">
+  <div class="mast-i">
+    <div class="mast-top">
+      <div>
+        <div class="brand">Meridian <em>Brief</em></div>
+        <div class="brand-sub">Intelligence from the South. For the South.</div>
+      </div>
+      <div class="mast-r">
+        <div class="mast-type">Deep Intelligence Synthesis</div>
+        <div class="mast-title">What The Data Reveals<br>When You Line It Up</div>
+        <div class="mast-date">Saturday, March 7, 2026 · Day 8 · Week Two</div>
+      </div>
+    </div>
+    <div class="mast-rule"></div>
+    <div class="mast-deck">This is not a daily briefing. This is what you see when you take every confirmed data point from Days 1–8 and arrange them in sequence. <strong>The picture that emerges is structurally different from what is being reported in the headlines.</strong> Seven intelligence threads. Each one hiding in plain sight.</div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ═══ THREAD 01: HORMUZ MECHANISM ═══ -->
+<div class="thread">
+  <div class="thread-head">
+    <div class="th-num">01</div>
+    <div class="th-text">
+      <div class="th-kicker tk-red">The Real Mechanism</div>
+      <div class="th-hed">The Strait Was Not Closed by Iran.<br>It Was Closed by Insurers.</div>
+      <div class="th-sub">The distinction matters enormously — and almost no coverage is making it.</div>
+    </div>
+  </div>
+
+  <div class="prose">The dominant narrative is that Iran closed the Strait of Hormuz. <strong>This is not precisely what happened, and the difference is critical.</strong> Iran's IRGC issued radio warnings that any vessel attempting transit would be attacked. But Iran has no physical capability to seal a 21-mile waterway against the US Navy. What it can do — and did — is make the legal and financial risk of crossing high enough that the market closed itself.</div>
+
+  <div class="insight insight-r">
+    <div class="ins-label red">The Actual Mechanism · Kpler Market Intelligence</div>
+    <div class="ins-body"><strong>"Insurance withdrawal is doing the work that physical blockade has not — the outcome for cargo flow is largely the same."</strong> Within 72 hours of the first strikes, Gard, Skuld, NorthStandard, the London P&I Club and the American Club all canceled war risk coverage for vessels in the Persian Gulf. Without war risk insurance, no bank will finance a voyage. No shipping company will risk a vessel. No captain will take the job. The market did what a military couldn't.</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-val sv-w">153</div><div class="stat-lbl">Daily vessel transits<br>before the war · CSIS</div></div>
+    <div class="stat"><div class="stat-val sv-r">13</div><div class="stat-lbl">Daily average transits<br>since March 1 · CSIS</div></div>
+    <div class="stat"><div class="stat-val sv-r">91%</div><div class="stat-lbl">Reduction in traffic<br>Days 1–8</div></div>
+    <div class="stat"><div class="stat-val sv-a">$423K</div><div class="stat-lbl">VLCC daily freight rate<br>all-time record · LSEG</div></div>
+  </div>
+
+  <div class="prose">The VLCC (Very Large Crude Carrier) freight rate hit <strong>$423,736 per day</strong> on Monday — a 94% increase from Friday and an all-time record. This number is not the cost of war. It is the cost of insurance and scarcity. Even when the Strait reopens — which it will eventually — these rates do not immediately reverse. The market reprices risk forward. <span class="hot">Every barrel that eventually flows through Hormuz for the next 12–18 months will be more expensive to ship than it was on February 27.</span> That cost lands everywhere. Including the Caribbean.</div>
+
+  <div class="insight insight-g">
+    <div class="ins-label gold">The Implication for The South · Often Missed</div>
+    <div class="ins-body">The Caribbean does not import oil through Hormuz directly. But its oil is priced against Brent. And the freight cost escalation ripples into everything that does move by ship — food, fertilizer, consumer goods, building materials. <strong>When shipping gets expensive everywhere, small island states with high import dependency pay a disproportionate share of the premium.</strong> They have no alternative ports. No alternative suppliers. No buffer inventories. The freight cost is non-negotiable for them in a way it is not for larger economies.</div>
+  </div>
+</div>
+
+<!-- ═══ THREAD 02: THE CHINA LOOPHOLE ═══ -->
+<div class="thread">
+  <div class="thread-head">
+    <div class="th-num">02</div>
+    <div class="th-text">
+      <div class="th-kicker tk-blue">Geopolitical Architecture</div>
+      <div class="th-hed">A Two-Tier Global Shipping System<br>Is Being Built in Real Time.</div>
+      <div class="th-sub">Ships are broadcasting "CHINA OWNER" to get through. The global maritime order is splintering.</div>
+    </div>
+  </div>
+
+  <div class="prose">Iran's government stated that no vessels belonging to the United States, Israel, European countries, or their allies would be allowed through Hormuz. <strong>It made no mention of China.</strong> What followed is one of the most significant and underreported developments of the week.</div>
+
+  <div class="cascade">
+    <div class="casc-step">
+      <div class="cs-left"><div class="cs-dot cd-r"></div><div class="cs-line"></div></div>
+      <div class="cs-body"><div class="csb-head ch-r">March 5 · Iron Maiden</div><div class="csb-text">A bulk carrier in the Persian Gulf changes its AIS destination signal from "For Orders" to <strong>"CHINA OWNER"</strong> and hugs the Omani coastline transiting the Strait. It passes safely. First confirmed passage in days.</div></div>
+    </div>
+    <div class="casc-step">
+      <div class="cs-left"><div class="cs-dot cd-a"></div><div class="cs-line"></div></div>
+      <div class="cs-body"><div class="csb-head ch-a">March 5 · Reuters confirms</div><div class="csb-text">Three diplomatic sources tell Reuters that <strong>China is in active talks with Iran</strong> to secure safe passage for Chinese crude tankers and Qatari LNG vessels through the Strait. Beijing is pressing Tehran. Iran appears to be listening.</div></div>
+    </div>
+    <div class="casc-step">
+      <div class="cs-left"><div class="cs-dot cd-gold"></div><div class="cs-line"></div></div>
+      <div class="cs-body"><div class="csb-head ch-gold">March 5 · Sugar trade splits</div><div class="csb-text">Mike McDougall, sugar trade veteran: Middle East sugar executives confirm <strong>"a few ships are transiting the Strait — most of them Chinese or Iranian-owned."</strong> Dubai sugar trader confirms some sugar cargoes passing while others are blocked — without giving criteria. A two-tier system is operating.</div></div>
+    </div>
+    <div class="casc-step">
+      <div class="cs-left"><div class="cs-dot cd-r"></div><div class="cs-line"></div></div>
+      <div class="cs-body"><div class="csb-head ch-r">March 7 · Today · Sino Ocean</div><div class="csb-text">A second vessel — the Liberia-flagged <em>Sino Ocean</em> — broadcasts "CHINA OWNER_ALL CREW" and transits the Strait today. Picked up cargo from UAE's Mina Saqr port March 5. <span class="hot">Two Chinese-flagged passages confirmed in 48 hours while everyone else is blocked.</span></div></div>
+    </div>
+    <div class="casc-step">
+      <div class="cs-left"><div class="cs-dot cd-gr"></div></div>
+      <div class="cs-body"><div class="csb-head ch-gr">CSIS Assessment</div><div class="csb-text">CSIS notes that even with Chinese assurances, <strong>dozens of Chinese ships remain trapped inside the Gulf</strong> because insurance markets still won't cover them. The deal exists but the mechanism is incomplete. China's diplomatic leverage has limits when the insurance architecture is collapsed.</div></div>
+    </div>
+  </div>
+
+  <div class="insight insight-b">
+    <div class="ins-label blue">What This Actually Means · The Structural Shift</div>
+    <div class="ins-body">The global shipping system has always been theoretically neutral — flag agnosticism, open seas doctrine, freedom of navigation. What is emerging in the Strait of Hormuz right now is <strong>a wartime exception that creates a permanent precedent.</strong> If Chinese-flagged ships get safe passage while Western ships don't, every future conflict involving Iran will have a built-in Chinese lane. Every commodity flowing through that lane will be priced differently from commodities blocked by it. The global South — which imports through all of these lanes — will experience this as <strong>a choice between more expensive Western-supply-chain goods and Chinese-mediated goods.</strong> That is a structural economic and geopolitical bifurcation happening in real time.</div>
+  </div>
+
+  <div class="prose">For the Caribbean specifically: the region's commodity imports — particularly fertilizer, wheat, and refined products — flow through Western-aligned shipping networks. <span class="warn">If the Chinese lane becomes the only lane operating through Hormuz for weeks, Caribbean buyers will not have direct access.</span> They will pay the Cape of Good Hope rerouting premium, or wait. Either way, it costs more and arrives later.</div>
+</div>
+
+<!-- ═══ THREAD 03: THE FERTILIZER CASCADE ═══ -->
+<div class="thread">
+  <div class="thread-head">
+    <div class="th-num">03</div>
+    <div class="th-text">
+      <div class="th-kicker tk-amb">The Hidden Food Story</div>
+      <div class="th-hed">The Fertilizer Cascade.<br>This Is About 2027's Food, Not Just Today's Oil.</div>
+      <div class="th-sub">The media is covering the energy story. The agricultural story is bigger and slower — and the window to act is closing.</div>
+    </div>
+  </div>
+
+  <div class="prose"><span class="warn">A third of globally traded urea passes through the Strait of Hormuz.</span> Urea is the world's most widely used nitrogen fertilizer. Nitrogen fertilizer underpins approximately half of global food production. Without synthetic nitrogen, agricultural scientists estimate the Earth could feed only a fraction of its current population. The Strait of Hormuz does not just carry oil. It carries the feedstock for the food system.</div>
+
+  <div class="cascade">
+    <div class="casc-step">
+      <div class="cs-left"><div class="cs-dot cd-r"></div><div class="cs-line"></div></div>
+      <div class="cs-body"><div class="csb-head ch-r">Layer 1 · Direct shipment block</div><div class="csb-text">Persian Gulf countries — Qatar, Saudi Arabia, UAE — are among the world's largest urea exporters. Their exports are stranded. <strong>Fertilizer prices rose 6.5% in February 2026 alone.</strong> Egyptian urea — the global benchmark — has risen 35% in one week. Northern Hemisphere planting season begins this month.</div></div>
+    </div>
+    <div class="casc-step">
+      <div class="cs-left"><div class="cs-dot cd-a"></div><div class="cs-line"></div></div>
+      <div class="cs-body"><div class="csb-head ch-a">Layer 2 · The LNG-to-fertilizer link</div><div class="csb-text"><strong>India runs its domestic urea plants on LNG imported from the Persian Gulf.</strong> Qatar halted production at Ras Laffan — the world's largest LNG export facility — after Iranian strikes. So even countries trying to produce their own fertilizer from imported gas can no longer do so. The supply cut has two vectors simultaneously.</div></div>
+    </div>
+    <div class="casc-step">
+      <div class="cs-left"><div class="cs-dot cd-gold"></div><div class="cs-line"></div></div>
+      <div class="cs-body"><div class="csb-head ch-gold">Layer 3 · Sulphur collapse</div><div class="csb-text">Sulphur — essential for phosphate fertilizer production — is largely a byproduct of oil and gas processing. <span class="hot">Nearly half of global sulphur trade originates from Middle Eastern countries.</span> If energy production stops, sulphur output falls simultaneously. The fertilizer supply shock is broader than nitrogen alone.</div></div>
+    </div>
+    <div class="casc-step">
+      <div class="cs-left"><div class="cs-dot cd-r"></div><div class="cs-line"></div></div>
+      <div class="cs-body"><div class="csb-head ch-r">Layer 4 · Planting season timing</div><div class="csb-text">In the Northern Hemisphere, <strong>fertilizer purchases for spring planting accelerate in March–April.</strong> A disruption of weeks is serious. A disruption of months — if the war continues — means farmers plant with reduced inputs, reducing yields. That yield reduction appears in the harvest autumn 2026 and persists into 2027. <span class="hot">The food price crisis from this conflict peaks not in March but in September–October 2026 and beyond.</span></div></div>
+    </div>
+    <div class="casc-step">
+      <div class="cs-left"><div class="cs-dot cd-gr"></div></div>
+      <div class="cs-body"><div class="csb-head ch-gr">Layer 5 · Sub-Saharan Africa and the Caribbean</div><div class="csb-text">In sub-Saharan Africa, fertilizer use is already structurally low. A further price rise reduces application further, cutting yields in a region already food insecure. <strong>The Caribbean imports virtually all its food.</strong> A global food price spike from reduced yields in 2026 and 2027 arrives as a direct cost increase for every Caribbean household — layered on top of the electricity cost spike from oil.</div></div>
+    </div>
+  </div>
+
+  <div class="insight insight-a">
+    <div class="ins-label amb">The Timing Paradox · Critically Underreported</div>
+    <div class="ins-body">The food story and the oil story are structurally different in timing. Oil price spikes hit within days — you pay more at the pump this week. Fertilizer disruption hits in 6–9 months — you pay more for food next winter. <strong>This means the food shock from the Iran war will arrive when the headlines have moved on and the political attention has dissipated.</strong> Governments will face a food price crisis in late 2026 without the political infrastructure to respond to it, because the connection to a war that may have ended by then will not be obvious to ordinary people.</div>
+  </div>
+
+  <div class="prose">Corn Belt farmers in the US may be forced to switch from nitrogen-intensive corn to soybeans — creating a major grain market imbalance. US Corn Belt → soy shift → corn supply drops → <strong>corn futures at record highs Q3–Q4 2026.</strong> The Caribbean, which imports corn for animal feed and food processing, absorbs this as a food cost multiplier entirely outside its control.</div>
+</div>
+
+<!-- ═══ THREAD 04: THE DOUBLE CHOKEPOINT ═══ -->
+<div class="thread">
+  <div class="thread-head">
+    <div class="th-num">04</div>
+    <div class="th-text">
+      <div class="th-kicker tk-red">Compounding Shock</div>
+      <div class="th-hed">Both Chokepoints Hit<br>Simultaneously. Nobody Is Saying It Loud Enough.</div>
+      <div class="th-sub">Hormuz is the headline. The Red Sea is the context. Together they have rerouted global trade.</div>
+    </div>
+  </div>
+
+  <div class="prose">On February 28 — the same day Operation Epic Fury launched — the Houthis in Yemen announced they were resuming attacks on Israel and commercial ships in the Red Sea. <strong>Both chokepoints went simultaneously.</strong> This is not a coincidence. It is coordination.</div>
+
+  <div class="split">
+    <div class="split-box">
+      <div class="sb-head sbh-r">Strait of Hormuz · Status</div>
+      <div class="data-row"><span class="dr-label">Normal daily vessel transits</span><span class="dr-val dv-w">153/day</span></div>
+      <div class="data-row"><span class="dr-label">Current daily average (CSIS)</span><span class="dr-val dv-r">13/day</span></div>
+      <div class="data-row"><span class="dr-label">Oil through strait daily (EIA 2023)</span><span class="dr-val dv-w">20.9M bpd</span></div>
+      <div class="data-row"><span class="dr-label">LNG share of global supply</span><span class="dr-val dv-w">~20%</span></div>
+      <div class="data-row"><span class="dr-label">Tankers stranded inside</span><span class="dr-val dv-r">~300</span></div>
+      <div class="data-row"><span class="dr-label">Insurers who withdrew coverage</span><span class="dr-val dv-r">Gard, Skuld, NorthStandard, London P&I, American Club</span></div>
+    </div>
+    <div class="split-box">
+      <div class="sb-head sbh-r">Red Sea / Suez · Status</div>
+      <div class="data-row"><span class="dr-label">Houthis resumed attacks</span><span class="dr-val dv-r">Feb 28 · same day</span></div>
+      <div class="data-row"><span class="dr-label">Maersk, Hapag-Lloyd, MSC</span><span class="dr-val dv-r">All suspended</span></div>
+      <div class="data-row"><span class="dr-label">Rerouting: Cape of Good Hope</span><span class="dr-val dv-a">+14–21 days transit</span></div>
+      <div class="data-row"><span class="dr-label">Additional fuel cost per voyage</span><span class="dr-val dv-a">~$1M</span></div>
+      <div class="data-row"><span class="dr-label">400K MT basmati rice stuck at Indian ports</span><span class="dr-val dv-r">Cannot reach Middle East buyers</span></div>
+      <div class="data-row"><span class="dr-label">Port congestion building</span><span class="dr-val dv-a">India, Europe, Singapore</span></div>
+    </div>
+  </div>
+
+  <div class="prose">The combined effect: <strong>every ship that previously went Europe → Suez → Asia is now going Europe → Cape of Good Hope → Asia, adding two to three weeks and $1M in fuel per voyage.</strong> Those extra costs are an emergency freight surcharge on every category of import — food, medicine, manufactured goods, consumer electronics. Caribbean port authorities are already seeing arrival delays. The goods are coming. They are just arriving two weeks late and $X more expensive.</div>
+
+  <div class="insight insight-r">
+    <div class="ins-label red">The 300 Trapped Tankers · A Hidden Supply Constraint</div>
+    <div class="ins-body">Around 300 oil tankers loaded cargo inside the Persian Gulf and cannot exit. They are physically stranded — full of oil, going nowhere. <strong>This creates an artificial supply crunch that is separate from the production cuts.</strong> Even if every OPEC+ producer maintains output, that oil cannot reach global markets while those tankers are trapped. The stranded tanker fleet represents approximately 600 million barrels of oil — roughly 6 days of global consumption — sitting immobile. When Hormuz eventually opens, there will be a release event that briefly softens prices, but that is weeks away.</div>
+  </div>
+</div>
+
+<!-- ═══ THREAD 05: THE SAUDI PIVOT ═══ -->
+<div class="thread">
+  <div class="thread-head">
+    <div class="th-num">05</div>
+    <div class="th-text">
+      <div class="th-kicker tk-green">The Alternative Route</div>
+      <div class="th-hed">Pakistan Called Saudi Arabia.<br>A New Oil Route Is Being Built Right Now.</div>
+      <div class="th-sub">The first real workaround is materialising — and it reveals who has leverage and who doesn't.</div>
+    </div>
+  </div>
+
+  <div class="prose">On March 4, Pakistan formally requested that Saudi Arabia reroute its oil supplies through the Red Sea port of Yanbu rather than through Hormuz. Saudi Arabia confirmed it was arranging at least one crude shipment via this alternative route and was actively considering wider diversion of its own crude exports. <strong>This is the first explicit Hormuz workaround confirmed in writing.</strong></div>
+
+  <div class="insight insight-g">
+    <div class="ins-label green">Why The Saudi Yanbu Route Matters — And Why It Can't Scale</div>
+    <div class="ins-body">Saudi Arabia has two export corridors: the Ras Tanura terminal on the Gulf (runs through Hormuz) and the Yanbu export terminal on the Red Sea (bypasses Hormuz via the East-West Pipeline). <strong>Maximum Yanbu pipeline capacity is approximately 5 million barrels per day.</strong> Saudi Arabia normally exports 6–7 million bpd total. The pipeline cannot replace Hormuz volume — it can only provide partial relief. And Yanbu exits into the Red Sea, which the Houthis are also attacking. Every tanker exiting Yanbu faces the same Houthi threat the Red Sea has been dealing with for months. <span class="hot">The alternative route is real but it is not a solution. It is a pressure valve.</span></div>
+  </div>
+
+  <div class="prose">The deeper signal here is about leverage hierarchy. <strong>Pakistan could call Riyadh and get a supply arrangement.</strong> Smaller Caribbean and African importers do not have that call to make. The workaround routes that are materialising are being allocated to countries with the political weight to negotiate them. Countries without that weight — Haiti, Barbados, smaller CARICOM members — go to the back of the queue and pay spot market prices for whatever oil has been rerouted around them.</div>
+
+  <div class="split">
+    <div class="split-box">
+      <div class="sb-head sbh-gr">Countries With Alternative Routes</div>
+      <div class="rrow">
+        <div class="rr-flag">🇵🇰</div>
+        <div class="rr-body"><div class="rr-name">Pakistan</div><div class="rr-txt">Formally requested Yanbu rerouting. Saudi confirmed. <span class="ok">Alternative activated.</span></div></div>
+        <span class="rr-badge rb-gr">Route secured</span>
+      </div>
+      <div class="rrow">
+        <div class="rr-flag">🇮🇳</div>
+        <div class="rr-body"><div class="rr-name">India</div><div class="rr-txt">Received 30-day US waiver on Russian crude imports. Strategic reserves being released. <span class="ok">Multiple buffers available.</span></div></div>
+        <span class="rr-badge rb-gr">Waiver + Russia</span>
+      </div>
+      <div class="rrow">
+        <div class="rr-flag">🇯🇵</div>
+        <div class="rr-body"><div class="rr-name">Japan</div><div class="rr-txt">Government ordered refiners to release stockpiled oil reserves. Strategic reserves activated immediately.</div></div>
+        <span class="rr-badge rb-g">Reserves released</span>
+      </div>
+    </div>
+    <div class="split-box">
+      <div class="sb-head sbh-r">Countries Without Alternatives</div>
+      <div class="rrow">
+        <div class="rr-flag">🇭🇹</div>
+        <div class="rr-body"><div class="rr-name">Haiti</div><div class="rr-txt"><span class="hot">Zero reserves. No bilateral. Fuel imported by truck from DR.</span> Entirely at spot market mercy.</div></div>
+        <span class="rr-badge rb-r">No leverage</span>
+      </div>
+      <div class="rrow">
+        <div class="rr-flag">🇧🇧</div>
+        <div class="rr-body"><div class="rr-name">Barbados</div><div class="rr-txt">No strategic reserve. No bilateral supplier arrangements. Buys on spot markets through regional traders.</div></div>
+        <span class="rr-badge rb-r">Spot market only</span>
+      </div>
+      <div class="rrow">
+        <div class="rr-flag">🇱🇰</div>
+        <div class="rr-body"><div class="rr-name">Sri Lanka</div><div class="rr-txt">Thin FX reserves. Active IMF program. No alternative corridor. <span class="hot">Repeating 2022 structural conditions.</span></div></div>
+        <span class="rr-badge rb-r">No alternatives</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ THREAD 06: THE US ECONOMY TRANSMISSION ═══ -->
+<div class="thread">
+  <div class="thread-head">
+    <div class="th-num">06</div>
+    <div class="th-text">
+      <div class="th-kicker tk-gold">The Transmission Channel</div>
+      <div class="th-hed">The US Economy Is the Caribbean's<br>Second Oil Shock — And It Arrives Quietly.</div>
+      <div class="th-sub">Oil prices hit the Caribbean directly. But the US economic slowdown hits it a second time, through a different channel, with a delay.</div>
+    </div>
+  </div>
+
+  <div class="prose">The Caribbean's dependence on oil is well documented. What is less visible in the current coverage is the <em>second channel</em> through which the war reaches the region: the US economy. <strong>The US printed −92,000 jobs in February 2026 — the first negative jobs print since 2020.</strong> Goldman Sachs estimated that if oil remains at current levels, US consumer price inflation rises from 2.4% to 3% by year end. That puts the Fed in an impossible position: cut rates into inflation, or hold rates into a recession.</div>
+
+  <div class="cascade">
+    <div class="casc-step">
+      <div class="cs-left"><div class="cs-dot cd-r"></div><div class="cs-line"></div></div>
+      <div class="cs-body"><div class="csb-head ch-r">US Stagflation Confirmed</div><div class="csb-text">Oil above $90 + negative jobs print + Fed paralysed = stagflation. <strong>Stagflation is the worst outcome for Caribbean economies</strong> because it compresses both the channels they depend on simultaneously.</div></div>
+    </div>
+    <div class="casc-step">
+      <div class="cs-left"><div class="cs-dot cd-a"></div><div class="cs-line"></div></div>
+      <div class="cs-body"><div class="csb-head ch-a">Channel 1 · Tourism Compression</div><div class="csb-text">US consumers with higher fuel bills, higher grocery bills, and job insecurity cut discretionary spending first. <strong>Caribbean vacations — costing $2,000–$5,000 per family — are discretionary spending.</strong> American Airlines, United, and JetBlue all report booking softness in leisure destinations when US consumer confidence drops. Jamaica, Bahamas, Barbados, Dominican Republic each have 40–60% GDP exposure to this channel.</div></div>
+    </div>
+    <div class="casc-step">
+      <div class="cs-left"><div class="cs-dot cd-a"></div><div class="cs-line"></div></div>
+      <div class="cs-body"><div class="csb-head ch-a">Channel 2 · Remittance Compression</div><div class="csb-text"><strong>A stagflating US economy reduces the disposable income of diaspora workers who send money home.</strong> Jamaican diaspora in the US send ~65% of the island's $3.5B in annual remittances. If those workers face higher costs of living in the US, they send less. The effect is not immediate — it builds over months. By Month 4–6 of sustained US stagflation, remittance flows will start declining. That hits Caribbean household spending and government tax revenues simultaneously.</div></div>
+    </div>
+    <div class="casc-step">
+      <div class="cs-left"><div class="cs-dot cd-r"></div><div class="cs-line"></div></div>
+      <div class="cs-body"><div class="csb-head ch-r">Channel 3 · Deportation Amplifier</div><div class="csb-text">Over 1 million Jamaicans are under active or potential deportation risk from the Trump administration. Mass deportation events would: increase the population of people needing services in Jamaica, reduce the number of workers sending remittances to Jamaica, and create political and social pressure on an already strained system. <span class="hot">This is a third economic channel from the US that has nothing to do with oil prices.</span></div></div>
+    </div>
+    <div class="casc-step">
+      <div class="cs-left"><div class="cs-dot cd-gr"></div></div>
+      <div class="cs-body"><div class="csb-head ch-gr">The Combined Timing</div><div class="csb-text">Oil shock: immediate. Tourism softness: 1–3 months lag. Remittance compression: 2–4 months lag. Deportation impact: 3–6 months lag. <strong>These channels arrive in sequence over 6 months, each compounding the last.</strong> By September 2026, all three are simultaneously active. Caribbean governments planning budgets around pre-war assumptions will face a structurally different fiscal reality.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ THREAD 07: WHAT NOBODY IS SAYING ═══ -->
+<div class="thread">
+  <div class="thread-head">
+    <div class="th-num">07</div>
+    <div class="th-text">
+      <div class="th-kicker tk-red">The Silence</div>
+      <div class="th-hed">CARICOM Has Said Nothing.<br>That Is Itself Intelligence.</div>
+      <div class="th-sub">The absence of a coordinated regional response is a data point. Here is what it reveals.</div>
+    </div>
+  </div>
+
+  <div class="prose">Eight days into the most significant global oil supply disruption since the 1970s — a disruption with specific, documented, quantified economic consequences for every CARICOM member state — <strong>there has been no coordinated CARICOM emergency response, no joint statement, no emergency session called, and no regional economic impact assessment published.</strong></div>
+
+  <div class="insight insight-r">
+    <div class="ins-label red">Why This Matters</div>
+    <div class="ins-body">In the 2022 food price crisis triggered by the Russia-Ukraine war, CARICOM convened emergency discussions within two weeks and produced a coordinated food security strategy. The Iran/oil shock is larger, faster-moving, and more directly relevant to Caribbean energy security. Yet no equivalent response exists. Three possible explanations — and all three are bad:<br><br><strong>1. Capacity:</strong> Caribbean governments lack the economic intelligence infrastructure to understand what is happening quickly enough to respond in real time.<br><br><strong>2. Dependency:</strong> The major response levers (oil import alternatives, strategic reserves, price controls) require fiscal capacity that most CARICOM states don't have at $90 Brent.<br><br><strong>3. Alignment:</strong> Individual governments are waiting for the US or IDB to tell them what to do. That instruction has not come because Washington is focused entirely on the war itself, not on managing the downstream effects on small island states that nobody powerful is paying attention to.</div>
+  </div>
+
+  <div class="prose">What a coordinated CARICOM response <em>could</em> do right now, at zero fiscal cost: joint negotiation with Trinidad for emergency LNG supply at preferential rates, joint statement to attract IDB emergency fast-disbursing loans before the crisis deepens, shared economic intelligence on which sectors are most exposed, and coordinated communication to citizens about what to expect. <strong>None of this is happening. The window to do it at low cost is closing.</strong> The longer governments wait to act, the more expensive and reactive the response will need to be.</div>
+
+  <div class="insight insight-gr">
+    <div class="ins-label green">The Trinidad Opportunity · Specific and Concrete</div>
+    <div class="ins-body">Trinidad & Tobago is accumulating windfall revenue from LNG exports at precisely the moment its Caribbean neighbours are being squeezed by the same price spike. <strong>A Caribbean Energy Solidarity Framework</strong> — preferential LNG pricing for CARICOM members funded by T&T's windfall, paired with IDB credit lines — could partially offset the oil shock for the most exposed economies. This is not unprecedented: T&T has had such arrangements before under Petrocaribe-style frameworks. The political will to propose it has not materialised. Guyana is also in a position to contribute, with its Natural Resource Fund now growing rapidly. <span class="ok">The money exists within the region to cushion this shock. The institutional architecture to deploy it does not.</span></div>
+  </div>
+</div>
+
+<!-- CONCLUSION -->
+<div class="conclusion">
+  <div class="concl-bg">VII</div>
+  <div class="cl-eye">Meridian Synthesis · March 7, 2026 · Assessment</div>
+  <h2 class="cl-hed">Seven Threads.<br>One <span class="gold">Picture.</span></h2>
+  <div class="cl-body">
+    <p>Line up all seven threads and a single image emerges: <strong>the Global South is absorbing an economic shock whose full cost will not arrive for 6–12 months, during which the political and media attention will have shifted.</strong> The oil price spike is the visible part. The fertilizer cascade, the shipping freight premium, the US economic transmission, the food price lag, the CARICOM silence — these are the invisible parts. They arrive later, they cost more, and they are harder to trace back to the original cause.</p>
+    <p>The Hormuz mechanism is insurance, not missiles. The China lane is a new geopolitical architecture being improvised in real time. The 300 trapped tankers are a supply bomb that will release eventually. The double chokepoint — Hormuz and Red Sea simultaneously — was coordinated. The alternative routes are being allocated by political weight, not by need. <span class="warn">Countries without leverage go to the back of the queue.</span></p>
+    <p>For Caribbean governments: the moment to act is now, not in April when the damage is visible. The IDB emergency lending windows are open. T&T and Guyana have windfall revenue that could be deployed regionally. CARICOM has convening power that hasn't been used. <strong>The tools exist. The political urgency to use them hasn't arrived yet.</strong> That is the most actionable intelligence in this brief: the gap between the reality of what is happening and the urgency of the institutional response is widening every day. <span class="hot">When those two lines eventually meet, it will not be in a boardroom. It will be in a street.</span></p>
+    <p><span class="ok">The Global South did not start this war. It cannot end it. But it can choose — right now, in this window — to organise itself around what is coming, rather than wait to be organised by it.</span></p>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<footer>
+  <div class="ft-i">
+    <div>
+      <div class="ft-logo">Meridian</div>
+      <div class="ft-tag">Intelligence from the South. For the South.</div>
+    </div>
+    <div class="ft-meta">
+      Deep Intelligence Synthesis · Day 8 · March 7, 2026<br>
+      Sources: Kpler · CSIS · Bloomberg · Reuters · Janes · Oxford Economics · CNN · CNBC<br>
+      MarineTraffic · Argus Media · Food Ingredients First · Capital Economics · Goldman Sachs
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
