@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERIDIAN · Day 18 · March 18, 2026 · South Pars Struck</title>
+<meta name="description" content="Day 18: South Pars — world's largest gas field — struck. Brent hits $109.95. Iran names Saudi Aramco, UAE Al Hosn, Qatar facilities as next targets. Larijani killed. Bushehr nuclear plant hit.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#0b0f07;--f2:#0f1409;--f3:#14190c;--f4:#191f10;
+  --gold:#c9a84c;--gold-l:#e0c46e;--gold-d:#7a6020;--gold-f:rgba(201,168,76,.07);
+  --mg:#4a7c3f;--mg-l:#6aaa5e;--mg-d:rgba(74,124,63,.12);
+  --red:#c84c3f;--red-l:#e07060;--red-f:rgba(200,76,63,.08);
+  --amb:#d4890a;--amb-l:#f0a820;--amb-f:rgba(212,137,10,.07);
+  --blue:#3a7abf;--blue-l:#5a9fdf;
+  --rule:rgba(201,168,76,.1);--rule2:rgba(201,168,76,.04);
+  --text:#98a88e;--dim:#4a5840;--white:#eaf2e2;
+  --serif:'Cormorant Garamond',serif;--sans:'Outfit',sans-serif;--mono:'DM Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--forest);color:var(--text);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(201,168,76,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.018) 1px,transparent 1px);
+  background-size:52px 52px;pointer-events:none;z-index:0}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.2;transform:scale(.8)}}
+@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(200,76,63,.6)}70%{box-shadow:0 0 0 8px rgba(200,76,63,0)}100%{box-shadow:0 0 0 0 rgba(200,76,63,0)}}
+@keyframes tickerMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes barFill{from{width:0}to{width:var(--fill)}}
+@keyframes scanLine{0%{transform:translateY(-100%)}100%{transform:translateY(900%)}}
+
+.ticker{background:var(--red);position:relative;z-index:10;overflow:hidden;height:32px;display:flex;align-items:center}
+.t-badge{font-family:var(--mono);font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;padding:0 1rem 0 .8rem;background:rgba(0,0,0,.4);height:100%;display:flex;align-items:center;gap:.5rem;white-space:nowrap;flex-shrink:0}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#fff;flex-shrink:0;animation:pulse 1.6s ease-in-out infinite,pulseRing 1.6s ease-out infinite}
+.t-track{display:flex;animation:tickerMove 80s linear infinite;white-space:nowrap}
+.t-item{font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.92);padding:0 2rem}
+.t-item::after{content:'◆';font-size:.32rem;padding-left:2rem;color:rgba(255,255,255,.3)}
+
+.mast{position:relative;z-index:1;background:var(--f2);border-bottom:1px solid var(--rule);overflow:hidden}
+.mast::after{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:linear-gradient(180deg,transparent,var(--gold),transparent);animation:scanLine 4.5s ease-in-out infinite;pointer-events:none}
+.mast-inner{max-width:1280px;margin:0 auto;padding:0 2.5rem}
+.mast-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.6rem 0 1rem;gap:1.5rem}
+.brand-name{font-family:var(--serif);font-size:2.9rem;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;line-height:.9}
+.brand-name em{font-weight:400;font-style:italic;font-size:.68em;color:var(--gold-l);letter-spacing:.06em}
+.brand-tag{font-family:var(--serif);font-size:.76rem;font-style:italic;color:var(--dim);margin-top:.15rem}
+.brand-live{display:inline-flex;align-items:center;gap:.4rem;margin-top:.4rem;font-family:var(--mono);font-size:.46rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red-l)}
+.brand-live .ld{width:6px;height:6px;border-radius:50%;background:var(--red-l);animation:pulse 1.4s ease-in-out infinite}
+.day-block{text-align:center;display:flex;flex-direction:column;align-items:center;gap:.25rem}
+.db-pre{font-family:var(--mono);font-size:.46rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.db-num{font-family:var(--serif);font-size:3.8rem;font-weight:700;color:var(--white);line-height:.85}
+.db-sub{font-family:var(--mono);font-size:.44rem;letter-spacing:.12em;color:var(--dim);text-transform:uppercase}
+.db-date{font-family:var(--serif);font-size:.8rem;font-style:italic;color:var(--gold-l);margin-top:.1rem}
+.esc-block{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem}
+.esc-label{font-family:var(--mono);font-size:.46rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.esc-track{width:180px;height:10px;background:rgba(255,255,255,.04);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.esc-fill{height:100%;background:linear-gradient(90deg,var(--gold-d),var(--amb-l),var(--red-l));border-radius:2px;animation:barFill .8s .3s ease-out both;--fill:98%;width:98%}
+.esc-val{font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--red-l);line-height:1}
+.esc-val span{font-size:1rem;color:var(--dim);font-weight:400}
+.esc-note{font-family:var(--mono);font-size:.43rem;letter-spacing:.08em;color:var(--dim);text-transform:uppercase;text-align:right}
+.mast-rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold-d) 30%,var(--gold) 50%,var(--gold-d) 70%,transparent);margin:.4rem 0}
+
+.market-strip{display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid var(--rule2);border-bottom:1px solid var(--rule2)}
+.ms-cell{padding:.7rem .5rem;text-align:center;border-right:1px solid var(--rule2);transition:background .2s}
+.ms-cell:last-child{border-right:none}
+.ms-cell:hover{background:rgba(201,168,76,.03)}
+.msc-val{font-family:var(--mono);font-size:.76rem;font-weight:700;line-height:1;margin-bottom:.15rem}
+.mv-r{color:var(--red-l)}.mv-g{color:var(--mg-l)}.mv-a{color:var(--amb-l)}.mv-w{color:var(--white)}.mv-gold{color:var(--gold-l)}
+.msc-lbl{font-family:var(--mono);font-size:.4rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;line-height:1.5}
+
+.headline-strip{background:var(--f3);border-bottom:1px solid var(--rule);position:relative;z-index:1}
+.hs-inner{max-width:1280px;margin:0 auto;padding:2.2rem 2.5rem}
+.hs-kicker{display:flex;align-items:center;gap:.7rem;font-family:var(--mono);font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:var(--red-l);margin-bottom:.8rem}
+.hs-kicker::before{content:'';width:18px;height:1px;background:var(--red-l)}
+.hs-kicker .ld{width:5px;height:5px;border-radius:50%;background:var(--red-l);animation:pulse 1.4s ease-in-out infinite}
+.hs-hed{font-family:var(--serif);font-size:clamp(2rem,4vw,3.6rem);font-weight:700;color:var(--white);line-height:.97;letter-spacing:-.02em;margin-bottom:.9rem}
+.hs-hed .g{color:var(--gold);font-style:italic}.hs-hed .r{color:var(--red-l)}.hs-hed .a{color:var(--amb-l)}
+.hs-deck{font-size:.86rem;color:var(--text);line-height:1.9;max-width:900px;font-weight:300}
+.hs-deck strong{color:var(--white)}
+.hs-deck .hot{color:var(--red-l);font-weight:600}
+
+.page{max-width:1280px;margin:0 auto;padding:2.5rem 2.5rem 6rem;position:relative;z-index:1}
+.layout{display:grid;grid-template-columns:1fr 355px;gap:2.5rem;align-items:start}
+
+.sec{display:flex;align-items:center;gap:.7rem;margin-bottom:1.3rem;margin-top:2rem}
+.sec:first-child{margin-top:0}
+.sec-rule{width:18px;height:1px;background:var(--gold-d)}
+.sec-txt{font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+
+.story{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--rule2)}
+.story:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-kicker{display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.48rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.45rem}
+.kd{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.kd-r{background:var(--red-l)}.kd-a{background:var(--amb-l)}.kd-g{background:var(--mg-l)}.kd-gold{background:var(--gold)}.kd-b{background:var(--blue-l)}
+.kt-r{color:var(--red-l)}.kt-a{color:var(--amb-l)}.kt-g{color:var(--mg-l)}.kt-gold{color:var(--gold)}.kt-b{color:var(--blue-l)}
+.s-hed{font-family:var(--serif);font-size:clamp(1.35rem,2.3vw,2rem);font-weight:700;color:var(--white);line-height:1.05;letter-spacing:-.01em;margin-bottom:.65rem}
+.s-hed .g{color:var(--gold);font-style:italic}.s-hed .r{color:var(--red-l)}.s-hed .a{color:var(--amb-l)}
+.s-body{font-size:.82rem;color:var(--text);line-height:1.9}
+.s-body p{margin-bottom:.75rem}.s-body p:last-child{margin-bottom:0}
+.s-body strong{color:var(--white)}
+.s-body .hot{color:var(--red-l);font-weight:600}
+.s-body .warn{color:var(--amb-l);font-weight:600}
+.s-body .ok{color:var(--mg-l);font-weight:600}
+.s-body em{font-style:italic;color:var(--gold-l)}
+
+.insight{border:1px solid var(--rule);border-left:3px solid;padding:1rem 1.3rem;margin:1rem 0;background:var(--f4)}
+.i-r{border-left-color:var(--red-l)}.i-a{border-left-color:var(--amb-l)}.i-gold{border-left-color:var(--gold)}.i-g{border-left-color:var(--mg-l)}
+.ins-lbl{font-family:var(--mono);font-size:.44rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.35rem}
+.il-r{color:var(--red-l)}.il-a{color:var(--amb-l)}.il-gold{color:var(--gold)}.il-g{color:var(--mg-l)}
+.ins-body{font-size:.78rem;color:var(--text);line-height:1.8}
+.ins-body strong{color:var(--white)}
+.ins-body .hot{color:var(--red-l)}.ins-body .warn{color:var(--amb-l)}.ins-body .ok{color:var(--mg-l)}
+
+.qblock{background:var(--f4);border-left:3px solid var(--gold);padding:.85rem 1.2rem;margin:.9rem 0}
+.qb-txt{font-family:var(--serif);font-size:.92rem;font-style:italic;color:var(--white);line-height:1.7;margin-bottom:.2rem}
+.qb-src{font-family:var(--mono);font-size:.42rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
+
+.region-row{display:flex;align-items:flex-start;gap:.8rem;padding:.65rem 0;border-bottom:1px solid var(--rule2)}
+.region-row:last-child{border-bottom:none}
+.rr-flag{font-size:1.1rem;flex-shrink:0;padding-top:.05rem}
+.rr-body{flex:1;font-size:.79rem;color:var(--text);line-height:1.7}
+.rr-body strong{color:var(--white)}
+.rr-body .hot{color:var(--red-l);font-weight:600}
+.rr-body .warn{color:var(--amb-l);font-weight:600}
+.rr-body .ok{color:var(--mg-l);font-weight:600}
+.rr-badge{font-family:var(--mono);font-size:.42rem;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .3rem;border:1px solid;border-radius:2px;white-space:nowrap;flex-shrink:0;margin-top:.15rem}
+.b-r{color:var(--red-l);border-color:rgba(200,76,63,.25);background:var(--red-f)}
+.b-a{color:var(--amb-l);border-color:rgba(212,137,10,.2);background:var(--amb-f)}
+.b-g{color:var(--mg-l);border-color:rgba(74,124,63,.25);background:var(--mg-d)}
+
+.sidebar{display:flex;flex-direction:column;gap:1.4rem;position:sticky;top:1rem}
+.s-card{background:var(--f3);border:1px solid var(--rule)}
+.sc-head{padding:.65rem 1.1rem;border-bottom:1px solid var(--rule2);font-family:var(--mono);font-size:.48rem;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem}
+.sch-r{color:var(--red-l)}.sch-a{color:var(--amb-l)}.sch-g{color:var(--mg-l)}.sch-gold{color:var(--gold)}
+.sc-head .ld2{width:5px;height:5px;border-radius:50%;flex-shrink:0;animation:pulse 1.6s ease-in-out infinite}
+.ld2-r{background:var(--red-l)}.ld2-a{background:var(--amb-l)}
+.sc-body{padding:.85rem 1.1rem}
+.stat-big{padding:.55rem 0;border-bottom:1px solid var(--rule2);display:flex;flex-direction:column;gap:.08rem}
+.stat-big:last-child{border-bottom:none;padding-bottom:0}
+.sb-val{font-family:var(--serif);font-size:1.45rem;font-weight:700;line-height:1}
+.sbv-r{color:var(--red-l)}.sbv-a{color:var(--amb-l)}.sbv-g{color:var(--mg-l)}.sbv-gold{color:var(--gold-l)}.sbv-w{color:var(--white)}
+.sb-lbl{font-family:var(--mono);font-size:.42rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);line-height:1.6}
+.drow{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;padding:.42rem 0;border-bottom:1px solid var(--rule2)}
+.drow:last-child{border-bottom:none;padding-bottom:0}
+.dr-lbl{color:var(--dim);flex:1;line-height:1.4;font-size:.7rem}
+.dr-val{font-family:var(--mono);font-size:.66rem;font-weight:700;white-space:nowrap;flex-shrink:0}
+.dv-r{color:var(--red-l)}.dv-g{color:var(--mg-l)}.dv-a{color:var(--amb-l)}.dv-gold{color:var(--gold-l)}.dv-w{color:var(--white)}
+
+.conclusion{background:var(--f2);border:1px solid var(--rule);border-top:3px solid var(--gold);padding:2.6rem;margin-top:2.8rem;position:relative;overflow:hidden}
+.concl-ghost{position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:12rem;font-weight:700;color:rgba(201,168,76,.022);line-height:1;pointer-events:none;user-select:none}
+.concl-lbl{display:flex;align-items:center;gap:.7rem;font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.65rem}
+.concl-lbl::before{content:'';width:14px;height:1px;background:var(--gold-d)}
+.concl-hed{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.6rem);font-weight:700;color:var(--white);line-height:1.02;margin-bottom:1.1rem}
+.concl-hed .g{color:var(--gold);font-style:italic}.concl-hed .r{color:var(--red-l)}
+.concl-body{font-size:.82rem;color:var(--text);line-height:1.95;max-width:1000px}
+.concl-body p{margin-bottom:.8rem}.concl-body p:last-child{margin-bottom:0}
+.concl-body strong{color:var(--white)}
+.concl-body .hot{color:var(--red-l);font-weight:600}
+.concl-body .warn{color:var(--amb-l);font-weight:600}
+.concl-body .ok{color:var(--mg-l);font-weight:600}
+.concl-body em{color:var(--gold-l);font-style:italic}
+
+footer{border-top:1px solid var(--rule);padding:1.4rem 2.5rem;position:relative;z-index:1;background:var(--f2)}
+.ft-i{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.ft-brand{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.ft-tag{font-family:var(--serif);font-size:.7rem;font-style:italic;color:var(--dim);margin-top:.1rem}
+.ft-meta{font-family:var(--mono);font-size:.42rem;letter-spacing:.08em;color:var(--dim);text-align:right;line-height:1.9;text-transform:uppercase}
+
+@media(max-width:1000px){.layout{grid-template-columns:1fr}.sidebar{position:static}}
+@media(max-width:700px){.market-strip{grid-template-columns:repeat(4,1fr)}.mast-top{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="t-badge"><div class="live-dot"></div>Day 18 · Breaking</div>
+  <div class="t-track">
+    <div class="t-item">SOUTH PARS STRUCK · WORLD'S LARGEST GAS FIELD · PHASES 3–6 SHUTDOWN · BRENT $109.95 INTRADAY</div>
+    <div class="t-item">IRAN NAMES TARGETS: SAUDI ARAMCO SAMREF · JUBAIL PETROCHEMICAL · UAE AL HOSN GAS FIELD · QATAR FACILITIES</div>
+    <div class="t-item">ALI LARIJANI KILLED · IRAN'S SECURITY CHIEF · KEY POTENTIAL CEASEFIRE NEGOTIATOR · ISRAEL CONFIRMS</div>
+    <div class="t-item">IRAN INTELLIGENCE MINISTER ESMAIL KHATIB KILLED · CONFIRMED BY PEZESHKIAN</div>
+    <div class="t-item">BUSHEHR NUCLEAR PLANT HIT BY PROJECTILE · IAEA: NO DAMAGE · GROSSI: "MAXIMUM RESTRAINT" URGENT</div>
+    <div class="t-item">IRAN FM ARAGHCHI: "WE NEVER ASKED FOR A CEASEFIRE. WE ARE READY TO DEFEND OURSELVES AS LONG AS IT TAKES."</div>
+    <div class="t-item">TWO KILLED NEAR TEL AVIV · IRAN USING CLUSTER MUNITIONS · IDF CONFIRMS</div>
+    <div class="t-item">TWO EXPLOSIONS HEARD IN RIYADH · IRAN STRUCK EASTERN SAUDI PROVINCE OIL FIELD REGION</div>
+    <div class="t-item">TRUMP: JONES ACT WAIVED · 60-DAY SHIPPING RULE SUSPENDED · VENEZUELA OIL SANCTIONS EASED</div>
+    <div class="t-item">CUBA ENERGY CRISIS: PROTESTERS ATTACK COMMUNIST PARTY OFFICE · DIRECT DOWNSTREAM OF OIL WAR</div>
+    <div class="t-item">BLOOMBERG: HORMUZ REOPENING IMPOSSIBLE WITHOUT CEASEFIRE · LLOYD'S LIST: MAX 10% VOLUME RESTORATION WITH ESCORTS</div>
+    <div class="t-item">4,800+ IRANIAN MILITARY KILLED · HENGAW HUMAN RIGHTS · 3M+ CIVILIANS DISPLACED · IOM</div>
+    <div class="t-item">SOUTH PARS STRUCK · WORLD'S LARGEST GAS FIELD · PHASES 3–6 SHUTDOWN · BRENT $109.95 INTRADAY</div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<div class="mast">
+  <div class="mast-inner">
+    <div class="mast-top">
+      <div>
+        <div class="brand-name">Meridian <em>Brief</em></div>
+        <div class="brand-tag">Intelligence from the South. For the South.</div>
+        <div class="brand-live"><div class="ld"></div>Operation Epic Fury · Day 18</div>
+      </div>
+      <div class="day-block">
+        <div class="db-pre">Iran War · Day</div>
+        <div class="db-num">18</div>
+        <div class="db-sub">Three weeks at war</div>
+        <div class="db-date">Wednesday · March 18, 2026</div>
+      </div>
+      <div class="esc-block">
+        <div class="esc-label">Escalation Index</div>
+        <div class="esc-track"><div class="esc-fill"></div></div>
+        <div class="esc-val">98<span>/100</span></div>
+        <div class="esc-note">Energy war begun · Bushehr hit · Nuclear risk live</div>
+      </div>
+    </div>
+    <div class="mast-rule"></div>
+    <div class="market-strip">
+      <div class="ms-cell"><div class="msc-val mv-r">$109.95</div><div class="msc-lbl">Brent intraday high<br>+6.3% today · +40% vs pre-war</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">+9.3%</div><div class="msc-lbl">European gas benchmark<br>South Pars strike · ICE</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">4,800+</div><div class="msc-lbl">Iranian military dead<br>Hengaw HR · Mar 18</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">850+</div><div class="msc-lbl">Lebanon dead<br>Since March 2</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">3M+</div><div class="msc-lbl">Iranians displaced<br>IOM · Mar 18</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">$3.84</div><div class="msc-lbl">US gas gallon avg<br>+$0.90 vs one month ago</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">Day 18</div><div class="msc-lbl">CARICOM<br>Still silent</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADLINE -->
+<div class="headline-strip">
+  <div class="hs-inner">
+    <div class="hs-kicker"><div class="ld"></div>March 18, 2026 · The Energy War Is Now Direct</div>
+    <div class="hs-hed">The world's largest<br>gas field is <span class="r">on fire.</span><br>Iran named what's <span class="a">next.</span></div>
+    <div class="hs-deck">
+      Israel and the United States struck South Pars — the world's largest natural gas field, shared with Qatar — on Wednesday. Phases three through six shut down. Brent hit $109.95. European gas surged 9.3%. Iran immediately published a named target list: <strong>Saudi Aramco's Samref refinery, the Jubail petrochemical complex, the UAE's Al Hosn gas field, and Qatar's facilities.</strong> Two explosions were heard in Riyadh. The Bushehr nuclear plant was struck — the IAEA reported no damage but called for maximum restraint. <span class="hot">Three weeks in, this is no longer a war about military infrastructure. It is a direct contest over the global energy supply chain.</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+<div class="layout">
+<div>
+
+<!-- STORY 1: SOUTH PARS -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">South Pars · The War's Most Consequential Strike Yet</div></div>
+<div class="story">
+  <div class="s-kicker kt-r"><div class="kd kd-r"></div>Energy Infrastructure · Israel · US · March 18</div>
+  <div class="s-hed">South Pars struck.<br>70% of Iran's domestic<br><span class="r">gas. Workers fled the fire.</span></div>
+  <div class="s-body">
+    <p>Israeli air forces struck South Pars — Iran's massive offshore natural gas field in the Persian Gulf — on Wednesday morning, targeting phases three through six of its onshore processing facilities in Assaluyeh, Bushehr Province. Iranian state television reported that workers shut down the phases to stop spreading fires. The Tehran refinery, with a capacity of 220,000 barrels per day, was also damaged. <strong>South Pars supplies approximately 70% of Iran's domestic natural gas.</strong></p>
+    <p>The field is the world's largest, shared between Iran and Qatar — Qatar's side is called North Field, and produces 18.5 billion cubic feet per day of gas that enables Qatar to supply roughly one-fifth of the world's LNG. Qatar's Foreign Ministry condemned the strikes immediately and forcefully. Spokesman Majed Al-Ansari called it <em>"a dangerous and irresponsible step amid the current military escalation,"</em> warning of broader risks to regional stability and global supply. S&P Global Commodity Insights analyst Laurent Ruseckas said the strike would prompt <strong>a bullish stance for global LNG benchmarks JKM and TTF</strong> as Turkish buyers displaced by Iranian supply shortfall seek replacement cargoes, tightening the entire market.</p>
+    <p>Argus Media reported that further strikes on Iranian energy infrastructure could threaten up to 3.4 million barrels per day of crude output and around 1.5 million barrels per day of exports. Brent crude climbed as much as 6.3% to a high of $109.95 a barrel on Wednesday. European gas benchmark TTF surged 9.3%. <span class="hot">This is the first time Iran's upstream oil and gas infrastructure has been directly targeted since the war began on February 28.</span> Every prior strike was on military sites. The line has now been crossed.</p>
+  </div>
+
+  <div class="insight i-r">
+    <div class="ins-lbl il-r">Iran's Named Target List — Sent Wednesday</div>
+    <div class="ins-body">
+      Iran's state television published Iran's formal response targets after the South Pars strike. The list includes: <strong>Saudi Aramco's Samref refinery</strong> in Jubail; <strong>Jubail's petrochemical complex</strong>; <strong>UAE's Al Hosn gas field</strong>; and <strong>Qatar's LNG facilities</strong>. Two large explosions were heard in Riyadh Wednesday night. Iran struck a province of Saudi Arabia where major oil fields are concentrated. <span class="hot">If Iran executes this list, the Gulf's entire energy export infrastructure — Saudi, Emirati, and Qatari — enters the active strike zone simultaneously.</span> That is not an oil price event. That is a restructuring of global energy supply for a decade. Source: CBC · Fortune · Al Jazeera
+    </div>
+  </div>
+</div>
+
+<!-- STORY 2: LARIJANI + KHATIB -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Assassinations · The Diplomats Are Being Killed</div></div>
+<div class="story">
+  <div class="s-kicker kt-r"><div class="kd kd-r"></div>Leadership · March 17–18 · Iran's Negotiating Capacity</div>
+  <div class="s-hed">The man who could have<br>ended this war<br><span class="r">was killed on Tuesday.</span></div>
+  <div class="s-body">
+    <p>Israel confirmed on Tuesday that it killed Ali Larijani — secretary of Iran's Supreme National Security Council and one of the most influential figures in the Iranian system. Iranian state media confirmed his death on Wednesday. His son was also killed in the same strike. <strong>Iranian-American political analyst Trita Parsi, speaking to Democracy Now, described Larijani as "the consensus maker within the system — someone seen as much more open to a diplomatic solution."</strong> Parsi noted that Larijani had been in direct diplomatic contact with a key White House figure prior to the war, as recently as December 2025.</p>
+    <p>On the same day, Israeli Defence Minister Israel Katz announced the killing of Iranian Intelligence Minister Esmaeil Khatib in an overnight airstrike. Iranian President Pezeshkian confirmed Khatib's death. Separately, Israel also killed General Gholam Reza Soleimani, head of the IRGC's all-volunteer Basij force. <span class="warn">Three senior Iranian officials killed in 48 hours — including the one most associated with a potential diplomatic exit from this war.</span> Parsi said the pattern raises the question of whether Israel is deliberately eliminating potential off-ramps for Trump by killing those who could engage in diplomacy.</p>
+    <p>Iran's Foreign Minister Abbas Araghchi, speaking Sunday on CBS Face the Nation, made Tehran's position explicit: <em>"No, we never asked for a ceasefire, and we have never asked even for negotiation. We are ready to defend ourselves as long as it takes."</em> At Monday's foreign ministry press conference he added: <em>"This war must end in a way that our enemies never again think about repeating such attacks."</em> Iran's position: not surrender, not negotiation — deterrence.</p>
+  </div>
+
+  <div class="qblock">
+    <div class="qb-txt">"The Israelis have fought so hard to get the United States to go into a full-scale war with Iran for more than 20 years. It is in their interest to prolong this war as long as they can, and kill off any potential off-ramps that Trump may be looking for."</div>
+    <div class="qb-src">Trita Parsi · Iranian-American political analyst · Democracy Now · March 17, 2026</div>
+  </div>
+</div>
+
+<!-- STORY 3: NUCLEAR + MILITARY -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Nuclear · The Line Nobody Wants To Cross</div></div>
+<div class="story">
+  <div class="s-kicker kt-r"><div class="kd kd-r"></div>Bushehr · IAEA · Nuclear Risk · March 18</div>
+  <div class="s-hed">A nuclear power plant<br>was struck today.<br><span class="a">The IAEA said no damage.</span></div>
+  <div class="s-body">
+    <p>The Bushehr nuclear power plant — Iran's only operational civilian nuclear reactor — was hit by a projectile on Wednesday. The IAEA received a report from Tehran and confirmed that no radiation was released and the plant suffered no structural damage. IAEA Director General Rafael Grossi reiterated his call for <em>"maximum restraint during the conflict to prevent risk of a nuclear accident."</em> Iran's nuclear regulator said the hit affected external parts of the complex.</p>
+    <p>The strike on Bushehr — even without damage — crossed a threshold. Nuclear facilities have been considered off-limits in modern warfare since the Cold War. <strong>The fact that it was hit and undamaged does not diminish the signal: the war is now operating in proximity to active nuclear infrastructure.</strong> Grossi has repeated his call for restraint multiple times in 18 days. No party has formally acknowledged it. The IAEA's statement carried no enforcement mechanism.</p>
+    <p>CENTCOM data as of Day 18: 6,000+ targets struck inside Iran. 90+ vessels destroyed or damaged. US forces dropped multiple 5,000-pound deep-penetrator bombs on Iranian anti-ship missile sites near Hormuz on Tuesday. The Hengaw Organization for Human Rights estimates 4,800+ members of Iranian military forces have been killed. Iran's military, for its part, has fired more than 500 ballistic and naval missiles and nearly 2,000 drones since February 28 — 40% at Israel, 60% at US regional targets.</p>
+  </div>
+</div>
+
+<!-- STORY 4: GLOBAL SOUTH -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Global South · The Cascade Accelerates</div></div>
+<div class="story">
+  <div class="s-kicker kt-gold"><div class="kd kd-gold"></div>Regional Impact · All Regions · Day 18</div>
+  <div class="s-hed">Cuba is protesting.<br>Venezuela sanctions lifted.<br><span class="a">None of it is enough.</span></div>
+  <div class="s-body"><p>Three weeks in, the downstream effects of the war are moving faster than any government response. The IEA's 32 member countries are releasing 400 million barrels over 120 days — beginning this week. Trump waived the Jones Act for 60 days to ease domestic shipping costs. Venezuela oil sanctions were eased by both US Treasury and EU. Targa Resources declared force majeure on LPG loadings from Houston. None of these measures address the Hormuz closure, the South Pars disruption, or the named Gulf infrastructure targets. They manage the edges. The core is unresolved.</p></div>
+
+  <div style="margin-top:1.2rem">
+    <div class="region-row">
+      <div class="rr-flag">🇨🇺</div>
+      <div class="rr-body"><strong>Cuba</strong> — Protesters attacked a Communist Party office on Wednesday as Cuba's energy crisis deepened. Cuba imports the majority of its petroleum from Venezuela — whose own production is straining to meet US waiver demand — and relies on Russian fuel that is increasingly redirected. <span class="hot">Cuba's power grid has been in rolling blackout for months; the war's supply shock is the final pressure on an already collapsed system.</span> Democracy Now reported the protest as a direct downstream consequence of the regional oil disruption. Cuba did not appear in any Western war coverage this week.</div>
+      <div class="rr-badge b-r">Crisis</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇧🇩🇱🇰🇵🇰</div>
+      <div class="rr-body"><strong>Bangladesh · Sri Lanka · Pakistan</strong> — South Pars supplies Iran's domestic gas and affects flows to Turkey, which then tightens global LNG markets. Every LNG cargo Turkey must now source from elsewhere is one fewer available for South Asian buyers. S&P Global confirmed the tightening dynamic directly. <span class="hot">Pakistan's central bank rate decision expected this week. Bangladesh garment exports still face double chokepoint risk. Sri Lanka's 2022 conditions continue reassembling.</span></div>
+      <div class="rr-badge b-r">Acute</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇵🇭</div>
+      <div class="rr-body"><strong>Philippines</strong> — Bloomberg confirmed Wednesday that Hormuz reopening is impossible without a ceasefire — and that even with full naval escorts, Lloyd's List estimates at most 10% of lost volumes could be restored. The Philippines is running on 50–60 days of reserves. That clock did not stop when South Pars burned. Meralco rates remain elevated. Peso near record low.</div>
+      <div class="rr-badge b-r">Critical</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇮🇳</div>
+      <div class="rr-body"><strong>India</strong> — One Indian vessel, the Nanda Devi carrying LPG, arrived at Vadinar Port on March 17 after being allowed passage through Hormuz — AFP photographed it. It was notable precisely because it was exceptional. India's Chabahar port investment is in an active strike zone. Indian nationals remain among migrant workers in the Gulf absorbing direct conflict exposure.</div>
+      <div class="rr-badge b-a">Watching</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇪🇬🇩🇯🇰🇪</div>
+      <div class="rr-body"><strong>Egypt · East Africa</strong> — South Pars disruption tightens LNG globally. Egypt's gas import costs rise. Suez Canal revenue remains impaired. Djibouti's port position depends on both chokepoints remaining open. <span class="warn">Kenya's fuel import bill is climbing with no domestic production buffer.</span></div>
+      <div class="rr-badge b-a">Exposed</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇭🇹🇯🇲🇹🇹🇧🇧🇬🇾</div>
+      <div class="rr-body"><strong>Caribbean</strong> — Brent intraday $109.95. All electricity surcharges remain active. US pump price at $3.84/gallon — a proxy for what refined product costs everywhere downstream. Venezuela sanction easing helps Trinidad's refinery throughput marginally. <span class="hot">CARICOM: Day 18. No statement. No emergency session. T&T and Guyana oil windfall: still undeployed.</span></div>
+      <div class="rr-badge b-r">Silent</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 5: DIPLOMACY -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Diplomacy · The Exit Ramp Gets Narrower</div></div>
+<div class="story">
+  <div class="s-kicker kt-g"><div class="kd kd-g"></div>Ceasefire Track · Hormuz · Trump · March 18</div>
+  <div class="s-hed">Trump ignored<br>regional allies' calls.<br><span class="g">Bloomberg: no deal, no Hormuz.</span></div>
+  <div class="s-body">
+    <p>Reuters reported Wednesday that Trump has ignored multiple attempts by Middle Eastern allies to begin negotiations aimed at ending the war. Bloomberg published its most direct assessment yet: Hormuz will not reopen without a ceasefire, full stop. Iran's sporadic attacks on vessels and the threat of mines have put Tehran — not outside naval forces — in effective control of the flow. Lloyd's List estimated that even with naval escorts at full deployment, no more than 10% of lost volumes could realistically be restored.</p>
+    <p>Trump told reporters aboard Air Force One on Sunday that he is in talks with seven countries about helping to secure the strait, calling on them to send warships. <strong>"I'm demanding that these countries come in and protect their own territory,"</strong> he said, without naming them. He also claimed Iran had asked for a ceasefire — which Iran's foreign minister flatly denied on the same day in the same news cycle.</p>
+    <p>The killing of Ali Larijani removes the Iranian official most associated with potential diplomatic engagement. Trita Parsi described him as the person who had been in contact with a White House figure as recently as December. <span class="warn">The IMO emergency session is meeting today in London — the first of its kind for a single shipping route in the organisation's history. Its mandate is procedural. It cannot compel Iran to reopen Hormuz. Only a ceasefire can do that.</span></p>
+  </div>
+</div>
+
+<!-- CONCLUSION -->
+<div class="conclusion">
+  <div class="concl-ghost">18</div>
+  <div class="concl-lbl">Meridian · Day 18 · March 18, 2026</div>
+  <div class="concl-hed">The energy war<br>is no longer a <span class="r">threat.</span><br><span class="g">It's the war itself.</span></div>
+  <div class="concl-body">
+    <p>For seventeen days, the strikes were on military sites. Nuclear facilities. Naval bases. Command infrastructure. The model was: degrade Iran's military capacity while keeping the global energy system structurally intact. On Day 18, that model ended. South Pars — 70% of Iran's domestic gas, shared infrastructure with Qatar's LNG that feeds one-fifth of global supply — is burning. The Tehran refinery is damaged. Iran has named its next targets by facility name: Samref, Jubail, Al Hosn, Ras Laffan. Two explosions were heard in Riyadh Wednesday night.</p>
+    <p><strong>The man most capable of negotiating an exit from this war was killed on Tuesday.</strong> Ali Larijani's death removes the Iranian official who had been in contact with Washington as recently as December 2025. The intelligence minister is dead. The Basij commander is dead. The new Supreme Leader has not been seen on camera in 18 days. Iran is fighting a leadership-decapitated war with pre-programmed escalation doctrine and a named list of energy targets. <span class="hot">The system is running on its own momentum now.</span></p>
+    <p>For the Global South: the IEA release, the Jones Act waiver, the Venezuela sanction easing, the Russia oil waiver — these are emergency measures designed to contain a price shock that is now secondary to a supply architecture shock. <span class="warn">South Pars feeds Pakistan's LNG market through Turkey. It feeds Bangladesh and Sri Lanka. Its disruption tightens every LNG benchmark globally and every LNG cargo becomes more expensive for every buyer who isn't the United States.</span> Cuba is already protesting. The Philippines has 50 days of reserves. Egypt's bond market is at risk. The fertilizer that should be in the ground for September's harvest is not.</p>
+    <p><em>Three weeks in. The war has become what it was always at risk of becoming: a direct contest for the architecture of global energy. The cascade runs faster than any government's ability to respond. The Global South did not start it. It absorbs it first and absorbs it longest.</em></p>
+  </div>
+</div>
+
+</div><!-- /left -->
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+  <div class="s-card">
+    <div class="sc-head sch-r"><div class="ld2 ld2-r"></div>Day 18 · Numbers</div>
+    <div class="sc-body">
+      <div class="stat-big"><div class="sb-val sbv-r">$109.95</div><div class="sb-lbl">Brent intraday high · +6.3%<br>+40% vs pre-war $70</div></div>
+      <div class="stat-big"><div class="sb-val sbv-r">98/100</div><div class="sb-lbl">Escalation index<br>Highest of the war</div></div>
+      <div class="stat-big"><div class="sb-val sbv-r">4,800+</div><div class="sb-lbl">Iranian military dead<br>Hengaw HR · Mar 18</div></div>
+      <div class="stat-big"><div class="sb-val sbv-r">3M+</div><div class="sb-lbl">Iranians displaced<br>IOM · Mar 18</div></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-r">South Pars · The Numbers</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">Iran domestic gas supplied</span><span class="dr-val dv-r">~70%</span></div>
+      <div class="drow"><span class="dr-lbl">Phases struck</span><span class="dr-val dv-r">3, 4, 5, 6</span></div>
+      <div class="drow"><span class="dr-lbl">Qatar North Field (same structure)</span><span class="dr-val dv-a">18.5 BCF/day</span></div>
+      <div class="drow"><span class="dr-lbl">Qatar's share of global LNG</span><span class="dr-val dv-a">~20%</span></div>
+      <div class="drow"><span class="dr-lbl">Crude output at risk (further strikes)</span><span class="dr-val dv-r">3.4M bbl/day</span></div>
+      <div class="drow"><span class="dr-lbl">Tehran refinery damaged</span><span class="dr-val dv-r">220K bbl/day</span></div>
+      <div class="drow"><span class="dr-lbl">Brent reaction</span><span class="dr-val dv-r">+6.3% · $109.95</span></div>
+      <div class="drow"><span class="dr-lbl">EU gas benchmark TTF</span><span class="dr-val dv-r">+9.3%</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-r">Iran's Named Targets · Wednesday</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">🇸🇦 Saudi Aramco Samref refinery</span><span class="dr-val dv-r">Named</span></div>
+      <div class="drow"><span class="dr-lbl">🇸🇦 Jubail petrochemical complex</span><span class="dr-val dv-r">Named</span></div>
+      <div class="drow"><span class="dr-lbl">🇦🇪 UAE Al Hosn gas field</span><span class="dr-val dv-r">Named</span></div>
+      <div class="drow"><span class="dr-lbl">🇶🇦 Qatar LNG facilities</span><span class="dr-val dv-r">Named</span></div>
+      <div class="drow"><span class="dr-lbl">Riyadh explosions · Wed night</span><span class="dr-val dv-r">2 confirmed</span></div>
+      <div class="drow"><span class="dr-lbl">Saudi eastern oil province struck</span><span class="dr-val dv-r">Confirmed</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-gold">Emergency Measures · Status</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">IEA 400M barrel release</span><span class="dr-val dv-a">Starting this week</span></div>
+      <div class="drow"><span class="dr-lbl">Jones Act waiver · Trump</span><span class="dr-val dv-a">60 days · signed</span></div>
+      <div class="drow"><span class="dr-lbl">Venezuela sanctions eased</span><span class="dr-val dv-a">US Treasury + EU</span></div>
+      <div class="drow"><span class="dr-lbl">Russia oil waiver (existing)</span><span class="dr-val dv-a">Still active</span></div>
+      <div class="drow"><span class="dr-lbl">Targa Resources LPG force maj.</span><span class="dr-val dv-r">Houston · Mar 18</span></div>
+      <div class="drow"><span class="dr-lbl">IMO session · London</span><span class="dr-val dv-gold">Today · Mar 18–19</span></div>
+      <div class="drow"><span class="dr-lbl">Bloomberg Hormuz verdict</span><span class="dr-val dv-r">No ceasefire = stays closed</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-gold">Watch · Next 24 Hours</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">Iran strikes Saudi Aramco / UAE</span><span class="dr-val dv-r">Named · Imminent</span></div>
+      <div class="drow"><span class="dr-lbl">South Pars damage full assessment</span><span class="dr-val dv-a">Ongoing</span></div>
+      <div class="drow"><span class="dr-lbl">Bushehr radiation check · IAEA</span><span class="dr-val dv-a">Monitoring</span></div>
+      <div class="drow"><span class="dr-lbl">IMO session outcome · London</span><span class="dr-val dv-gold">Mar 18–19</span></div>
+      <div class="drow"><span class="dr-lbl">Trump oil exec summit · Thurs</span><span class="dr-val dv-a">Vance leading</span></div>
+      <div class="drow"><span class="dr-lbl">Khamenei · Day 10 no video</span><span class="dr-val dv-r">Still absent</span></div>
+      <div class="drow"><span class="dr-lbl">CARICOM</span><span class="dr-val dv-r">Day 18 · Zero</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-r">The Human Number · Day 18</div>
+    <div style="padding:1.1rem">
+      <div style="font-family:var(--serif);font-size:.95rem;font-style:italic;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:.6rem">Victims aged eight months to 88 years old. 1,444 Iranian civilians dead. 18,551 injured. Three million displaced inside Iran. IOM count. March 18.</div>
+      <div style="font-size:.74rem;color:var(--text);line-height:1.75">Cuba is protesting power cuts. Caribbean surcharges are active. Pakistan is raising interest rates. South Pars is burning. <strong style="color:var(--white)">The people who didn't start this war are absorbing it at every level simultaneously.</strong></div>
+    </div>
+  </div>
+
+</div><!-- /sidebar -->
+</div><!-- /layout -->
+</div><!-- /page -->
+
+<footer>
+  <div class="ft-i">
+    <div>
+      <div class="ft-brand">Meridian</div>
+      <div class="ft-tag">Intelligence from the South. For the South.</div>
+    </div>
+    <div class="ft-meta">
+      Day 18 · March 18, 2026 · Operation Epic Fury<br>
+      Sources: Bloomberg · Fortune · The National · Al Jazeera · CBC · Argus Media · Democracy Now<br>
+      Iran International · ABC7 · S&P Global · IAEA · Hengaw HR · IOM · Washington Times<br>
+      @Meridiantoday_ · @meridian.today · meridian.today
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
