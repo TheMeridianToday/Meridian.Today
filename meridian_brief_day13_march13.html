@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERIDIAN · Day 13 · March 13, 2026</title>
+<meta name="description" content="Day 13: US refuelling aircraft down in Iraq. French soldier killed. Trump lifts Russia oil sanctions. Three more tankers hit overnight. IEA declares largest supply disruption in history.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#0b0f07;--f2:#0f1409;--f3:#14190c;--f4:#191f10;
+  --gold:#c9a84c;--gold-l:#e0c46e;--gold-d:#7a6020;--gold-f:rgba(201,168,76,.07);
+  --mg:#4a7c3f;--mg-l:#6aaa5e;--mg-d:rgba(74,124,63,.12);
+  --red:#c84c3f;--red-l:#e07060;--red-f:rgba(200,76,63,.08);
+  --amb:#d4890a;--amb-l:#f0a820;--amb-f:rgba(212,137,10,.07);
+  --blue:#3a7abf;--blue-l:#5a9fdf;
+  --rule:rgba(201,168,76,.1);--rule2:rgba(201,168,76,.04);
+  --text:#98a88e;--dim:#4a5840;--white:#eaf2e2;
+  --serif:'Cormorant Garamond',serif;--sans:'Outfit',sans-serif;--mono:'DM Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--forest);color:var(--text);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(201,168,76,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.018) 1px,transparent 1px);
+  background-size:52px 52px;pointer-events:none;z-index:0}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.2;transform:scale(.8)}}
+@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(200,76,63,.6)}70%{box-shadow:0 0 0 8px rgba(200,76,63,0)}100%{box-shadow:0 0 0 0 rgba(200,76,63,0)}}
+@keyframes tickerMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes barFill{from{width:0}to{width:var(--fill)}}
+@keyframes scanLine{0%{transform:translateY(-100%)}100%{transform:translateY(900%)}}
+
+.ticker{background:var(--red);position:relative;z-index:10;overflow:hidden;height:32px;display:flex;align-items:center}
+.t-badge{font-family:var(--mono);font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;padding:0 1rem 0 .8rem;background:rgba(0,0,0,.4);height:100%;display:flex;align-items:center;gap:.5rem;white-space:nowrap;flex-shrink:0}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#fff;flex-shrink:0;animation:pulse 1.6s ease-in-out infinite,pulseRing 1.6s ease-out infinite}
+.t-track{display:flex;animation:tickerMove 70s linear infinite;white-space:nowrap}
+.t-item{font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.92);padding:0 2rem}
+.t-item::after{content:'◆';font-size:.32rem;padding-left:2rem;color:rgba(255,255,255,.3)}
+
+.mast{position:relative;z-index:1;background:var(--f2);border-bottom:1px solid var(--rule);overflow:hidden}
+.mast::after{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:linear-gradient(180deg,transparent,var(--gold),transparent);animation:scanLine 4.5s ease-in-out infinite;pointer-events:none}
+.mast-inner{max-width:1280px;margin:0 auto;padding:0 2.5rem}
+.mast-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.6rem 0 1rem;gap:1.5rem}
+.brand-name{font-family:var(--serif);font-size:2.9rem;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;line-height:.9}
+.brand-name em{font-weight:400;font-style:italic;font-size:.68em;color:var(--gold-l);letter-spacing:.06em}
+.brand-tag{font-family:var(--serif);font-size:.76rem;font-style:italic;color:var(--dim);margin-top:.15rem}
+.brand-live{display:inline-flex;align-items:center;gap:.4rem;margin-top:.4rem;font-family:var(--mono);font-size:.46rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red-l)}
+.brand-live .ld{width:6px;height:6px;border-radius:50%;background:var(--red-l);animation:pulse 1.4s ease-in-out infinite}
+.day-block{text-align:center;display:flex;flex-direction:column;align-items:center;gap:.25rem}
+.db-pre{font-family:var(--mono);font-size:.46rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.db-num{font-family:var(--serif);font-size:3.8rem;font-weight:700;color:var(--white);line-height:.85}
+.db-sub{font-family:var(--mono);font-size:.44rem;letter-spacing:.12em;color:var(--dim);text-transform:uppercase}
+.db-date{font-family:var(--serif);font-size:.8rem;font-style:italic;color:var(--gold-l);margin-top:.1rem}
+.esc-block{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem}
+.esc-label{font-family:var(--mono);font-size:.46rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.esc-track{width:180px;height:10px;background:rgba(255,255,255,.04);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.esc-fill{height:100%;background:linear-gradient(90deg,var(--gold-d),var(--amb-l),var(--red-l));border-radius:2px;animation:barFill .8s .3s ease-out both;--fill:94%;width:94%}
+.esc-val{font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--red-l);line-height:1}
+.esc-val span{font-size:1rem;color:var(--dim);font-weight:400}
+.esc-note{font-family:var(--mono);font-size:.43rem;letter-spacing:.08em;color:var(--dim);text-transform:uppercase}
+.mast-rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold-d) 30%,var(--gold) 50%,var(--gold-d) 70%,transparent);margin:.4rem 0}
+
+.market-strip{display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid var(--rule2);border-bottom:1px solid var(--rule2)}
+.ms-cell{padding:.7rem .5rem;text-align:center;border-right:1px solid var(--rule2);transition:background .2s}
+.ms-cell:last-child{border-right:none}
+.ms-cell:hover{background:rgba(201,168,76,.03)}
+.msc-val{font-family:var(--mono);font-size:.76rem;font-weight:700;line-height:1;margin-bottom:.15rem}
+.mv-r{color:var(--red-l)}.mv-g{color:var(--mg-l)}.mv-a{color:var(--amb-l)}.mv-w{color:var(--white)}.mv-gold{color:var(--gold-l)}
+.msc-lbl{font-family:var(--mono);font-size:.4rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;line-height:1.5}
+
+.headline-strip{background:var(--f3);border-bottom:1px solid var(--rule);position:relative;z-index:1}
+.hs-inner{max-width:1280px;margin:0 auto;padding:2.2rem 2.5rem}
+.hs-kicker{display:flex;align-items:center;gap:.7rem;font-family:var(--mono);font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:var(--red-l);margin-bottom:.8rem}
+.hs-kicker::before{content:'';width:18px;height:1px;background:var(--red-l)}
+.hs-kicker .ld{width:5px;height:5px;border-radius:50%;background:var(--red-l);animation:pulse 1.4s ease-in-out infinite}
+.hs-hed{font-family:var(--serif);font-size:clamp(2rem,4vw,3.6rem);font-weight:700;color:var(--white);line-height:.97;letter-spacing:-.02em;margin-bottom:.9rem}
+.hs-hed .g{color:var(--gold);font-style:italic}.hs-hed .r{color:var(--red-l)}.hs-hed .a{color:var(--amb-l)}
+.hs-deck{font-size:.86rem;color:var(--text);line-height:1.9;max-width:900px;font-weight:300}
+.hs-deck strong{color:var(--white)}
+
+.page{max-width:1280px;margin:0 auto;padding:2.5rem 2.5rem 6rem;position:relative;z-index:1}
+.layout{display:grid;grid-template-columns:1fr 355px;gap:2.5rem;align-items:start}
+
+.sec{display:flex;align-items:center;gap:.7rem;margin-bottom:1.3rem;margin-top:2rem}
+.sec:first-child{margin-top:0}
+.sec-rule{width:18px;height:1px;background:var(--gold-d)}
+.sec-txt{font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+
+.story{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--rule2)}
+.story:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-kicker{display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.48rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.45rem}
+.kd{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.kd-r{background:var(--red-l)}.kd-a{background:var(--amb-l)}.kd-g{background:var(--mg-l)}.kd-gold{background:var(--gold)}.kd-b{background:var(--blue-l)}
+.kt-r{color:var(--red-l)}.kt-a{color:var(--amb-l)}.kt-g{color:var(--mg-l)}.kt-gold{color:var(--gold)}.kt-b{color:var(--blue-l)}
+.s-hed{font-family:var(--serif);font-size:clamp(1.35rem,2.3vw,2rem);font-weight:700;color:var(--white);line-height:1.05;letter-spacing:-.01em;margin-bottom:.65rem}
+.s-hed .g{color:var(--gold);font-style:italic}.s-hed .r{color:var(--red-l)}.s-hed .a{color:var(--amb-l)}
+.s-body{font-size:.82rem;color:var(--text);line-height:1.9}
+.s-body p{margin-bottom:.75rem}.s-body p:last-child{margin-bottom:0}
+.s-body strong{color:var(--white)}
+.s-body .hot{color:var(--red-l);font-weight:600}
+.s-body .warn{color:var(--amb-l);font-weight:600}
+.s-body .ok{color:var(--mg-l);font-weight:600}
+.s-body em{font-style:italic;color:var(--gold-l)}
+
+.insight{border:1px solid var(--rule);border-left:3px solid;padding:1rem 1.3rem;margin:1rem 0;background:var(--f4)}
+.i-r{border-left-color:var(--red-l)}.i-a{border-left-color:var(--amb-l)}.i-gold{border-left-color:var(--gold)}.i-g{border-left-color:var(--mg-l)}.i-b{border-left-color:var(--blue-l)}
+.ins-lbl{font-family:var(--mono);font-size:.44rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.35rem}
+.il-r{color:var(--red-l)}.il-a{color:var(--amb-l)}.il-gold{color:var(--gold)}.il-g{color:var(--mg-l)}.il-b{color:var(--blue-l)}
+.ins-body{font-size:.78rem;color:var(--text);line-height:1.8}
+.ins-body strong{color:var(--white)}
+.ins-body .hot{color:var(--red-l);font-weight:600}.ins-body .warn{color:var(--amb-l);font-weight:600}.ins-body .ok{color:var(--mg-l);font-weight:600}
+
+.qblock{background:var(--f4);border-left:3px solid var(--gold);padding:.85rem 1.2rem;margin:.9rem 0}
+.qb-txt{font-family:var(--serif);font-size:.92rem;font-style:italic;color:var(--white);line-height:1.7;margin-bottom:.2rem}
+.qb-src{font-family:var(--mono);font-size:.42rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
+
+.region-row{display:flex;align-items:flex-start;gap:.8rem;padding:.6rem 0;border-bottom:1px solid var(--rule2)}
+.region-row:last-child{border-bottom:none}
+.rr-flag{font-size:1.1rem;flex-shrink:0;padding-top:.05rem}
+.rr-body{flex:1;font-size:.79rem;color:var(--text);line-height:1.7}
+.rr-body strong{color:var(--white)}
+.rr-body .hot{color:var(--red-l);font-weight:600}
+.rr-body .warn{color:var(--amb-l);font-weight:600}
+.rr-body .ok{color:var(--mg-l);font-weight:600}
+.rr-badge{font-family:var(--mono);font-size:.42rem;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .3rem;border:1px solid;border-radius:2px;white-space:nowrap;flex-shrink:0;margin-top:.15rem}
+.b-r{color:var(--red-l);border-color:rgba(200,76,63,.25);background:var(--red-f)}
+.b-a{color:var(--amb-l);border-color:rgba(212,137,10,.2);background:var(--amb-f)}
+.b-g{color:var(--mg-l);border-color:rgba(74,124,63,.25);background:var(--mg-d)}
+
+.sidebar{display:flex;flex-direction:column;gap:1.4rem;position:sticky;top:1rem}
+.s-card{background:var(--f3);border:1px solid var(--rule)}
+.sc-head{padding:.65rem 1.1rem;border-bottom:1px solid var(--rule2);font-family:var(--mono);font-size:.48rem;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem}
+.sch-r{color:var(--red-l)}.sch-a{color:var(--amb-l)}.sch-g{color:var(--mg-l)}.sch-gold{color:var(--gold)}
+.sc-head .ld2{width:5px;height:5px;border-radius:50%;flex-shrink:0;animation:pulse 1.6s ease-in-out infinite}
+.ld2-r{background:var(--red-l)}.ld2-a{background:var(--amb-l)}
+.sc-body{padding:.85rem 1.1rem}
+.stat-big{padding:.55rem 0;border-bottom:1px solid var(--rule2);display:flex;flex-direction:column;gap:.08rem}
+.stat-big:last-child{border-bottom:none;padding-bottom:0}
+.sb-val{font-family:var(--serif);font-size:1.45rem;font-weight:700;line-height:1}
+.sbv-r{color:var(--red-l)}.sbv-a{color:var(--amb-l)}.sbv-g{color:var(--mg-l)}.sbv-gold{color:var(--gold-l)}.sbv-w{color:var(--white)}
+.sb-lbl{font-family:var(--mono);font-size:.42rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);line-height:1.6}
+.drow{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;padding:.42rem 0;border-bottom:1px solid var(--rule2)}
+.drow:last-child{border-bottom:none;padding-bottom:0}
+.dr-lbl{color:var(--dim);flex:1;line-height:1.4;font-size:.7rem}
+.dr-val{font-family:var(--mono);font-size:.66rem;font-weight:700;white-space:nowrap;flex-shrink:0}
+.dv-r{color:var(--red-l)}.dv-g{color:var(--mg-l)}.dv-a{color:var(--amb-l)}.dv-gold{color:var(--gold-l)}.dv-w{color:var(--white)}
+
+.conclusion{background:var(--f2);border:1px solid var(--rule);border-top:3px solid var(--gold);padding:2.6rem;margin-top:2.8rem;position:relative;overflow:hidden}
+.concl-ghost{position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:12rem;font-weight:700;color:rgba(201,168,76,.022);line-height:1;pointer-events:none;user-select:none}
+.concl-lbl{display:flex;align-items:center;gap:.7rem;font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.65rem}
+.concl-lbl::before{content:'';width:14px;height:1px;background:var(--gold-d)}
+.concl-hed{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.6rem);font-weight:700;color:var(--white);line-height:1.02;margin-bottom:1.1rem}
+.concl-hed .g{color:var(--gold);font-style:italic}.concl-hed .r{color:var(--red-l)}
+.concl-body{font-size:.82rem;color:var(--text);line-height:1.95;max-width:1000px}
+.concl-body p{margin-bottom:.8rem}.concl-body p:last-child{margin-bottom:0}
+.concl-body strong{color:var(--white)}
+.concl-body .hot{color:var(--red-l);font-weight:600}
+.concl-body .warn{color:var(--amb-l);font-weight:600}
+.concl-body em{color:var(--gold-l);font-style:italic}
+
+footer{border-top:1px solid var(--rule);padding:1.4rem 2.5rem;position:relative;z-index:1;background:var(--f2)}
+.ft-i{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.ft-brand{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.ft-tag{font-family:var(--serif);font-size:.7rem;font-style:italic;color:var(--dim);margin-top:.1rem}
+.ft-meta{font-family:var(--mono);font-size:.42rem;letter-spacing:.08em;color:var(--dim);text-align:right;line-height:1.9;text-transform:uppercase}
+
+@media(max-width:1000px){.layout{grid-template-columns:1fr}.sidebar{position:static}}
+@media(max-width:700px){.market-strip{grid-template-columns:repeat(4,1fr)}.mast-top{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="t-badge"><div class="live-dot"></div>Day 13 · Live</div>
+  <div class="t-track">
+    <div class="t-item">US KC-135 REFUELLING AIRCRAFT DOWN IN IRAQ · 5TH US AIRCRAFT LOST · CREW STATUS UNKNOWN</div>
+    <div class="t-item">FRENCH SOLDIER KILLED IN ERBIL · CWO ARNAUD FRION · MACRON: "UNACCEPTABLE"</div>
+    <div class="t-item">TRUMP LIFTS RUSSIA OIL SANCTIONS · EMERGENCY MEASURE · MARKETS UNMOVED</div>
+    <div class="t-item">IEA: "LARGEST OIL SUPPLY DISRUPTION IN HISTORY" · 8M BARRELS/DAY OFFLINE THIS MONTH</div>
+    <div class="t-item">THREE MORE TANKERS ATTACKED OVERNIGHT · HORMUZ A TRICKLE · 13 VESSELS/DAY VS 153 PRE-WAR</div>
+    <div class="t-item">IRAN NUCLEAR SITE PARCHIN STRUCK · TALEGHAN 2 FACILITY · SATELLITE CONFIRMS</div>
+    <div class="t-item">NETANYAHU: "WOULDN'T TAKE OUT LIFE INSURANCE" ON KHAMENEI · DIRECT ASSASSINATION THREAT</div>
+    <div class="t-item">TRUMP ON KHAMENEI: "ALIVE IN SOME FORM. DAMAGED." · FOX NEWS INTERVIEW</div>
+    <div class="t-item">THAILAND DEMANDS APOLOGY FROM IRAN AFTER THAI CARGO SHIP BURNED IN HORMUZ</div>
+    <div class="t-item">IRAN WORLD CUP WITHDRAWAL CONFIRMED · SPORTS MINISTER: "WE ARE NOT PARTICIPATING"</div>
+    <div class="t-item">RUSSIA-US KREMLIN CONFIRMS ENERGY MARKET TALKS TO STABILISE HORMUZ DISRUPTION</div>
+    <div class="t-item">NIKKEI −1.59% · KOSPI −3.06% · ASIAN MARKETS OPEN LOWER FRIDAY</div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<div class="mast">
+  <div class="mast-inner">
+    <div class="mast-top">
+      <div>
+        <div class="brand-name">Meridian <em>Brief</em></div>
+        <div class="brand-tag">Intelligence from the South. For the South.</div>
+        <div class="brand-live"><div class="ld"></div>Operation Epic Fury · Active</div>
+      </div>
+      <div class="day-block">
+        <div class="db-pre">Iran War · Day</div>
+        <div class="db-num">13</div>
+        <div class="db-sub">Two weeks since it started</div>
+        <div class="db-date">Friday · March 13, 2026</div>
+      </div>
+      <div class="esc-block">
+        <div class="esc-label">Escalation Index</div>
+        <div class="esc-track"><div class="esc-fill"></div></div>
+        <div class="esc-val">94<span>/100</span></div>
+        <div class="esc-note">NATO ally dead · US aircraft down · Hormuz trickle</div>
+      </div>
+    </div>
+    <div class="mast-rule"></div>
+    <div class="market-strip">
+      <div class="ms-cell"><div class="msc-val mv-r">$101+</div><div class="msc-lbl">Brent Crude<br>Above $100 · Day 2</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">8M bbl/day</div><div class="msc-lbl">Supply offline<br>IEA · This month</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">13/153</div><div class="msc-lbl">Hormuz daily vessels<br>−91% · Insurance closed</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">5th</div><div class="msc-lbl">US aircraft lost<br>KC-135 down · Iraq</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">3.2M</div><div class="msc-lbl">Iranians displaced<br>UNHCR</div></div>
+      <div class="ms-cell"><div class="msc-val mv-a">Mar 18</div><div class="msc-lbl">IMO emergency<br>London · Hormuz</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">Day 13</div><div class="msc-lbl">CARICOM<br>Zero statements</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADLINE -->
+<div class="headline-strip">
+  <div class="hs-inner">
+    <div class="hs-kicker"><div class="ld"></div>March 13, 2026 · The War Widens</div>
+    <div class="hs-hed">US aircraft down in Iraq.<br>French soldier <span class="r">dead.</span><br>Russia oil sanctions <span class="g">lifted.</span></div>
+    <div class="hs-deck">
+      A US Air Force KC-135 refuelling aircraft crashed in Iraq on Thursday — the fifth US aircraft lost since the war began. A French soldier was killed in Erbil. Trump lifted restrictions on Russian oil sales in an emergency measure to relieve the price shock. <strong>The IEA declared this the largest oil supply disruption in the history of the global oil market — 8 million barrels per day offline this month alone.</strong> The markets absorbed it all and Brent stayed above $100.
+    </div>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+<div class="layout">
+<div>
+
+<!-- STORY 1: AIRCRAFT + FRANCE -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Military · The War's Expanding Perimeter</div></div>
+<div class="story">
+  <div class="s-kicker kt-r"><div class="kd kd-r"></div>US Military · France · March 13</div>
+  <div class="s-hed">Fifth US aircraft lost.<br>A French soldier buried.<br><span class="r">NATO's edge is showing.</span></div>
+  <div class="s-body">
+    <p>A US Air Force Boeing KC-135 Stratotanker — a refuelling aircraft — came down in Iraq on Thursday. The US military confirmed the loss, stating the aircraft was not brought down by hostile or friendly fire. It is the fifth US aircraft lost since Operation Epic Fury began on February 28. The crew's status was not immediately confirmed.</p>
+    <p>French President Emmanuel Macron confirmed the first French military fatality of the war: Chief Warrant Officer Arnaud Frion, killed in an attack in Iraq's Erbil region. Several other French soldiers were wounded in the same strike. Macron called the attack "unacceptable" and said France's presence in Iraq was part of anti-terrorism operations. <strong>"The war in Iran cannot justify such attacks,"</strong> Macron said.</p>
+    <p>France is now a bereaved nation in a war its parliament has not voted to authorise. Macron has been one of the three non-US powers — alongside China and Russia — in ceasefire contact with Tehran. His country now has a soldier's body to bring home. How that shapes France's diplomatic posture over the coming days is the question every chancellery is watching.</p>
+  </div>
+
+  <div class="insight i-r">
+    <div class="ins-lbl il-r">Where The War Stands · Aircraft Count</div>
+    <div class="ins-body">
+      Five US aircraft lost in 13 days. A French soldier killed. Twenty-seven fighters from Iraq's Popular Mobilization Forces killed in US strikes targeting PMF headquarters across multiple Iraqi provinces. The war that was described by Trump as hitting only Iranian military targets has now produced casualties in Iraq, France, Lebanon, the Gulf states, Israel, and Iran. <strong>The geographic perimeter of active harm is now wider than the stated scope of the operation.</strong>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 2: RUSSIA OIL + IEA -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Energy · The Largest Disruption In History</div></div>
+<div class="story">
+  <div class="s-kicker kt-a"><div class="kd kd-a"></div>Energy Markets · IEA · US Treasury · March 13</div>
+  <div class="s-hed">Trump lifted Russia<br>oil sanctions. Brent<br><span class="a">stayed above $100.</span></div>
+  <div class="s-body">
+    <p>The US Treasury issued an emergency licence Thursday permitting countries to temporarily purchase Russian oil products currently stranded at sea. Treasury Secretary Scott Bessent described it as a "narrowly tailored, short-term measure" applying only to oil already in transit. The Kremlin confirmed simultaneously that Moscow and Washington are in discussions about cooperating to stabilise energy markets disrupted by the Hormuz closure.</p>
+    <p>The measure did not move markets meaningfully. Brent crude settled above $100 per barrel for the second consecutive day — the first time that has happened since August 2022. The IEA published its monthly oil report Thursday, calling the war-driven disruption <strong>"the largest supply disruption in the history of the global oil market."</strong> The agency said crude and oil product flows through Hormuz had slowed to "a trickle," with supplies set to drop by 8 million barrels per day this month.</p>
+    <p>The 400 million barrel coordinated IEA reserve release, announced Wednesday, has provided a floor but not a ceiling. Iran's new Supreme Leader vowed in his first statement that Hormuz will remain closed as a "tool of pressure." The IRGC separately warned it will set the region's oil and gas "on fire" if Iranian energy infrastructure and ports are targeted. <span class="hot">Three more tankers were attacked overnight, bringing the total shipping incidents in the Persian Gulf to more than 19 since February 28.</span></p>
+  </div>
+
+  <div class="insight i-gold">
+    <div class="ins-lbl il-gold">The Russia Sanctions Lift — What It Signals</div>
+    <div class="ins-body">
+      The US spent three years pressuring allies to limit Russian oil revenue as part of Ukraine sanctions policy. On Day 13 of the Iran war, Trump reversed that position by emergency licence to address a supply shock. The Kremlin called it evidence that "interaction between Russia and the United States on energy markets could and should be an important factor in stabilising those markets." Russia now has a seat at the table on both the energy and diplomatic dimensions of this war. <strong>That is a significant strategic shift in under two weeks of conflict.</strong>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 3: KHAMENEI + NETANYAHU -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Leadership · A Leader Nobody Has Seen</div></div>
+<div class="story">
+  <div class="s-kicker kt-r"><div class="kd kd-r"></div>Iran Leadership · Day 5 of Mojtaba's Rule</div>
+  <div class="s-hed">"Alive in some form.<br>Damaged." Trump's<br><span class="r">assessment of Iran's leader.</span></div>
+  <div class="s-body">
+    <p>In a Fox News interview recorded Thursday and set to air Friday, Trump was asked about Iran's new Supreme Leader Mojtaba Khamenei — who has still not appeared on camera or produced audio since his election on Day 9. Trump said: <em>"I think he probably is. I think he is damaged, but I think he's probably alive in some form."</em> The President of the United States was speculating about the medical condition of the man who leads the country the US is at war with.</p>
+    <p>Israeli Prime Minister Benjamin Netanyahu was more direct. At his first press conference since the war began, he said Khamenei "cannot show his face in public" and that he "wouldn't take out any life insurance" on the new Supreme Leader. The statement is a public assassination threat against a sitting head of state.</p>
+    <p>Khamenei's first statement — read by a state TV anchor over a still photograph, with no audio or video of the man himself — vowed Hormuz would remain closed and US bases would be attacked until evacuated. Iranian media has offered no update on his location or physical condition. <span class="warn">Iran is now being led by a man whose whereabouts, health, and decision-making capacity are unknown to every government in the world, including those trying to negotiate a ceasefire.</span></p>
+  </div>
+
+  <div class="qblock">
+    <div class="qb-txt">"I wouldn't take out any life insurance on him."</div>
+    <div class="qb-src">Israeli Prime Minister Benjamin Netanyahu · On Iran's new Supreme Leader Mojtaba Khamenei · March 13, 2026</div>
+  </div>
+</div>
+
+<!-- STORY 4: GLOBAL SOUTH -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Global South · Week Two Begins</div></div>
+<div class="story">
+  <div class="s-kicker kt-gold"><div class="kd kd-gold"></div>Regional Impact · All Regions · Day 13</div>
+  <div class="s-hed">A Thai ship burned.<br>Bangkok demanded<br><span class="a">an apology from Tehran.</span></div>
+  <div class="s-body"><p>Thailand became the latest Global South government to formally confront Iran over the cost of this war. Thailand's Foreign Affairs Ministry conveyed its "strongest protest" to the Iranian ambassador in Bangkok after the Thai cargo vessel Mayuree Naree was struck and set ablaze in the Strait of Hormuz. The deputy permanent secretary for foreign affairs requested a written apology and clarification of facts from Iranian authorities. The Royal Thai Navy published photographs of the burning vessel.</p></div>
+
+  <div style="margin-top:1.2rem">
+    <div class="region-row">
+      <div class="rr-flag">🇹🇭</div>
+      <div class="rr-body"><strong>Thailand</strong> — Cargo vessel Mayuree Naree struck and burned in Hormuz. Formal protest lodged with Iranian ambassador. Oman's navy rescued 20 sailors from the stricken ship. Thailand's stock exchange had imposed trading curbs after an 8% decline earlier in the war. 74% of Thailand's oil comes from the Persian Gulf. Government suspended civil servant overseas travel and is encouraging stair-climbing to reduce electricity consumption.</div>
+      <div class="rr-badge b-r">Protest Filed</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇵🇭</div>
+      <div class="rr-body"><strong>Philippines</strong> — 50–60 days of oil reserves confirmed by President Marcos. Four-day government workweek active. Peso at 59.5 PHP per dollar, approaching 60. Citi Research: GDP could fall from 4% to 3.7% if $100 oil holds. 98% of crude imports from the Middle East. 2 million OFW workers in active Gulf strike zones.</div>
+      <div class="rr-badge b-r">Critical</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇵🇰</div>
+      <div class="rr-body"><strong>Pakistan</strong> — Central bank expected to raise interest rates. Qatar LNG force majeure still active. Army deployed to suppress pro-Iran protests in Gilgit and Skardu. Managing energy crisis, inflation, and domestic political instability simultaneously.</div>
+      <div class="rr-badge b-r">Acute</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇮🇳</div>
+      <div class="rr-body"><strong>India</strong> — Restaurants warning of shutdown as government prioritises household gas supply over commercial use. US Russia sanctions waiver allows continued Russian oil purchases but volumes cannot substitute Gulf LNG at required speed. IMF: every 10% sustained oil rise cuts global GDP growth 0.2% and raises inflation 0.4%.</div>
+      <div class="rr-badge b-a">Watching</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇧🇩</div>
+      <div class="rr-body"><strong>Bangladesh</strong> — Fuel queues across Dhaka. Lowy Institute flags Bangladesh as among the most debt-strained economies facing capital flight risk. Garment sector energy costs rising. Qatar LNG force majeure compounds grid pressure.</div>
+      <div class="rr-badge b-r">Acute</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇪🇬</div>
+      <div class="rr-body"><strong>Egypt</strong> — Chatham House identifies Egypt and Tunisia as most vulnerable to oil-price-driven bond market destabilisation. IMF programme stretched. Suez revenue disrupted. Fuel pump photos circulating from Cairo showing price increases.</div>
+      <div class="rr-badge b-r">Vulnerable</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇭🇹🇯🇲🇧🇧🇹🇹🇬🇾</div>
+      <div class="rr-body"><strong>Caribbean</strong> — Brent above $100. Electricity surcharges active. Airlines still in route review. Pacific Island nations carrying fuel import bills at 5–15% of GDP. T&T and Guyana oil windfall: undeployed. <span class="hot">CARICOM: Day 13. No statement. No emergency session. No coordinated regional response of any kind.</span></div>
+      <div class="rr-badge b-r">Silent</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 5: HUMANITARIAN + NUCLEAR -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Humanitarian + Nuclear · What Isn't Being Said</div></div>
+<div class="story">
+  <div class="s-kicker kt-b"><div class="kd kd-b"></div>Civilian Toll · Nuclear Site · School Strike Investigation</div>
+  <div class="s-hed">A nuclear weapons<br>test facility struck.<br><span class="r">A school probe begins.</span></div>
+  <div class="s-body">
+    <p>Satellite imagery published Thursday confirmed that Israel struck Iran's Taleghan 2 facility at the Parchin military complex — a site assessed by analysts to be capable of testing nuclear weapon components. The facility had been under reconstruction since last May. It is the first confirmed strike on a site directly associated with nuclear weapons development capability, separate from enrichment facilities.</p>
+    <p>In Washington, 46 Senate Democrats sent a formal letter to Defence Secretary Hegseth demanding an investigation into the Day 1 US strike on an elementary school in Iran. NBC News reported that two people familiar with internal reviews confirmed US forces were likely responsible and that outdated targeting intelligence was most probably used. The majority of those killed were girls between the ages of 7 and 12. <strong>No investigation has formally been opened. No individual has been held accountable.</strong></p>
+    <p>The UN's Tom Fletcher, undersecretary-general for humanitarian affairs, told the Security Council that tens of thousands of Syrians and Lebanese are now crossing from Lebanon into Syria — a country that has spent five years rebuilding from its own civil war and has no capacity to absorb a secondary displacement crisis. Iran's Red Crescent Society counts more than 1,200 Iranian civilians killed. <span class="hot">Iran's police chief warned Thursday that those "supporting the country's enemies" will be treated as enemies — a signal of internal repression alongside the external war.</span></p>
+  </div>
+</div>
+
+<!-- STORY 6: DIPLOMACY + SPORT -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Diplomacy · Iran's World Cup Exit</div></div>
+<div class="story">
+  <div class="s-kicker kt-g"><div class="kd kd-g"></div>Ceasefire Track · Football · Cultural Fallout</div>
+  <div class="s-hed">Iran will not play<br>in the World Cup.<br><span class="g">The exit ramp is still forming.</span></div>
+  <div class="s-body">
+    <p>Iran's Sports Minister Ahmad Donyamali confirmed Thursday that Iran's men's national football team will not participate in the 2026 FIFA World Cup, regardless of Trump's public statements about whether they would be welcome. FIFA has not announced a contingency plan for replacing Iran in the tournament draw. A team has never been removed from a World Cup in the modern era. The tournament, co-hosted by the US, Mexico, and Canada, begins in June.</p>
+    <p>On the ceasefire track: Iran's President Pezeshkian confirmed he has spoken directly with Russia's Putin and Pakistan's Prime Minister Sharif. Iran's three formal conditions — rights recognition, reparations, and binding future guarantees — remain on the table. The US has not formally responded. The IMO emergency session is scheduled for March 18–19 in London. Energy Secretary Wright said the US may be able to begin escorting vessels through Hormuz by end of month — a statement that, unlike his deleted tweet of Thursday, has not been retracted.</p>
+  </div>
+</div>
+
+<!-- CONCLUSION -->
+<div class="conclusion">
+  <div class="concl-ghost">13</div>
+  <div class="concl-lbl">Meridian · Day 13 · March 13, 2026</div>
+  <div class="concl-hed">The war produced<br>its first <span class="r">NATO casualty.</span><br>And its first <span class="g">Russian deal.</span></div>
+  <div class="concl-body">
+    <p>Chief Warrant Officer Arnaud Frion is the first soldier from a NATO ally — outside the United States — to be killed in this war. France is now a bereaved nation in a conflict its legislature did not authorise, whose ceasefire contacts with Tehran it has been quietly advancing. His death changes the political calculus for Macron in ways that are not yet visible but will become so.</p>
+    <p>The Russia sanctions lift is the day's most structurally significant move. The United States spent three years building a sanctions architecture around Russian energy to limit Moscow's revenue and strategic leverage. On Day 13 of the Iran war, that architecture was suspended by emergency licence. Russia immediately framed it as the beginning of energy market cooperation with Washington. <strong>The war that started as a US-Israel operation against Iran has now drawn Russia into an energy partnership role with the United States and a diplomatic intermediary role with Tehran.</strong> That is a realignment that will outlast the ceasefire, whenever it comes.</p>
+    <p>For the Global South: the IEA's declaration of the largest supply disruption in history is the number that matters today. Eight million barrels per day offline this month. The reserve release covers part of that. Russian oil covers part of that. The gap — still significant — falls on the countries that are not IEA members, that cannot access Russian supply through waiver, and that have no strategic petroleum reserve of their own. <span class="warn">Thailand just lost a cargo ship. The Philippines has 50 days of oil. Pakistan is raising interest rates into a recession. And CARICOM has issued nothing.</span></p>
+    <p><em>Day 13. The war continues at full intensity. The ceasefire architecture is forming. The cascade does not wait for it to finish.</em></p>
+  </div>
+</div>
+
+</div><!-- /left -->
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+  <div class="s-card">
+    <div class="sc-head sch-r"><div class="ld2 ld2-r"></div>Day 13 · Numbers</div>
+    <div class="sc-body">
+      <div class="stat-big"><div class="sb-val sbv-r">$101+</div><div class="sb-lbl">Brent · Day 2 above $100<br>IEA release cannot hold it down</div></div>
+      <div class="stat-big"><div class="sb-val sbv-r">8M bbl</div><div class="sb-lbl">Supply offline · per day<br>Largest disruption in IEA history</div></div>
+      <div class="stat-big"><div class="sb-val sbv-r">5</div><div class="sb-lbl">US aircraft lost since Feb 28<br>KC-135 down in Iraq today</div></div>
+      <div class="stat-big"><div class="sb-val sbv-r">3.2M</div><div class="sb-lbl">Iranians displaced<br>UNHCR · preliminary</div></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-a">Today's Key Events</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">US KC-135 down in Iraq</span><span class="dr-val dv-r">5th aircraft lost</span></div>
+      <div class="drow"><span class="dr-lbl">CWO Arnaud Frion · France</span><span class="dr-val dv-r">1st NATO ally KIA</span></div>
+      <div class="drow"><span class="dr-lbl">Russia oil sanctions lifted</span><span class="dr-val dv-a">US Treasury</span></div>
+      <div class="drow"><span class="dr-lbl">IEA disruption declaration</span><span class="dr-val dv-r">Largest in history</span></div>
+      <div class="drow"><span class="dr-lbl">Parchin nuclear site struck</span><span class="dr-val dv-r">Satellite confirmed</span></div>
+      <div class="drow"><span class="dr-lbl">Tankers attacked overnight</span><span class="dr-val dv-r">3 more</span></div>
+      <div class="drow"><span class="dr-lbl">Thailand protests to Iran</span><span class="dr-val dv-a">Ship burned · Apology demanded</span></div>
+      <div class="drow"><span class="dr-lbl">Iran World Cup withdrawal</span><span class="dr-val dv-r">Confirmed</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-gold">Ceasefire Track · Status</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">Iran's 3 conditions</span><span class="dr-val dv-a">On the table</span></div>
+      <div class="drow"><span class="dr-lbl">US formal response</span><span class="dr-val dv-r">None</span></div>
+      <div class="drow"><span class="dr-lbl">China envoy · Active</span><span class="dr-val dv-gold">Yes</span></div>
+      <div class="drow"><span class="dr-lbl">Russia · Iran contact</span><span class="dr-val dv-gold">Confirmed</span></div>
+      <div class="drow"><span class="dr-lbl">France · Iran contact</span><span class="dr-val dv-a">Continues</span></div>
+      <div class="drow"><span class="dr-lbl">Hormuz escort · US Navy</span><span class="dr-val dv-a">End of month est.</span></div>
+      <div class="drow"><span class="dr-lbl">IMO emergency session</span><span class="dr-val dv-gold">Mar 18–19 · London</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-gold">Watch · Next 48 Hours</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">Khamenei appearance · Video or audio</span><span class="dr-val dv-r">Day 5: nothing</span></div>
+      <div class="drow"><span class="dr-lbl">France · Diplomatic posture shift</span><span class="dr-val dv-a">CWO death factor</span></div>
+      <div class="drow"><span class="dr-lbl">Russia-US energy deal detail</span><span class="dr-val dv-a">Watch Kremlin</span></div>
+      <div class="drow"><span class="dr-lbl">Israel → Lebanese infrastructure</span><span class="dr-val dv-r">Threat standing</span></div>
+      <div class="drow"><span class="dr-lbl">IRGC → Gulf oil fire threat</span><span class="dr-val dv-r">Active warning</span></div>
+      <div class="drow"><span class="dr-lbl">CARICOM</span><span class="dr-val dv-r">Day 13 · Zero</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-r">The Human Number · Day 13</div>
+    <div style="padding:1.1rem">
+      <div style="font-family:var(--serif);font-size:.95rem;font-style:italic;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:.6rem">Chief Warrant Officer Arnaud Frion. France. Killed in Erbil, Iraq. The first NATO ally to die in this war.</div>
+      <div style="font-size:.74rem;color:var(--text);line-height:1.75">Macron called the strike "unacceptable." He said France's presence in Iraq was part of anti-terrorism operations — not this war. <strong style="color:var(--white)">The war did not agree.</strong> His family was not given a vote on the scope of the mission.</div>
+    </div>
+  </div>
+
+</div><!-- /sidebar -->
+</div><!-- /layout -->
+</div><!-- /page -->
+
+<footer>
+  <div class="ft-i">
+    <div>
+      <div class="ft-brand">Meridian</div>
+      <div class="ft-tag">Intelligence from the South. For the South.</div>
+    </div>
+    <div class="ft-meta">
+      Day 13 · March 13, 2026 · Operation Epic Fury<br>
+      @Meridiantoday_ · @meridian.today · meridian.today<br>
+      Sources: CNN · Al Jazeera · NPR · Iran International · NBC News · IEA · ACLED · Reuters
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
