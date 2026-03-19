@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERIDIAN · Day 11 · March 11, 2026 · The Tweet That Moved Oil $20</title>
+<meta name="description" content="Day 11: A deleted tweet crashed oil $20. Lebanon's deadliest night. Iran and Hezbollah launch first joint operation. IEA releases 400M barrels — but not for the Global South.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#0b0f07;--f2:#0f1409;--f3:#14190c;--f4:#191f10;
+  --gold:#c9a84c;--gold-l:#e0c46e;--gold-d:#7a6020;--gold-f:rgba(201,168,76,.07);
+  --mg:#4a7c3f;--mg-l:#6aaa5e;--mg-d:rgba(74,124,63,.12);
+  --red:#c84c3f;--red-l:#e07060;--red-f:rgba(200,76,63,.08);
+  --amb:#d4890a;--amb-l:#f0a820;--amb-f:rgba(212,137,10,.07);
+  --blue:#3a7abf;--blue-l:#5a9fdf;--blue-f:rgba(58,122,191,.07);
+  --rule:rgba(201,168,76,.1);--rule2:rgba(201,168,76,.04);
+  --text:#98a88e;--dim:#4a5840;--white:#eaf2e2;
+  --serif:'Cormorant Garamond',serif;--sans:'Outfit',sans-serif;--mono:'DM Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--forest);color:var(--text);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(201,168,76,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.018) 1px,transparent 1px);
+  background-size:52px 52px;pointer-events:none;z-index:0}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.2;transform:scale(.8)}}
+@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(200,76,63,.6)}70%{box-shadow:0 0 0 8px rgba(200,76,63,0)}100%{box-shadow:0 0 0 0 rgba(200,76,63,0)}}
+@keyframes tickerMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes barFill{from{width:0}to{width:var(--fill)}}
+@keyframes scanLine{0%{transform:translateY(-100%)}100%{transform:translateY(900%)}}
+
+/* TICKER */
+.ticker{background:var(--red);position:relative;z-index:10;overflow:hidden;height:32px;display:flex;align-items:center}
+.t-badge{font-family:var(--mono);font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;padding:0 1rem .0rem .8rem;background:rgba(0,0,0,.4);height:100%;display:flex;align-items:center;gap:.5rem;white-space:nowrap;flex-shrink:0}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#fff;flex-shrink:0;animation:pulse 1.6s ease-in-out infinite,pulseRing 1.6s ease-out infinite}
+.t-track{display:flex;animation:tickerMove 60s linear infinite;white-space:nowrap}
+.t-item{font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.92);padding:0 2rem}
+.t-item::after{content:'◆';font-size:.32rem;padding-left:2rem;color:rgba(255,255,255,.3)}
+
+/* MASTHEAD */
+.mast{position:relative;z-index:1;background:var(--f2);border-bottom:1px solid var(--rule);overflow:hidden}
+.mast::after{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:linear-gradient(180deg,transparent,var(--gold),transparent);animation:scanLine 4.5s ease-in-out infinite;pointer-events:none}
+.mast-inner{max-width:1280px;margin:0 auto;padding:0 2.5rem}
+.mast-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.6rem 0 1rem;gap:1.5rem}
+.brand-name{font-family:var(--serif);font-size:2.8rem;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;line-height:.9}
+.brand-name em{font-weight:400;font-style:italic;font-size:.68em;color:var(--gold-l);letter-spacing:.06em}
+.brand-tag{font-family:var(--serif);font-size:.76rem;font-style:italic;color:var(--dim);margin-top:.15rem}
+.brand-live{display:inline-flex;align-items:center;gap:.4rem;margin-top:.4rem;font-family:var(--mono);font-size:.46rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red-l)}
+.brand-live .ld{width:6px;height:6px;border-radius:50%;background:var(--red-l);animation:pulse 1.4s ease-in-out infinite}
+.day-block{text-align:center;display:flex;flex-direction:column;align-items:center;gap:.25rem}
+.db-pre{font-family:var(--mono);font-size:.46rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.db-num{font-family:var(--serif);font-size:3.8rem;font-weight:700;color:var(--white);line-height:.85}
+.db-sub{font-family:var(--mono);font-size:.44rem;letter-spacing:.12em;color:var(--dim);text-transform:uppercase}
+.db-date{font-family:var(--serif);font-size:.8rem;font-style:italic;color:var(--gold-l);margin-top:.1rem}
+.esc-block{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem}
+.esc-label{font-family:var(--mono);font-size:.46rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.esc-track{width:180px;height:10px;background:rgba(255,255,255,.04);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.esc-fill{height:100%;background:linear-gradient(90deg,var(--gold-d),var(--amb-l),var(--red-l));border-radius:2px;animation:barFill .8s .3s ease-out both;--fill:93%;width:93%}
+.esc-val{font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--red-l);line-height:1}
+.esc-val span{font-size:1rem;color:var(--dim);font-weight:400}
+.esc-note{font-family:var(--mono);font-size:.44rem;letter-spacing:.08em;color:var(--dim);text-transform:uppercase}
+.mast-rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold-d) 30%,var(--gold) 50%,var(--gold-d) 70%,transparent);margin:.4rem 0}
+
+/* MARKET STRIP */
+.market-strip{display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid var(--rule2);border-bottom:1px solid var(--rule2)}
+.ms-cell{padding:.7rem .5rem;text-align:center;border-right:1px solid var(--rule2);transition:background .2s}
+.ms-cell:last-child{border-right:none}
+.ms-cell:hover{background:rgba(201,168,76,.03)}
+.msc-val{font-family:var(--mono);font-size:.76rem;font-weight:700;line-height:1;margin-bottom:.15rem}
+.mv-r{color:var(--red-l)}.mv-g{color:var(--mg-l)}.mv-a{color:var(--amb-l)}.mv-w{color:var(--white)}.mv-gold{color:var(--gold-l)}
+.msc-lbl{font-family:var(--mono);font-size:.4rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;line-height:1.5}
+
+/* BIAS STRIP */
+.bias-strip{background:var(--gold-f);border-bottom:1px solid var(--rule2);position:relative;z-index:1}
+.bs-inner{max-width:1280px;margin:0 auto;padding:.45rem 2.5rem;display:flex;align-items:center;gap:.9rem}
+.bs-tag{font-family:var(--mono);font-size:.44rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-d);white-space:nowrap;display:flex;align-items:center;gap:.4rem}
+.bs-tag::before{content:'';width:8px;height:1px;background:var(--gold-d)}
+.bs-text{font-family:var(--serif);font-size:.68rem;font-style:italic;color:var(--dim)}
+
+/* HEADLINE */
+.headline-strip{background:var(--f3);border-bottom:1px solid var(--rule);position:relative;z-index:1}
+.hs-inner{max-width:1280px;margin:0 auto;padding:2.2rem 2.5rem}
+.hs-kicker{display:flex;align-items:center;gap:.7rem;font-family:var(--mono);font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:var(--red-l);margin-bottom:.8rem}
+.hs-kicker::before{content:'';width:18px;height:1px;background:var(--red-l)}
+.hs-kicker .ld{width:5px;height:5px;border-radius:50%;background:var(--red-l);animation:pulse 1.4s ease-in-out infinite}
+.hs-hed{font-family:var(--serif);font-size:clamp(1.9rem,4vw,3.6rem);font-weight:700;color:var(--white);line-height:.97;letter-spacing:-.02em;margin-bottom:.9rem}
+.hs-hed .g{color:var(--gold);font-style:italic}.hs-hed .r{color:var(--red-l)}.hs-hed .a{color:var(--amb-l)}
+.hs-deck{font-size:.86rem;color:var(--text);line-height:1.88;max-width:860px;font-weight:300}
+.hs-deck strong{color:var(--white)}
+.hs-deck .hot{color:var(--red-l);font-weight:600}
+.hs-deck .warn{color:var(--amb-l);font-weight:600}
+.hs-deck .ok{color:var(--mg-l);font-weight:600}
+
+/* PAGE LAYOUT */
+.page{max-width:1280px;margin:0 auto;padding:2.5rem 2.5rem 6rem;position:relative;z-index:1}
+.layout{display:grid;grid-template-columns:1fr 355px;gap:2.5rem;align-items:start}
+
+/* SECTION LABEL */
+.sec{display:flex;align-items:center;gap:.7rem;margin-bottom:1.3rem;margin-top:2rem}
+.sec:first-child{margin-top:0}
+.sec-rule{width:18px;height:1px;background:var(--gold-d)}
+.sec-txt{font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.sec-num{font-family:var(--mono);font-size:.44rem;letter-spacing:.1em;color:var(--dim);margin-left:auto}
+
+/* STORY */
+.story{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--rule2)}
+.story:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-kicker{display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.48rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.45rem}
+.kd{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.kd-r{background:var(--red-l)}.kd-a{background:var(--amb-l)}.kd-g{background:var(--mg-l)}.kd-gold{background:var(--gold)}.kd-b{background:var(--blue-l)}
+.kt-r{color:var(--red-l)}.kt-a{color:var(--amb-l)}.kt-g{color:var(--mg-l)}.kt-gold{color:var(--gold)}.kt-b{color:var(--blue-l)}
+.s-hed{font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.9rem);font-weight:700;color:var(--white);line-height:1.05;letter-spacing:-.01em;margin-bottom:.65rem}
+.s-hed .g{color:var(--gold);font-style:italic}.s-hed .r{color:var(--red-l)}.s-hed .a{color:var(--amb-l)}
+.s-body{font-size:.82rem;color:var(--text);line-height:1.9}
+.s-body p{margin-bottom:.7rem}.s-body p:last-child{margin-bottom:0}
+.s-body strong{color:var(--white)}
+.s-body .hot{color:var(--red-l);font-weight:600}
+.s-body .warn{color:var(--amb-l);font-weight:600}
+.s-body .ok{color:var(--mg-l);font-weight:600}
+.s-body em{font-style:italic;color:var(--gold-l)}
+
+/* INSIGHT */
+.insight{border:1px solid var(--rule);border-left:3px solid;padding:1rem 1.3rem;margin:1rem 0;background:var(--f4)}
+.i-r{border-left-color:var(--red-l)}.i-a{border-left-color:var(--amb-l)}.i-gold{border-left-color:var(--gold)}.i-g{border-left-color:var(--mg-l)}.i-b{border-left-color:var(--blue-l)}
+.ins-lbl{font-family:var(--mono);font-size:.44rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.35rem}
+.il-r{color:var(--red-l)}.il-a{color:var(--amb-l)}.il-gold{color:var(--gold)}.il-g{color:var(--mg-l)}.il-b{color:var(--blue-l)}
+.ins-body{font-size:.78rem;color:var(--text);line-height:1.8}
+.ins-body strong{color:var(--white)}
+.ins-body .hot{color:var(--red-l);font-weight:600}.ins-body .warn{color:var(--amb-l);font-weight:600}.ins-body .ok{color:var(--mg-l);font-weight:600}
+
+/* QUOTE */
+.qblock{background:var(--f4);border-left:3px solid var(--gold);padding:.85rem 1.2rem;margin:.85rem 0}
+.qb-txt{font-family:var(--serif);font-size:.9rem;font-style:italic;color:var(--white);line-height:1.7;margin-bottom:.2rem}
+.qb-src{font-family:var(--mono);font-size:.42rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
+
+/* REGION ROW */
+.region-row{display:flex;align-items:flex-start;gap:.8rem;padding:.6rem 0;border-bottom:1px solid var(--rule2)}
+.region-row:last-child{border-bottom:none}
+.rr-flag{font-size:1.1rem;flex-shrink:0;padding-top:.05rem}
+.rr-body{flex:1;font-size:.78rem;color:var(--text);line-height:1.65}
+.rr-body strong{color:var(--white)}
+.rr-body .hot{color:var(--red-l);font-weight:600}.rr-body .warn{color:var(--amb-l);font-weight:600}.rr-body .ok{color:var(--mg-l);font-weight:600}
+.rr-badge{font-family:var(--mono);font-size:.42rem;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .3rem;border:1px solid;border-radius:2px;white-space:nowrap;flex-shrink:0;margin-top:.15rem}
+.b-r{color:var(--red-l);border-color:rgba(200,76,63,.25);background:var(--red-f)}
+.b-a{color:var(--amb-l);border-color:rgba(212,137,10,.2);background:var(--amb-f)}
+.b-g{color:var(--mg-l);border-color:rgba(74,124,63,.25);background:var(--mg-d)}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:1.4rem;position:sticky;top:1rem}
+.s-card{background:var(--f3);border:1px solid var(--rule)}
+.sc-head{padding:.65rem 1.1rem;border-bottom:1px solid var(--rule2);font-family:var(--mono);font-size:.48rem;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem}
+.sch-r{color:var(--red-l)}.sch-a{color:var(--amb-l)}.sch-g{color:var(--mg-l)}.sch-gold{color:var(--gold)}
+.sc-head .ld2{width:5px;height:5px;border-radius:50%;flex-shrink:0;animation:pulse 1.6s ease-in-out infinite}
+.ld2-r{background:var(--red-l)}.ld2-a{background:var(--amb-l)}
+.sc-body{padding:.85rem 1.1rem}
+.stat-big{padding:.55rem 0;border-bottom:1px solid var(--rule2);display:flex;flex-direction:column;gap:.08rem}
+.stat-big:last-child{border-bottom:none;padding-bottom:0}
+.sb-val{font-family:var(--serif);font-size:1.45rem;font-weight:700;line-height:1}
+.sbv-r{color:var(--red-l)}.sbv-a{color:var(--amb-l)}.sbv-g{color:var(--mg-l)}.sbv-gold{color:var(--gold-l)}.sbv-w{color:var(--white)}
+.sb-lbl{font-family:var(--mono);font-size:.42rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);line-height:1.6}
+.drow{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;padding:.42rem 0;border-bottom:1px solid var(--rule2);font-size:.74rem}
+.drow:last-child{border-bottom:none;padding-bottom:0}
+.dr-lbl{color:var(--dim);flex:1;line-height:1.4;font-size:.7rem}
+.dr-val{font-family:var(--mono);font-size:.66rem;font-weight:700;white-space:nowrap;flex-shrink:0}
+.dv-r{color:var(--red-l)}.dv-g{color:var(--mg-l)}.dv-a{color:var(--amb-l)}.dv-gold{color:var(--gold-l)}.dv-w{color:var(--white)}
+
+/* CONCLUSION */
+.conclusion{background:var(--f2);border:1px solid var(--rule);border-top:3px solid var(--gold);padding:2.6rem;margin-top:2.8rem;position:relative;overflow:hidden}
+.concl-ghost{position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:12rem;font-weight:700;color:rgba(201,168,76,.022);line-height:1;pointer-events:none;user-select:none}
+.concl-lbl{display:flex;align-items:center;gap:.7rem;font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.65rem}
+.concl-lbl::before{content:'';width:14px;height:1px;background:var(--gold-d)}
+.concl-hed{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.6rem);font-weight:700;color:var(--white);line-height:1.02;letter-spacing:-.01em;margin-bottom:1.1rem}
+.concl-hed .g{color:var(--gold);font-style:italic}
+.concl-body{font-size:.82rem;color:var(--text);line-height:1.95;max-width:1000px}
+.concl-body p{margin-bottom:.8rem}.concl-body p:last-child{margin-bottom:0}
+.concl-body strong{color:var(--white)}
+.concl-body .hot{color:var(--red-l);font-weight:600}
+.concl-body .ok{color:var(--mg-l);font-weight:600}
+.concl-body .warn{color:var(--amb-l);font-weight:600}
+.concl-body em{color:var(--gold-l);font-style:italic}
+
+footer{border-top:1px solid var(--rule);padding:1.4rem 2.5rem;position:relative;z-index:1;background:var(--f2)}
+.ft-i{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.ft-brand{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.ft-tag{font-family:var(--serif);font-size:.7rem;font-style:italic;color:var(--dim);margin-top:.1rem}
+.ft-meta{font-family:var(--mono);font-size:.42rem;letter-spacing:.08em;color:var(--dim);text-align:right;line-height:1.9;text-transform:uppercase}
+
+@media(max-width:1000px){.layout{grid-template-columns:1fr}.sidebar{position:static}}
+@media(max-width:700px){.market-strip{grid-template-columns:repeat(4,1fr)}.mast-top{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="t-badge"><div class="live-dot"></div>Breaking · Day 11</div>
+  <div class="t-track">
+    <div class="t-item">DELETED TWEET CRASHED OIL $20 IN 30 MINUTES · ENERGY SEC WRIGHT POSTED THEN DELETED HORMUZ ESCORT CLAIM</div>
+    <div class="t-item">IRAN + HEZBOLLAH LAUNCH FIRST JOINT OPERATION · 100+ ROCKETS ON NORTHERN ISRAEL · LARGEST HEZBOLLAH ATTACK OF WAR</div>
+    <div class="t-item">LEBANON DEATH TOLL: 634 KILLED SINCE MAR 2 · 91 CHILDREN · 800,000 DISPLACED</div>
+    <div class="t-item">IEA RELEASES 400M BARRELS — LARGEST IN HISTORY · GLOBAL SOUTH NOT IN THE POOL</div>
+    <div class="t-item">MOJTABA KHAMENEI SUFFERED FRACTURED FOOT IN OPENING STRIKES — CNN SOURCE</div>
+    <div class="t-item">QATAR FORCE MAJEURE ON GAS EXPORTS · 20% OF GLOBAL LNG · SOUTH ASIA GRID CRISIS DEEPENS</div>
+    <div class="t-item">BRENT CURRENT ~$87.80 · DOWN FROM $119 HIGH · STILL +25% ABOVE PRE-WAR</div>
+    <div class="t-item">UN WARNING: TOXIC BLACK RAIN · MASS DISPLACEMENT · DISRUPTED HUMANITARIAN SUPPLY CHAINS</div>
+    <div class="t-item">DELETED TWEET CRASHED OIL $20 IN 30 MINUTES · ENERGY SEC WRIGHT POSTED THEN DELETED HORMUZ ESCORT CLAIM</div>
+    <div class="t-item">IRAN + HEZBOLLAH LAUNCH FIRST JOINT OPERATION · 100+ ROCKETS ON NORTHERN ISRAEL · LARGEST HEZBOLLAH ATTACK OF WAR</div>
+    <div class="t-item">LEBANON DEATH TOLL: 634 KILLED SINCE MAR 2 · 91 CHILDREN · 800,000 DISPLACED</div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<div class="mast">
+  <div class="mast-inner">
+    <div class="mast-top">
+      <div>
+        <div class="brand-name">Meridian <em>Brief</em></div>
+        <div class="brand-tag">Intelligence from the South. For the South.</div>
+        <div class="brand-live"><div class="ld"></div>Live War Coverage · Operation Epic Fury</div>
+      </div>
+      <div class="day-block">
+        <div class="db-pre">Iran War · Day</div>
+        <div class="db-num">11</div>
+        <div class="db-sub">War enters second week</div>
+        <div class="db-date">Wednesday · March 11, 2026</div>
+      </div>
+      <div class="esc-block">
+        <div class="esc-label">Escalation Index</div>
+        <div class="esc-track"><div class="esc-fill"></div></div>
+        <div class="esc-val">93<span>/100</span></div>
+        <div class="esc-note">Joint Iran-Hezbollah op · Lebanon front fully open</div>
+      </div>
+    </div>
+    <div class="mast-rule"></div>
+    <div class="market-strip">
+      <div class="ms-cell"><div class="msc-val mv-a">$87.80</div><div class="msc-lbl">Brent Crude<br>−17% then rebound</div></div>
+      <div class="ms-cell"><div class="msc-val mv-a">$83.45</div><div class="msc-lbl">WTI<br>Still +19% pre-war</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">+25%</div><div class="msc-lbl">Oil vs pre-war<br>Relief is relative</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">2,000+</div><div class="msc-lbl">Total war dead<br>All sides</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">634</div><div class="msc-lbl">Lebanon dead<br>Since Mar 2 · 91 children</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">800K</div><div class="msc-lbl">Lebanon displaced<br>Government shelters full</div></div>
+      <div class="ms-cell"><div class="msc-val mv-a">Day 11</div><div class="msc-lbl">Mar 11, 2026<br>CARICOM: still silent</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- BIAS STRIP -->
+<div class="bias-strip">
+  <div class="bs-inner">
+    <div class="bs-tag">Editorial Note</div>
+    <div class="bs-text">Meridian v2.0 · Global South first. All regions equal weight. No single-country spotlight. Sources: CNN · Al Jazeera · Reuters · Times of Israel · Jerusalem Post · UN · IEA</div>
+  </div>
+</div>
+
+<!-- HEADLINE -->
+<div class="headline-strip">
+  <div class="hs-inner">
+    <div class="hs-kicker"><div class="ld"></div>Day 11 · The War Enters Its Second Week</div>
+    <div class="hs-hed">A deleted tweet<br>moved oil <span class="r">$20</span> in thirty minutes.<br>Lebanon burned <span class="g">all night.</span></div>
+    <div class="hs-deck">
+      The price "collapse" today is not relief — <strong>Brent is still 25% above where it was two weeks ago.</strong> Every surcharge, every disrupted supply chain, every remittance delayed is still active. What happened today was a deleted social media post, an IEA reserve release that excludes the Global South, and <span class="hot">Iran and Hezbollah launching their first fully coordinated joint operation of the war</span> — 100+ rockets on northern Israel as Israeli strikes lit Beirut's skyline orange. The war is not cooling. The market is catching its breath.
+    </div>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+<div class="layout">
+<div>
+
+<!-- STORY 1: THE DELETED TWEET -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Markets · The Story That Should Embarrass Everyone</div></div>
+<div class="story">
+  <div class="s-kicker kt-r"><div class="kd kd-r"></div>Energy Markets · March 11 · The Most Extraordinary Moment of the War</div>
+  <div class="s-hed">An official posted<br>a tweet. Then deleted it.<br>Oil moved <span class="r">$20.</span></div>
+  <div class="s-body">
+    <p>US Energy Secretary Chris Wright posted — then deleted — a claim that the US Navy had successfully escorted an oil tanker through the Strait of Hormuz. Oil fell more than 17% within thirty minutes. Then the White House clarified: <strong>"The US Navy has not escorted a tanker or a vessel at this time."</strong> Oil partially recovered. It was the most volatile single-day swing of the war.</p>
+    <p>What this tells you is not really about the tweet. <span class="hot">It tells you how fragile and information-starved this market has become.</span> A market with normal liquidity and normal volume does not move 17% on a social media post. It moves on verified supply data. The fact that it did — and then snapped back when the claim was denied — means the market is running on sentiment, rumour, and fear rather than fundamentals. That is an extremely dangerous environment for any economy dependent on stable energy pricing.</p>
+    <p>The partial rebound to ~$87.80 still leaves Brent <strong>+25% above the pre-war $70 baseline.</strong> The IEA's 400 million barrel strategic reserve release — the largest coordinated release in the organisation's history — provided some floor. But analysts were clear: <em>words aren't going to talk oil prices back to normal. The strait is the key.</em> The insurance withdrawal has not been reversed. Hormuz is still at 13 vessels a day versus the normal 153.</p>
+  </div>
+
+  <div class="insight i-gold">
+    <div class="ins-lbl il-gold">The IEA Release — And Who It Doesn't Help</div>
+    <div class="ins-body">
+      The IEA's 400 million barrel release is the largest coordinated strategic reserve action in the organisation's 50-year history. It will stabilise prices for IEA member economies. IEA members are: Europe, North America, Japan, South Korea, Australia, New Zealand. <strong>Pakistan is not a member. The Philippines is not a member. Haiti is not a member. Jamaica is not a member. Kenya is not a member. Bangladesh is not a member.</strong> The countries that can least absorb $88/barrel oil are exactly the countries outside the reserve pool. The release helps the alliance that organised the war. It does not help the people absorbing its cost.
+    </div>
+  </div>
+</div>
+
+<!-- STORY 2: JOINT OPERATION -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Military · The War's New Architecture</div></div>
+<div class="story">
+  <div class="s-kicker kt-r"><div class="kd kd-r"></div>Military Operations · March 11 · Escalation Confirmed</div>
+  <div class="s-hed">Iran and Hezbollah<br>launched their first<br><span class="r">joint operation.</span></div>
+  <div class="s-body">
+    <p>Iran's IRGC described tonight's assault on Israel as a <strong>"joint and integrated operation"</strong> with Hezbollah — the first time the two have formally coordinated strikes since the war began. Hezbollah launched more than 100 rockets from multiple positions in Lebanon — the largest single Hezbollah barrage since hostilities intensified on March 2. Simultaneously, Iran launched ballistic missiles from the east. Both were largely intercepted. Two people in northern Israel were lightly injured by debris.</p>
+    <p>Israel's response was immediate and heavy: large-scale strikes on Beirut's southern suburb of Dahiyeh — the second time in days Israel has targeted central Beirut. <span class="hot">Israel is now warning that if Lebanon's government does not rein in Hezbollah, it will begin striking Lebanese national civilian infrastructure.</span> A senior IDF official told reporters both sides are "heading toward serious escalation" and that Israel has "more capabilities and tools" it has not yet used.</p>
+    <p>Iran's military also threatened to strike ports and docks across the Gulf region if Iran's own ports are attacked. Iran called the day's operations its <strong>"most intense and heaviest"</strong> since the war began — targeting Israel, Persian Gulf nations, and ships in the Strait of Hormuz simultaneously.</p>
+  </div>
+
+  <div class="qblock">
+    <div class="qb-txt">"We are heading toward serious escalation. Hezbollah wants to create a new balance in which Israel's enforcement policy in Lebanon ends — and we don't attack at all. That won't happen."</div>
+    <div class="qb-src">Senior IDF official · March 11, 2026</div>
+  </div>
+
+  <div class="insight i-r">
+    <div class="ins-lbl il-r">Mojtaba Khamenei — His Condition, His Silence</div>
+    <div class="ins-body">
+      CNN reported Wednesday that Mojtaba Khamenei — Iran's new Supreme Leader, elected under bombardment on Day 9 — suffered a <strong>fractured foot and minor injuries</strong> in the opening US-Israeli strikes on February 28. He has still not spoken publicly since his election. His first statement remains the single most consequential pending event in the oil market: any diplomatic signal moves Brent −$10 immediately; any confrontational statement risks the $120 break. The silence is now Day 3 of his leadership.
+    </div>
+  </div>
+</div>
+
+<!-- STORY 3: LEBANON -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Lebanon · The Front That Changed Everything</div></div>
+<div class="story">
+  <div class="s-kicker kt-r"><div class="kd kd-r"></div>Humanitarian Crisis · Lebanon · Day 9 of Hezbollah Front</div>
+  <div class="s-hed">634 dead.<br>91 children.<br><span class="r">800,000 displaced.</span></div>
+  <div class="s-body">
+    <p>Israel's strikes in Lebanon since March 2 have killed 634 people according to Lebanon's Ministry of Public Health — 91 of them children. 800,000 people have been displaced. Less than a quarter of those displaced have found space in government shelters, which a Norwegian Refugee Council official described as "super rough conditions."</p>
+    <p>On Wednesday, Israeli strikes hit an apartment block in central Beirut — the second time in days the capital's centre has been targeted directly. A Red Cross medic, Youssef Assaf, killed in strikes on southern Lebanon earlier this week, was buried today. A Catholic priest, Pierre al-Rahi, killed in separate strikes, was also buried today. Pope Leo offered condolences. The ICRC mourned Assaf in a statement saying he <em>"lost his life while carrying out his humanitarian duty."</em></p>
+    <p><strong>Backlash against Hezbollah is growing inside Lebanon.</strong> Lebanese voices are increasingly and openly blaming Hezbollah for triggering a war the country cannot survive. Lebanon's government last week outlawed Hezbollah's military activities — but Israel's ambassador to the UN asked publicly: <span class="warn">"Where are the seizures of their weapons? Where is your military?"</span></p>
+  </div>
+</div>
+
+<!-- STORY 4: GLOBAL SOUTH -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Global South · Who Is Absorbing The Second Week</div></div>
+<div class="story">
+  <div class="s-kicker kt-gold"><div class="kd kd-gold"></div>Regional Impact · All Regions · Day 11</div>
+  <div class="s-hed">The price "fell."<br>The damage <span class="g">didn't.</span></div>
+  <div class="s-body"><p>At $87.80, Brent is still +25% above pre-war. Every mechanism Meridian mapped on Day 1 remains active. The fertilizer disruption is locked in. The remittance compression is building. The insurance withdrawal has not been reversed. Today's "relief" is priced in dollars — not in food costs, electricity bills, or fuel pump prices that have already been repriced upward across the Global South and will not come down with one day's market swing.</p></div>
+
+  <div style="margin-top:1rem">
+    <div class="region-row">
+      <div class="rr-flag">🇵🇰</div>
+      <div class="rr-body"><strong>Pakistan</strong> — Qatar declared force majeure on LNG exports Wednesday. Qatar supplies 20% of global LNG. Pakistan's grid runs on Gulf LNG. The energy crisis compounding the fuel price crisis. Pakistan remains the most acutely exposed economy in the world.</div>
+      <div class="rr-badge b-r">Acute</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇧🇩</div>
+      <div class="rr-body"><strong>Bangladesh</strong> — Same Qatar LNG force majeure exposure. 1M+ garment workers. Grid at risk. Dollar-denominated import bill rising as taka weakens.</div>
+      <div class="rr-badge b-r">Acute</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇱🇰</div>
+      <div class="rr-body"><strong>Sri Lanka</strong> — LNG force majeure compounds the 100% oil import dependency. The 2022 structural conditions are not just reassembling — they are accelerating.</div>
+      <div class="rr-badge b-r">Critical</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇵🇭</div>
+      <div class="rr-body"><strong>Philippines</strong> — 2M+ OFW workers in active Gulf strike zones. Qatar force majeure adds LNG layer to oil price pressure. BSP rate cut still cancelled. Manila emergency summit produced no binding commitments.</div>
+      <div class="rr-badge b-a">Exposed</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇪🇬</div>
+      <div class="rr-body"><strong>Egypt</strong> — "State of near-emergency" continues. UN toxic black rain warning relevant to Eastern Mediterranean. Suez Canal revenue remains disrupted. IMF program stretched.</div>
+      <div class="rr-badge b-a">Exposed</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇭🇹🇯🇲🇧🇧🇩🇴</div>
+      <div class="rr-body"><strong>Caribbean</strong> — Oil at $87.80 is still above the $80 electricity surcharge threshold. Surcharges remain active. IEA reserve release: non-members. Airlines still in route review. <span class="hot">CARICOM: Day 11. Zero statements. Zero emergency session.</span></div>
+      <div class="rr-badge b-r">Silent</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 5: HUMANITARIAN -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Humanitarian · The Numbers Behind The Numbers</div></div>
+<div class="story">
+  <div class="s-kicker kt-b"><div class="kd kd-b"></div>Humanitarian Crisis · UN Warning · Day 11</div>
+  <div class="s-hed">Toxic black rain.<br>Humanitarian supply chains<br><span class="a">cut off.</span></div>
+  <div class="s-body">
+    <p>The United Nations issued a formal warning Wednesday of toxic black rain across the conflict zone — the result of burning oil infrastructure producing chemical-laden particulate matter falling across populated areas of Iran, Iraq, and the Gulf. The warning extends to disrupted supply chains for life-saving humanitarian goods — medical equipment, food aid, emergency fuel — that cannot move through a region where insurance has collapsed and shipping routes are contested.</p>
+    <p>A Red Cross medic and a Catholic priest — both killed in separate Israeli strikes on Lebanon this week — were buried Wednesday. The ICRC has now lost personnel in the active conflict zone for the first time since 2006. <strong>Iran accused the US and Israel of deliberately targeting civilians, with strikes killing more than 1,300 Iranian civilians since the war began.</strong> The NYT reported earlier this week that preliminary findings indicate at least one US strike was conducted using outdated targeting data — characterised by UN human rights experts as a potential war crime under the Rome Statute.</p>
+  </div>
+</div>
+
+<!-- STORY 6: DIPLOMACY -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Diplomacy · The Exit Ramp Takes Shape</div></div>
+<div class="story">
+  <div class="s-kicker kt-g"><div class="kd kd-g"></div>Ceasefire Contacts · Beijing · Paris · Moscow</div>
+  <div class="s-hed">Three powers<br>contacted Iran.<br><span class="g">None is America.</span></div>
+  <div class="s-body">
+    <p>Iran's Deputy Foreign Minister confirmed Wednesday that <strong>China, Russia, and France</strong> have all contacted Tehran regarding a ceasefire framework. None of those contacts involves the United States directly. Trump said the war would end "very soon" — while Defence Secretary Hegseth said it would not end until "the enemy is totally and decisively defeated." Both statements were made on the same day. They are not compatible.</p>
+    <p>The diplomatic picture: <em>the exit runs through Beijing.</em> China has the economic leverage over Iran that no Western power holds, a confirmed shipping lane through Hormuz, and a strategic interest in a settlement that preserves its corridor. Every day China's envoy Zhai Jun moves through the region without committing is a day Beijing's leverage grows over all parties simultaneously. Russia's contact with Iran adds a second non-Western track. France's involvement is the European credibility layer a deal would need.</p>
+    <p><span class="warn">A ceasefire is forming in outline. But outline is not mechanism, and mechanism is not timeline.</span> The Global South cannot afford to wait for the architecture to be built. The September food spike is already locked in regardless of when this ends.</p>
+  </div>
+</div>
+
+<!-- CONCLUSION -->
+<div class="conclusion">
+  <div class="concl-ghost">11</div>
+  <div class="concl-lbl">Meridian · Day 11 Assessment · March 11, 2026</div>
+  <div class="concl-hed">The market blinked.<br>The war <span class="g">didn't.</span></div>
+  <div class="concl-body">
+    <p>Today will be reported as the day oil "crashed." It did not crash. It fell from a historic spike to a level that is still catastrophic for every import-dependent economy in the Global South. The tweet that moved markets $20 in thirty minutes is the story of a war whose economic consequences are now running entirely on information asymmetry and fear — which is precisely the most dangerous environment for the poorest and least-informed participants in the global economy.</p>
+    <p>The Lebanon front is now fully open. The joint Iran-Hezbollah operation tonight is not an escalation of rhetoric — it is a structural change in how the war is being fought. Two fronts, two missile systems, coordinated targeting. <strong>Israel's threat to strike Lebanese civilian infrastructure is not a bluff — it is the logical next step in the IDF's escalation doctrine.</strong> What that means for Lebanon's already-shattered population of 800,000 displaced is a humanitarian emergency that has not yet reached its worst point.</p>
+    <p>Qatar's force majeure on LNG exports is the story the Caribbean and South Asia are not yet discussing loudly enough. Qatar supplies 20% of global LNG. South Asia's power grids — Pakistan, Bangladesh, Sri Lanka — run on that supply. The IEA's reserve release covers oil, not gas. The LNG gap is unfilled, unaddressed, and accelerating the energy crisis in three of the world's most exposed economies. <span class="warn">This is what Day 11 actually is for the Global South: not oil relief, but a compounding crisis with a new fuel type added to the emergency.</span></p>
+    <p><span class="ok">The ceasefire contacts are real. The exit ramp exists. But it is being built in Beijing, Paris, and Moscow — not Washington. And while it is being built, the cascade continues. The Global South needs intelligence, not reassurance. That is what Meridian is here for.</span></p>
+  </div>
+</div>
+
+</div><!-- /left -->
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+  <div class="s-card">
+    <div class="sc-head sch-r"><div class="ld2 ld2-r"></div>Day 11 Snapshot</div>
+    <div class="sc-body">
+      <div class="stat-big"><div class="sb-val sbv-a">$87.80</div><div class="sb-lbl">Brent current · Down from $119.50<br>Still +25% above pre-war $70</div></div>
+      <div class="stat-big"><div class="sb-val sbv-r">93/100</div><div class="sb-lbl">Escalation Index<br>Joint op · Lebanon front open</div></div>
+      <div class="stat-big"><div class="sb-val sbv-r">2,000+</div><div class="sb-lbl">Total war dead · All sides</div></div>
+      <div class="stat-big"><div class="sb-val sbv-r">634</div><div class="sb-lbl">Lebanon dead since Mar 2<br>91 children · 800K displaced</div></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-a">Today's Key Moves</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">Wright deleted tweet → oil</span><span class="dr-val dv-r">−17% in 30min</span></div>
+      <div class="drow"><span class="dr-lbl">Brent low today</span><span class="dr-val dv-r">Below $80</span></div>
+      <div class="drow"><span class="dr-lbl">Brent current (rebound)</span><span class="dr-val dv-a">~$87.80</span></div>
+      <div class="drow"><span class="dr-lbl">IEA reserve release</span><span class="dr-val dv-gold">400M bbl</span></div>
+      <div class="drow"><span class="dr-lbl">Hezbollah rockets today</span><span class="dr-val dv-r">100+</span></div>
+      <div class="drow"><span class="dr-lbl">Iran-Hezbollah joint op</span><span class="dr-val dv-r">First of war</span></div>
+      <div class="drow"><span class="dr-lbl">Qatar LNG force majeure</span><span class="dr-val dv-r">Active</span></div>
+      <div class="drow"><span class="dr-lbl">Ceasefire contacts</span><span class="dr-val dv-gold">CN · RU · FR</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-gold">The IEA Release — Who's In, Who's Out</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">Europe, US, Canada</span><span class="dr-val dv-g">✓ In pool</span></div>
+      <div class="drow"><span class="dr-lbl">Japan, S. Korea</span><span class="dr-val dv-g">✓ In pool</span></div>
+      <div class="drow"><span class="dr-lbl">Australia, NZ</span><span class="dr-val dv-g">✓ In pool</span></div>
+      <div class="drow"><span class="dr-lbl">Pakistan</span><span class="dr-val dv-r">✗ Not a member</span></div>
+      <div class="drow"><span class="dr-lbl">Philippines</span><span class="dr-val dv-r">✗ Not a member</span></div>
+      <div class="drow"><span class="dr-lbl">Haiti</span><span class="dr-val dv-r">✗ Not a member</span></div>
+      <div class="drow"><span class="dr-lbl">Jamaica</span><span class="dr-val dv-r">✗ Not a member</span></div>
+      <div class="drow"><span class="dr-lbl">Kenya</span><span class="dr-val dv-r">✗ Not a member</span></div>
+      <div class="drow"><span class="dr-lbl">Bangladesh</span><span class="dr-val dv-r">✗ Not a member</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-gold">Watch · Next 48 Hours</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">Mojtaba's first public statement</span><span class="dr-val dv-r">Day 3 of silence</span></div>
+      <div class="drow"><span class="dr-lbl">Israel → Lebanese infrastructure</span><span class="dr-val dv-r">Threat issued</span></div>
+      <div class="drow"><span class="dr-lbl">China envoy Zhai Jun next move</span><span class="dr-val dv-a">Active</span></div>
+      <div class="drow"><span class="dr-lbl">Iran ports threat → Gulf docks</span><span class="dr-val dv-r">Watch</span></div>
+      <div class="drow"><span class="dr-lbl">Qatar LNG restoration</span><span class="dr-val dv-a">1 month min</span></div>
+      <div class="drow"><span class="dr-lbl">Hormuz insurance reversal</span><span class="dr-val dv-r">No signal yet</span></div>
+      <div class="drow"><span class="dr-lbl">CARICOM emergency session</span><span class="dr-val dv-r">Day 11: nothing</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-r">The Human Number · Day 11</div>
+    <div style="padding:1.1rem">
+      <div style="font-family:var(--serif);font-size:.95rem;font-style:italic;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:.6rem">Youssef Assaf. Red Cross medic. Killed in southern Lebanon. Buried today. He was carrying out his humanitarian duty.</div>
+      <div style="font-size:.74rem;color:var(--text);line-height:1.75">Father Pierre al-Rahi, Catholic priest, also buried today. Pope Leo offered condolences. Both killed in Israeli strikes this week. The ICRC has now lost a member in active operations for the first time since 2006. <strong style="color:var(--white)">The war is not abstract.</strong></div>
+    </div>
+  </div>
+
+</div><!-- /sidebar -->
+</div><!-- /layout -->
+</div><!-- /page -->
+
+<footer>
+  <div class="ft-i">
+    <div>
+      <div class="ft-brand">Meridian</div>
+      <div class="ft-tag">Intelligence from the South. For the South.</div>
+    </div>
+    <div class="ft-meta">
+      Day 11 · March 11, 2026 · Operation Epic Fury<br>
+      @Meridiantoday_ · @meridian.today · meridian.today<br>
+      Sources: CNN · Al Jazeera · Reuters · Times of Israel · Jerusalem Post · UN · IEA
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
