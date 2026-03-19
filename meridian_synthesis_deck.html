@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERIDIAN · The First 10 Days · War Synthesis Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#0B0F07;
+  --f2:#0f1409;
+  --gold:#C9A84C;
+  --gold-l:#E0C46E;
+  --gold-d:#7a6020;
+  --gold-f:rgba(201,168,76,.08);
+  --red:#E07060;
+  --red-d:#C84C3F;
+  --amb:#F0A820;
+  --green:#6AAA5E;
+  --white:#EAF2E2;
+  --text:#98A88E;
+  --dim:#4a5840;
+  --rule:rgba(201,168,76,.12);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--forest)}
+
+/* ── GRID TEXTURE ── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(201,168,76,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,168,76,.022) 1px,transparent 1px);
+  background-size:52px 52px;
+}
+
+/* ── NOISE OVERLAY ── */
+body::after{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+}
+
+/* ── KEYFRAMES ── */
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:translateX(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes goldGlow{0%,100%{filter:drop-shadow(0 0 8px rgba(201,168,76,.3))}50%{filter:drop-shadow(0 0 20px rgba(201,168,76,.6))}}
+@keyframes scanH{0%{transform:translateY(-100%)}100%{transform:translateY(3000%)}}
+@keyframes blink{0%,100%{opacity:1}49%{opacity:1}50%{opacity:0}99%{opacity:0}}
+@keyframes drawLine{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
+
+/* ── DECK WRAPPER ── */
+.deck{position:fixed;inset:0;z-index:1}
+
+/* ── SLIDES ── */
+.slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  opacity:0;pointer-events:none;
+  transition:opacity .5s ease;
+}
+.slide.active{opacity:1;pointer-events:all}
+.slide.active .s-icon{animation:scaleIn .6s .1s ease-out both}
+.slide.active .s-kicker{animation:fadeIn .5s .2s ease-out both}
+.slide.active .s-hed{animation:fadeIn .5s .3s ease-out both}
+.slide.active .s-body{animation:fadeIn .5s .4s ease-out both}
+.slide.active .s-list li{animation:slideIn .4s ease-out both}
+.slide.active .s-list li:nth-child(1){animation-delay:.35s}
+.slide.active .s-list li:nth-child(2){animation-delay:.45s}
+.slide.active .s-list li:nth-child(3){animation-delay:.55s}
+.slide.active .s-list li:nth-child(4){animation-delay:.65s}
+.slide.active .s-list li:nth-child(5){animation-delay:.75s}
+.slide.active .s-list li:nth-child(6){animation-delay:.85s}
+.slide.active .s-data-row{animation:fadeIn .4s ease-out both}
+.slide.active .s-data-row:nth-child(1){animation-delay:.3s}
+.slide.active .s-data-row:nth-child(2){animation-delay:.42s}
+.slide.active .s-data-row:nth-child(3){animation-delay:.54s}
+.slide.active .s-data-row:nth-child(4){animation-delay:.66s}
+.slide.active .s-data-row:nth-child(5){animation-delay:.78s}
+.slide.active .s-data-row:nth-child(6){animation-delay:.90s}
+
+/* ── SLIDE LAYOUTS ── */
+.sl-cover{
+  justify-content:center;align-items:center;text-align:center;
+  background:radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,168,76,.06) 0%, transparent 70%);
+}
+.sl-split{
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;
+}
+.sl-icon-top{
+  justify-content:center;align-items:center;text-align:center;gap:2rem;
+}
+.sl-icon-left{
+  display:grid;grid-template-columns:auto 1fr;
+  align-items:center;gap:0;
+}
+.sl-data{
+  justify-content:center;align-items:center;
+}
+
+/* ── BRAND BAR ── */
+.brand-bar{
+  position:fixed;top:0;left:0;right:0;z-index:10;
+  padding:.7rem 2.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--rule);
+  background:rgba(11,15,7,.85);backdrop-filter:blur(12px);
+}
+.bb-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-weight:700;
+  color:var(--gold);letter-spacing:.16em;text-transform:uppercase
+}
+.bb-logo span{font-weight:400;font-style:italic;color:var(--gold-l);font-size:.85em}
+.bb-meta{
+  font-family:'DM Mono',monospace;
+  font-size:.46rem;letter-spacing:.14em;
+  color:var(--dim);text-transform:uppercase;text-align:right;line-height:1.8
+}
+.bb-live{
+  display:flex;align-items:center;gap:.4rem;
+  font-family:'DM Mono',monospace;
+  font-size:.46rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--red)
+}
+.bb-dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:pulse 1.4s infinite}
+
+/* ── FOOTER BAR ── */
+.footer-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:10;
+  padding:.6rem 2.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid var(--rule);
+  background:rgba(11,15,7,.85);backdrop-filter:blur(12px);
+}
+.fb-tag{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.72rem;font-style:italic;color:var(--dim)
+}
+.fb-counter{
+  font-family:'DM Mono',monospace;
+  font-size:.52rem;letter-spacing:.12em;color:var(--dim);text-transform:uppercase
+}
+.fb-nav{
+  display:flex;align-items:center;gap:.8rem;
+}
+.nav-btn{
+  background:none;border:1px solid var(--rule);
+  color:var(--text);cursor:pointer;
+  padding:.3rem .7rem;
+  font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;
+  transition:all .2s;
+}
+.nav-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-f)}
+
+/* ── PROGRESS ── */
+.progress-bar{
+  position:fixed;bottom:0;left:0;right:0;height:2px;z-index:11;
+  background:rgba(201,168,76,.1);
+}
+.progress-fill{
+  height:100%;background:var(--gold);
+  transition:width .4s ease;
+}
+
+/* ── SCAN LINE ── */
+.scan-line{
+  position:fixed;left:0;right:0;height:1px;z-index:9;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(201,168,76,.15),transparent);
+  animation:scanH 8s linear infinite;
+}
+
+/* ── SLIDE INNER ── */
+.s-inner{
+  padding:5rem 8% 4.5rem;
+  flex:1;display:flex;flex-direction:column;justify-content:center;
+  max-width:1400px;margin:0 auto;width:100%;
+}
+
+/* ── ICON ── */
+.s-icon{
+  display:flex;justify-content:center;align-items:center;
+  margin-bottom:1.2rem;animation:goldGlow 3s ease-in-out infinite;
+}
+.s-icon svg{filter:drop-shadow(0 0 12px rgba(201,168,76,.25))}
+.icon-left .s-icon{
+  padding:3rem 4rem 3rem 8%;
+  justify-content:center;
+  border-right:1px solid var(--rule);
+}
+.icon-left .s-content{
+  padding:3rem 8% 3rem 5%;
+}
+
+/* ── TEXT ── */
+.s-kicker{
+  font-family:'DM Mono',monospace;
+  font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.7rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.s-kicker::before{content:'';width:20px;height:1px;background:var(--gold-d)}
+.s-hed{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,5vw,4.5rem);font-weight:700;
+  color:var(--white);line-height:.95;letter-spacing:-.02em;
+  margin-bottom:1rem;
+}
+.s-hed .g{color:var(--gold);font-style:italic}
+.s-hed .r{color:var(--red)}
+.s-hed .a{color:var(--amb)}
+.s-hed .gr{color:var(--green)}
+.s-deck{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(.82rem,1.4vw,1rem);font-weight:300;
+  color:var(--text);line-height:1.85;max-width:680px;
+}
+.s-deck strong{color:var(--white);font-weight:500}
+.s-deck .hot{color:var(--red);font-weight:500}
+.s-deck .warn{color:var(--amb);font-weight:500}
+.s-deck .ok{color:var(--green);font-weight:500}
+
+/* ── LISTS ── */
+.s-list{list-style:none;margin-top:1.2rem;display:flex;flex-direction:column;gap:.55rem}
+.s-list li{
+  display:flex;align-items:flex-start;gap:.8rem;
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(.8rem,1.3vw,.95rem);color:var(--text);line-height:1.6;
+}
+.s-list li .flag{font-size:1.1em;flex-shrink:0}
+.s-list li strong{color:var(--white);font-weight:500}
+.s-list li .hot{color:var(--red);font-weight:500}
+.s-list li .warn{color:var(--amb);font-weight:500}
+.s-list li .ok{color:var(--green);font-weight:500}
+.s-list li::before{
+  content:'→';color:var(--gold-d);flex-shrink:0;
+  font-family:'DM Mono',monospace;font-size:.75rem;padding-top:.1rem
+}
+.s-list li.no-arrow::before{display:none}
+
+/* ── DATA TABLE ── */
+.s-data{margin-top:1.2rem;border:1px solid var(--rule)}
+.s-data-row{
+  display:grid;grid-template-columns:1fr auto;
+  padding:.55rem 1rem;border-bottom:1px solid var(--rule);
+  font-family:'Outfit',sans-serif;font-size:clamp(.72rem,1.1vw,.85rem);
+}
+.s-data-row:last-child{border-bottom:none}
+.dr-label{color:var(--dim)}
+.dr-val{
+  font-family:'DM Mono',monospace;font-size:.7rem;font-weight:500;
+  white-space:nowrap;
+}
+.dv-r{color:var(--red)}.dv-g{color:var(--green)}.dv-a{color:var(--amb)}.dv-gold{color:var(--gold-l)}.dv-w{color:var(--white)}
+
+/* ── BIG STAT ── */
+.big-stat{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(5rem,14vw,11rem);font-weight:700;line-height:.85;
+  margin:1rem 0;
+}
+.bs-r{color:var(--red)}.bs-gold{color:var(--gold)}.bs-a{color:var(--amb)}.bs-g{color:var(--green)}.bs-w{color:var(--white)}
+.big-label{
+  font-family:'DM Mono',monospace;
+  font-size:clamp(.55rem,.9vw,.72rem);letter-spacing:.18em;
+  text-transform:uppercase;color:var(--dim)
+}
+
+/* ── QUOTE ── */
+.s-quote{
+  border-left:3px solid var(--gold);
+  padding:.9rem 1.4rem;margin-top:1.2rem;
+  background:rgba(201,168,76,.04);
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1rem,1.8vw,1.3rem);font-style:italic;
+  color:var(--white);line-height:1.6;
+}
+.s-quote cite{
+  display:block;margin-top:.4rem;
+  font-family:'DM Mono',monospace;font-size:.46rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--dim);font-style:normal;
+}
+
+/* ── THRESHOLD VISUAL ── */
+.threshold-visual{margin-top:1.2rem;display:flex;flex-direction:column;gap:.5rem}
+.tv-row{
+  display:flex;align-items:center;gap:.8rem;
+  padding:.45rem 0;border-bottom:1px solid var(--rule);
+}
+.tv-row:last-child{border-bottom:none}
+.tv-price{
+  font-family:'DM Mono',monospace;font-weight:500;
+  font-size:clamp(.7rem,1.1vw,.85rem);min-width:3.8rem;
+}
+.tv-bar-wrap{flex:1;height:4px;background:rgba(255,255,255,.05);border-radius:2px;overflow:hidden}
+.tv-fill{height:100%;border-radius:2px}
+.tv-label{font-family:'Outfit',sans-serif;font-size:clamp(.65rem,1vw,.78rem);color:var(--text);flex:2;line-height:1.4}
+.tv-label .hot{color:var(--red);font-weight:500}
+.tv-label .warn{color:var(--amb);font-weight:500}
+.tv-status{
+  font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.08em;
+  text-transform:uppercase;padding:.1rem .3rem;border:1px solid;border-radius:2px;white-space:nowrap;
+}
+.ts-broken{color:var(--red);border-color:rgba(224,112,96,.3);background:rgba(200,76,63,.07)}
+.ts-watch{color:var(--amb);border-color:rgba(240,168,32,.25);background:rgba(212,137,10,.06)}
+.ts-ok{color:var(--green);border-color:rgba(106,170,94,.25);background:rgba(74,124,63,.08)}
+
+/* ── COVER SPECIFIC ── */
+.cover-eyebrow{
+  font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold-d);margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:.8rem;
+}
+.cover-eyebrow::before,.cover-eyebrow::after{content:'';width:30px;height:1px;background:var(--gold-d)}
+.cover-hed{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.2rem,2.5vw,2rem);font-weight:400;font-style:italic;
+  color:var(--gold-l);margin-top:1.2rem;margin-bottom:.4rem;
+}
+.cover-tagline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(.85rem,1.4vw,1.05rem);font-style:italic;
+  color:var(--dim);margin-top:.5rem;
+}
+
+/* ── CTA SLIDE ── */
+.cta-handles{
+  display:flex;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap;
+}
+.cta-handle{
+  font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gold);
+  padding:.4rem .9rem;border:1px solid var(--gold-d);
+  background:var(--gold-f);
+}
+
+/* ── RECORD TABLE ── */
+.record-table{margin-top:1rem;display:flex;flex-direction:column;gap:0;border:1px solid var(--rule)}
+.rt-row{
+  display:grid;grid-template-columns:1.8fr 1fr auto;
+  padding:.45rem .9rem;border-bottom:1px solid var(--rule);
+  font-size:clamp(.65rem,.95vw,.78rem);gap:.5rem;align-items:center;
+}
+.rt-row:last-child{border-bottom:none}
+.rt-row:hover{background:rgba(201,168,76,.03)}
+.rt-forecast{font-family:'Outfit',sans-serif;color:var(--text)}
+.rt-day{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--dim)}
+.rt-status{font-family:'DM Mono',monospace;font-size:.58rem;font-weight:500}
+.rts-correct{color:var(--green)}.rts-pending{color:var(--amb)}.rts-watch{color:var(--gold)}
+
+/* ── ICON SPLIT LAYOUT ── */
+.split-left{
+  height:100%;display:flex;align-items:center;justify-content:center;
+  border-right:1px solid var(--rule);padding:4rem;
+  background:rgba(201,168,76,.02);
+}
+.split-right{
+  padding:4rem 5% 4rem 4%;
+  display:flex;flex-direction:column;justify-content:center;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .sl-split,.sl-icon-left{grid-template-columns:1fr}
+  .split-left{border-right:none;border-bottom:1px solid var(--rule);padding:2rem}
+  .split-left svg{max-height:180px}
+  .icon-left .s-icon{border-right:none;padding:2rem}
+  .icon-left .s-content{padding:1.5rem 5%}
+  .s-inner{padding:4.5rem 5% 4rem}
+  .big-stat{font-size:clamp(4rem,18vw,7rem)}
+}
+</style>
+</head>
+<body>
+
+<div class="scan-line"></div>
+
+<!-- ── BRAND BAR ── -->
+<div class="brand-bar">
+  <div class="bb-logo">Meridian <span>Brief</span></div>
+  <div class="bb-live"><div class="bb-dot"></div>Live Coverage · Iran War</div>
+  <div class="bb-meta">
+    Operation Epic Fury · Feb 28 – Mar 9, 2026<br>
+    The First 10 Days · Full Synthesis
+  </div>
+</div>
+
+<!-- ── DECK ── -->
+<div class="deck" id="deck">
+
+<!-- ══════════════════════════════════════════
+     SLIDE 1 · COVER
+══════════════════════════════════════════ -->
+<div class="slide sl-cover active" id="s1">
+  <div class="s-inner" style="align-items:center;text-align:center">
+    <div class="s-icon">
+      <svg width="160" height="130" viewBox="0 0 160 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Oil barrels -->
+        <g opacity=".9">
+          <rect x="8" y="60" width="38" height="58" rx="4" stroke="#C9A84C" stroke-width="1.8" fill="rgba(201,168,76,.06)"/>
+          <rect x="8" y="60" width="38" height="12" rx="2" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.1)"/>
+          <rect x="8" y="106" width="38" height="12" rx="2" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.1)"/>
+          <circle cx="27" cy="89" r="7" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+          <line x1="27" y1="82" x2="27" y2="96" stroke="#C9A84C" stroke-width="1.2"/>
+          <line x1="20" y1="89" x2="34" y2="89" stroke="#C9A84C" stroke-width="1.2"/>
+          <!-- second barrel offset -->
+          <rect x="52" y="72" width="38" height="50" rx="4" stroke="#C9A84C" stroke-width="1.8" fill="rgba(201,168,76,.04)"/>
+          <rect x="52" y="72" width="38" height="10" rx="2" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.08)"/>
+          <rect x="52" y="112" width="38" height="10" rx="2" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.08)"/>
+          <circle cx="71" cy="97" r="6" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+        </g>
+        <!-- Upward price arrow — red/amber -->
+        <g>
+          <polyline points="98,118 112,90 124,100 140,55" stroke="#E07060" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+          <polygon points="140,42 134,58 148,58" fill="#E07060"/>
+          <!-- chart base -->
+          <line x1="98" y1="120" x2="155" y2="120" stroke="rgba(201,168,76,.3)" stroke-width="1.2"/>
+          <line x1="98" y1="120" x2="98" y2="40" stroke="rgba(201,168,76,.3)" stroke-width="1.2"/>
+        </g>
+        <!-- $70 → $119 labels -->
+        <text x="95" y="130" font-family="'DM Mono',monospace" font-size="7" fill="rgba(201,168,76,.6)">$70</text>
+        <text x="137" y="39" font-family="'DM Mono',monospace" font-size="7" fill="#E07060">$119</text>
+      </svg>
+    </div>
+    <div class="cover-eyebrow">Meridian Brief · War Synthesis</div>
+    <div class="big-stat bs-r">+58%</div>
+    <div class="big-label">Oil · 10 Days · February 28 – March 9, 2026</div>
+    <div class="cover-hed">The First 10 Days of Operation Epic Fury</div>
+    <div class="cover-tagline">Everything Meridian mapped · Every mechanism · Every turning point</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 2 · WHO WE ARE
+══════════════════════════════════════════ -->
+<div class="slide sl-split" id="s2">
+  <div class="split-left">
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:goldGlow 3s ease-in-out infinite">
+      <!-- Globe -->
+      <circle cx="100" cy="100" r="72" stroke="#C9A84C" stroke-width="2" fill="rgba(201,168,76,.04)"/>
+      <!-- Meridian lines -->
+      <ellipse cx="100" cy="100" rx="36" ry="72" stroke="rgba(201,168,76,.3)" stroke-width="1.2" fill="none"/>
+      <ellipse cx="100" cy="100" rx="60" ry="72" stroke="rgba(201,168,76,.2)" stroke-width="1" fill="none"/>
+      <!-- Latitude lines -->
+      <path d="M 28 100 Q 100 88 172 100" stroke="rgba(201,168,76,.25)" stroke-width="1" fill="none"/>
+      <path d="M 35 70 Q 100 60 165 70" stroke="rgba(201,168,76,.2)" stroke-width=".8" fill="none"/>
+      <path d="M 35 130 Q 100 140 165 130" stroke="rgba(201,168,76,.2)" stroke-width=".8" fill="none"/>
+      <!-- South highlight dots -->
+      <circle cx="80" cy="115" r="3" fill="#C9A84C" opacity=".9"/>
+      <circle cx="115" cy="125" r="3" fill="#C9A84C" opacity=".9"/>
+      <circle cx="95" cy="108" r="2.5" fill="#E07060" opacity=".8"/>
+      <circle cx="125" cy="95" r="2.5" fill="#E07060" opacity=".8"/>
+      <circle cx="60" cy="100" r="2.5" fill="#F0A820" opacity=".8"/>
+      <!-- Intelligence crosshair overlay -->
+      <circle cx="100" cy="100" r="80" stroke="rgba(201,168,76,.08)" stroke-width="1" stroke-dasharray="4 4" fill="none"/>
+      <line x1="100" y1="18" x2="100" y2="182" stroke="rgba(201,168,76,.08)" stroke-width=".8"/>
+      <line x1="18" y1="100" x2="182" y2="100" stroke="rgba(201,168,76,.08)" stroke-width=".8"/>
+    </svg>
+  </div>
+  <div class="split-right">
+    <div class="s-kicker">Day 1 · February 28 · Our Editorial Position</div>
+    <div class="s-hed">Intelligence<br>from the <span class="g">South.</span><br>For the South.</div>
+    <div class="s-deck">
+      Most war coverage is written for Western audiences — about missiles, strategy, and great-power competition.<br><br>
+      <strong>Meridian tracks what the same events mean for the people with no seat at the table.</strong><br><br>
+      We started on Day 1. We haven't missed a day.
+    </div>
+    <ul class="s-list" style="margin-top:1rem">
+      <li>No single-country spotlight — all regions equal weight</li>
+      <li>Every forecast sourced and timestamped</li>
+      <li>The mechanism behind the headline — always</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 3 · THE SCALE
+══════════════════════════════════════════ -->
+<div class="slide sl-cover" id="s3">
+  <div class="s-inner" style="align-items:center;text-align:center">
+    <div class="s-icon">
+      <svg width="240" height="100" viewBox="0 0 240 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Price chart bars -->
+        <rect x="10" y="72" width="20" height="20" rx="2" fill="rgba(201,168,76,.15)" stroke="#C9A84C" stroke-width="1.2"/>
+        <rect x="38" y="62" width="20" height="30" rx="2" fill="rgba(201,168,76,.2)" stroke="#C9A84C" stroke-width="1.2"/>
+        <rect x="66" y="50" width="20" height="42" rx="2" fill="rgba(201,168,76,.25)" stroke="#C9A84C" stroke-width="1.2"/>
+        <rect x="94" y="38" width="20" height="54" rx="2" fill="rgba(224,112,96,.2)" stroke="#E07060" stroke-width="1.2"/>
+        <rect x="122" y="22" width="20" height="70" rx="2" fill="rgba(224,112,96,.3)" stroke="#E07060" stroke-width="1.4"/>
+        <rect x="150" y="10" width="20" height="82" rx="2" fill="rgba(224,112,96,.35)" stroke="#E07060" stroke-width="1.6"/>
+        <!-- Arrow on last bar -->
+        <polygon points="160,4 154,14 166,14" fill="#E07060"/>
+        <!-- Base line -->
+        <line x1="8" y1="94" x2="232" y2="94" stroke="rgba(201,168,76,.3)" stroke-width="1"/>
+        <!-- Labels -->
+        <text x="12" y="100" font-family="'DM Mono',monospace" font-size="7" fill="rgba(201,168,76,.5)">Feb27</text>
+        <text x="152" y="100" font-family="'DM Mono',monospace" font-size="7" fill="#E07060">Mar9</text>
+        <!-- Crosshair on peak -->
+        <circle cx="160" cy="10" r="8" stroke="rgba(224,112,96,.4)" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
+      </svg>
+    </div>
+    <div class="s-kicker">The Scale · 10 Days</div>
+    <div class="s-hed" style="font-size:clamp(1.8rem,5vw,3.8rem)"><span class="r">$70 → $119.50</span><br>in ten days.</div>
+    <div class="s-deck" style="margin:0 auto;text-align:center">
+      The fastest sustained oil surge since the <strong>1973 Arab oil embargo.</strong><br>
+      WTI's largest weekly gain since <strong>1983.</strong><br>
+      This is not a spike. <span class="hot">It is a restructuring.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 4 · THE MECHANISM — INSURANCE
+══════════════════════════════════════════ -->
+<div class="slide sl-split" id="s4">
+  <div class="split-left">
+    <svg width="210" height="180" viewBox="0 0 210 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:goldGlow 3s ease-in-out infinite">
+      <!-- Large cargo ship -->
+      <g>
+        <path d="M 20 110 L 30 90 L 80 90 L 90 110 Z" stroke="#C9A84C" stroke-width="1.8" fill="rgba(201,168,76,.06)"/>
+        <rect x="35" y="75" width="40" height="18" rx="2" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.08)"/>
+        <rect x="42" y="62" width="14" height="15" rx="1" stroke="#C9A84C" stroke-width="1.3" fill="rgba(201,168,76,.1)"/>
+        <!-- Containers on deck -->
+        <rect x="30" y="80" width="12" height="10" stroke="#C9A84C" stroke-width="1" fill="rgba(201,168,76,.12)"/>
+        <rect x="45" y="80" width="12" height="10" stroke="#C9A84C" stroke-width="1" fill="rgba(201,168,76,.08)"/>
+        <rect x="60" y="80" width="12" height="10" stroke="#C9A84C" stroke-width="1" fill="rgba(201,168,76,.12)"/>
+        <!-- Wake -->
+        <path d="M 5 115 Q 20 112 35 115 Q 50 118 65 115" stroke="rgba(201,168,76,.3)" stroke-width="1" fill="none"/>
+      </g>
+      <!-- BLOCKED X -->
+      <line x1="125" y1="70" x2="185" y2="140" stroke="#E07060" stroke-width="3" stroke-linecap="round"/>
+      <line x1="185" y1="70" x2="125" y2="140" stroke="#E07060" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="155" cy="105" r="35" stroke="#E07060" stroke-width="2" fill="none" opacity=".4"/>
+      <!-- Insurance document icon -->
+      <rect x="130" y="22" width="50" height="38" rx="3" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.06)"/>
+      <line x1="138" y1="34" x2="172" y2="34" stroke="#C9A84C" stroke-width="1" opacity=".6"/>
+      <line x1="138" y1="41" x2="172" y2="41" stroke="#C9A84C" stroke-width="1" opacity=".4"/>
+      <line x1="138" y1="48" x2="158" y2="48" stroke="#C9A84C" stroke-width="1" opacity=".4"/>
+      <!-- Withdrawn stamp -->
+      <text x="132" y="58" font-family="'DM Mono',monospace" font-size="7" fill="#E07060" opacity=".8">WITHDRAWN</text>
+      <!-- 153 → 13 -->
+      <text x="5" y="155" font-family="'DM Mono',monospace" font-size="10" fill="#C9A84C">153/day</text>
+      <text x="82" y="155" font-family="'DM Mono',monospace" font-size="10" fill="#E07060">→  13/day</text>
+    </svg>
+  </div>
+  <div class="split-right">
+    <div class="s-kicker">Mechanism 01 · The One Nobody Reported</div>
+    <div class="s-hed">Hormuz didn't<br>close because<br>of <span class="r">missiles.</span></div>
+    <div class="s-deck">
+      Five marine insurance companies withdrew war risk coverage within <strong>72 hours</strong> of the first strike. No insurance — no sailing. No sailing — no transit.
+    </div>
+    <ul class="s-list">
+      <li><strong>Gard · Skuld · NorthStandard · London P&I · American Club</strong></li>
+      <li>153 vessels/day → <span class="hot">13 vessels/day</span> (−91%)</li>
+      <li>No Iranian mine was laid. <strong>The paperwork did it.</strong></li>
+    </ul>
+    <div class="s-quote">
+      "The most important chokepoint in the world was closed by underwriters, not artillery."
+      <cite>Meridian Brief · Day 3 · March 2, 2026</cite>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 5 · FERTILIZER CASCADE
+══════════════════════════════════════════ -->
+<div class="slide sl-split" id="s5">
+  <div class="split-left">
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:goldGlow 3s ease-in-out infinite">
+      <!-- Wheat stalks -->
+      <g>
+        <!-- Left stalk -->
+        <line x1="60" y1="180" x2="60" y2="80" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="60" cy="72" rx="8" ry="18" stroke="#C9A84C" stroke-width="1.8" fill="rgba(201,168,76,.12)" transform="rotate(-8 60 72)"/>
+        <line x1="60" y1="110" x2="45" y2="95" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+        <ellipse cx="38" cy="88" rx="6" ry="12" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.1)" transform="rotate(-20 38 88)"/>
+        <line x1="60" y1="130" x2="44" y2="118" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+        <ellipse cx="37" cy="112" rx="6" ry="12" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.1)" transform="rotate(-20 37 112)"/>
+        <!-- Right stalk -->
+        <line x1="100" y1="180" x2="100" y2="75" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="100" cy="66" rx="8" ry="18" stroke="#C9A84C" stroke-width="1.8" fill="rgba(201,168,76,.12)"/>
+        <line x1="100" y1="105" x2="115" y2="92" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+        <ellipse cx="122" cy="85" rx="6" ry="12" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.1)" transform="rotate(20 122 85)"/>
+        <line x1="100" y1="125" x2="116" y2="114" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+        <ellipse cx="123" cy="107" rx="6" ry="12" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.1)" transform="rotate(20 123 107)"/>
+        <!-- Far stalk -->
+        <line x1="140" y1="180" x2="140" y2="88" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+        <ellipse cx="140" cy="80" rx="7" ry="15" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.08)" opacity=".6"/>
+      </g>
+      <!-- Calendar/clock: September -->
+      <rect x="148" y="28" width="44" height="40" rx="3" stroke="rgba(201,168,76,.6)" stroke-width="1.5" fill="rgba(201,168,76,.06)"/>
+      <rect x="148" y="28" width="44" height="12" rx="2" stroke="rgba(201,168,76,.5)" stroke-width="1.2" fill="rgba(201,168,76,.12)"/>
+      <text x="155" y="38" font-family="'DM Mono',monospace" font-size="7" fill="#C9A84C">SEP 26</text>
+      <text x="152" y="56" font-family="'DM Mono',monospace" font-size="9" fill="#F0A820">FOOD↑</text>
+      <!-- Arrow: Hormuz → fertilizer → food -->
+      <text x="5" y="20" font-family="'DM Mono',monospace" font-size="7.5" fill="rgba(201,168,76,.7)">HORMUZ</text>
+      <text x="47" y="20" font-family="'DM Mono',monospace" font-size="7.5" fill="rgba(201,168,76,.5)">→  1/3 UREA</text>
+      <text x="105" y="20" font-family="'DM Mono',monospace" font-size="7.5" fill="#F0A820">→  FOOD ↑</text>
+    </svg>
+  </div>
+  <div class="split-right">
+    <div class="s-kicker">Mechanism 02 · The Most Underreported Story</div>
+    <div class="s-hed">Hormuz also<br>carries <span class="g">one third</span><br>of world fertilizer.</div>
+    <div class="s-deck">
+      The northern hemisphere planting season starts <strong>in March.</strong> When Hormuz froze, the urea supply chain froze with it.
+    </div>
+    <ul class="s-list">
+      <li>Egyptian urea: <span class="warn">+35% in the first week</span></li>
+      <li>India's domestic urea runs on Gulf LNG — <strong>Ras Laffan halted</strong></li>
+      <li>The food spike doesn't arrive now. <span class="hot">It arrives September 2026.</span></li>
+      <li>The war ends. The harvest doesn't recover.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 6 · CHINA LANE
+══════════════════════════════════════════ -->
+<div class="slide sl-split" id="s6">
+  <div class="split-left">
+    <svg width="210" height="190" viewBox="0 0 210 190" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:goldGlow 3s ease-in-out infinite">
+      <!-- Globe with lane through it -->
+      <circle cx="105" cy="95" r="70" stroke="rgba(201,168,76,.3)" stroke-width="1.5" fill="rgba(201,168,76,.03)"/>
+      <ellipse cx="105" cy="95" rx="35" ry="70" stroke="rgba(201,168,76,.2)" stroke-width="1" fill="none"/>
+      <path d="M 35 95 Q 105 80 175 95" stroke="rgba(201,168,76,.2)" stroke-width="1" fill="none"/>
+      <path d="M 40 70 Q 105 58 170 70" stroke="rgba(201,168,76,.15)" stroke-width=".8" fill="none"/>
+      <!-- BLOCKED lane — red X through middle -->
+      <line x1="35" y1="105" x2="175" y2="105" stroke="rgba(224,112,96,.2)" stroke-width="8" stroke-linecap="round"/>
+      <text x="38" y="110" font-family="'DM Mono',monospace" font-size="7" fill="#E07060" opacity=".6">BLOCKED — ALL WESTERN VESSELS</text>
+      <!-- CHINA LANE — gold clear path -->
+      <path d="M 35 83 Q 105 68 175 83" stroke="#C9A84C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <!-- Two ships on China lane -->
+      <g transform="translate(55,70)">
+        <path d="M 0 8 L 4 0 L 20 0 L 24 8 Z" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.15)"/>
+        <rect x="6" y="-4" width="12" height="6" stroke="#C9A84C" stroke-width="1.2" fill="rgba(201,168,76,.2)"/>
+      </g>
+      <g transform="translate(95,68)">
+        <path d="M 0 8 L 4 0 L 20 0 L 24 8 Z" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.15)"/>
+        <rect x="6" y="-4" width="12" height="6" stroke="#C9A84C" stroke-width="1.2" fill="rgba(201,168,76,.2)"/>
+      </g>
+      <!-- CHINA OWNER label -->
+      <text x="38" y="66" font-family="'DM Mono',monospace" font-size="7" fill="#C9A84C">"CHINA OWNER" AIS BROADCAST</text>
+      <!-- China flag marker -->
+      <circle cx="148" cy="65" r="5" fill="#C9A84C" opacity=".6"/>
+    </svg>
+  </div>
+  <div class="split-right">
+    <div class="s-kicker">Mechanism 03 · Day 6 · March 5</div>
+    <div class="s-hed">Two ships<br>broadcast <span class="g">"CHINA OWNER"</span><br>and sailed through.</div>
+    <div class="s-deck">
+      While every Western-flagged vessel sat stranded, two tankers broadcasting Chinese ownership transited Hormuz safely. <strong>Iran never mentioned Chinese vessels in any targeting statement.</strong>
+    </div>
+    <ul class="s-list">
+      <li>A two-tier shipping system is forming — <span class="ok">in real time, in the water</span></li>
+      <li>No treaty. No negotiation. <strong>A transponder code.</strong></li>
+      <li>The new architecture of the Gulf is being built without a conference table</li>
+      <li><span class="warn">Beijing gains leverage over both Iran and the West simultaneously</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 7 · THREE CHANNELS
+══════════════════════════════════════════ -->
+<div class="slide sl-cover" id="s7">
+  <div class="s-inner" style="max-width:900px;margin:0 auto;align-items:center">
+    <div class="s-kicker" style="justify-content:center">How The War Reaches The Global South</div>
+    <div class="s-hed" style="text-align:center;margin-bottom:1.5rem">Three <span class="g">channels.</span><br>Different clocks.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;width:100%">
+      <!-- Channel 1 -->
+      <div style="border:1px solid var(--rule);border-top:3px solid var(--red);padding:1.5rem;background:rgba(224,112,96,.04)">
+        <svg width="60" height="50" viewBox="0 0 60 50" fill="none" style="margin-bottom:.7rem">
+          <rect x="5" y="10" width="22" height="34" rx="3" stroke="#E07060" stroke-width="1.8" fill="rgba(224,112,96,.08)"/>
+          <rect x="5" y="10" width="22" height="9" rx="2" stroke="#E07060" stroke-width="1.4" fill="rgba(224,112,96,.15)"/>
+          <circle cx="16" cy="31" r="5" stroke="#E07060" stroke-width="1.4" fill="none"/>
+          <rect x="32" y="10" width="22" height="34" rx="3" stroke="#E07060" stroke-width="1.8" fill="rgba(224,112,96,.05)"/>
+          <rect x="32" y="10" width="22" height="9" rx="2" stroke="#E07060" stroke-width="1.4" fill="rgba(224,112,96,.1)"/>
+          <circle cx="43" cy="31" r="5" stroke="#E07060" stroke-width="1.4" fill="none"/>
+          <polygon points="25,2 30,12 35,2" fill="#E07060"/>
+        </svg>
+        <div style="font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:.3rem">Channel 01 · Now</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:.3rem">Energy</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:.75rem;color:var(--text);line-height:1.6">Oil above $100. Electricity surcharges active. Every import-dependent economy hit immediately.</div>
+      </div>
+      <!-- Channel 2 -->
+      <div style="border:1px solid var(--rule);border-top:3px solid var(--amb);padding:1.5rem;background:rgba(240,168,32,.04)">
+        <svg width="60" height="50" viewBox="0 0 60 50" fill="none" style="margin-bottom:.7rem">
+          <!-- Family figures -->
+          <circle cx="22" cy="12" r="7" stroke="#F0A820" stroke-width="1.8" fill="none"/>
+          <path d="M 10 38 Q 12 24 22 22 Q 32 24 34 38" stroke="#F0A820" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <circle cx="42" cy="14" r="5" stroke="#F0A820" stroke-width="1.5" fill="none"/>
+          <path d="M 34 38 Q 36 26 42 25 Q 48 26 50 38" stroke="#F0A820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <!-- Downward arrow -->
+          <line x1="55" y1="10" x2="55" y2="35" stroke="#F0A820" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="55,42 50,32 60,32" fill="#F0A820"/>
+        </svg>
+        <div style="font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);margin-bottom:.3rem">Channel 02 · +60 Days</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:.3rem">Remittances</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:.75rem;color:var(--text);line-height:1.6">Gulf workers in strike zones. Transfers slow. Families in Pakistan, Philippines, Sri Lanka absorb the drop.</div>
+      </div>
+      <!-- Channel 3 -->
+      <div style="border:1px solid var(--rule);border-top:3px solid var(--green);padding:1.5rem;background:rgba(106,170,94,.04)">
+        <svg width="60" height="50" viewBox="0 0 60 50" fill="none" style="margin-bottom:.7rem">
+          <!-- Wheat + calendar -->
+          <line x1="20" y1="45" x2="20" y2="15" stroke="#6AAA5E" stroke-width="2" stroke-linecap="round"/>
+          <ellipse cx="20" cy="10" rx="5" ry="10" stroke="#6AAA5E" stroke-width="1.5" fill="rgba(106,170,94,.1)"/>
+          <line x1="20" y1="28" x2="12" y2="20" stroke="#6AAA5E" stroke-width="1.2" stroke-linecap="round"/>
+          <ellipse cx="8" cy="16" rx="4" ry="8" stroke="#6AAA5E" stroke-width="1.2" fill="rgba(106,170,94,.08)" transform="rotate(-15 8 16)"/>
+          <rect x="32" y="14" width="24" height="24" rx="2" stroke="#6AAA5E" stroke-width="1.5" fill="rgba(106,170,94,.06)"/>
+          <rect x="32" y="14" width="24" height="8" stroke="#6AAA5E" stroke-width="1.2" fill="rgba(106,170,94,.1)"/>
+          <text x="35" y="21" font-family="'DM Mono',monospace" font-size="6" fill="#6AAA5E">SEP</text>
+          <text x="35" y="34" font-family="'DM Mono',monospace" font-size="8" fill="#F0A820">↑</text>
+        </svg>
+        <div style="font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:.3rem">Channel 03 · +6 Months</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:.3rem">Food</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:.75rem;color:var(--text);line-height:1.6">Fertilizer disrupted during planting season. Food prices peak September 2026. Regardless of when the war ends.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 8 · SOUTH ASIA
+══════════════════════════════════════════ -->
+<div class="slide sl-split" id="s8">
+  <div class="split-left">
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:goldGlow 3s ease-in-out infinite">
+      <!-- Oil barrel + missile combo (from pack) -->
+      <rect x="20" y="90" width="42" height="65" rx="4" stroke="#E07060" stroke-width="2" fill="rgba(224,112,96,.06)"/>
+      <rect x="20" y="90" width="42" height="13" rx="2" stroke="#E07060" stroke-width="1.5" fill="rgba(224,112,96,.1)"/>
+      <rect x="20" y="142" width="42" height="13" rx="2" stroke="#E07060" stroke-width="1.5" fill="rgba(224,112,96,.1)"/>
+      <circle cx="41" cy="121" r="8" stroke="#E07060" stroke-width="1.5" fill="none"/>
+      <line x1="41" y1="113" x2="41" y2="129" stroke="#E07060" stroke-width="1.2"/>
+      <line x1="33" y1="121" x2="49" y2="121" stroke="#E07060" stroke-width="1.2"/>
+      <!-- Missile -->
+      <path d="M 90 40 L 95 80 L 85 80 Z" stroke="#C9A84C" stroke-width="1.8" fill="rgba(201,168,76,.1)"/>
+      <rect x="85" y="80" width="10" height="35" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.08)"/>
+      <path d="M 85 115 L 78 128 L 92 128 Z" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.12)"/>
+      <!-- → linking -->
+      <line x1="68" y1="122" x2="82" y2="122" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+      <polygon points="84,122 78,118 78,126" fill="#C9A84C"/>
+      <!-- Family figures at risk -->
+      <circle cx="140" cy="125" r="9" stroke="rgba(201,168,76,.6)" stroke-width="1.8" fill="none"/>
+      <path d="M 126 158 Q 128 138 140 136 Q 152 138 154 158" stroke="rgba(201,168,76,.6)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="162" cy="128" r="6.5" stroke="rgba(201,168,76,.4)" stroke-width="1.5" fill="none"/>
+      <path d="M 152 158 Q 154 141 162 140 Q 170 141 172 158" stroke="rgba(201,168,76,.4)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <!-- Labels -->
+      <text x="18" y="173" font-family="'DM Mono',monospace" font-size="7" fill="#E07060">OIL +20%</text>
+      <text x="80" y="148" font-family="'DM Mono',monospace" font-size="7" fill="#C9A84C">STRIKE ZONE</text>
+      <text x="126" y="175" font-family="'DM Mono',monospace" font-size="7" fill="rgba(201,168,76,.6)">4M+ WORKERS</text>
+    </svg>
+  </div>
+  <div class="split-right">
+    <div class="s-kicker">Global South · South Asia · Most Exposed Region</div>
+    <div class="s-hed">Pakistan.<br>Rated <span class="r">most exposed</span><br>country on Earth.</div>
+    <div class="s-deck">Fuel up 20% in one week. 4 million workers in Gulf strike zones. IMF program with no fiscal flex. Grid dependent on LNG that can't exit Hormuz.</div>
+    <ul class="s-list">
+      <li class="no-arrow"><span class="flag">🇵🇰</span> <strong>Pakistan</strong> — <span class="hot">all four crises simultaneously</span></li>
+      <li class="no-arrow"><span class="flag">🇮🇳</span> <strong>India</strong> — $30/barrel inflation shock across 1.4 billion people</li>
+      <li class="no-arrow"><span class="flag">🇱🇰</span> <strong>Sri Lanka</strong> — war vessel sunk off Galle. 2022 collapse conditions reassembling</li>
+      <li class="no-arrow"><span class="flag">🇧🇩</span> <strong>Bangladesh</strong> — 1M+ garment workers facing energy pass-through</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 9 · SOUTHEAST ASIA + AFRICA
+══════════════════════════════════════════ -->
+<div class="slide sl-split" id="s9">
+  <div class="split-left">
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:goldGlow 3s ease-in-out infinite">
+      <!-- Megaphone / broadcast -->
+      <path d="M 30 75 L 30 125 L 55 125 L 100 150 L 100 50 L 55 75 Z" stroke="#F0A820" stroke-width="2" fill="rgba(240,168,32,.06)"/>
+      <!-- Sound waves -->
+      <path d="M 110 70 Q 130 100 110 130" stroke="#F0A820" stroke-width="2" fill="none" stroke-linecap="round" opacity=".8"/>
+      <path d="M 120 60 Q 150 100 120 140" stroke="#F0A820" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".6"/>
+      <path d="M 132 52 Q 168 100 132 148" stroke="#F0A820" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".4"/>
+      <!-- Emergency dot -->
+      <circle cx="100" cy="100" r="6" fill="#F0A820" opacity=".8"/>
+      <!-- Warning triangle bottom -->
+      <polygon points="100,170 80,195 120,195" stroke="#F0A820" stroke-width="1.8" fill="rgba(240,168,32,.08)"/>
+      <text x="95" y="191" font-family="'DM Mono',monospace" font-size="10" fill="#F0A820">!</text>
+    </svg>
+  </div>
+  <div class="split-right">
+    <div class="s-kicker">Global South · Southeast Asia & Africa</div>
+    <div class="s-hed">Emergency<br>sessions. <span class="a">Warnings.</span><br>Rising prices.</div>
+    <ul class="s-list">
+      <li class="no-arrow"><span class="flag">🇵🇭</span> <strong>Philippines</strong> — emergency summit in Manila. 2M+ OFWs in Gulf strike zones. 90% petroleum imported</li>
+      <li class="no-arrow"><span class="flag">🇮🇩</span> <strong>Indonesia</strong> — street protest risk at pump prices. Bank Indonesia intervening</li>
+      <li class="no-arrow"><span class="flag">🇰🇷</span> <strong>South Korea</strong> — president addressed the nation. No panic buying</li>
+      <li class="no-arrow"><span class="flag">🇪🇬</span> <strong>Egypt</strong> — <span class="hot">"state of near-emergency."</span> IMF program. Suez disrupted</li>
+      <li class="no-arrow"><span class="flag">🇩🇯</span> <strong>Djibouti</strong> — "severe consequences for developing countries"</li>
+      <li class="no-arrow"><span class="flag">🇰🇪</span> <strong>Kenya</strong> — 100% imported. Costs cascade through East Africa via road</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 10 · CARIBBEAN
+══════════════════════════════════════════ -->
+<div class="slide sl-split" id="s10">
+  <div class="split-left">
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:goldGlow 3s ease-in-out infinite">
+      <!-- Oil barrel + family (from pack bottom right) -->
+      <!-- Barrel -->
+      <rect x="18" y="95" width="48" height="70" rx="5" stroke="#C9A84C" stroke-width="2" fill="rgba(201,168,76,.06)"/>
+      <rect x="18" y="95" width="48" height="14" rx="3" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.1)"/>
+      <rect x="18" y="151" width="48" height="14" rx="3" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.1)"/>
+      <circle cx="42" cy="132" r="9" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+      <!-- Family of 4 -->
+      <circle cx="115" cy="108" r="10" stroke="rgba(201,168,76,.7)" stroke-width="1.8" fill="none"/>
+      <path d="M 100 150 Q 102 124 115 122 Q 128 124 130 150" stroke="rgba(201,168,76,.7)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="138" cy="112" r="8" stroke="rgba(201,168,76,.5)" stroke-width="1.5" fill="none"/>
+      <path d="M 128 150 Q 130 128 138 127 Q 148 128 150 150" stroke="rgba(201,168,76,.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <circle cx="157" cy="118" r="5" stroke="rgba(201,168,76,.35)" stroke-width="1.2" fill="none"/>
+      <path d="M 150 150 Q 152 132 157 131 Q 163 132 165 150" stroke="rgba(201,168,76,.35)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <!-- Arrow between barrel and family -->
+      <line x1="70" y1="132" x2="98" y2="132" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+      <polygon points="100,132 94,128 94,136" fill="#C9A84C"/>
+      <!-- Warning label: $100 threshold broken -->
+      <text x="10" y="20" font-family="'DM Mono',monospace" font-size="8" fill="#E07060">$100 THRESHOLD BROKEN</text>
+      <line x1="10" y1="28" x2="180" y2="28" stroke="rgba(224,112,96,.3)" stroke-width="1"/>
+      <text x="10" y="42" font-family="'DM Mono',monospace" font-size="7" fill="#F0A820">$110 ← airlines review</text>
+      <text x="10" y="56" font-family="'DM Mono',monospace" font-size="7" fill="rgba(201,168,76,.6)">$120 ← alumina shuts down</text>
+    </svg>
+  </div>
+  <div class="split-right">
+    <div class="s-kicker">Global South · Caribbean · Day 9 Threshold Broken</div>
+    <div class="s-hed">The surcharges<br>are active.<br><span class="g">CARICOM is silent.</span></div>
+    <div class="s-deck"><strong>Day 10. Zero statements. Zero emergency session.</strong> T&T and Guyana are accumulating windfalls that could fund a regional buffer. The decision is purely political will.</div>
+    <ul class="s-list">
+      <li class="no-arrow"><span class="flag">🇭🇹</span> <strong>Haiti</strong> — <span class="hot">zero buffer, zero bilateral deals, fully exposed at spot</span></li>
+      <li class="no-arrow"><span class="flag">🇯🇲</span> <strong>Jamaica</strong> — JPS surcharge active. Alumina threshold $7 away</li>
+      <li class="no-arrow"><span class="flag">🇩🇴</span> <strong>Dominican Republic</strong> — tourism and manufacturing exposed</li>
+      <li class="no-arrow"><span class="flag">🇹🇹</span> <strong>T&T</strong> — <span class="ok">windfall growing. Not deployed regionally.</span></li>
+      <li class="no-arrow"><span class="flag">🇬🇾</span> <strong>Guyana</strong> — <span class="ok">Stabroek ~700K bpd. NRF record revenue.</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 11 · THE SILENCE
+══════════════════════════════════════════ -->
+<div class="slide sl-cover" id="s11">
+  <div class="s-inner" style="align-items:center;text-align:center">
+    <div class="s-icon">
+      <svg width="160" height="130" viewBox="0 0 160 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Megaphone crossed out -->
+        <path d="M 25 45 L 25 85 L 45 85 L 80 108 L 80 22 L 45 45 Z" stroke="rgba(201,168,76,.3)" stroke-width="1.8" fill="rgba(201,168,76,.03)"/>
+        <!-- X over it -->
+        <line x1="15" y1="18" x2="95" y2="118" stroke="#E07060" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+        <line x1="95" y1="18" x2="15" y2="118" stroke="#E07060" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+        <!-- Silence dots — empty -->
+        <circle cx="115" cy="45" r="4" stroke="rgba(201,168,76,.15)" stroke-width="1.5" fill="none"/>
+        <circle cx="130" cy="65" r="4" stroke="rgba(201,168,76,.1)" stroke-width="1.5" fill="none"/>
+        <circle cx="145" cy="85" r="4" stroke="rgba(201,168,76,.08)" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+    <div class="s-kicker" style="justify-content:center">Day 10 · 10 Days · Zero Response</div>
+    <div class="s-hed" style="margin-bottom:1.2rem">Southeast Asia convened ✓<br>Egypt declared emergency ✓<br>G7 met ✓<br><br><span class="r">CARICOM:</span></div>
+    <div class="big-stat bs-r" style="font-size:clamp(4rem,10vw,8rem);margin:.2rem 0">Nothing.</div>
+    <div class="s-deck" style="margin:0 auto;text-align:center;max-width:580px">
+      When your region has no coordinated voice, you need your own intelligence.<br>
+      <strong>That is exactly what Meridian is built to be.</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 12 · THE THRESHOLDS
+══════════════════════════════════════════ -->
+<div class="slide sl-split" id="s12">
+  <div class="split-left">
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:goldGlow 3s ease-in-out infinite">
+      <!-- Binoculars / intelligence observation -->
+      <rect x="18" y="70" width="55" height="40" rx="8" stroke="#C9A84C" stroke-width="2" fill="rgba(201,168,76,.06)"/>
+      <rect x="82" y="70" width="55" height="40" rx="8" stroke="#C9A84C" stroke-width="2" fill="rgba(201,168,76,.06)"/>
+      <rect x="68" y="80" width="19" height="20" rx="3" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.1)"/>
+      <!-- Lenses -->
+      <circle cx="45" cy="90" r="14" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.04)"/>
+      <circle cx="45" cy="90" r="8" stroke="#C9A84C" stroke-width="1" fill="rgba(201,168,76,.08)"/>
+      <circle cx="110" cy="90" r="14" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.04)"/>
+      <circle cx="110" cy="90" r="8" stroke="#C9A84C" stroke-width="1" fill="rgba(201,168,76,.08)"/>
+      <!-- Crosshair in lenses -->
+      <line x1="45" y1="82" x2="45" y2="98" stroke="#C9A84C" stroke-width=".8" opacity=".5"/>
+      <line x1="37" y1="90" x2="53" y2="90" stroke="#C9A84C" stroke-width=".8" opacity=".5"/>
+      <line x1="110" y1="82" x2="110" y2="98" stroke="#C9A84C" stroke-width=".8" opacity=".5"/>
+      <line x1="102" y1="90" x2="118" y2="90" stroke="#C9A84C" stroke-width=".8" opacity=".5"/>
+      <!-- Handle -->
+      <rect x="73" y="110" width="9" height="40" rx="3" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.08)"/>
+      <!-- Price targets being observed -->
+      <text x="22" y="155" font-family="'DM Mono',monospace" font-size="9" fill="#E07060">$100 ✓</text>
+      <text x="22" y="170" font-family="'DM Mono',monospace" font-size="9" fill="#F0A820">$110 ✓</text>
+      <text x="22" y="185" font-family="'DM Mono',monospace" font-size="9" fill="rgba(201,168,76,.6)">$120 →</text>
+    </svg>
+  </div>
+  <div class="split-right">
+    <div class="s-kicker">The Price Architecture · Called On Day 1</div>
+    <div class="s-hed">Every threshold<br>we mapped<br>is now <span class="g">on the chart.</span></div>
+    <div class="threshold-visual">
+      <div class="tv-row">
+        <div class="tv-price" style="color:var(--gold-l)">$70</div>
+        <div class="tv-bar-wrap"><div class="tv-fill" style="width:100%;background:var(--gold-d)"></div></div>
+        <div class="tv-label">Pre-war baseline · Feb 27</div>
+        <div class="tv-status ts-ok">Baseline</div>
+      </div>
+      <div class="tv-row">
+        <div class="tv-price" style="color:var(--red)">$100</div>
+        <div class="tv-bar-wrap"><div class="tv-fill" style="width:100%;background:var(--red)"></div></div>
+        <div class="tv-label"><span class="hot">Caribbean electricity surcharges</span></div>
+        <div class="tv-status ts-broken">Broken D9</div>
+      </div>
+      <div class="tv-row">
+        <div class="tv-price" style="color:var(--red)">$110</div>
+        <div class="tv-bar-wrap"><div class="tv-fill" style="width:100%;background:var(--red)"></div></div>
+        <div class="tv-label"><span class="hot">Airline route reviews · Asia CPI</span></div>
+        <div class="tv-status ts-broken">Broken D10</div>
+      </div>
+      <div class="tv-row">
+        <div class="tv-price" style="color:var(--amb)">$119.50</div>
+        <div class="tv-bar-wrap"><div class="tv-fill" style="width:99%;background:var(--amb)"></div></div>
+        <div class="tv-label"><span class="warn">Day 10 intraday high · $0.50 from $120</span></div>
+        <div class="tv-status ts-watch">Active</div>
+      </div>
+      <div class="tv-row">
+        <div class="tv-price" style="color:var(--green)">$120</div>
+        <div class="tv-bar-wrap"><div class="tv-fill" style="width:92%;background:var(--green)"></div></div>
+        <div class="tv-label">Alumina shutdown · G7 full intervention</div>
+        <div class="tv-status ts-watch">$0.50 away</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 13 · WHAT MERIDIAN CALLED
+══════════════════════════════════════════ -->
+<div class="slide sl-cover" id="s13">
+  <div class="s-inner" style="max-width:1000px;margin:0 auto;align-items:center">
+    <div class="s-kicker" style="justify-content:center">The Intelligence Record · Day 1 Through Day 10</div>
+    <div class="s-hed" style="text-align:center;margin-bottom:1.4rem">We called it.<br>We <span class="g">tracked</span> it.</div>
+    <div class="record-table">
+      <div class="rt-row" style="background:rgba(201,168,76,.04)">
+        <div class="rt-forecast" style="color:var(--dim);font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.1em;text-transform:uppercase">Forecast</div>
+        <div class="rt-day" style="color:var(--dim)">Called</div>
+        <div class="rt-status rts-correct">Status</div>
+      </div>
+      <div class="rt-row">
+        <div class="rt-forecast">Insurance closes Hormuz — not missiles</div>
+        <div class="rt-day">Day 1</div>
+        <div class="rt-status rts-correct">✓ Day 3</div>
+      </div>
+      <div class="rt-row">
+        <div class="rt-forecast">China two-tier shipping lane forming</div>
+        <div class="rt-day">Day 1</div>
+        <div class="rt-status rts-correct">✓ Day 6</div>
+      </div>
+      <div class="rt-row">
+        <div class="rt-forecast">$100 threshold triggers Caribbean surcharges</div>
+        <div class="rt-day">Day 1</div>
+        <div class="rt-status rts-correct">✓ Day 9</div>
+      </div>
+      <div class="rt-row">
+        <div class="rt-forecast">Pakistan most exposed globally</div>
+        <div class="rt-day">Day 1</div>
+        <div class="rt-status rts-correct">✓ Reuters D10</div>
+      </div>
+      <div class="rt-row">
+        <div class="rt-forecast">US stagflation = 3rd channel to Global South</div>
+        <div class="rt-day">Day 1</div>
+        <div class="rt-status rts-correct">✓ −92K payrolls D5</div>
+      </div>
+      <div class="rt-row">
+        <div class="rt-forecast">Iran using oil price as the weapon itself</div>
+        <div class="rt-day">Day 7</div>
+        <div class="rt-status rts-correct">✓ NBC confirmed D10</div>
+      </div>
+      <div class="rt-row">
+        <div class="rt-forecast">Fertilizer cascade → September food spike</div>
+        <div class="rt-day">Day 3</div>
+        <div class="rt-status rts-pending">⟳ Sep 2026</div>
+      </div>
+      <div class="rt-row">
+        <div class="rt-forecast">CARICOM would not respond</div>
+        <div class="rt-day">Day 1</div>
+        <div class="rt-status" style="color:var(--red)">✗ Days 1–10</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 14 · NEW SUPREME LEADER
+══════════════════════════════════════════ -->
+<div class="slide sl-split" id="s14">
+  <div class="split-left">
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:goldGlow 3s ease-in-out infinite">
+      <!-- Crosshair / target scope -->
+      <circle cx="100" cy="100" r="80" stroke="rgba(224,112,96,.2)" stroke-width="1.5" fill="none"/>
+      <circle cx="100" cy="100" r="60" stroke="rgba(224,112,96,.3)" stroke-width="1.5" fill="none"/>
+      <circle cx="100" cy="100" r="40" stroke="rgba(224,112,96,.4)" stroke-width="1.5" fill="none"/>
+      <circle cx="100" cy="100" r="20" stroke="#E07060" stroke-width="2" fill="rgba(224,112,96,.06)"/>
+      <!-- Cross hairs -->
+      <line x1="100" y1="10" x2="100" y2="75" stroke="#E07060" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="100" y1="125" x2="100" y2="190" stroke="#E07060" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="10" y1="100" x2="75" y2="100" stroke="#E07060" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="125" y1="100" x2="190" y2="100" stroke="#E07060" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- Center dot -->
+      <circle cx="100" cy="100" r="5" fill="#E07060"/>
+      <!-- Label -->
+      <text x="62" y="165" font-family="'DM Mono',monospace" font-size="8" fill="#E07060">MOJTABA KHAMENEI</text>
+      <text x="72" y="178" font-family="'DM Mono',monospace" font-size="7.5" fill="rgba(224,112,96,.6)">"X ON HIS BACK"</text>
+    </svg>
+  </div>
+  <div class="split-right">
+    <div class="s-kicker">Turning Point · Day 9 · March 8</div>
+    <div class="s-hed">Iran elected<br>the leader<br><span class="r">Trump named.</span></div>
+    <div class="s-deck">
+      Mojtaba Khamenei. 56. Son of the assassinated Supreme Leader. Never held office. Never given a sermon. <strong>Chosen specifically because Trump called him unacceptable.</strong>
+    </div>
+    <div class="s-quote">
+      "Even the Great Satan has mentioned his name — and that is exactly why we chose him."
+      <cite>Assembly of Experts member · March 8, 2026</cite>
+    </div>
+    <ul class="s-list" style="margin-top:.8rem">
+      <li>IRGC pledged <strong>"full obedience and self-sacrifice"</strong> within hours</li>
+      <li>IDF has explicitly threatened to <span class="hot">kill him</span></li>
+      <li>Has not yet spoken publicly — <span class="warn">his first words are a binary oil price event</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 15 · WHAT COMES NEXT
+══════════════════════════════════════════ -->
+<div class="slide sl-split" id="s15">
+  <div class="split-left">
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:goldGlow 3s ease-in-out infinite">
+      <!-- Warning triangle + pipeline -->
+      <polygon points="100,20 20,165 180,165" stroke="#F0A820" stroke-width="2.5" fill="rgba(240,168,32,.06)"/>
+      <text x="88" y="135" font-family="'DM Mono',monospace" font-size="32" fill="#F0A820">!</text>
+      <!-- Gold bars at base (wealth/reserves) -->
+      <rect x="22" y="170" width="30" height="14" rx="2" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.1)"/>
+      <rect x="28" y="163" width="30" height="14" rx="2" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.12)"/>
+      <rect x="34" y="156" width="30" height="14" rx="2" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.14)"/>
+      <!-- Arrows indicating price target -->
+      <line x1="150" y1="145" x2="150" y2="45" stroke="rgba(201,168,76,.3)" stroke-width="1.2"/>
+      <text x="155" y="150" font-family="'DM Mono',monospace" font-size="7.5" fill="rgba(201,168,76,.6)">$120</text>
+      <text x="155" y="120" font-family="'DM Mono',monospace" font-size="7.5" fill="#F0A820">$130</text>
+      <text x="155" y="90" font-family="'DM Mono',monospace" font-size="7.5" fill="#E07060">$150</text>
+      <polygon points="150,38 145,52 155,52" fill="rgba(201,168,76,.5)"/>
+    </svg>
+  </div>
+  <div class="split-right">
+    <div class="s-kicker">Forward Intelligence · What The Synthesis Tells Us</div>
+    <div class="s-hed">$120 is<br><span class="r">$0.50 away.</span><br>The exit is Beijing.</div>
+    <div class="s-deck"><strong>Already locked in — regardless of ceasefire:</strong></div>
+    <ul class="s-list">
+      <li>September 2026 food price spike — <strong>already baked in</strong></li>
+      <li>Remittance compression peak — <span class="warn">May 2026</span></li>
+      <li>Insurance premiums elevated — <strong>6–18 months post-war</strong></li>
+    </ul>
+    <div class="s-deck" style="margin-top:.9rem"><strong>Still being decided:</strong></div>
+    <ul class="s-list">
+      <li>Mojtaba's first statement — <span class="hot">binary $10 oil move</span></li>
+      <li>China envoy Zhai Jun — <span class="warn">the exit runs through Beijing</span></li>
+      <li>G7 strategic reserve release — <span class="ok">under active discussion</span></li>
+      <li>CARICOM — will they act before $120 breaks?</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 16 · CTA / CLOSE
+══════════════════════════════════════════ -->
+<div class="slide sl-cover" id="s16">
+  <div class="s-inner" style="align-items:center;text-align:center">
+    <div class="s-icon">
+      <svg width="130" height="100" viewBox="0 0 130 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Meridian "M" glyph with globe lines -->
+        <circle cx="65" cy="50" r="45" stroke="rgba(201,168,76,.2)" stroke-width="1.5" fill="none"/>
+        <circle cx="65" cy="50" r="45" stroke="rgba(201,168,76,.08)" stroke-width="1" stroke-dasharray="4 4" fill="none"/>
+        <ellipse cx="65" cy="50" rx="22" ry="45" stroke="rgba(201,168,76,.25)" stroke-width="1.2" fill="none"/>
+        <path d="M 20 50 Q 65 38 110 50" stroke="rgba(201,168,76,.25)" stroke-width="1" fill="none"/>
+        <path d="M 25 30 Q 65 20 105 30" stroke="rgba(201,168,76,.15)" stroke-width=".8" fill="none"/>
+        <path d="M 25 70 Q 65 80 105 70" stroke="rgba(201,168,76,.15)" stroke-width=".8" fill="none"/>
+        <!-- Glowing center dot -->
+        <circle cx="65" cy="50" r="4" fill="#C9A84C" opacity=".9" style="animation:pulse 2s infinite"/>
+        <!-- South highlight points -->
+        <circle cx="52" cy="62" r="2.5" fill="#E07060" opacity=".8"/>
+        <circle cx="75" cy="68" r="2.5" fill="#E07060" opacity=".8"/>
+        <circle cx="42" cy="55" r="2" fill="#F0A820" opacity=".7"/>
+        <circle cx="88" cy="58" r="2" fill="#F0A820" opacity=".7"/>
+      </svg>
+    </div>
+    <div class="cover-eyebrow">Free. Daily. Global South First.</div>
+    <div class="big-stat bs-gold" style="font-size:clamp(3rem,8vw,6rem);margin:.3rem 0">Meridian</div>
+    <div class="cover-hed">Intelligence from the South. For the South.</div>
+    <div class="s-deck" style="margin:.8rem auto 1.5rem;text-align:center;max-width:560px">
+      We started on Day 1. We haven't missed a day. The cascade is not over — and neither is the coverage.
+    </div>
+    <div class="cta-handles">
+      <div class="cta-handle">@meridian.today</div>
+      <div class="cta-handle">@Meridiantoday_ on X</div>
+      <div class="cta-handle">Free brief → link in bio</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- ── FOOTER BAR ── -->
+<div class="footer-bar">
+  <div class="fb-tag">Intelligence from the South. For the South.</div>
+  <div class="fb-counter" id="counter">01 / 16</div>
+  <div class="fb-nav">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Prev</button>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+  </div>
+</div>
+
+<!-- ── PROGRESS ── -->
+<div class="progress-bar">
+  <div class="progress-fill" id="progress" style="width:6.25%"></div>
+</div>
+
+<script>
+let current = 0;
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+
+function goTo(n){
+  slides[current].classList.remove('active');
+  current = (n + total) % total;
+  slides[current].classList.add('active');
+  document.getElementById('counter').textContent =
+    String(current+1).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
+  document.getElementById('progress').style.width =
+    ((current+1)/total*100) + '%';
+}
+
+function changeSlide(dir){ goTo(current + dir) }
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') changeSlide(1);
+  if(e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+});
+
+// Swipe support
+let startX = 0;
+document.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - startX;
+  if(Math.abs(dx) > 50) changeSlide(dx < 0 ? 1 : -1);
+});
+
+// Click anywhere to advance (except buttons)
+document.getElementById('deck').addEventListener('click', e => {
+  if(!e.target.closest('.nav-btn')) changeSlide(1);
+});
+</script>
+</body>
+</html>
