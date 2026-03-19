@@ -3,589 +3,462 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MERIDIAN — Master Visual Package · March 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<title>Meridian — Intelligence from the South. For the South.</title>
+<meta name="description" content="Daily intelligence briefings on what global crises mean for the Caribbean, Africa, South Asia and the Global South. Tracking Operation Epic Fury from Day 1.">
+<meta property="og:title" content="Meridian — Intelligence from the South. For the South.">
+<meta property="og:description" content="18 days of war. Real intelligence. No Western filter.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Meridiantoday_">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,700&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --forest:#0b0f07;--f2:#0f1409;--f3:#14190c;--f4:#191f10;
-  --gold:#c9a84c;--gold-l:#e0c46e;--gold-d:#7a6020;--gold-f:rgba(201,168,76,.07);
-  --mg:#4a7c3f;--mg-l:#6aaa5e;--mg-d:rgba(74,124,63,.12);
-  --red:#c84c3f;--red-l:#e07060;--red-f:rgba(200,76,63,.08);
-  --amber:#d4890a;--amb-l:#f0a820;
-  --blue:#2a6aaf;--blue-l:#5a9fdf;
-  --rule:rgba(201,168,76,.1);--rule2:rgba(201,168,76,.045);
-  --text:#98a88e;--dim:#4a5840;--white:#eaf2e2;
-  --serif:'Cormorant Garamond',serif;
-  --sans:'Outfit',sans-serif;
-  --mono:'DM Mono',monospace;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--forest);color:var(--text);font-family:var(--sans);line-height:1.65;overflow-x:hidden;min-height:100vh}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(201,168,76,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.015) 1px,transparent 1px);background-size:52px 52px;pointer-events:none;z-index:0}
+:root{--forest:#0b0f07;--f2:#0f1409;--f3:#14190c;--f4:#1a2010;--gold:#c9a84c;--gold-l:#e0c46e;--gold-d:#7a6020;--gold-f:rgba(201,168,76,.07);--red:#c84c3f;--red-l:#e07060;--red-f:rgba(200,76,63,.08);--amb:#d4890a;--amb-l:#f0a820;--green:#4a7c3f;--green-l:#6aaa5e;--rule:rgba(201,168,76,.12);--rule2:rgba(201,168,76,.05);--text:#98a88e;--dim:#4a5840;--white:#eaf2e2;--serif:'Cormorant Garamond',serif;--sans:'Outfit',sans-serif;--mono:'DM Mono',monospace;--max:1360px}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--forest);color:var(--text);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(201,168,76,.016) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.016) 1px,transparent 1px);background-size:52px 52px;pointer-events:none;z-index:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.15;transform:scale(.7)}}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(200,76,63,.5)}70%{box-shadow:0 0 0 10px rgba(200,76,63,0)}100%{box-shadow:0 0 0 0 rgba(200,76,63,0)}}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scanLine{0%{transform:translateY(-100%);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(2000%);opacity:0}}
 
-/* MASTHEAD */
-.mast{position:relative;z-index:1;background:var(--f2);border-bottom:1px solid var(--rule);padding:3rem 2.5rem 2.5rem}
-.mast-i{max-width:1200px;margin:0 auto}
-.mast-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1.5rem;margin-bottom:1.5rem}
-.brand{font-family:var(--serif);font-size:4rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;line-height:.95}
-.brand em{font-weight:400;font-style:italic;color:var(--gold-l);font-size:3rem;display:block;margin-top:.1rem}
-.brand-tag{font-family:var(--serif);font-size:.9rem;font-style:italic;color:var(--dim);margin-top:.5rem}
-.mast-r{text-align:right}
-.mr-type{font-family:var(--mono);font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--red-l);margin-bottom:.4rem}
-.mr-title{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--white);line-height:1.1;margin-bottom:.4rem}
-.mr-sub{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;line-height:1.8}
-.mast-rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold-d),transparent);margin:1rem 0}
-.mast-deck{font-size:.9rem;color:var(--dim);line-height:1.8;max-width:750px;font-weight:300}
-.mast-deck strong{color:var(--text)}
+/* TICKER */
+.ticker{background:var(--red);height:34px;display:flex;align-items:center;overflow:hidden;position:relative;z-index:100}
+.t-badge{font-family:var(--mono);font-size:.46rem;letter-spacing:.22em;text-transform:uppercase;color:#fff;padding:0 1.2rem 0 1rem;background:rgba(0,0,0,.35);height:100%;display:flex;align-items:center;gap:.5rem;flex-shrink:0;white-space:nowrap;border-right:1px solid rgba(255,255,255,.1)}
+.t-dot{width:7px;height:7px;border-radius:50%;background:#fff;flex-shrink:0;animation:pulse 1.5s ease-in-out infinite,ring 1.5s ease-out infinite}
+.t-track{display:flex;animation:ticker 70s linear infinite;white-space:nowrap}
+.t-item{font-family:var(--mono);font-size:.46rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.9);padding:0 2.5rem}
+.t-item::after{content:'◆';font-size:.28rem;padding-left:2.5rem;opacity:.3}
 
-/* STATS STRIP */
-.stats-strip{background:var(--f3);border-bottom:1px solid var(--rule);position:relative;z-index:1}
-.ss-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(7,1fr);gap:0}
-.ss-box{padding:1rem 1.2rem;text-align:center;border-right:1px solid var(--rule)}
-.ss-box:last-child{border-right:none}
-.ssb-val{font-family:var(--serif);font-size:1.4rem;font-weight:700;line-height:1;margin-bottom:.2rem}
-.ssb-val.red{color:var(--red-l)}.ssb-val.gold{color:var(--gold-l)}.ssb-val.green{color:var(--mg-l)}.ssb-val.white{color:var(--white)}.ssb-val.amb{color:var(--amb-l)}
-.ssb-lbl{font-family:var(--mono);font-size:.46rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;line-height:1.5}
-.live-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--red-l);animation:pulse 1.5s infinite;vertical-align:middle;margin-right:3px}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.15}}
+/* HEADER */
+header{position:sticky;top:0;z-index:50;background:rgba(11,15,7,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.h-inner{max-width:var(--max);margin:0 auto;padding:0 2.5rem;display:flex;align-items:center;gap:2rem;height:58px}
+.logo{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;flex-shrink:0;line-height:1}
+.logo em{font-weight:300;font-style:italic;font-size:.65em;color:var(--gold-l);letter-spacing:.06em}
+.h-rule{width:1px;height:22px;background:var(--rule);flex-shrink:0}
+nav{display:flex;gap:1.8rem;align-items:center;flex:1}
+nav a{font-family:var(--mono);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color .2s}
+nav a:hover{color:var(--gold)}
+.nav-live{display:flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red-l)}
+.nav-live-dot{width:6px;height:6px;border-radius:50%;background:var(--red-l);animation:pulse 1.4s ease-in-out infinite}
+.h-cta{font-family:var(--mono);font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:var(--forest);background:var(--gold);padding:.4rem 1rem;text-decoration:none;flex-shrink:0;transition:opacity .2s}
+.h-cta:hover{opacity:.85}
+
+/* HERO */
+.hero{position:relative;z-index:1;background:var(--f2);border-bottom:1px solid var(--rule);overflow:hidden}
+.hero::after{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:linear-gradient(180deg,transparent,var(--gold),transparent);animation:scanLine 6s ease-in-out infinite;pointer-events:none}
+.hero-inner{max-width:var(--max);margin:0 auto;padding:5rem 2.5rem 4rem;display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:center}
+.hero-kicker{display:flex;align-items:center;gap:.7rem;font-family:var(--mono);font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;color:var(--red-l);margin-bottom:1.2rem}
+.hero-kicker::before{content:'';width:20px;height:1px;background:var(--red-l)}
+.hk-dot{width:5px;height:5px;border-radius:50%;background:var(--red-l);animation:pulse 1.4s ease-in-out infinite}
+.hero-hed{font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,5.2rem);font-weight:700;color:var(--white);line-height:.93;letter-spacing:-.03em;margin-bottom:1.4rem}
+.hero-hed .g{color:var(--gold);font-style:italic}.hero-hed .r{color:var(--red-l)}
+.hero-deck{font-size:.9rem;color:var(--text);line-height:1.9;max-width:560px;font-weight:300;margin-bottom:2rem}
+.hero-deck strong{color:var(--white)}.hero-deck .hot{color:var(--red-l);font-weight:500}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-p{font-family:var(--mono);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--forest);background:var(--gold);padding:.7rem 1.6rem;text-decoration:none;display:inline-block;transition:opacity .2s}
+.btn-p:hover{opacity:.85}
+.btn-g{font-family:var(--mono);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-d);padding:.7rem 1.6rem;text-decoration:none;display:inline-block;background:var(--gold-f);transition:all .2s}
+.btn-g:hover{border-color:var(--gold);background:rgba(201,168,76,.12)}
+
+/* HERO CARD */
+.hero-card{background:var(--f3);border:1px solid var(--rule);border-top:3px solid var(--red-l);animation:fadeUp .5s ease-out}
+.hc-head{padding:1rem 1.4rem;border-bottom:1px solid var(--rule2);display:flex;align-items:center;justify-content:space-between}
+.hc-lbl{font-family:var(--mono);font-size:.46rem;letter-spacing:.18em;text-transform:uppercase;color:var(--red-l);display:flex;align-items:center;gap:.4rem}
+.hc-lbl-dot{width:5px;height:5px;border-radius:50%;background:var(--red-l);animation:pulse 1.4s ease-in-out infinite}
+.hc-day{font-family:var(--serif);font-size:2.4rem;font-weight:700;color:var(--white);line-height:1}
+.hc-body{padding:.8rem 1.4rem}
+.hc-stat{display:flex;justify-content:space-between;align-items:baseline;padding:.38rem 0;border-bottom:1px solid var(--rule2);font-size:.74rem}
+.hc-stat:last-child{border-bottom:none;padding-bottom:0}
+.hs-l{color:var(--dim);font-size:.68rem}
+.hs-v{font-family:var(--mono);font-size:.68rem;font-weight:700}
+.vr{color:var(--red-l)}.va{color:var(--amb-l)}.vg{color:var(--green-l)}.vgold{color:var(--gold-l)}
+.hc-link{display:block;text-align:center;padding:.8rem;background:var(--red-f);border-top:1px solid var(--rule2);font-family:var(--mono);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red-l);text-decoration:none;transition:background .2s}
+.hc-link:hover{background:rgba(200,76,63,.14)}
+
+/* STAT BAND */
+.stat-band{background:var(--f3);border-bottom:1px solid var(--rule);position:relative;z-index:1}
+.sb-inner{max-width:var(--max);margin:0 auto;padding:0 2.5rem;display:grid;grid-template-columns:repeat(5,1fr)}
+.sb-cell{padding:1.2rem .5rem;text-align:center;border-right:1px solid var(--rule2);transition:background .2s}
+.sb-cell:last-child{border-right:none}
+.sb-cell:hover{background:rgba(201,168,76,.02)}
+.sb-val{font-family:var(--mono);font-size:.88rem;font-weight:700;line-height:1;margin-bottom:.2rem}
+.sb-lbl{font-family:var(--mono);font-size:.42rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;line-height:1.5}
 
 /* PAGE */
-.page{max-width:1200px;margin:0 auto;padding:3rem 2.5rem 6rem;position:relative;z-index:1}
+.page{max-width:var(--max);margin:0 auto;padding:3rem 2.5rem 6rem;position:relative;z-index:1}
 
-/* SECTION */
-.section{margin-bottom:4rem}
-.sec-eye{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
-.se-rule{width:32px;height:1px;background:var(--gold-d)}
-.se-txt{font-family:var(--mono);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
-.se-count{font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;color:var(--dim);margin-left:auto}
+/* SECTION HEAD */
+.sec-h{display:flex;align-items:center;gap:.8rem;margin-bottom:2rem;padding-bottom:.9rem;border-bottom:1px solid var(--rule)}
+.sh-r{width:22px;height:1px;background:var(--gold-d)}
+.sh-t{font-family:var(--mono);font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.sh-s{font-family:var(--serif);font-size:.76rem;font-style:italic;color:var(--dim)}
+.sh-c{font-family:var(--mono);font-size:.44rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;margin-left:auto}
 
-/* ARTIFACT CARD */
-.artifact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule)}
-.acard{background:var(--f3);display:flex;flex-direction:column;transition:background .2s;position:relative;overflow:hidden}
-.acard:hover{background:var(--f4)}
-.ac-accent{height:3px;width:100%}
-.ac-a-red{background:var(--red-l)}.ac-a-gold{background:var(--gold)}.ac-a-green{background:var(--mg-l)}.ac-a-blue{background:var(--blue-l)}.ac-a-amb{background:var(--amb-l)}
-.ac-body{padding:1.8rem;flex:1;display:flex;flex-direction:column;gap:1rem}
-.ac-meta{display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
-.ac-tag{font-family:var(--mono);font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;padding:.18rem .5rem;border-radius:2px;border:1px solid}
-.at-brief{color:var(--red-l);border-color:rgba(200,76,63,.25);background:var(--red-f)}
-.at-intel{color:var(--gold);border-color:var(--gold-d);background:var(--gold-f)}
-.at-map{color:var(--blue-l);border-color:rgba(58,122,191,.2);background:rgba(58,122,191,.05)}
-.at-brand{color:var(--mg-l);border-color:rgba(74,124,63,.25);background:var(--mg-d)}
-.at-biz{color:var(--amb-l);border-color:rgba(212,137,10,.2);background:rgba(212,137,10,.05)}
-.ac-day{font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
-.ac-title{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--white);line-height:1.15}
-.ac-sub{font-size:.78rem;color:var(--dim);line-height:1.65}
-.ac-details{display:flex;flex-direction:column;gap:.3rem;margin-top:auto}
-.ac-detail-row{display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:var(--text)}
-.adr-dot{width:4px;height:4px;border-radius:50%;flex-shrink:0}
-.adr-red{background:var(--red-l)}.adr-gold{background:var(--gold)}.adr-green{background:var(--mg-l)}.adr-amb{background:var(--amb-l)}.adr-blue{background:var(--blue-l)}
-.ac-footer{padding:1rem 1.8rem;border-top:1px solid var(--rule2);display:flex;align-items:center;justify-content:space-between}
-.acf-size{font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
-.acf-link{font-family:var(--mono);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:.3rem}
-.acf-link:hover{color:var(--gold-l)}
-.acf-link::after{content:'↗';font-size:.65rem}
+/* FEATURED */
+.feat-grid{display:grid;grid-template-columns:2fr 1fr;gap:1.5rem;margin-bottom:4rem}
+.feat-card{background:var(--f2);border:1px solid var(--rule);border-top:3px solid var(--red-l);text-decoration:none;display:block;transition:border-color .2s;animation:fadeUp .3s ease-out}
+.feat-card:hover{border-color:var(--gold);border-top-color:var(--gold)}
+.fc-in{padding:2rem 2.2rem 1.5rem}
+.fc-kick{font-family:var(--mono);font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red-l);display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem}
+.fc-kick::before{content:'';width:14px;height:1px;background:var(--red-l)}
+.fc-hed{font-family:var(--serif);font-size:clamp(1.6rem,2.5vw,2.6rem);font-weight:700;color:var(--white);line-height:1.02;margin-bottom:.8rem}
+.fc-hed .g{color:var(--gold);font-style:italic}.fc-hed .r{color:var(--red-l)}
+.fc-deck{font-size:.8rem;color:var(--text);line-height:1.85;margin-bottom:1.2rem}
+.fc-deck strong{color:var(--white)}
+.fc-meta{padding:.8rem 2.2rem;border-top:1px solid var(--rule2);display:flex;align-items:center;justify-content:space-between}
+.fc-date{font-family:var(--mono);font-size:.44rem;letter-spacing:.08em;color:var(--dim);text-transform:uppercase}
+.fc-cta{font-family:var(--mono);font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;color:var(--red-l)}
 
-/* FEATURED CARD — full width */
-.acard-featured{background:var(--f3);display:grid;grid-template-columns:1fr 320px;gap:0;transition:background .2s}
-.acard-featured:hover{background:var(--f4)}
-.acf-left{padding:2rem 2.5rem;border-right:1px solid var(--rule)}
-.acf-right{padding:2rem;display:flex;flex-direction:column;gap:.8rem;justify-content:center}
-.feat-title{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--white);line-height:1.1;margin-bottom:.6rem}
-.feat-sub{font-size:.85rem;color:var(--dim);line-height:1.75;margin-bottom:1rem}
-.feat-stat{text-align:center;padding:.8rem;background:var(--f4);border:1px solid var(--rule2)}
-.fs-val{font-family:var(--serif);font-size:1.5rem;font-weight:700;line-height:1;margin-bottom:.2rem}
-.fs-lbl{font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;line-height:1.4}
+/* INTEL STACK */
+.intel-stack{display:flex;flex-direction:column;gap:1.2rem}
+.i-card{background:var(--f3);border:1px solid var(--rule);border-left:3px solid;padding:1.2rem 1.4rem;text-decoration:none;display:block;transition:transform .15s;animation:fadeUp .35s ease-out both}
+.i-card:hover{transform:translateX(3px)}
+.ic-r{border-left-color:var(--red-l)}.ic-gold{border-left-color:var(--gold)}.ic-g{border-left-color:var(--green-l)}.ic-a{border-left-color:var(--amb-l)}
+.ic-lbl{font-family:var(--mono);font-size:.44rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.3rem}
+.il-r{color:var(--red-l)}.il-gold{color:var(--gold)}.il-g{color:var(--green-l)}.il-a{color:var(--amb-l)}
+.ic-hed{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--white);line-height:1.15;margin-bottom:.3rem}
+.ic-body{font-size:.73rem;color:var(--text);line-height:1.65}
 
-/* TIMELINE SECTION */
-.timeline-strip{background:var(--f2);border:1px solid var(--rule);padding:2rem 2.5rem;margin-bottom:4rem;position:relative;overflow:hidden}
-.ts-bg{position:absolute;right:-2rem;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:10rem;font-weight:700;color:rgba(201,168,76,.02);pointer-events:none;user-select:none;line-height:1}
-.ts-head{font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:.8rem}
-.ts-head::before{content:'';width:20px;height:1px;background:var(--gold-d)}
-.tl-flow{display:flex;align-items:flex-start;gap:0;overflow-x:auto;padding-bottom:.5rem}
-.tl-node{flex-shrink:0;width:140px;display:flex;flex-direction:column;align-items:center;position:relative}
-.tl-node::after{content:'';position:absolute;top:18px;left:50%;right:-50%;height:1px;background:var(--rule);z-index:0}
-.tl-node:last-child::after{display:none}
-.tln-dot{width:14px;height:14px;border-radius:50%;border:2px solid;z-index:1;flex-shrink:0;position:relative}
-.td-r{background:var(--red);border-color:var(--red-l)}.td-a{background:var(--amber);border-color:var(--amb-l)}.td-g{background:var(--gold-d);border-color:var(--gold)}.td-gr{background:var(--mg);border-color:var(--mg-l)}
-.tln-body{margin-top:.6rem;text-align:center;padding:0 .5rem}
-.tln-day{font-family:var(--mono);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:.2rem}
-.tln-title{font-size:.72rem;color:var(--white);line-height:1.4;font-weight:500}
-.tln-price{font-family:var(--mono);font-size:.65rem;font-weight:700;margin-top:.3rem}
-.tp-r{color:var(--red-l)}.tp-a{color:var(--amb-l)}.tp-g{color:var(--gold)}
+/* BRIEF GRID */
+.brief-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:4rem}
+.b-card{background:var(--f2);border:1px solid var(--rule);text-decoration:none;display:block;transition:border-color .2s,transform .15s;position:relative;overflow:hidden;animation:fadeUp .4s ease-out both}
+.b-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold-d);transition:background .2s}
+.b-card.bl::before{background:var(--red-l)}.b-card.bs::before{background:var(--gold)}
+.b-card:hover{border-color:var(--gold-d);transform:translateY(-3px)}
+.b-card:hover::before{background:var(--gold)}
+.bc-in{padding:1.3rem 1.4rem 1rem}
+.bc-day{font-family:var(--mono);font-size:.44rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:.35rem;display:flex;align-items:center;justify-content:space-between}
+.bc-badge{font-family:var(--mono);font-size:.4rem;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .3rem;border:1px solid;border-radius:1px}
+.bb-r{color:var(--red-l);border-color:rgba(200,76,63,.3);background:var(--red-f)}
+.bb-gold{color:var(--gold);border-color:rgba(201,168,76,.25);background:var(--gold-f)}
+.bb-g{color:var(--green-l);border-color:rgba(74,124,63,.25);background:rgba(74,124,63,.08)}
+.bc-hed{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--white);line-height:1.12;margin-bottom:.5rem}
+.bc-meta{padding:.6rem 1.4rem;border-top:1px solid var(--rule2);display:flex;align-items:center;justify-content:space-between}
+.bc-date{font-family:var(--mono);font-size:.44rem;letter-spacing:.08em;color:var(--dim);text-transform:uppercase}
+.bc-arr{font-family:var(--mono);font-size:.5rem;color:var(--dim);transition:color .2s,transform .2s}
+.b-card:hover .bc-arr{color:var(--gold);transform:translateX(3px)}
 
-/* WAR FACTS GRID */
-.facts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:2rem}
-.fact-box{background:var(--f3);padding:1.4rem}
-.fb-label{font-family:var(--mono);font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:.5rem}
-.fb-val{font-family:var(--serif);font-size:1.8rem;font-weight:700;color:var(--white);line-height:1;margin-bottom:.3rem}
-.fv-red{color:var(--red-l)}.fv-gold{color:var(--gold-l)}.fv-amb{color:var(--amb-l)}.fv-green{color:var(--mg-l)}
-.fb-caption{font-size:.72rem;color:var(--dim);line-height:1.5}
+/* ABOUT */
+.about{background:var(--f2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);position:relative;z-index:1;overflow:hidden}
+.about::before{content:'MERIDIAN';position:absolute;right:-2rem;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:14rem;font-weight:700;color:rgba(201,168,76,.02);line-height:1;pointer-events:none;user-select:none;letter-spacing:.1em}
+.about-inner{max-width:var(--max);margin:0 auto;padding:4rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.ab-hed{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3.2rem);font-weight:700;color:var(--white);line-height:1.0;margin-bottom:1.2rem}
+.ab-hed .g{color:var(--gold);font-style:italic}
+.ab-body{font-size:.83rem;color:var(--text);line-height:1.95}
+.ab-body p{margin-bottom:.8rem}.ab-body p:last-child{margin-bottom:0}
+.ab-body strong{color:var(--white)}
+.plat-list{display:flex;flex-direction:column;gap:.7rem}
+.plat-item{display:flex;align-items:center;gap:1rem;padding:.8rem 1.1rem;background:var(--f3);border:1px solid var(--rule);transition:border-color .2s}
+.plat-item:hover{border-color:var(--gold-d)}
+.pi-icon{font-size:1.1rem;flex-shrink:0}
+.pi-handle{font-family:var(--mono);font-size:.52rem;letter-spacing:.1em;color:var(--gold);flex:1}
+.pi-note{font-family:var(--mono);font-size:.42rem;letter-spacing:.06em;color:var(--dim);text-transform:uppercase}
 
-/* BRAND REFERENCE */
-.brand-ref{background:var(--f3);border:1px solid var(--rule);padding:2rem 2.5rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;margin-bottom:4rem}
-.br-col-head{font-family:var(--mono);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--rule2)}
-.br-item{display:flex;align-items:center;gap:.8rem;padding:.4rem 0;border-bottom:1px solid var(--rule2);font-size:.78rem}
-.br-item:last-child{border-bottom:none}
-.br-swatch{width:14px;height:14px;border-radius:2px;flex-shrink:0}
-.br-name{color:var(--text);flex:1}
-.br-hex{font-family:var(--mono);font-size:.6rem;color:var(--dim)}
-.br-handle{font-family:var(--mono);font-size:.75rem;color:var(--gold-l);display:block;margin-bottom:.3rem}
-.br-platform{font-size:.75rem;color:var(--text)}
+/* NEWSLETTER */
+.nl{background:var(--gold-f);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);position:relative;z-index:1}
+.nl-inner{max-width:var(--max);margin:0 auto;padding:2.8rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap}
+.nl-hed{font-family:var(--serif);font-size:1.8rem;font-weight:700;color:var(--white);line-height:1.05;margin-bottom:.2rem}
+.nl-hed .g{color:var(--gold);font-style:italic}
+.nl-sub{font-family:var(--serif);font-size:.8rem;font-style:italic;color:var(--dim)}
+.nl-form{display:flex;gap:.6rem;flex-wrap:wrap}
+.nl-input{background:var(--f3);border:1px solid var(--rule);padding:.7rem 1.1rem;font-family:var(--sans);font-size:.82rem;color:var(--white);outline:none;min-width:280px;transition:border-color .2s}
+.nl-input::placeholder{color:var(--dim)}
+.nl-input:focus{border-color:var(--gold)}
+.nl-btn{background:var(--gold);border:none;padding:.7rem 1.5rem;font-family:var(--mono);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--forest);cursor:pointer;transition:opacity .2s}
+.nl-btn:hover{opacity:.85}
+.nl-note{font-family:var(--mono);font-size:.42rem;letter-spacing:.06em;color:var(--dim);text-transform:uppercase;margin-top:.4rem}
 
-/* CONCLUSION STRIP */
-.concl{background:var(--f2);border:1px solid var(--rule);border-left:3px solid var(--gold);padding:2.5rem;position:relative;overflow:hidden;margin-top:1rem}
-.concl-bg{position:absolute;right:-3rem;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:11rem;font-weight:700;color:rgba(201,168,76,.025);line-height:1;pointer-events:none;user-select:none}
-.cl-label{font-family:var(--mono);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.7rem}
-.cl-hed{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--white);line-height:1.1;margin-bottom:.8rem}
-.cl-body{font-size:.85rem;color:var(--text);line-height:1.85;max-width:820px}
-.cl-body strong{color:var(--white)}
-.cl-body .ok{color:var(--mg-l);font-weight:600}
+/* FOOTER */
+footer{background:var(--f2);border-top:1px solid var(--rule);position:relative;z-index:1}
+.ft-inner{max-width:var(--max);margin:0 auto;padding:2.5rem 2.5rem 1.5rem;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem}
+.ft-brand{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.2rem}
+.ft-tag{font-family:var(--serif);font-size:.75rem;font-style:italic;color:var(--dim);margin-bottom:.8rem}
+.ft-desc{font-size:.74rem;color:var(--dim);line-height:1.75}
+.ft-col{font-family:var(--mono);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-d);margin-bottom:.8rem}
+.ft-links{display:flex;flex-direction:column;gap:.4rem}
+.ft-links a{font-size:.74rem;color:var(--dim);text-decoration:none;transition:color .2s;line-height:1.5}
+.ft-links a:hover{color:var(--text)}
+.ft-bot{max-width:var(--max);margin:0 auto;padding:1rem 2.5rem;border-top:1px solid var(--rule2);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.ft-copy{font-family:var(--mono);font-size:.42rem;letter-spacing:.08em;color:var(--dim);text-transform:uppercase}
 
-footer{border-top:1px solid var(--rule);padding:2rem 2.5rem;position:relative;z-index:1;background:var(--f2)}
-.ft-i{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.ft-logo{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
-.ft-meta{font-family:var(--mono);font-size:.5rem;letter-spacing:.08em;color:var(--dim);text-align:right;line-height:1.9;text-transform:uppercase}
-
-@media(max-width:1000px){.artifact-grid{grid-template-columns:repeat(2,1fr)}.acard-featured{grid-template-columns:1fr}.acf-right{border-top:1px solid var(--rule);border-right:none}.ss-inner{grid-template-columns:repeat(4,1fr)}.facts-grid{grid-template-columns:repeat(2,1fr)}.brand-ref{grid-template-columns:1fr 1fr}}
-@media(max-width:640px){.artifact-grid{grid-template-columns:1fr}.ss-inner{grid-template-columns:repeat(2,1fr)}.brand-ref{grid-template-columns:1fr}}
+@media(max-width:1100px){.hero-inner,.feat-grid{grid-template-columns:1fr}.intel-stack{flex-direction:row;flex-wrap:wrap}.i-card{flex:1;min-width:240px}}
+@media(max-width:900px){.brief-grid{grid-template-columns:1fr 1fr}.about-inner{grid-template-columns:1fr;gap:2.5rem}.sb-inner{grid-template-columns:repeat(3,1fr)}.ft-inner{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.brief-grid,.ft-inner{grid-template-columns:1fr}.sb-inner{grid-template-columns:repeat(2,1fr)}nav{display:none}.hero-inner{padding:3rem 1.5rem 2.5rem}.page{padding:2rem 1.5rem 4rem}}
 </style>
 </head>
 <body>
 
-<!-- MASTHEAD -->
-<div class="mast">
-  <div class="mast-i">
-    <div class="mast-top">
-      <div>
-        <div class="brand">Meridian<em>Brief</em></div>
-        <div class="brand-tag">Intelligence from the South. For the South.</div>
-      </div>
-      <div class="mast-r">
-        <div class="mr-type"><span class="live-dot"></span>Active · Day 8 · March 7, 2026</div>
-        <div class="mr-title">Master Visual Package<br>All Artifacts · Complete Reference</div>
-        <div class="mr-sub">
-          10 Visual Documents · Days 1–8 Coverage<br>
-          Brand Identity · Revenue Model · Global South Map<br>
-          Daily Briefs · Deep Intelligence Synthesis
-        </div>
-      </div>
-    </div>
-    <div class="mast-rule"></div>
-    <div class="mast-deck">Every Meridian visual artifact produced across the full Iran crisis coverage cycle — from brand inception through Day 8. This index is designed to travel across agents and sessions without losing detail. <strong>Each card contains the full context, content inventory, and key intelligence specific to that document.</strong> Nothing is truncated.</div>
+<div class="ticker">
+  <div class="t-badge"><div class="t-dot"></div>Live · Day 18</div>
+  <div class="t-track">
+    <div class="t-item">SOUTH PARS STRUCK · WORLD'S LARGEST GAS FIELD · BRENT $109.95 · +40% VS PRE-WAR</div>
+    <div class="t-item">IRAN NAMES TARGETS: SAUDI ARAMCO · UAE AL HOSN · QATAR LNG FACILITIES</div>
+    <div class="t-item">LARIJANI KILLED · IRAN'S TOP NEGOTIATOR · ISRAEL CONFIRMS</div>
+    <div class="t-item">BUSHEHR NUCLEAR PLANT HIT · IAEA: NO DAMAGE · CALLS FOR MAXIMUM RESTRAINT</div>
+    <div class="t-item">HOUTHI "HOUR ZERO" · SECOND CHOKEPOINT THREATENED · BAB AL-MANDAB</div>
+    <div class="t-item">CUBA PROTESTS OIL CRISIS · COMMUNIST PARTY OFFICE ATTACKED</div>
+    <div class="t-item">BLOOMBERG: HORMUZ REOPENING IMPOSSIBLE WITHOUT CEASEFIRE</div>
+    <div class="t-item">CARICOM: DAY 18 · ZERO STATEMENTS · ZERO EMERGENCY SESSION</div>
+    <div class="t-item">SOUTH PARS STRUCK · WORLD'S LARGEST GAS FIELD · BRENT $109.95 · +40% VS PRE-WAR</div>
+    <div class="t-item">IRAN NAMES TARGETS: SAUDI ARAMCO · UAE AL HOSN · QATAR LNG FACILITIES</div>
+    <div class="t-item">LARIJANI KILLED · IRAN'S TOP NEGOTIATOR · ISRAEL CONFIRMS</div>
+    <div class="t-item">BUSHEHR NUCLEAR PLANT HIT · IAEA: NO DAMAGE · CALLS FOR MAXIMUM RESTRAINT</div>
   </div>
 </div>
 
-<!-- STATS STRIP -->
-<div class="stats-strip">
-  <div class="ss-inner">
-    <div class="ss-box"><div class="ssb-val red">10</div><div class="ssb-lbl">Total visual<br>artifacts built</div></div>
-    <div class="ss-box"><div class="ssb-val gold">8</div><div class="ssb-lbl">Days of active<br>crisis coverage</div></div>
-    <div class="ss-box"><div class="ssb-val white">16</div><div class="ssb-lbl">Countries mapped<br>Global South</div></div>
-    <div class="ssb-box ss-box"><div class="ssb-val amb">~$90</div><div class="ssb-lbl">Brent crude<br>Day 8 level</div></div>
-    <div class="ss-box"><div class="ssb-val red">$0</div><div class="ssb-lbl">Operating cost<br>to run Meridian</div></div>
-    <div class="ss-box"><div class="ssb-val green">$92K</div><div class="ssb-lbl">Month 36 revenue<br>base case projection</div></div>
-    <div class="ss-box"><div class="ssb-val white">v2.0</div><div class="ssb-lbl">Neutral blueprint<br>active from Day 8</div></div>
+<header>
+  <div class="h-inner">
+    <a href="/" class="logo">Meridian <em>Brief</em></a>
+    <div class="h-rule"></div>
+    <nav>
+      <a href="#briefs">Briefs</a>
+      <a href="#intelligence">Intelligence</a>
+      <a href="#about">About</a>
+      <a href="https://twitter.com/Meridiantoday_" target="_blank">@Meridiantoday_</a>
+      <div class="nav-live"><div class="nav-live-dot"></div>Day 18 · Live</div>
+    </nav>
+    <a href="https://beehiiv.com" target="_blank" class="h-cta">Free Newsletter →</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-kicker"><div class="hk-dot"></div>Operation Epic Fury · March 18, 2026</div>
+      <h1 class="hero-hed">The war nobody<br>is covering <span class="g">for you.</span><br><span class="r">18 days.</span> Counting.</h1>
+      <p class="hero-deck">Since February 28, Meridian has published every day. Not the missiles — <strong>what the missiles mean.</strong> For Pakistan's 220 million people. For Haiti's zero buffer. For the Caribbean electricity bill. For the fertilizer that won't reach a field by September. <span class="hot">South Pars is burning. Brent hit $109. Your government hasn't said a word.</span></p>
+      <div class="hero-actions">
+        <a href="meridian_brief_day18_march18.html" class="btn-p">Read Day 18 →</a>
+        <a href="#briefs" class="btn-g">Full Archive</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hc-head">
+        <div class="hc-lbl"><div class="hc-lbl-dot"></div>Latest · Day 18</div>
+        <div class="hc-day">18</div>
+      </div>
+      <div class="hc-body">
+        <div class="hc-stat"><span class="hs-l">Brent intraday high</span><span class="hs-v vr">$109.95</span></div>
+        <div class="hc-stat"><span class="hs-l">vs pre-war baseline</span><span class="hs-v vr">+40% · $70 → $110</span></div>
+        <div class="hc-stat"><span class="hs-l">South Pars phases hit</span><span class="hs-v vr">3, 4, 5, 6</span></div>
+        <div class="hc-stat"><span class="hs-l">Iranian civilians dead</span><span class="hs-v vr">1,444+</span></div>
+        <div class="hc-stat"><span class="hs-l">Lebanon dead since Mar 2</span><span class="hs-v vr">850+</span></div>
+        <div class="hc-stat"><span class="hs-l">Iranians displaced</span><span class="hs-v vr">3M+ · IOM</span></div>
+        <div class="hc-stat"><span class="hs-l">Escalation index</span><span class="hs-v vr">98 / 100</span></div>
+        <div class="hc-stat"><span class="hs-l">CARICOM response</span><span class="hs-v vr">Day 18 · Zero</span></div>
+      </div>
+      <a href="meridian_brief_day18_march18.html" class="hc-link">Read full brief →</a>
+    </div>
+  </div>
+</div>
+
+<div class="stat-band">
+  <div class="sb-inner">
+    <div class="sb-cell"><div class="sb-val vr">+40%</div><div class="sb-lbl">Oil surge · 18 days<br>$70 → $109.95</div></div>
+    <div class="sb-cell"><div class="sb-val vr">−91%</div><div class="sb-lbl">Hormuz traffic<br>Insurance closed it</div></div>
+    <div class="sb-cell"><div class="sb-val vr">2,200+</div><div class="sb-lbl">Total war dead<br>All sides</div></div>
+    <div class="sb-cell"><div class="sb-val va">Sep 2026</div><div class="sb-lbl">Food spike arriving<br>Fertilizer cascade locked</div></div>
+    <div class="sb-cell"><div class="sb-val vr">Day 18</div><div class="sb-lbl">CARICOM: silent<br>Zero statements</div></div>
   </div>
 </div>
 
 <div class="page">
 
-<!-- WAR CONTEXT SNAPSHOT -->
-<div class="section">
-  <div class="sec-eye"><div class="se-rule"></div><div class="se-txt">Crisis Context · All Briefs Reference This</div></div>
-  <div class="facts-grid">
-    <div class="fact-box"><div class="fb-label">Operation</div><div class="fb-val fv-red">Epic Fury</div><div class="fb-caption">US codename. Israel: Operation Roaring Lion. Launched Feb 28, 2026. Coalition now includes UK.</div></div>
-    <div class="fact-box"><div class="fb-label">Iran death toll · Day 8</div><div class="fb-val fv-red">1,332+</div><div class="fb-caption">181 children confirmed (UNICEF). 6,668+ civilian units struck including schools and hospitals.</div></div>
-    <div class="fact-box"><div class="fb-label">Brent crude · Week 1</div><div class="fb-val fv-amb">+28%</div><div class="fb-caption">WTI +35.63% — largest weekly gain in futures history since 1983. Day 8: ~$90/barrel.</div></div>
-    <div class="fact-box"><div class="fb-label">Hormuz transit drop</div><div class="fb-val fv-red">−91%</div><div class="fb-caption">153 vessels/day pre-war → 13/day (CSIS). Closed by insurance withdrawal, not physical blockade.</div></div>
-    <div class="fact-box"><div class="fb-label">US payrolls Feb 2026</div><div class="fb-val fv-red">−92K</div><div class="fb-caption">First negative print since 2020. Stagflation confirmed: high oil + negative jobs + Fed paralysed.</div></div>
-    <div class="fact-box"><div class="fb-label">Iranian ships sunk</div><div class="fb-val fv-red">43</div><div class="fb-caption">Including IRIS Jamaran (Day 1) and IRIS Dena in Indian Ocean south of Sri Lanka (Day 4).</div></div>
-    <div class="fact-box"><div class="fb-label">Khamenei status</div><div class="fb-val fv-red">Killed</div><div class="fb-caption">Assassinated Day 1. Assembly of Experts bombed mid-session Day 4. No functioning succession mechanism.</div></div>
-    <div class="fact-box"><div class="fb-label">War cost (CSIS)</div><div class="fb-val fv-gold">$891M/day</div><div class="fb-caption">$3.7B in first 100 hours. $3.5B unbudgeted. Trump: "Unconditional surrender only."</div></div>
+  <div class="sec-h">
+    <div class="sh-r"></div>
+    <div class="sh-t">Latest Intelligence</div>
+    <div class="sh-s">Today's critical reports</div>
+    <div class="sh-c">Day 18 · March 18, 2026</div>
   </div>
-</div>
 
-<!-- PUBLICATION TIMELINE -->
-<div class="timeline-strip">
-  <div class="ts-bg">Days 1–8</div>
-  <div class="ts-head">Publication Timeline · When Each Artifact Was Built</div>
-  <div class="tl-flow">
-    <div class="tl-node">
-      <div class="tln-dot td-gr"></div>
-      <div class="tln-body">
-        <div class="tln-day">Session 1</div>
-        <div class="tln-title">Brand Identity + Jamaica Model</div>
-        <div class="tln-price tp-g">Brent ~$72</div>
+  <div class="feat-grid">
+    <a href="meridian_brief_day18_march18.html" class="feat-card">
+      <div class="fc-in">
+        <div class="fc-kick">Day 18 · Main Brief · March 18</div>
+        <div class="fc-hed">The energy war<br>is no longer a <span class="r">threat.</span><br>It's the <span class="g">war itself.</span></div>
+        <p class="fc-deck">South Pars struck — 70% of Iran's domestic gas, shared with Qatar's North Field. Brent hit $109.95. Iran named its next targets: Saudi Aramco, UAE Al Hosn, Qatar's LNG facilities. Larijani killed — the official most likely to negotiate an exit. Bushehr nuclear plant hit. <strong>The cascade runs faster than any government's ability to respond.</strong></p>
       </div>
-    </div>
-    <div class="tl-node">
-      <div class="tln-dot td-a"></div>
-      <div class="tln-body">
-        <div class="tln-day">Day 5 · Mar 4</div>
-        <div class="tln-title">Day 5 Flash Brief + 90-Day Crisis Dashboard</div>
-        <div class="tln-price tp-a">Brent ~$80</div>
+      <div class="fc-meta">
+        <span class="fc-date">Wed March 18, 2026</span>
+        <span class="fc-cta">Read full brief →</span>
       </div>
-    </div>
-    <div class="tl-node">
-      <div class="tln-dot td-a"></div>
-      <div class="tln-body">
-        <div class="tln-day">Day 6 · Mar 5</div>
-        <div class="tln-title">Signal Brief · Newspaper Style</div>
-        <div class="tln-price tp-a">Brent ~$84</div>
-      </div>
-    </div>
-    <div class="tl-node">
-      <div class="tln-dot td-r"></div>
-      <div class="tln-body">
-        <div class="tln-day">Day 7 · Mar 6</div>
-        <div class="tln-title">Full Meridian Identity Launch</div>
-        <div class="tln-price tp-r">Brent $92.69</div>
-      </div>
-    </div>
-    <div class="tl-node">
-      <div class="tln-dot td-gr"></div>
-      <div class="tln-body">
-        <div class="tln-day">Day 7 · Mar 6</div>
-        <div class="tln-title">Global South Map · 16 Countries</div>
-        <div class="tln-price tp-r">Brent $92.69</div>
-      </div>
-    </div>
-    <div class="tl-node">
-      <div class="tln-dot td-g"></div>
-      <div class="tln-body">
-        <div class="tln-day">Day 7 · Mar 6</div>
-        <div class="tln-title">Investor Feasibility Model</div>
-        <div class="tln-price tp-r">Brent $92.69</div>
-      </div>
-    </div>
-    <div class="tl-node">
-      <div class="tln-dot td-r"></div>
-      <div class="tln-body">
-        <div class="tln-day">Day 8 · Mar 7</div>
-        <div class="tln-title">Brief v2.0 Neutral Blueprint</div>
-        <div class="tln-price tp-r">Brent ~$90</div>
-      </div>
-    </div>
-    <div class="tl-node">
-      <div class="tln-dot td-r"></div>
-      <div class="tln-body">
-        <div class="tln-day">Day 8 · Mar 7</div>
-        <div class="tln-title">Deep Intel Synthesis · 7 Threads</div>
-        <div class="tln-price tp-r">Brent ~$90</div>
-      </div>
+    </a>
+    <div class="intel-stack">
+      <a href="meridian_financial_scan_day13.html" class="i-card ic-gold" style="animation-delay:.1s">
+        <div class="ic-lbl il-gold">Financial Scan · Day 13</div>
+        <div class="ic-hed">JSE R2 trillion wiped. Samsung −9.99%. PSEi 6,113. Sasol +40%.</div>
+        <div class="ic-body">Real numbers. Southern sources.</div>
+      </a>
+      <a href="meridian_deep_intel_march7.html" class="i-card ic-r" style="animation-delay:.15s">
+        <div class="ic-lbl il-r">Deep Synthesis · 7 Threads</div>
+        <div class="ic-hed">The seven mechanisms nobody explained.</div>
+        <div class="ic-body">Insurance, fertilizer, China Lane, double chokepoint, leverage, stagflation, silence.</div>
+      </a>
+      <a href="meridian_global_south_map.html" class="i-card ic-a" style="animation-delay:.2s">
+        <div class="ic-lbl il-a">16-Country Impact Map</div>
+        <div class="ic-hed">Every exposure. Every region. Who absorbs what and when.</div>
+        <div class="ic-body">South Asia · Southeast Asia · Africa · Caribbean.</div>
+      </a>
+      <a href="meridian_synthesis_deck.html" class="i-card ic-g" style="animation-delay:.25s">
+        <div class="ic-lbl il-g">War Synthesis · 16 Slides</div>
+        <div class="ic-hed">Everything from Day 1. Complete intelligence record.</div>
+        <div class="ic-body">Mechanisms, forecasts, thresholds, exit ramps.</div>
+      </a>
     </div>
   </div>
-</div>
 
-<!-- DAILY BRIEFS -->
-<div class="section">
-  <div class="sec-eye"><div class="se-rule"></div><div class="se-txt">Daily Intelligence Briefs</div><div class="se-count">5 Documents</div></div>
-  <div class="artifact-grid">
-
-    <!-- DAY 6 -->
-    <div class="acard">
-      <div class="ac-accent ac-a-red"></div>
-      <div class="ac-body">
-        <div class="ac-meta"><span class="ac-tag at-brief">Daily Brief</span><span class="ac-day">Day 6 · March 5</span></div>
-        <div class="ac-title">Signal Brief · Newspaper Edition</div>
-        <div class="ac-sub">First newspaper-style brief. Broadsheet column layout. Two-column editorial format with sidebar.</div>
-        <div class="ac-details">
-          <div class="ac-detail-row"><div class="adr-dot adr-red"></div>NATO intercepts Iranian missile over Turkey</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-amb"></div>Bahrain refinery struck · Gulf infrastructure hit</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-red"></div>Doha targeted with 14 missiles · Qatar LNG halted</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-gold"></div>Brent trading $81.29–$84.47 range</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-blue"></div>Jamaica 90-day model first published</div>
-        </div>
-      </div>
-      <div class="ac-footer">
-        <span class="acf-size">meridian_day6_march5.html · 35KB</span>
-        <a class="acf-link" href="meridian_day6_march5.html" target="_blank">Open</a>
-      </div>
-    </div>
-
-    <!-- DAY 7 V1 -->
-    <div class="acard">
-      <div class="ac-accent ac-a-red"></div>
-      <div class="ac-body">
-        <div class="ac-meta"><span class="ac-tag at-brief">Daily Brief</span><span class="ac-day">Day 7 · March 6</span></div>
-        <div class="ac-title">Day 7 Brief · Full Brand Launch</div>
-        <div class="ac-sub">First brief under full Meridian visual identity. Masthead, ticker, two-column layout with sidebar, escalation meter, live market strip.</div>
-        <div class="ac-details">
-          <div class="ac-detail-row"><div class="adr-dot adr-red"></div>WTI +35.63% weekly — biggest gain since 1983</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-red"></div>Brent closes $92.69 · US payrolls −92K</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-amb"></div>Russia confirmed feeding Iran US military intel</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-red"></div>Trump: Unconditional surrender only</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-gold"></div>Fertilizer crisis emerging · planting season alert</div>
-        </div>
-      </div>
-      <div class="ac-footer">
-        <span class="acf-size">meridian_brief_day7_march6.html · 47KB</span>
-        <a class="acf-link" href="meridian_brief_day7_march6.html" target="_blank">Open</a>
-      </div>
-    </div>
-
-    <!-- DAY 7 V2 ALT -->
-    <div class="acard">
-      <div class="ac-accent ac-a-gold"></div>
-      <div class="ac-body">
-        <div class="ac-meta"><span class="ac-tag at-brief">Daily Brief · Alt</span><span class="ac-day">Day 7 · March 6</span></div>
-        <div class="ac-title">Day 7 Brief · Alternative Build</div>
-        <div class="ac-sub">Alternate Day 7 layout — denser data treatment, additional sidebar cards, market movements table with Week 1 performance tracking.</div>
-        <div class="ac-details">
-          <div class="ac-detail-row"><div class="adr-dot adr-gold"></div>Week 1 full market summary table</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-red"></div>Qatar Energy Minister $100–$200 oil warning</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-amb"></div>Force majeure declarations from Gulf exporters</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-green"></div>Jamaica model: $315M GDP damage annualised</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-red"></div>UN SG: situation could spiral beyond control</div>
-        </div>
-      </div>
-      <div class="ac-footer">
-        <span class="acf-size">meridian_brief_march6_day7.html · 41KB</span>
-        <a class="acf-link" href="meridian_brief_march6_day7.html" target="_blank">Open</a>
-      </div>
-    </div>
-
-    <!-- DAY 8 -->
-    <div class="acard">
-      <div class="ac-accent ac-a-red"></div>
-      <div class="ac-body">
-        <div class="ac-meta"><span class="ac-tag at-brief">Daily Brief · v2.0</span><span class="ac-day">Day 8 · March 7</span></div>
-        <div class="ac-title">Day 8 Brief · Neutral Blueprint</div>
-        <div class="ac-sub">First brief under Meridian v2.0 neutral framework. No Jamaica spotlight. All 6 Caribbean nations + West Africa + South Asia + SE Asia given equal editorial weight.</div>
-        <div class="ac-details">
-          <div class="ac-detail-row"><div class="adr-dot adr-red"></div>UK formally enters war · RAF Fairford B-1 Lancer</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-red"></div>Dubai Airport hit hours after Iran ceasefire pledge</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-amb"></div>JPMorgan: 6M bpd cuts possible next week</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-gold"></div>Pakistan petrol +20% today · PKR 321/litre</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-blue"></div>Editorial bias note · v2.0 format declared</div>
-        </div>
-      </div>
-      <div class="ac-footer">
-        <span class="acf-size">meridian_brief_day8_march7.html · 47KB</span>
-        <a class="acf-link" href="meridian_brief_day8_march7.html" target="_blank">Open</a>
-      </div>
-    </div>
-
-    <!-- JAMAICA 90-DAY -->
-    <div class="acard">
-      <div class="ac-accent ac-a-amb"></div>
-      <div class="ac-body">
-        <div class="ac-meta"><span class="ac-tag at-intel">Crisis Model</span><span class="ac-day">Day 5 · March 4</span></div>
-        <div class="ac-title">Jamaica 90-Day Crisis Dashboard</div>
-        <div class="ac-sub">Full interactive economic impact model. Calculus-based GDP damage formula. Sector breakdown. Cascade timeline. This is the original deep-dive before the neutral framework shift.</div>
-        <div class="ac-details">
-          <div class="ac-detail-row"><div class="adr-dot adr-red"></div>dGDP/dO = −$21.3M per barrel (second-order)</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-red"></div>$100 threshold activates JPS emergency surcharge</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-amb"></div>$110 = airline route suspensions likely</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-red"></div>$120 = alumina refining becomes unviable</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-gold"></div>Electricity $0.27/kWh = 171% of world average</div>
-        </div>
-      </div>
-      <div class="ac-footer">
-        <span class="acf-size">jamaica_90day_crisis.html · 45KB</span>
-        <a class="acf-link" href="jamaica_90day_crisis.html" target="_blank">Open</a>
-      </div>
-    </div>
-
-    <!-- DEEP INTEL -->
-    <div class="acard">
-      <div class="ac-accent ac-a-gold"></div>
-      <div class="ac-body">
-        <div class="ac-meta"><span class="ac-tag at-intel">Deep Intelligence</span><span class="ac-day">Day 8 · March 7</span></div>
-        <div class="ac-title">Deep Intel Synthesis · 7 Threads</div>
-        <div class="ac-sub">The flagship analytical document. What you see when you line up all confirmed data from Days 1–8 in sequence. Seven intelligence threads the headlines are missing.</div>
-        <div class="ac-details">
-          <div class="ac-detail-row"><div class="adr-dot adr-red"></div>Thread 1: Insurance closed Hormuz, not missiles</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-blue"></div>Thread 2: China two-tier shipping lane emerging</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-amb"></div>Thread 3: Fertilizer cascade → food crisis Q3 2026</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-red"></div>Thread 4: Hormuz + Red Sea both closed simultaneously</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-green"></div>Thread 5: Saudi Yanbu route · leverage hierarchy</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-gold"></div>Thread 6: US stagflation → 3-channel Caribbean hit</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-blue"></div>Thread 7: CARICOM silence · T&T windfall unused</div>
-        </div>
-      </div>
-      <div class="ac-footer">
-        <span class="acf-size">meridian_deep_intel_march7.html · 45KB</span>
-        <a class="acf-link" href="meridian_deep_intel_march7.html" target="_blank">Open</a>
-      </div>
-    </div>
-
+  <div class="sec-h" id="briefs">
+    <div class="sh-r"></div>
+    <div class="sh-t">Daily Brief Archive</div>
+    <div class="sh-s">Operation Epic Fury · Day 1 to now</div>
+    <div class="sh-c">18 days · Uninterrupted</div>
   </div>
+
+  <div class="brief-grid">
+    <a href="meridian_brief_day18_march18.html" class="b-card bl" style="animation-delay:.05s">
+      <div class="bc-in"><div class="bc-day">Day 18 · March 18<span class="bc-badge bb-r">Latest</span></div><div class="bc-hed">South Pars burning. Iran names Aramco next. Bushehr hit. Larijani killed.</div></div>
+      <div class="bc-meta"><span class="bc-date">Wed Mar 18</span><span class="bc-arr">→</span></div>
+    </a>
+    <a href="meridian_brief_day14_march14.html" class="b-card bl" style="animation-delay:.08s">
+      <div class="bc-in"><div class="bc-day">Day 14 · March 14<span class="bc-badge bb-r">Escalation</span></div><div class="bc-hed">Kharg Island struck. Hour Zero announced. Two chokepoints. One ultimatum.</div></div>
+      <div class="bc-meta"><span class="bc-date">Sat Mar 14</span><span class="bc-arr">→</span></div>
+    </a>
+    <a href="meridian_brief_day13_march13.html" class="b-card" style="animation-delay:.11s">
+      <div class="bc-in"><div class="bc-day">Day 13 · March 13<span class="bc-badge bb-gold">NATO Death</span></div><div class="bc-hed">US aircraft down. French soldier dead. Russia sanctions lifted. IEA: largest disruption in history.</div></div>
+      <div class="bc-meta"><span class="bc-date">Fri Mar 13</span><span class="bc-arr">→</span></div>
+    </a>
+    <a href="meridian_brief_day11_march11.html" class="b-card" style="animation-delay:.14s">
+      <div class="bc-in"><div class="bc-day">Day 11 · March 11<span class="bc-badge bb-gold">Deleted Tweet</span></div><div class="bc-hed">A deleted tweet moved oil $20. Lebanon 634 dead. First joint Iran-Hezbollah operation.</div></div>
+      <div class="bc-meta"><span class="bc-date">Wed Mar 11</span><span class="bc-arr">→</span></div>
+    </a>
+    <a href="meridian_brief_day8_march7.html" class="b-card" style="animation-delay:.17s">
+      <div class="bc-in"><div class="bc-day">Day 8 · March 7<span class="bc-badge bb-gold">UK Enters</span></div><div class="bc-hed">Dubai airport hit. UK enters war. Qatar warns $150 "brings down world economies."</div></div>
+      <div class="bc-meta"><span class="bc-date">Sat Mar 7</span><span class="bc-arr">→</span></div>
+    </a>
+    <a href="meridian_brief_day7_march6.html" class="b-card" style="animation-delay:.2s">
+      <div class="bc-in"><div class="bc-day">Day 7 · March 6<span class="bc-badge bb-g">Week 1 Close</span></div><div class="bc-hed">WTI posts largest weekly gain since 1983. Brent closes $92.69. China Lane confirmed.</div></div>
+      <div class="bc-meta"><span class="bc-date">Fri Mar 6</span><span class="bc-arr">→</span></div>
+    </a>
+    <a href="meridian_day6_march5.html" class="b-card" style="animation-delay:.23s">
+      <div class="bc-in"><div class="bc-day">Day 6 · March 5<span class="bc-badge bb-g">China Lane</span></div><div class="bc-hed">The China Lane appears. Two vessels broadcast "CHINA OWNER" and pass safely.</div></div>
+      <div class="bc-meta"><span class="bc-date">Thu Mar 5</span><span class="bc-arr">→</span></div>
+    </a>
+    <a href="meridian_brief_march6_day7.html" class="b-card" style="animation-delay:.26s">
+      <div class="bc-in"><div class="bc-day">Day 7 · Alt Edition<span class="bc-badge bb-g">Archive</span></div><div class="bc-hed">Week one closes. The mechanisms that will define the next six months.</div></div>
+      <div class="bc-meta"><span class="bc-date">Mar 6</span><span class="bc-arr">→</span></div>
+    </a>
+    <a href="jamaica_90day_crisis.html" class="b-card bs" style="animation-delay:.29s">
+      <div class="bc-in"><div class="bc-day">Special Report<span class="bc-badge bb-gold">Caribbean</span></div><div class="bc-hed">Jamaica 90-Day Crisis Dashboard. The numbers behind the headlines.</div></div>
+      <div class="bc-meta"><span class="bc-date">Special Edition</span><span class="bc-arr">→</span></div>
+    </a>
+  </div>
+
+  <div class="sec-h" id="intelligence">
+    <div class="sh-r"></div>
+    <div class="sh-t">Intelligence Reports</div>
+    <div class="sh-s">Deep analysis · Special editions</div>
+  </div>
+
+  <div class="brief-grid" style="margin-bottom:0">
+    <a href="meridian_financial_scan_day13.html" class="b-card bs" style="animation-delay:.05s">
+      <div class="bc-in"><div class="bc-day">Financial Scan · Day 13<span class="bc-badge bb-gold">Markets</span></div><div class="bc-hed">JSE. KOSPI. PSEi. Petrobras. Samsung. Real numbers from Southern sources.</div></div>
+      <div class="bc-meta"><span class="bc-date">Mar 13, 2026</span><span class="bc-arr">→</span></div>
+    </a>
+    <a href="meridian_deep_intel_march7.html" class="b-card bs" style="animation-delay:.08s">
+      <div class="bc-in"><div class="bc-day">Deep Synthesis<span class="bc-badge bb-r">7 Threads</span></div><div class="bc-hed">The seven mechanisms driving the war's economic impact on the Global South.</div></div>
+      <div class="bc-meta"><span class="bc-date">Mar 7, 2026</span><span class="bc-arr">→</span></div>
+    </a>
+    <a href="meridian_global_south_map.html" class="b-card bs" style="animation-delay:.11s">
+      <div class="bc-in"><div class="bc-day">Regional Impact Map<span class="bc-badge bb-gold">16 Countries</span></div><div class="bc-hed">Every exposure mapped. South Asia, Southeast Asia, Africa, Caribbean.</div></div>
+      <div class="bc-meta"><span class="bc-date">Mar 7, 2026</span><span class="bc-arr">→</span></div>
+    </a>
+    <a href="meridian_synthesis_deck.html" class="b-card bs" style="animation-delay:.14s">
+      <div class="bc-in"><div class="bc-day">War Synthesis Deck<span class="bc-badge bb-gold">16 Slides</span></div><div class="bc-hed">The complete intelligence record in 16 slides. Days 1–10.</div></div>
+      <div class="bc-meta"><span class="bc-date">Synthesis Edition</span><span class="bc-arr">→</span></div>
+    </a>
+    <a href="meridian_master_index.html" class="b-card" style="animation-delay:.17s">
+      <div class="bc-in"><div class="bc-day">Master Index<span class="bc-badge bb-g">Archive</span></div><div class="bc-hed">Full content index. Every brief, every report, every data point.</div></div>
+      <div class="bc-meta"><span class="bc-date">All Editions</span><span class="bc-arr">→</span></div>
+    </a>
+  </div>
+
 </div>
 
-<!-- FEATURED: GLOBAL SOUTH MAP -->
-<div class="section">
-  <div class="sec-eye"><div class="se-rule"></div><div class="se-txt">Flagship Maps &amp; Dashboards</div><div class="se-count">2 Documents</div></div>
-  <div class="acard-featured" style="border:1px solid var(--rule);margin-bottom:1px">
-    <div class="ac-accent ac-a-blue" style="grid-column:1/-1;height:3px"></div>
-    <div class="acf-left">
-      <div class="ac-meta" style="margin-bottom:1rem"><span class="ac-tag at-map">Interactive Map</span><span class="ac-day">Day 7 · March 6</span></div>
-      <div class="feat-title">Global South Oil Shock Impact Map<br>16 Countries · 5 Regions</div>
-      <div class="feat-sub">Full interactive regional intelligence map. Every country expandable with full analysis panel, exposure metrics, meter bars, and verdict chips. Filter by region or risk level. Fully branded. This is the document that shifts Meridian from a Jamaica publication to a Global South publication.</div>
-      <div class="ac-details">
-        <div class="ac-detail-row"><div class="adr-dot adr-green"></div>Caribbean (8): T&T, Guyana, DR, Bahamas, Barbados, Haiti, Belize, Suriname</div>
-        <div class="ac-detail-row"><div class="adr-dot adr-gold"></div>West Africa (3): Nigeria, Ghana, Senegal</div>
-        <div class="ac-detail-row"><div class="adr-dot adr-amb"></div>East Africa (2): Kenya, Ethiopia</div>
-        <div class="ac-detail-row"><div class="adr-dot adr-red"></div>South Asia (3): India, Pakistan, Sri Lanka</div>
-        <div class="ac-detail-row"><div class="adr-dot adr-blue"></div>Southeast Asia (2): Philippines, Indonesia</div>
-        <div class="ac-detail-row"><div class="adr-dot adr-gold"></div>Filters: All / By Region / Beneficiaries / Critical Risk</div>
+<div class="about" id="about">
+  <div class="about-inner">
+    <div>
+      <h2 class="ab-hed">Built for the people<br>with no seat at<br>the <span class="g">table.</span></h2>
+      <div class="ab-body">
+        <p>Most intelligence on global crises is written for Western audiences — about strategy, military operations, and great-power competition. <strong>Meridian is built for everyone else.</strong></p>
+        <p>When oil goes from $70 to $110 in 18 days, we don't cover which missiles were used. We cover what it means for Pakistan's 220 million people, Haiti's zero fiscal buffer, the Caribbean electricity surcharges that activated automatically, the fertilizer disruption that will spike food prices in September.</p>
+        <p>We started on Day 1 of Operation Epic Fury — February 28, 2026. We haven't missed a day. <strong>Free. Daily. Global South first.</strong></p>
       </div>
     </div>
-    <div class="acf-right">
-      <div class="feat-stat"><div class="fs-val" style="color:var(--red-l)">12</div><div class="fs-lbl">Countries net-negative<br>exposure</div></div>
-      <div class="feat-stat"><div class="fs-val" style="color:var(--mg-l)">4</div><div class="fs-lbl">Countries net<br>beneficiaries</div></div>
-      <div class="feat-stat"><div class="fs-val" style="color:var(--gold-l)">3.5B</div><div class="fs-lbl">People in coverage<br>footprint</div></div>
-      <a class="acf-link" href="meridian_global_south_map.html" target="_blank" style="justify-content:center;padding:.6rem;border:1px solid var(--rule);font-size:.6rem">Open Interactive Map</a>
+    <div>
+      <div style="font-family:var(--mono);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-d);margin-bottom:1rem">Find Meridian</div>
+      <div class="plat-list">
+        <div class="plat-item"><span class="pi-icon">📷</span><span class="pi-handle">@meridian.today</span><span class="pi-note">Instagram</span></div>
+        <div class="plat-item"><span class="pi-icon">𝕏</span><span class="pi-handle">@Meridiantoday_</span><span class="pi-note">X · Twitter</span></div>
+        <div class="plat-item"><span class="pi-icon">🧵</span><span class="pi-handle">meridian.today</span><span class="pi-note">Threads</span></div>
+        <div class="plat-item"><span class="pi-icon">📧</span><span class="pi-handle">Free Daily Newsletter</span><span class="pi-note">Beehiiv</span></div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- BUSINESS DOCUMENTS -->
-<div class="section">
-  <div class="sec-eye"><div class="se-rule"></div><div class="se-txt">Business &amp; Brand Architecture</div><div class="se-count">3 Documents</div></div>
-  <div class="artifact-grid">
-
-    <div class="acard">
-      <div class="ac-accent ac-a-green"></div>
-      <div class="ac-body">
-        <div class="ac-meta"><span class="ac-tag at-brand">Brand Strategy</span><span class="ac-day">Session 1</span></div>
-        <div class="ac-title">Meridian Brand Strategy Document</div>
-        <div class="ac-sub">Complete brand identity system. Name, tagline, colour palette, typography, voice, TAM analysis, content pillars, weekly publishing rhythm, and platform handles.</div>
-        <div class="ac-details">
-          <div class="ac-detail-row"><div class="adr-dot adr-gold"></div>Colour: Forest #0E1208 · Signal Gold #C9A84C · Meridian Green #4A7C3F</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-gold"></div>Type: Cormorant Garamond · Outfit · DM Mono</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-green"></div>TAM: 3M+ Jamaican diaspora → 3.5B Global South</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-blue"></div>Handle: @MeridianBrief · meridianbrief.com</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-amb"></div>Voice: Precise · Unflinching · Grounded · Premium</div>
-        </div>
+<div class="nl">
+  <div class="nl-inner">
+    <div>
+      <div class="nl-hed">Get the <span class="g">Brief.</span></div>
+      <div class="nl-sub">Free daily intelligence. No Western filter. No noise.</div>
+    </div>
+    <div>
+      <div class="nl-form">
+        <input type="email" class="nl-input" placeholder="your@email.com">
+        <button class="nl-btn" onclick="window.open('https://beehiiv.com','_blank')">Subscribe Free →</button>
       </div>
-      <div class="ac-footer">
-        <span class="acf-size">meridian_brand_strategy.html · 44KB</span>
-        <a class="acf-link" href="meridian_brand_strategy.html" target="_blank">Open</a>
-      </div>
-    </div>
-
-    <div class="acard">
-      <div class="ac-accent ac-a-amb"></div>
-      <div class="ac-body">
-        <div class="ac-meta"><span class="ac-tag at-biz">Investor Model</span><span class="ac-day">Day 7 · March 6</span></div>
-        <div class="ac-title">Revenue Architecture &amp; Investor Feasibility</div>
-        <div class="ac-sub">Complete investor-grade feasibility study. B2C + B2B revenue map. Three financial scenarios with toggle. Unit economics. AI agent stack vs human cost comparison. Risk register.</div>
-        <div class="ac-details">
-          <div class="ac-detail-row"><div class="adr-dot adr-green"></div>$0 operating cost to launch · $157/mo at Phase 3</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-gold"></div>Base: $42K/mo at Month 24 · $92K at Month 36</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-gold"></div>Bull: $75K/mo at Month 24 · $180K at Month 36</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-green"></div>98–99% gross margin · AI replaces $635K staff</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-blue"></div>Year 3 valuation: $3M–$8M comparable range</div>
-        </div>
-      </div>
-      <div class="ac-footer">
-        <span class="acf-size">meridian_investor_model.html · 83KB</span>
-        <a class="acf-link" href="meridian_investor_model.html" target="_blank">Open</a>
-      </div>
-    </div>
-
-    <div class="acard">
-      <div class="ac-accent ac-a-green"></div>
-      <div class="ac-body">
-        <div class="ac-meta"><span class="ac-tag at-brand">Automation</span><span class="ac-day">Session 2</span></div>
-        <div class="ac-title">$0 Automation Architecture</div>
-        <div class="ac-sub">Full wireframe of the AI agent operating stack. Master content flow diagram. Make.com automation layer. Platform adaptation table. Daily schedule. Tool stack with free tier limits.</div>
-        <div class="ac-details">
-          <div class="ac-detail-row"><div class="adr-dot adr-green"></div>Claude · GitHub Pages · Beehiiv · Typefully · Buffer</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-green"></div>Canva · CapCut · Make.com · Notion · Google Alerts</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-gold"></div>One Claude session → 5 platform outputs</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-green"></div>Daily active time: 45–90 minutes total</div>
-          <div class="ac-detail-row"><div class="adr-dot adr-green"></div>Make.com: blog → newsletter → Twitter → Notion auto</div>
-        </div>
-      </div>
-      <div class="ac-footer">
-        <span class="acf-size">meridian_automation.html · 49KB</span>
-        <a class="acf-link" href="meridian_automation.html" target="_blank">Open</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- BRAND REFERENCE PANEL -->
-<div class="brand-ref">
-  <div>
-    <div class="br-col-head">Colour System · Always Use These</div>
-    <div class="br-item"><div class="br-swatch" style="background:#0e1208;border:1px solid rgba(255,255,255,.1)"></div><div class="br-name">Deep Forest</div><div class="br-hex">#0E1208</div></div>
-    <div class="br-item"><div class="br-swatch" style="background:#c9a84c"></div><div class="br-name">Signal Gold</div><div class="br-hex">#C9A84C</div></div>
-    <div class="br-item"><div class="br-swatch" style="background:#4a7c3f"></div><div class="br-name">Meridian Green</div><div class="br-hex">#4A7C3F</div></div>
-    <div class="br-item"><div class="br-swatch" style="background:#c84c3f"></div><div class="br-name">Alert Red</div><div class="br-hex">#C84C3F</div></div>
-    <div class="br-item"><div class="br-swatch" style="background:#f5f0e8"></div><div class="br-name">Archive Cream</div><div class="br-hex">#F5F0E8</div></div>
-    <div class="br-item"><div class="br-swatch" style="background:#d4890a"></div><div class="br-name">Amber Warning</div><div class="br-hex">#D4890A</div></div>
-  </div>
-  <div>
-    <div class="br-col-head">Typography System</div>
-    <div class="br-item" style="flex-direction:column;align-items:flex-start;gap:.2rem">
-      <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--white)">Cormorant Garamond</div>
-      <div class="br-hex">Headlines · Display · Quotes · Brand name</div>
-    </div>
-    <div class="br-item" style="flex-direction:column;align-items:flex-start;gap:.2rem">
-      <div style="font-family:'Outfit',sans-serif;font-size:.95rem;color:var(--white)">Outfit Regular</div>
-      <div class="br-hex">Body text · UI elements · Navigation</div>
-    </div>
-    <div class="br-item" style="flex-direction:column;align-items:flex-start;gap:.2rem">
-      <div style="font-family:'DM Mono',monospace;font-size:.85rem;color:var(--white)">DM Mono</div>
-      <div class="br-hex">Data · Labels · Tags · Timestamps · Numbers</div>
-    </div>
-    <div class="br-item" style="border-bottom:none">
-      <div style="font-size:.78rem;color:var(--dim);line-height:1.6">Grid: 52px · Rule opacity: 10% gold · Always dark background. Never white background.</div>
-    </div>
-  </div>
-  <div>
-    <div class="br-col-head">Brand Identity · Core Assets</div>
-    <div class="br-item" style="flex-direction:column;align-items:flex-start;gap:.2rem">
-      <div class="br-handle">@MeridianBrief</div>
-      <div class="br-hex">Twitter/X · Primary · Institutional voice</div>
-    </div>
-    <div class="br-item" style="flex-direction:column;align-items:flex-start;gap:.2rem">
-      <div class="br-handle">meridianbrief.com</div>
-      <div class="br-hex">Primary domain (GitHub Pages initially)</div>
-    </div>
-    <div class="br-item" style="flex-direction:column;align-items:flex-start;gap:.3rem">
-      <div style="font-size:.78rem;color:var(--gold-l);font-style:italic;font-family:'Cormorant Garamond',serif">"Intelligence from the South. For the South."</div>
-      <div class="br-hex">Primary tagline · Use verbatim · Always</div>
-    </div>
-    <div class="br-item" style="border-bottom:none;flex-direction:column;align-items:flex-start;gap:.2rem">
-      <div style="font-size:.78rem;color:var(--white)">NOT: partisan · victimhood-framed · Western-translated · sensationalist · academic</div>
+      <div class="nl-note">Free forever · No spam · Unsubscribe anytime</div>
     </div>
   </div>
 </div>
-
-<!-- CONCLUSION -->
-<div class="concl">
-  <div class="concl-bg">∞</div>
-  <div class="cl-label">Meridian Master Package · Continuity Note</div>
-  <div class="cl-hed">For Any Agent Picking This Up:</div>
-  <div class="cl-body">
-    Every artifact in this package shares the same design system — Deep Forest base, Signal Gold accent, Cormorant Garamond display, DM Mono data labels. <strong>Do not deviate from these.</strong> The grid background (52px gold lines at 1.5% opacity) appears on every page. All text-on-dark. Never white backgrounds. The masthead always shows: brand name, tagline, day number, date, live dot with red label, key headline pills, and the Brent crude spot price.
-    <br><br>
-    From Day 8 forward: <strong>no country receives a dedicated section.</strong> All nations appear within their regional grouping. Caribbean sits alongside West Africa, South Asia, and Southeast Asia at equal editorial weight. The bias note appears at the top of every brief. Jamaica, Trinidad, Guyana, DR, Haiti, Barbados all receive equal column inches.
-    <br><br>
-    <span class="ok">The business is live. The content is publishing. The audience is building in real time during an active crisis. The only thing that compounds faster than this war's economic damage is the Meridian audience building on top of it.</span>
-  </div>
-</div>
-
-</div><!-- /page -->
 
 <footer>
-  <div class="ft-i">
+  <div class="ft-inner">
     <div>
-      <div class="ft-logo">Meridian Brief</div>
-      <div style="font-family:var(--serif);font-size:.78rem;font-style:italic;color:var(--dim)">Intelligence from the South. For the South.</div>
+      <div class="ft-brand">Meridian</div>
+      <div class="ft-tag">Intelligence from the South. For the South.</div>
+      <div class="ft-desc">Daily intelligence briefings on what global crises mean for the Caribbean, Africa, South Asia and the Global South. Tracking Operation Epic Fury from Day 1 — February 28, 2026.</div>
     </div>
-    <div class="ft-meta">
-      Master Visual Package · 10 Artifacts · Days 1–8 · March 2026<br>
-      Brand · Briefs · Maps · Intelligence · Business Model · Automation<br>
-      @MeridianBrief · meridianbrief.com · Built on $0 operating budget
+    <div>
+      <div class="ft-col">Briefs</div>
+      <div class="ft-links">
+        <a href="meridian_brief_day18_march18.html">Day 18 · March 18 · Latest</a>
+        <a href="meridian_brief_day14_march14.html">Day 14 · March 14</a>
+        <a href="meridian_brief_day13_march13.html">Day 13 · March 13</a>
+        <a href="meridian_brief_day11_march11.html">Day 11 · March 11</a>
+        <a href="meridian_brief_day8_march7.html">Day 8 · March 7</a>
+        <a href="meridian_brief_day7_march6.html">Day 7 · March 6</a>
+        <a href="meridian_day6_march5.html">Day 6 · March 5</a>
+      </div>
+    </div>
+    <div>
+      <div class="ft-col">Intelligence</div>
+      <div class="ft-links">
+        <a href="meridian_financial_scan_day13.html">Financial Scan · Day 13</a>
+        <a href="meridian_deep_intel_march7.html">Deep Synthesis · 7 Threads</a>
+        <a href="meridian_global_south_map.html">Global South Impact Map</a>
+        <a href="meridian_synthesis_deck.html">War Synthesis · 16 Slides</a>
+        <a href="jamaica_90day_crisis.html">Jamaica 90-Day Dashboard</a>
+        <a href="meridian_master_index.html">Master Archive Index</a>
+      </div>
     </div>
   </div>
+  <div class="ft-bot">
+    <div class="ft-copy">© 2026 Meridian Brief · @Meridiantoday_ · @meridian.today</div>
+    <div class="ft-copy">Intelligence from the South. For the South.</div>
+  </div>
 </footer>
+
 </body>
 </html>
