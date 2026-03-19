@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERIDIAN · Financial Scan · Day 13 · March 13, 2026</title>
+<meta name="description" content="Day 13 financial scan: JSE R2 trillion wipeout, Samsung −10%, PSEi at 6,113, Sasol +40%, Petrobras bullish, QatarEnergy force majeure, KOSPI circuit breakers. Real numbers from Southern sources.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#0b0f07;--f2:#0f1409;--f3:#14190c;--f4:#191f10;
+  --gold:#c9a84c;--gold-l:#e0c46e;--gold-d:#7a6020;--gold-f:rgba(201,168,76,.07);
+  --mg:#4a7c3f;--mg-l:#6aaa5e;--mg-d:rgba(74,124,63,.12);
+  --red:#c84c3f;--red-l:#e07060;--red-f:rgba(200,76,63,.08);
+  --amb:#d4890a;--amb-l:#f0a820;--amb-f:rgba(212,137,10,.07);
+  --blue:#3a7abf;--blue-l:#5a9fdf;--blue-f:rgba(58,122,191,.08);
+  --rule:rgba(201,168,76,.1);--rule2:rgba(201,168,76,.04);
+  --text:#98a88e;--dim:#4a5840;--white:#eaf2e2;
+  --serif:'Cormorant Garamond',serif;--sans:'Outfit',sans-serif;--mono:'DM Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--forest);color:var(--text);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(201,168,76,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.018) 1px,transparent 1px);
+  background-size:52px 52px;pointer-events:none;z-index:0}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes tickerMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes barFill{from{width:0}to{width:var(--w)}}
+@keyframes scanLine{0%{transform:translateY(-100%)}100%{transform:translateY(900%)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* TICKER */
+.ticker{background:var(--red);overflow:hidden;height:32px;display:flex;align-items:center;position:relative;z-index:10}
+.t-badge{font-family:var(--mono);font-size:.47rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;padding:0 1rem 0 .8rem;background:rgba(0,0,0,.4);height:100%;display:flex;align-items:center;gap:.5rem;white-space:nowrap;flex-shrink:0}
+.ld{width:7px;height:7px;border-radius:50%;background:#fff;animation:pulse 1.5s ease-in-out infinite}
+.t-track{display:flex;animation:tickerMove 70s linear infinite;white-space:nowrap}
+.t-item{font-family:var(--mono);font-size:.47rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.92);padding:0 2rem}
+.t-item::after{content:'◆';font-size:.3rem;padding-left:2rem;color:rgba(255,255,255,.28)}
+
+/* MASTHEAD */
+.mast{background:var(--f2);border-bottom:1px solid var(--rule);position:relative;z-index:1;overflow:hidden}
+.mast::after{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:linear-gradient(180deg,transparent,var(--gold),transparent);animation:scanLine 4.5s ease-in-out infinite;pointer-events:none}
+.mast-i{max-width:1320px;margin:0 auto;padding:0 2.5rem}
+.mast-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.5rem 0 .8rem;gap:2rem}
+.brand{display:flex;flex-direction:column;gap:.15rem}
+.brand-name{font-family:var(--serif);font-size:2.6rem;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;line-height:.9}
+.brand-name em{font-weight:400;font-style:italic;font-size:.65em;color:var(--gold-l)}
+.brand-tag{font-family:var(--serif);font-size:.74rem;font-style:italic;color:var(--dim)}
+.brand-live{font-family:var(--mono);font-size:.45rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amb-l);display:flex;align-items:center;gap:.4rem;margin-top:.2rem}
+.brand-live .ld2{width:5px;height:5px;border-radius:50%;background:var(--amb-l);animation:pulse 1.4s ease-in-out infinite}
+.day-c{text-align:center}
+.day-pre{font-family:var(--mono);font-size:.45rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.day-n{font-family:var(--serif);font-size:3.2rem;font-weight:700;color:var(--white);line-height:.85}
+.day-sub{font-family:var(--mono);font-size:.44rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;margin-top:.15rem}
+.day-d{font-family:var(--serif);font-size:.78rem;font-style:italic;color:var(--gold-l);margin-top:.1rem}
+.scan-badge{background:var(--gold-f);border:1px solid var(--gold-d);padding:.4rem .9rem;font-family:var(--mono);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);text-align:center}
+.scan-badge .sb-s{font-family:var(--serif);font-size:1.3rem;font-weight:700;font-style:italic;color:var(--gold-l);display:block;line-height:1;margin-top:.1rem}
+.mast-rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold-d) 30%,var(--gold) 50%,var(--gold-d) 70%,transparent);margin:.3rem 0}
+
+/* MARKET STRIP */
+.mkt-strip{display:grid;grid-template-columns:repeat(8,1fr);border-top:1px solid var(--rule2);border-bottom:1px solid var(--rule2)}
+.mkt-cell{padding:.65rem .4rem;text-align:center;border-right:1px solid var(--rule2);transition:background .2s;cursor:default}
+.mkt-cell:last-child{border-right:none}
+.mkt-cell:hover{background:rgba(201,168,76,.03)}
+.mc-val{font-family:var(--mono);font-size:.72rem;font-weight:700;line-height:1;margin-bottom:.12rem}
+.mc-chg{font-family:var(--mono);font-size:.46rem;font-weight:500;margin-bottom:.1rem}
+.mc-lbl{font-family:var(--mono);font-size:.39rem;letter-spacing:.09em;color:var(--dim);text-transform:uppercase;line-height:1.5}
+.vr{color:var(--red-l)}.vg{color:var(--mg-l)}.va{color:var(--amb-l)}.vw{color:var(--white)}.vgold{color:var(--gold-l)}
+.cr{color:var(--red-l)}.cg{color:var(--mg-l)}
+
+/* PAGE */
+.page{max-width:1320px;margin:0 auto;padding:2.5rem 2.5rem 6rem;position:relative;z-index:1}
+
+/* SECTION HEADER */
+.sec-h{display:flex;align-items:center;gap:.8rem;margin-bottom:1.8rem;padding-bottom:.75rem;border-bottom:1px solid var(--rule)}
+.sh-rule{width:20px;height:1px;background:var(--gold-d)}
+.sh-txt{font-family:var(--mono);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.sh-sub{font-family:var(--serif);font-size:.74rem;font-style:italic;color:var(--dim);margin-left:.4rem}
+.sh-src{font-family:var(--mono);font-size:.42rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-left:auto}
+
+/* MARKET CARD GRID */
+.mkt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem}
+.mkt-card{background:var(--f3);border:1px solid var(--rule);border-top:3px solid;transition:transform .2s;animation:fadeUp .35s ease-out both}
+.mkt-card:hover{transform:translateY(-2px)}
+.mc-r{border-top-color:var(--red-l)}.mc-g{border-top-color:var(--mg-l)}.mc-a{border-top-color:var(--amb-l)}.mc-gold{border-top-color:var(--gold)}
+.card-top{padding:1rem 1.2rem .7rem;border-bottom:1px solid var(--rule2)}
+.ct-flag{font-size:1.1rem;margin-bottom:.25rem}
+.ct-market{font-family:var(--mono);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.15rem}
+.ct-index{font-family:var(--serif);font-size:1.6rem;font-weight:700;line-height:1}
+.ct-change{font-family:var(--mono);font-size:.65rem;font-weight:700;margin-top:.1rem}
+.ct-src{font-family:var(--mono);font-size:.4rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-top:.2rem}
+.card-rows{padding:.7rem 1.2rem}
+.crow{display:flex;justify-content:space-between;padding:.3rem 0;border-bottom:1px solid var(--rule2);font-size:.73rem;align-items:flex-start;gap:.5rem}
+.crow:last-child{border-bottom:none}
+.cl{color:var(--dim);font-size:.68rem;flex:1;line-height:1.4}
+.cv{font-family:var(--mono);font-size:.65rem;font-weight:700;white-space:nowrap}
+.cv-r{color:var(--red-l)}.cv-g{color:var(--mg-l)}.cv-a{color:var(--amb-l)}.cv-gold{color:var(--gold-l)}.cv-w{color:var(--white)}
+
+/* COMPANY TABLE */
+.co-table{width:100%;border-collapse:collapse;margin-bottom:3rem}
+.co-table th{font-family:var(--mono);font-size:.44rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);padding:.5rem .8rem;text-align:left;border-bottom:1px solid var(--rule);background:var(--f3)}
+.co-table th:last-child,.co-table td:last-child{text-align:right}
+.co-table td{padding:.6rem .8rem;border-bottom:1px solid var(--rule2);font-size:.76rem;vertical-align:top}
+.co-table tr:hover td{background:rgba(201,168,76,.02)}
+.co-flag{font-size:.95rem;margin-right:.3rem}
+.co-name{font-family:var(--serif);font-weight:700;color:var(--white);font-size:.85rem}
+.co-ticker{font-family:var(--mono);font-size:.5rem;color:var(--dim);letter-spacing:.08em}
+.co-sector{font-family:var(--mono);font-size:.46rem;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .25rem;border:1px solid;border-radius:2px}
+.cs-e{color:var(--amb-l);border-color:rgba(212,137,10,.25);background:var(--amb-f)}
+.cs-t{color:var(--blue-l);border-color:rgba(58,122,191,.2);background:var(--blue-f)}
+.cs-f{color:var(--mg-l);border-color:rgba(74,124,63,.2);background:var(--mg-d)}
+.cs-s{color:var(--gold);border-color:rgba(201,168,76,.2);background:var(--gold-f)}
+.cs-m{color:var(--red-l);border-color:rgba(200,76,63,.2);background:var(--red-f)}
+.chg-cell{font-family:var(--mono);font-size:.72rem;font-weight:700;white-space:nowrap}
+.note-cell{font-size:.7rem;color:var(--text);line-height:1.55;max-width:320px}
+.note-cell strong{color:var(--white)}
+.note-cell .hot{color:var(--red-l)}.note-cell .ok{color:var(--mg-l)}.note-cell .warn{color:var(--amb-l)}
+
+/* SECTOR SCAN */
+.sector-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-bottom:3rem}
+.sector-card{background:var(--f3);border:1px solid var(--rule);padding:1.4rem}
+.sc-hed{display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem}
+.sch-icon{font-size:1.2rem}
+.sch-name{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--white)}
+.sch-verdict{font-family:var(--mono);font-size:.44rem;letter-spacing:.1em;text-transform:uppercase;padding:.1rem .3rem;border:1px solid;border-radius:2px;margin-left:auto}
+.sv-r{color:var(--red-l);border-color:rgba(200,76,63,.25);background:var(--red-f)}
+.sv-g{color:var(--mg-l);border-color:rgba(74,124,63,.25);background:var(--mg-d)}
+.sv-a{color:var(--amb-l);border-color:rgba(212,137,10,.2);background:var(--amb-f)}
+.sc-body{font-size:.78rem;color:var(--text);line-height:1.8}
+.sc-body p{margin-bottom:.5rem}.sc-body p:last-child{margin-bottom:0}
+.sc-body strong{color:var(--white)}
+.sc-body .hot{color:var(--red-l)}.sc-body .ok{color:var(--mg-l)}.sc-body .warn{color:var(--amb-l)}
+
+/* CURRENCY TABLE */
+.fx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:3rem}
+.fx-card{background:var(--f3);border:1px solid var(--rule);padding:.9rem 1rem}
+.fxc-pair{font-family:var(--mono);font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.15rem}
+.fxc-rate{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--white);line-height:1}
+.fxc-chg{font-family:var(--mono);font-size:.58rem;font-weight:700;margin-top:.1rem}
+.fxc-note{font-family:var(--mono);font-size:.42rem;letter-spacing:.06em;color:var(--dim);text-transform:uppercase;margin-top:.3rem;line-height:1.5}
+
+/* INSIGHT */
+.insight{border:1px solid var(--rule);border-left:3px solid;padding:1rem 1.3rem;margin:1.2rem 0;background:var(--f4)}
+.i-r{border-left-color:var(--red-l)}.i-a{border-left-color:var(--amb-l)}.i-gold{border-left-color:var(--gold)}.i-g{border-left-color:var(--mg-l)}
+.ins-lbl{font-family:var(--mono);font-size:.44rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.35rem}
+.il-r{color:var(--red-l)}.il-a{color:var(--amb-l)}.il-gold{color:var(--gold)}.il-g{color:var(--mg-l)}
+.ins-body{font-size:.78rem;color:var(--text);line-height:1.8}
+.ins-body strong{color:var(--white)}
+.ins-body .hot{color:var(--red-l)}.ins-body .warn{color:var(--amb-l)}.ins-body .ok{color:var(--mg-l)}
+
+/* WIN/LOSE */
+.winlose{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:3rem}
+.wl-card{background:var(--f3);border:1px solid var(--rule)}
+.wlc-head{padding:.7rem 1.1rem;border-bottom:1px solid var(--rule2);font-family:var(--mono);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem}
+.wl-r{color:var(--red-l)}.wl-g{color:var(--mg-l)}
+.wlc-body{padding:.7rem 1.1rem;display:flex;flex-direction:column;gap:.1rem}
+.wl-row{display:flex;align-items:flex-start;gap:.7rem;padding:.35rem 0;border-bottom:1px solid var(--rule2)}
+.wl-row:last-child{border-bottom:none}
+.wl-flag{font-size:.9rem;flex-shrink:0}
+.wl-name{font-size:.75rem;flex:1;line-height:1.45}
+.wl-name strong{color:var(--white);font-size:.78rem}
+.wl-num{font-family:var(--mono);font-size:.65rem;font-weight:700;white-space:nowrap;flex-shrink:0}
+
+/* CONCLUSION */
+.conclusion{background:var(--f2);border:1px solid var(--rule);border-top:3px solid var(--gold);padding:2.4rem;margin-top:2.5rem;position:relative;overflow:hidden}
+.concl-ghost{position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:11rem;font-weight:700;color:rgba(201,168,76,.022);line-height:1;pointer-events:none;user-select:none}
+.concl-lbl{font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.7rem;margin-bottom:.6rem}
+.concl-lbl::before{content:'';width:14px;height:1px;background:var(--gold-d)}
+.concl-hed{font-family:var(--serif);font-size:clamp(1.6rem,2.8vw,2.4rem);font-weight:700;color:var(--white);line-height:1.02;margin-bottom:1rem}
+.concl-hed .g{color:var(--gold);font-style:italic}.concl-hed .r{color:var(--red-l)}
+.concl-body{font-size:.82rem;color:var(--text);line-height:1.95;max-width:1000px}
+.concl-body p{margin-bottom:.8rem}.concl-body p:last-child{margin-bottom:0}
+.concl-body strong{color:var(--white)}
+.concl-body .hot{color:var(--red-l);font-weight:600}.concl-body .warn{color:var(--amb-l);font-weight:600}.concl-body .ok{color:var(--mg-l);font-weight:600}
+.concl-body em{color:var(--gold-l);font-style:italic}
+
+footer{border-top:1px solid var(--rule);padding:1.4rem 2.5rem;position:relative;z-index:1;background:var(--f2)}
+.ft-i{max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.ft-brand{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.ft-tag{font-family:var(--serif);font-size:.7rem;font-style:italic;color:var(--dim);margin-top:.1rem}
+.ft-meta{font-family:var(--mono);font-size:.42rem;letter-spacing:.08em;color:var(--dim);text-align:right;line-height:1.9;text-transform:uppercase}
+
+/* BAR CHART */
+.bar-chart{display:flex;flex-direction:column;gap:.55rem;margin-top:.8rem}
+.bar-row{display:flex;align-items:center;gap:.7rem}
+.bar-label{font-family:var(--mono);font-size:.48rem;letter-spacing:.08em;color:var(--dim);width:130px;flex-shrink:0;text-transform:uppercase}
+.bar-track{flex:1;height:8px;background:rgba(255,255,255,.04);border:1px solid var(--rule2);border-radius:2px;overflow:hidden}
+.bar-fill{height:100%;border-radius:2px;animation:barFill .8s ease-out both}
+.bf-r{background:var(--red-l)}.bf-g{background:var(--mg-l)}.bf-a{background:var(--amb-l)}.bf-gold{background:var(--gold)}
+.bar-val{font-family:var(--mono);font-size:.52rem;font-weight:700;width:60px;flex-shrink:0;text-align:right}
+.bv-r{color:var(--red-l)}.bv-g{color:var(--mg-l)}.bv-a{color:var(--amb-l)}.bv-gold{color:var(--gold)}
+
+@media(max-width:1100px){.mkt-grid{grid-template-columns:repeat(2,1fr)}.co-table{display:none}}
+@media(max-width:800px){.mkt-grid,.sector-grid,.winlose,.fx-grid{grid-template-columns:1fr}.mast-top{grid-template-columns:1fr}.mkt-strip{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="t-badge"><div class="ld"></div>Financial Scan · Day 13</div>
+  <div class="t-track">
+    <div class="t-item">JSE: R2 TRILLION WIPED OUT · ALL-SHARE FROM 128,455 TO 116,583 · 2026 GAINS ERASED · SOURCE: MONEYWEB JHB</div>
+    <div class="t-item">SAMSUNG −9.99% ON DAY 9 · 169,400 WON · SK HYNIX −11.47% · 818,000 WON · SOURCE: SEOUL ECONOMIC DAILY</div>
+    <div class="t-item">PSEI AT 6,113.58 · PESO RECORD LOW P59.50 · SERVICES SECTOR −3.28% · SOURCE: MANILA TIMES / BUSINESSWORLD</div>
+    <div class="t-item">SASOL +40% SINCE WAR START · R100BN MARKET CAP CROSSED · THUNGELA +57% · SOURCE: BUSINESS DAY JHB</div>
+    <div class="t-item">QATARENERGY FORCE MAJEURE · RAS LAFFAN SHUT · 20% GLOBAL LNG OFFLINE · SOURCE: CSIS / REUTERS</div>
+    <div class="t-item">KOSPI CIRCUIT BREAKER TRIGGERED TWICE IN 4 DAYS · −5.96% CLOSE DAY 9 · SOURCE: CNBC / SEOUL ECONOMIC DAILY</div>
+    <div class="t-item">ZAR AT 16.5325 PER DOLLAR · DOWN 3%+ LAST WEEK · 2035 BOND YIELD +19.5bps · SOURCE: REUTERS JOHANNESBURG</div>
+    <div class="t-item">PETROBRAS: FCF YIELD 6.3% · BRENT TAILWIND TO FQ1 2026 UPSTREAM · SOURCE: SEEKING ALPHA / MORNINGSTAR</div>
+    <div class="t-item">INDIA SENSEX −2.3% · TAIWAN BENCHMARK −4.4% · HANG SENG −1.4% · SOURCE: AP BUSINESS</div>
+    <div class="t-item">IRAN: $200/BBL WARNING ISSUED · BAPCO + KPC FORCE MAJEURE DECLARED · SOURCE: MIDDLE EAST COUNCIL ON GLOBAL AFFAIRS</div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<div class="mast">
+  <div class="mast-i">
+    <div class="mast-top">
+      <div class="brand">
+        <div class="brand-name">Meridian <em>Brief</em></div>
+        <div class="brand-tag">Intelligence from the South. For the South.</div>
+        <div class="brand-live"><div class="ld2"></div>Financial Scan · Day 13 · Special Report</div>
+      </div>
+      <div class="day-c">
+        <div class="day-pre">Iran War · Day</div>
+        <div class="day-n">13</div>
+        <div class="day-sub">Financial Impact Report</div>
+        <div class="day-d">Friday · March 13, 2026</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.6rem">
+        <div class="scan-badge">Global South Financial Scan<span class="sb-s">Markets · Corporates · Currencies · Sectors</span></div>
+        <div style="font-family:var(--mono);font-size:.42rem;letter-spacing:.08em;color:var(--dim);text-align:right;text-transform:uppercase;line-height:1.8">Sources: Moneyweb · Business Day · BusinessWorld · Manila Times<br>Philippine Daily Inquirer · Seoul Economic Daily · MECOUNCIL · CSIS</div>
+      </div>
+    </div>
+    <div class="mast-rule"></div>
+    <div class="mkt-strip">
+      <div class="mkt-cell"><div class="mc-val vr">$101.80</div><div class="mc-chg cr">+25% vs pre-war</div><div class="mc-lbl">Brent · Day 13<br>Above $100 · Day 2</div></div>
+      <div class="mkt-cell"><div class="mc-val vr">−9.2%</div><div class="mc-chg cr">Week of Mar 2–7</div><div class="mc-lbl">JSE All-Share<br>R2 trillion wiped</div></div>
+      <div class="mkt-cell"><div class="mc-val vr">6,113</div><div class="mc-chg cr">−0.73% today</div><div class="mc-lbl">PSEi Philippines<br>Record low: 6,006</div></div>
+      <div class="mkt-cell"><div class="mc-val vr">5,251</div><div class="mc-chg cr">−5.96% Day 9</div><div class="mc-lbl">KOSPI S. Korea<br>2× circuit breaker</div></div>
+      <div class="mkt-cell"><div class="mc-val vg">+40%</div><div class="mc-chg cg">Since Feb 28</div><div class="mc-lbl">Sasol · JSE<br>R100bn market cap</div></div>
+      <div class="mkt-cell"><div class="mc-val vr">16.53</div><div class="mc-chg cr">−3%+ last week</div><div class="mc-lbl">ZAR / USD<br>Reuters · Mar 12</div></div>
+      <div class="mkt-cell"><div class="mc-val vr">P59.38</div><div class="mc-chg cr">Record low P59.50</div><div class="mc-lbl">PHP / USD<br>Manila Times</div></div>
+      <div class="mkt-cell"><div class="mc-val va">Force Maj.</div><div class="mc-chg" style="color:var(--amb-l)">20% global LNG</div><div class="mc-lbl">QatarEnergy<br>Ras Laffan shut</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- MARKET INDICES -->
+<div class="sec-h">
+  <div class="sh-rule"></div>
+  <div class="sh-txt">Market Indices · Global South</div>
+  <div class="sh-sub">Real-time and closing data · Mar 9–13, 2026</div>
+  <div class="sh-src">Sources: Moneyweb · BusinessWorld · Seoul Economic Daily · AP</div>
+</div>
+
+<div class="mkt-grid">
+
+  <!-- JSE -->
+  <div class="mkt-card mc-r" style="animation-delay:.05s">
+    <div class="card-top">
+      <div class="ct-flag">🇿🇦</div>
+      <div class="ct-market">JSE All-Share Index · Johannesburg</div>
+      <div class="ct-index" style="color:var(--red-l)">116,583</div>
+      <div class="ct-change" style="color:var(--red-l)">−9.2% week · −10% since Mar 1 · R2 trillion wiped</div>
+      <div class="ct-src">Moneyweb · The Citizen · Business Day · Reuters Johannesburg</div>
+    </div>
+    <div class="card-rows">
+      <div class="crow"><span class="cl">All-Share Feb-end high</span><span class="cv cv-w">128,455</span></div>
+      <div class="crow"><span class="cl">All-Share current</span><span class="cv cv-r">116,583</span></div>
+      <div class="crow"><span class="cl">Top-40 weekly decline</span><span class="cv cv-r">−9.7%</span></div>
+      <div class="crow"><span class="cl">ZAR / USD</span><span class="cv cv-r">16.5325 (Mar 12)</span></div>
+      <div class="crow"><span class="cl">2035 govt bond yield</span><span class="cv cv-r">+19.5bps → 8.435%</span></div>
+      <div class="crow"><span class="cl">Market cap wiped</span><span class="cv cv-r">&gt;R2 trillion</span></div>
+      <div class="crow"><span class="cl">SARB rate decision</span><span class="cv cv-a">Mar 26 · Scenarios redrawn</span></div>
+    </div>
+  </div>
+
+  <!-- PSEi -->
+  <div class="mkt-card mc-r" style="animation-delay:.1s">
+    <div class="card-top">
+      <div class="ct-flag">🇵🇭</div>
+      <div class="ct-market">PSEi · Philippine Stock Exchange</div>
+      <div class="ct-index" style="color:var(--red-l)">6,113.58</div>
+      <div class="ct-change" style="color:var(--red-l)">−0.73% today · Low of 6,006 on Day 9</div>
+      <div class="ct-src">BusinessWorld Online · Manila Times · Philippine Daily Inquirer</div>
+    </div>
+    <div class="card-rows">
+      <div class="crow"><span class="cl">PSEi record war low</span><span class="cv cv-r">6,006.22 (Mar 9)</span></div>
+      <div class="crow"><span class="cl">Services sector today</span><span class="cv cv-r">−3.28%</span></div>
+      <div class="crow"><span class="cl">Foreign net outflow today</span><span class="cv cv-r">−₱453.03M</span></div>
+      <div class="crow"><span class="cl">Peso / USD today</span><span class="cv cv-r">₱59.385</span></div>
+      <div class="crow"><span class="cl">Peso record low</span><span class="cv cv-r">₱59.50 (Mar 9)</span></div>
+      <div class="crow"><span class="cl">Inflation outlook</span><span class="cv cv-r">Above 4% · BSP</span></div>
+      <div class="crow"><span class="cl">Oil reserves remaining</span><span class="cv cv-r">50–60 days (Marcos)</span></div>
+    </div>
+  </div>
+
+  <!-- KOSPI -->
+  <div class="mkt-card mc-r" style="animation-delay:.15s">
+    <div class="card-top">
+      <div class="ct-flag">🇰🇷</div>
+      <div class="ct-market">KOSPI · Korea Composite Stock Price Index</div>
+      <div class="ct-index" style="color:var(--red-l)">5,251.87</div>
+      <div class="ct-change" style="color:var(--red-l)">−5.96% Day 9 close · Circuit breaker × 2 in 4 days</div>
+      <div class="ct-src">Seoul Economic Daily · CNBC · Korea Economic Daily</div>
+    </div>
+    <div class="card-rows">
+      <div class="crow"><span class="cl">KOSPI worst single-day</span><span class="cv cv-r">−12% (Day 6–7)</span></div>
+      <div class="crow"><span class="cl">KOSDAQ today</span><span class="cv cv-r">−2%</span></div>
+      <div class="crow"><span class="cl">Samsung Electronics</span><span class="cv cv-r">169,400 KRW · −9.99%</span></div>
+      <div class="crow"><span class="cl">SK Hynix</span><span class="cv cv-r">818,000 KRW · −11.47%</span></div>
+      <div class="crow"><span class="cl">Chip industry concern</span><span class="cv cv-r">Helium + energy costs</span></div>
+      <div class="crow"><span class="cl">Goldman Sachs Samsung target</span><span class="cv cv-g">260,000 KRW ↑</span></div>
+      <div class="crow"><span class="cl">Goldman Sachs SK Hynix target</span><span class="cv cv-g">1.35M KRW ↑</span></div>
+    </div>
+  </div>
+
+  <!-- Nikkei -->
+  <div class="mkt-card mc-r" style="animation-delay:.2s">
+    <div class="card-top">
+      <div class="ct-flag">🇯🇵</div>
+      <div class="ct-market">Nikkei 225 · Tokyo</div>
+      <div class="ct-index" style="color:var(--red-l)">52,728</div>
+      <div class="ct-change" style="color:var(--red-l)">−5.2% Day 9 · −1.04% Mar 12</div>
+      <div class="ct-src">CNBC · AP Business</div>
+    </div>
+    <div class="card-rows">
+      <div class="crow"><span class="cl">Day 9 low (intraday)</span><span class="cv cv-r">−7% intraday</span></div>
+      <div class="crow"><span class="cl">Day 9 close</span><span class="cv cv-r">52,728.72</span></div>
+      <div class="crow"><span class="cl">Topix Mar 12</span><span class="cv cv-r">3,649.85 · −1.32%</span></div>
+      <div class="crow"><span class="cl">Japan oil import dependence</span><span class="cv cv-r">~90% Middle East</span></div>
+      <div class="crow"><span class="cl">JPY / USD</span><span class="cv cv-a">158.45</span></div>
+    </div>
+  </div>
+
+  <!-- India -->
+  <div class="mkt-card mc-a" style="animation-delay:.25s">
+    <div class="card-top">
+      <div class="ct-flag">🇮🇳</div>
+      <div class="ct-market">BSE Sensex · Mumbai</div>
+      <div class="ct-index" style="color:var(--amb-l)">−2.3%</div>
+      <div class="ct-change" style="color:var(--amb-l)">Day 9 decline · Partial US Russia oil waiver cushion</div>
+      <div class="ct-src">AP Business · Middle East Council on Global Affairs</div>
+    </div>
+    <div class="card-rows">
+      <div class="crow"><span class="cl">Day 9 decline</span><span class="cv cv-r">−2.3%</span></div>
+      <div class="crow"><span class="cl">LNG exposure</span><span class="cv cv-a">High · Qatar shut</span></div>
+      <div class="crow"><span class="cl">US Russia oil waiver</span><span class="cv cv-g">Granted · partial cushion</span></div>
+      <div class="crow"><span class="cl">Chabahar Port investment</span><span class="cv cv-a">Risk elevated</span></div>
+      <div class="crow"><span class="cl">Gulf diaspora remittances</span><span class="cv cv-r">Disruption building</span></div>
+    </div>
+  </div>
+
+  <!-- Hang Seng / China -->
+  <div class="mkt-card mc-g" style="animation-delay:.3s">
+    <div class="card-top">
+      <div class="ct-flag">🇨🇳🇭🇰</div>
+      <div class="ct-market">Hang Seng / CSI 300 · Hong Kong · Shanghai</div>
+      <div class="ct-index" style="color:var(--amb-l)">25,408 / 4,096</div>
+      <div class="ct-change" style="color:var(--mg-l)">Moderate losses · China insulated by China Lane</div>
+      <div class="ct-src">CNBC · AP Business · Middle East Council on Global Affairs</div>
+    </div>
+    <div class="card-rows">
+      <div class="crow"><span class="cl">Hang Seng Day 9</span><span class="cv cv-r">−1.4% · 25,408</span></div>
+      <div class="crow"><span class="cl">Shanghai Composite Day 9</span><span class="cv cv-r">−0.7% · 4,096</span></div>
+      <div class="crow"><span class="cl">China Lane status</span><span class="cv cv-g">Active · "CHINA OWNER" AIS</span></div>
+      <div class="crow"><span class="cl">China oil import: Middle East</span><span class="cv cv-a">~60% exposure</span></div>
+      <div class="crow"><span class="cl">Diplomatic role</span><span class="cv cv-g">Ceasefire contact · Tehran</span></div>
+      <div class="crow"><span class="cl">3,000+ Chinese evacuated</span><span class="cv cv-g">From Iran · Day 9</span></div>
+    </div>
+  </div>
+
+</div><!-- /mkt-grid -->
+
+<!-- COMPANY TABLE -->
+<div class="sec-h">
+  <div class="sh-rule"></div>
+  <div class="sh-txt">Corporate Scan · Global South Giants</div>
+  <div class="sh-sub">Winners, losers, and exposure across key companies</div>
+  <div class="sh-src">Business Day · Moneyweb · Seeking Alpha · Morningstar · Seoul Economic Daily</div>
+</div>
+
+<table class="co-table">
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Sector</th>
+      <th>Price Change</th>
+      <th>What The War Did To Them</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <span class="co-flag">🇿🇦</span>
+        <span class="co-name">Sasol</span>
+        <div class="co-ticker">JSE: SOL · Sandton, South Africa</div>
+      </td>
+      <td><span class="co-sector cs-e">Energy</span></td>
+      <td><span class="chg-cell" style="color:var(--mg-l)">+40%</span><div style="font-family:var(--mono);font-size:.44rem;color:var(--dim)">Since Feb 28 · R100bn cap</div></td>
+      <td class="note-cell"><strong>Crossed R100 billion market cap for first time since April 2024.</strong> Coal-to-fuel model benefits from oil benchmarking. Natref refinery output up 10% YoY. CEO Simon Baloyi's three-year cost plan now has a <span class="ok">tailwind it did not expect.</span> Supplies 30% of South Africa's liquid fuel. Source: <em>Business Day Johannesburg</em></td>
+    </tr>
+    <tr>
+      <td>
+        <span class="co-flag">🇿🇦</span>
+        <span class="co-name">Thungela Resources</span>
+        <div class="co-ticker">JSE: TGA · Coal miner</div>
+      </td>
+      <td><span class="co-sector cs-e">Coal / Energy</span></td>
+      <td><span class="chg-cell" style="color:var(--mg-l)">+57%</span><div style="font-family:var(--mono);font-size:.44rem;color:var(--dim)">Since war start</div></td>
+      <td class="note-cell"><strong>The JSE's biggest war winner.</strong> Coal prices at highest since November 2024. Oil shock makes coal a substitute in energy mix globally. Issued <span class="warn">weaker earnings trading statement Mar 2</span> — market bought it anyway. Source: <em>Business Day Johannesburg</em></td>
+    </tr>
+    <tr>
+      <td>
+        <span class="co-flag">🇰🇷</span>
+        <span class="co-name">Samsung Electronics</span>
+        <div class="co-ticker">KRX: 005930 · Seoul</div>
+      </td>
+      <td><span class="co-sector cs-t">Semiconductors</span></td>
+      <td><span class="chg-cell" style="color:var(--red-l)">−9.99%</span><div style="font-family:var(--mono);font-size:.44rem;color:var(--dim)">Day 9 single session</div></td>
+      <td class="note-cell"><strong>169,400 KRW as of Day 9 — top 1% South Korean retail investors bought the dip.</strong> Goldman Sachs raised target 27% to 260,000 KRW, citing DRAM/NAND memory boom. <span class="warn">Energy cost exposure: semiconductor fabs consume massive electricity; helium sourced partly from Middle East.</span> Source: <em>Seoul Economic Daily</em></td>
+    </tr>
+    <tr>
+      <td>
+        <span class="co-flag">🇰🇷</span>
+        <span class="co-name">SK Hynix</span>
+        <div class="co-ticker">KRX: 000660 · Icheon, South Korea</div>
+      </td>
+      <td><span class="co-sector cs-t">Semiconductors</span></td>
+      <td><span class="chg-cell" style="color:var(--red-l)">−11.47%</span><div style="font-family:var(--mono);font-size:.44rem;color:var(--dim)">Day 9 · 818,000 KRW</div></td>
+      <td class="note-cell"><strong>Worst single-session decline of the South Korean chip sector.</strong> Goldman Sachs target raised to 1.35M KRW. Korean lawmaker Kim Yong-bae told Reuters chip industry is concerned about <span class="warn">helium supply from Middle East</span> and energy cost escalation. HBM memory prices already up 20% pre-war. Source: <em>Seoul Economic Daily · KED Global</em></td>
+    </tr>
+    <tr>
+      <td>
+        <span class="co-flag">🇧🇷</span>
+        <span class="co-name">Petrobras</span>
+        <div class="co-ticker">NYSE: PBR · Rio de Janeiro</div>
+      </td>
+      <td><span class="co-sector cs-e">State Energy</span></td>
+      <td><span class="chg-cell" style="color:var(--mg-l)">Bullish</span><div style="font-family:var(--mono);font-size:.44rem;color:var(--dim)">Upstream tailwind</div></td>
+      <td class="note-cell"><strong>Morningstar and GMO's Lucas White explicitly bullish on Petrobras as war play.</strong> Forward FCF yield 6.3% at current Brent levels. Brazil offshore production unaffected by Hormuz. Seen as <span class="ok">beneficiary of sustained $100+ oil.</span> Low capex breakeven costs. PBR remains undervalued on EV/proven reserves basis. Source: <em>Morningstar · Seeking Alpha</em></td>
+    </tr>
+    <tr>
+      <td>
+        <span class="co-flag">🇶🇦</span>
+        <span class="co-name">QatarEnergy</span>
+        <div class="co-ticker">State-owned · Doha</div>
+      </td>
+      <td><span class="co-sector cs-e">LNG / Gas</span></td>
+      <td><span class="chg-cell" style="color:var(--red-l)">Force Majeure</span><div style="font-family:var(--mono);font-size:.44rem;color:var(--dim)">Ras Laffan shut</div></td>
+      <td class="note-cell"><strong>Hardest-hit energy company of the war.</strong> Ras Laffan — world's largest LNG liquefaction facility — struck by Iranian drones Mar 2. Full force majeure declared. <span class="hot">20% of global LNG offline.</span> North Field East expansion delayed to end-2026 minimum. Asian LNG spot prices doubled to $25.40/MMBtu on Day 4. Minister Al-Kaabi warned of $150 oil if war continues. Source: <em>CSIS · Reuters</em></td>
+    </tr>
+    <tr>
+      <td>
+        <span class="co-flag">🇸🇦</span>
+        <span class="co-name">Saudi Aramco</span>
+        <div class="co-toolkit">State-owned · Dhahran</div>
+      </td>
+      <td><span class="co-sector cs-e">State Energy</span></td>
+      <td><span class="chg-cell" style="color:var(--amb-l)">Logistics Crisis</span><div style="font-family:var(--mono);font-size:.44rem;color:var(--dim)">Production rerouted</div></td>
+      <td class="note-cell"><strong>Forced to reroute exports through East–West pipeline to Yanbu on Red Sea.</strong> The pipeline is operating near capacity limit. Shaybah oil field drones intercepted Day 12. ADNOC refinery (922,000 bbl/day) in UAE shut after drone attack. <span class="warn">Gulf infrastructure operating in active strike zone for first time in decades.</span> Source: <em>Pravda UK analysis · CSIS</em></td>
+    </tr>
+    <tr>
+      <td>
+        <span class="co-flag">🇮🇳</span>
+        <span class="co-name">Reliance Industries</span>
+        <div class="co-ticker">BSE: 500325 · Mumbai</div>
+      </td>
+      <td><span class="co-sector cs-e">Conglomerate / Energy</span></td>
+      <td><span class="chg-cell" style="color:var(--amb-l)">Mixed</span><div style="font-family:var(--mono);font-size:.44rem;color:var(--dim)">Refinery upside vs LNG risk</div></td>
+      <td class="note-cell"><strong>Jamnagar refinery benefits from higher global refined product margins</strong>, but India's overall LNG import cost surging after Qatar force majeure. Indian restaurants warning of gas shutdown as government prioritises residential supply. <span class="warn">US Russia waiver provides partial offset but doesn't replace Qatar volumes at speed.</span> Source: <em>MECOUNCIL · India media</em></td>
+    </tr>
+    <tr>
+      <td>
+        <span class="co-flag">🇿🇦</span>
+        <span class="co-name">FirstRand</span>
+        <div class="co-ticker">JSE: FSR · Johannesburg</div>
+      </td>
+      <td><span class="co-sector cs-f">Banking / Finance</span></td>
+      <td><span class="chg-cell" style="color:var(--amb-l)">+11% H1 profits</span><div style="font-family:var(--mono);font-size:.44rem;color:var(--dim)">But defensive shift</div></td>
+      <td class="note-cell"><strong>Posted 11% H1 earnings bump and 18% interim dividend increase</strong> — strong fundamentals pre-war. But <span class="warn">investors shifted to defensive positioning</span> as oil price stokes inflation fears and rate-cut expectations evaporate. SARB now openly redrawing risk scenarios ahead of March 26 decision. Source: <em>Moneyweb · Business Day</em></td>
+    </tr>
+    <tr>
+      <td>
+        <span class="co-flag">🇵🇭</span>
+        <span class="co-name">Meralco</span>
+        <div class="co-ticker">PSE: MER · Manila</div>
+      </td>
+      <td><span class="co-sector cs-e">Power / Utilities</span></td>
+      <td><span class="chg-cell" style="color:var(--red-l)">Rate increase</span><div style="font-family:var(--mono);font-size:.44rem;color:var(--dim)">March billing cycle</div></td>
+      <td class="note-cell"><strong>Meralco confirmed power rate increases in March billing cycle</strong>, directly attributable to fuel cost pass-through. Philippines' 98% crude oil import dependence means utility rates track oil with near-zero buffer. BusinessWorld reported <span class="hot">inflation above 4%</span> now projected as baseline for 2026. Source: <em>BusinessWorld Online · Manila Tribune</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- WIN / LOSE -->
+<div class="sec-h">
+  <div class="sh-rule"></div>
+  <div class="sh-txt">Who Made Money. Who Lost It.</div>
+  <div class="sh-sub">The war's clear winners and confirmed losers in the Global South</div>
+</div>
+
+<div class="winlose">
+  <div class="wl-card">
+    <div class="wlc-head wl-g">▲ &nbsp;War Beneficiaries</div>
+    <div class="wlc-body">
+      <div class="wl-row"><div class="wl-flag">🇿🇦</div><div class="wl-name"><strong>Sasol</strong> — Coal-to-fuel, JSE's top performer</div><div class="wl-num" style="color:var(--mg-l)">+40%</div></div>
+      <div class="wl-row"><div class="wl-flag">🇿🇦</div><div class="wl-name"><strong>Thungela</strong> — Coal at 14-month high</div><div class="wl-num" style="color:var(--mg-l)">+57%</div></div>
+      <div class="wl-row"><div class="wl-flag">🇧🇷</div><div class="wl-name"><strong>Petrobras</strong> — Offshore Brazil unaffected, 6.3% FCF yield</div><div class="wl-num" style="color:var(--mg-l)">Bullish</div></div>
+      <div class="wl-row"><div class="wl-flag">🇿🇦</div><div class="wl-name"><strong>AngloGold Ashanti</strong> — Gold safe-haven bid</div><div class="wl-num" style="color:var(--mg-l)">Elevated</div></div>
+      <div class="wl-row"><div class="wl-flag">🇿🇦</div><div class="wl-name"><strong>Gold Fields</strong> — Same safe-haven dynamic</div><div class="wl-num" style="color:var(--mg-l)">Elevated</div></div>
+      <div class="wl-row"><div class="wl-flag">🇨🇱</div><div class="wl-name"><strong>SQM</strong> — Lithium / energy independence play</div><div class="wl-num" style="color:var(--mg-l)">Upside</div></div>
+      <div class="wl-row"><div class="wl-flag">🇺🇸</div><div class="wl-name"><strong>Kosmos Energy</strong> — Gulf of Guinea; ~+200% YTD</div><div class="wl-num" style="color:var(--mg-l)">+200% YTD</div></div>
+    </div>
+  </div>
+  <div class="wl-card">
+    <div class="wlc-head wl-r">▼ &nbsp;War Casualties</div>
+    <div class="wlc-body">
+      <div class="wl-row"><div class="wl-flag">🇰🇷</div><div class="wl-name"><strong>Samsung Electronics</strong> — Chip energy + helium risk</div><div class="wl-num" style="color:var(--red-l)">−9.99%</div></div>
+      <div class="wl-row"><div class="wl-flag">🇰🇷</div><div class="wl-name"><strong>SK Hynix</strong> — Circuit breaker twice</div><div class="wl-num" style="color:var(--red-l)">−11.47%</div></div>
+      <div class="wl-row"><div class="wl-flag">🇶🇦</div><div class="wl-name"><strong>QatarEnergy</strong> — Force majeure, Ras Laffan shut</div><div class="wl-num" style="color:var(--red-l)">Halted</div></div>
+      <div class="wl-row"><div class="wl-flag">🇵🇭</div><div class="wl-name"><strong>Meralco</strong> — March rate increase locked in</div><div class="wl-num" style="color:var(--red-l)">Rate ↑</div></div>
+      <div class="wl-row"><div class="wl-flag">🇵🇭</div><div class="wl-name"><strong>Philippine airlines</strong> — Fuel cost + route reviews</div><div class="wl-num" style="color:var(--red-l)">Review</div></div>
+      <div class="wl-row"><div class="wl-flag">🇰🇼</div><div class="wl-name"><strong>KPC (Kuwait Petroleum)</strong> — Force majeure declared</div><div class="wl-num" style="color:var(--red-l)">Force Maj.</div></div>
+      <div class="wl-row"><div class="wl-flag">🇧🇭</div><div class="wl-name"><strong>BAPCO (Bahrain Petroleum)</strong> — Force majeure declared</div><div class="wl-num" style="color:var(--red-l)">Force Maj.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CURRENCY SCAN -->
+<div class="sec-h">
+  <div class="sh-rule"></div>
+  <div class="sh-txt">Currency Scan · Global South FX</div>
+  <div class="sh-sub">Southern currencies absorbing the dollar safe-haven shift</div>
+  <div class="sh-src">Reuters Johannesburg · Manila Times · AP Business</div>
+</div>
+
+<div class="fx-grid">
+  <div class="fx-card">
+    <div class="fxc-pair">ZAR / USD · South Africa</div>
+    <div class="fxc-rate" style="color:var(--red-l)">16.5325</div>
+    <div class="fxc-chg" style="color:var(--red-l)">−3%+ last week · Approaching 16.72 low</div>
+    <div class="fxc-note">Net energy importer · Rand price of Brent +71% in March alone (Biermann/Moneyweb) · SARB rate cuts now off table</div>
+  </div>
+  <div class="fx-card">
+    <div class="fxc-pair">PHP / USD · Philippines</div>
+    <div class="fxc-rate" style="color:var(--red-l)">₱59.385</div>
+    <div class="fxc-chg" style="color:var(--red-l)">Record low ₱59.50 hit Day 9</div>
+    <div class="fxc-note">98% crude imports from Middle East · BSP rate hike risk rising · Inflation above 4% projected (BusinessWorld)</div>
+  </div>
+  <div class="fx-card">
+    <div class="fxc-pair">JPY / USD · Japan</div>
+    <div class="fxc-rate" style="color:var(--amb-l)">158.45</div>
+    <div class="fxc-chg" style="color:var(--amb-l)">Yen weaker · Dollar safe haven</div>
+    <div class="fxc-note">~90% oil import dependence on Middle East · LNG force majeure compounds energy import bill</div>
+  </div>
+  <div class="fx-card">
+    <div class="fxc-pair">EUR / USD · Reference</div>
+    <div class="fxc-rate" style="color:var(--mg-l)">$1.1563</div>
+    <div class="fxc-chg" style="color:var(--mg-l)">Slightly firmer · Dollar inflows moderate</div>
+    <div class="fxc-note">Euro rises vs USD slightly amid Middle East uncertainty · Southern currencies bear the FX adjustment</div>
+  </div>
+</div>
+
+<!-- SECTOR SCAN -->
+<div class="sec-h">
+  <div class="sh-rule"></div>
+  <div class="sh-txt">Sector Scan · What Each Industry Is Absorbing</div>
+</div>
+
+<div class="sector-grid">
+  <div class="sector-card">
+    <div class="sc-hed">
+      <div class="sch-icon">⛽</div>
+      <div class="sch-name">Energy Producers</div>
+      <div class="sch-verdict sv-g">Windfall</div>
+    </div>
+    <div class="sc-body">
+      <p><strong>The only clear beneficiary sector in the Global South.</strong> Brent at $101+ creates windfall margins for any producer outside the Hormuz-affected zone. Sasol up 40%, Thungela up 57%, Petrobras positioned as top buy by Morningstar and GMO. AngloGold and Gold Fields benefit from gold safe-haven bid as investors flee equities.</p>
+      <p>The windfall is <span class="warn">geographically concentrated:</span> South Africa and Brazil. Gulf producers (QatarEnergy, Aramco, ADNOC, KPC, BAPCO) are in the strike zone and facing force majeure, infrastructure attacks, and rerouting costs that eat into the very price windfall they would otherwise receive.</p>
+    </div>
+  </div>
+
+  <div class="sector-card">
+    <div class="sc-hed">
+      <div class="sch-icon">🖥️</div>
+      <div class="sch-name">Semiconductors</div>
+      <div class="sch-verdict sv-r">Exposed</div>
+    </div>
+    <div class="sc-body">
+      <p><strong>South Korea's chip industry is the war's most important industrial casualty in the Global South.</strong> Samsung −9.99%, SK Hynix −11.47% in a single session. KOSPI triggered circuit breakers twice in four days — its worst four-session stretch in years.</p>
+      <p>Two separate risks: <span class="hot">(1) energy cost escalation</span> — semiconductor fabs consume enormous amounts of electricity, now priced at elevated levels; <span class="hot">(2) helium supply disruption</span> — Korea sources a portion of production-grade helium from the Middle East. Korean lawmakers confirmed both risks formally to Reuters. Goldman Sachs maintained bullish long-term targets — market bought the dip.</p>
+    </div>
+  </div>
+
+  <div class="sector-card">
+    <div class="sc-hed">
+      <div class="sch-icon">🛩️</div>
+      <div class="sch-name">Aviation + Shipping</div>
+      <div class="sch-verdict sv-r">Crisis</div>
+    </div>
+    <div class="sc-body">
+      <p><strong>Philippine shipping lines confirmed rate hikes of up to 25% as fuel prices soared</strong> (BusinessWorld, Mar 10). Airlines across the Global South remain in route review — not cancellations yet, but any $120+ sustained Brent triggers formal restructuring.</p>
+      <p>VLCC tanker day rates hit $423K/day — all-time record. <span class="hot">16 confirmed shipping attacks in the Persian Gulf since Feb 28.</span> The Thai cargo vessel Mayuree Naree burned in Hormuz. Oman's navy rescued its 20 crew. Three more tankers attacked overnight on Day 12–13. IMO emergency session called for March 18–19 London — first of its kind for a single shipping route in IMO history.</p>
+    </div>
+  </div>
+
+  <div class="sector-card">
+    <div class="sc-hed">
+      <div class="sch-icon">🏦</div>
+      <div class="sch-name">Banking / Finance</div>
+      <div class="sch-verdict sv-a">Under Pressure</div>
+    </div>
+    <div class="sc-body">
+      <p><strong>South African Reserve Bank Governor Lesetja Kganyago confirmed SARB is redrawing risk scenarios ahead of the March 26 rate decision.</strong> The previous adverse scenario is "no longer relevant." Rate cuts — which were the consensus expectation at the start of 2026 — are off the table. Rate hikes are now possible.</p>
+      <p>FirstRand posted strong H1 results but investors shifted defensive. Chatham House identified <span class="warn">Egypt and Tunisia</span> as most at risk of bond market destabilisation from oil-price-driven fiscal pressure. Philippines' BSP is now under pressure to raise rates despite a slowing economy — the classic stagflation trap. Lowy Institute flags Bangladesh as exposed to capital flight.</p>
+    </div>
+  </div>
+
+  <div class="sector-card">
+    <div class="sc-hed">
+      <div class="sch-icon">🌾</div>
+      <div class="sch-name">Agriculture / Fertilizer</div>
+      <div class="sch-verdict sv-r">September Risk</div>
+    </div>
+    <div class="sc-body">
+      <p><strong>The slow-moving catastrophe.</strong> One-third of globally traded urea moves through the Persian Gulf. QatarEnergy's force majeure halted gas production at Ras Laffan — the same facility that feeds Qatar's fertilizer export infrastructure. European TTF gas prices nearly doubled on the news. LNG spot prices in Asia doubled to $25.40/MMBtu by Day 4.</p>
+      <p>Northern Hemisphere planting season is now. The fertilizer that should be in the ground in April, May, and June is not being ordered, not being produced, or not being shipped. <span class="hot">The food price spike from this disruption will land in September–October 2026</span> — regardless of when the war ends. The Caribbean, West Africa, and South Asia are the regions most exposed to the downstream food price cascade.</p>
+    </div>
+  </div>
+
+  <div class="sector-card">
+    <div class="sc-hed">
+      <div class="sch-icon">⚡</div>
+      <div class="sch-name">Power / Utilities</div>
+      <div class="sch-verdict sv-r">Pass-Through Active</div>
+    </div>
+    <div class="sc-body">
+      <p><strong>Meralco confirmed rate increases in March's billing cycle</strong> — fuel cost pass-through is immediate in the Philippines under its regulatory model. Jamaica's JPS electricity surcharge mechanism activated automatically when Brent crossed $80. Caribbean utilities operate on similar automatic adjustment formulas.</p>
+      <p>India's government is prioritising household gas supply over commercial users — restaurants warning of shutdown. Pakistan's grid runs on Gulf LNG: Qatar force majeure directly hits generation capacity. Bangladesh grid same exposure. <span class="warn">Sri Lanka: 2022 structural conditions reassembling at speed.</span> South Africa: Sasol supplies 30% of liquid fuel — any disruption to its inputs is a national energy security event.</p>
+    </div>
+  </div>
+</div>
+
+<!-- BAR CHART: MARKET DECLINES -->
+<div class="sec-h">
+  <div class="sh-rule"></div>
+  <div class="sh-txt">Global South · Market Losses Since Feb 28</div>
+  <div class="sh-sub">Indexed from war start · Day 13 perspective</div>
+</div>
+
+<div style="background:var(--f3);border:1px solid var(--rule);padding:1.5rem;margin-bottom:3rem">
+  <div class="bar-chart">
+    <div class="bar-row">
+      <div class="bar-label">KOSPI (Korea)</div>
+      <div class="bar-track"><div class="bar-fill bf-r" style="--w:72%;animation-delay:.1s"></div></div>
+      <div class="bar-val bv-r">−12% peak</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Nikkei 225 (Japan)</div>
+      <div class="bar-track"><div class="bar-fill bf-r" style="--w:65%;animation-delay:.15s"></div></div>
+      <div class="bar-val bv-r">−7% intraday</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">JSE All-Share (SA)</div>
+      <div class="bar-track"><div class="bar-fill bf-r" style="--w:60%;animation-delay:.2s"></div></div>
+      <div class="bar-val bv-r">−9.2% week</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Taiwan TAIEX</div>
+      <div class="bar-track"><div class="bar-fill bf-r" style="--w:55%;animation-delay:.25s"></div></div>
+      <div class="bar-val bv-r">−4.4% Day 9</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">PSEi (Philippines)</div>
+      <div class="bar-track"><div class="bar-fill bf-a" style="--w:48%;animation-delay:.3s"></div></div>
+      <div class="bar-val bv-a">−4.97% Day 9</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Sensex (India)</div>
+      <div class="bar-track"><div class="bar-fill bf-a" style="--w:35%;animation-delay:.35s"></div></div>
+      <div class="bar-val bv-a">−2.3% Day 9</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Hang Seng (HK)</div>
+      <div class="bar-track"><div class="bar-fill bf-a" style="--w:22%;animation-delay:.4s"></div></div>
+      <div class="bar-val bv-a">−1.4% Day 9</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">CSI 300 (China)</div>
+      <div class="bar-track"><div class="bar-fill bf-gold" style="--w:10%;animation-delay:.45s"></div></div>
+      <div class="bar-val bv-gold">−0.7% Day 9</div>
+    </div>
+  </div>
+  <div style="font-family:var(--mono);font-size:.42rem;letter-spacing:.08em;color:var(--dim);text-transform:uppercase;margin-top:1rem">Note: Bars represent peak single-week or single-day declines, not cumulative losses from Feb 28. China's insulation reflects active China Lane status. Sources: AP Business · Seoul Economic Daily · Moneyweb · BusinessWorld</div>
+</div>
+
+<!-- CONCLUSION -->
+<div class="conclusion">
+  <div class="concl-ghost">$</div>
+  <div class="concl-lbl">Meridian · Financial Scan · Day 13 · March 13, 2026</div>
+  <div class="concl-hed">Two wars.<br>One <span class="r">for the Global South.</span><br>One <span class="g">against it.</span></div>
+  <div class="concl-body">
+    <p>The Global South is not a single economic actor in this war. It is two groups moving in opposite directions simultaneously. South Africa's energy producers — Sasol up 40%, Thungela up 57%, gold miners elevated — are capturing a windfall from the same Brent price that is destroying purchasing power for every oil-importing economy in the region. <strong>The JSE lost R2 trillion in one week. Sasol gained R10 billion in one day. Both are South Africa.</strong></p>
+    <p>South Korea is the most important industrial casualty of this war that nobody is discussing loudly enough. <span class="hot">Samsung −9.99%. SK Hynix −11.47%. Circuit breakers twice in four days on the KOSPI.</span> These are not portfolio losses — they represent the world's most sophisticated semiconductor supply chains absorbing energy price shocks and helium supply disruption simultaneously. The downstream effect on global chip pricing will be felt in every device manufactured in the next 12 months.</p>
+    <p>The Philippines, with 50–60 days of oil reserves and 98% Middle East crude dependence, is the most exposed mid-size economy to a prolonged war. The peso at ₱59.50 record low, PSEi at its worst level since December 2025, Meralco rates up, BSP rate cut cancelled. <span class="warn">Every transmission mechanism for oil price pain is active simultaneously.</span> There is no buffer left to deploy.</p>
+    <p>QatarEnergy's force majeure is the quiet catastrophe. Ras Laffan supplies 20% of global LNG. That 20% feeds Asia's power grids — Pakistan, Bangladesh, Sri Lanka, Japan, South Korea. The IEA's reserve release covers oil. There is no comparable strategic reserve for LNG. <em>The war solved half the energy equation and left the other half unaddressed.</em></p>
+    <p>Petrobras is the one Global South giant positioned to gain cleanly — offshore Brazil, unaffected supply chain, 6.3% free cash flow yield at current Brent prices. That is a fact worth holding alongside all of the above: <span class="ok">not every Global South economy is losing this war in equal measure. Those with domestic production capacity and no Hormuz exposure are positioned as beneficiaries.</span> The rest are absorbing a shock that compounds daily.</p>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<footer>
+  <div class="ft-i">
+    <div>
+      <div class="ft-brand">Meridian</div>
+      <div class="ft-tag">Intelligence from the South. For the South.</div>
+    </div>
+    <div class="ft-meta">
+      Financial Scan · Day 13 · March 13, 2026 · Operation Epic Fury<br>
+      Sources: Moneyweb · Business Day JHB · BusinessWorld PH · Manila Times · Philippine Daily Inquirer<br>
+      Seoul Economic Daily · KED Global · MECOUNCIL · CSIS · Reuters · Morningstar · AP Business<br>
+      @Meridiantoday_ · @meridian.today · meridian.today
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
