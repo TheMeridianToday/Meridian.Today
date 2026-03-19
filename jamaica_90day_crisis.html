@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAMAICA: 90-DAY STRUCTURAL DECLINE — CRISIS INTELLIGENCE REPORT</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080b0f;
+    --surface: #0d1117;
+    --border: #1e2630;
+    --border-hot: #ff3a3a;
+    --text: #c9d1d9;
+    --text-dim: #6e7681;
+    --red: #ff3a3a;
+    --orange: #ff8c00;
+    --yellow: #f0c040;
+    --green: #00d084;
+    --blue: #58a6ff;
+    --white: #f0f6fc;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Scanline overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.04) 2px,
+      rgba(0,0,0,0.04) 4px
+    );
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  .masthead {
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    background: var(--surface);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .masthead-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .alert-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--red);
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,58,58,0.6); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 8px rgba(255,58,58,0); }
+  }
+
+  .masthead-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--red);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .masthead-date {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+  }
+
+  .hero {
+    padding: 3rem 2rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(255,58,58,0.04) 0%, transparent 100%);
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--red);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--red);
+  }
+
+  .hero h1 {
+    font-family: var(--mono);
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 span { color: var(--red); }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    max-width: 700px;
+    line-height: 1.7;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat {
+    border-left: 2px solid var(--red);
+    padding-left: 1rem;
+  }
+
+  .hero-stat-num {
+    font-family: var(--mono);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .hero-stat-num.orange { color: var(--orange); }
+  .hero-stat-num.yellow { color: var(--yellow); }
+
+  .hero-stat-label {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    margin-top: 0.3rem;
+    text-transform: uppercase;
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Timeline bar */
+  .timeline-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .timeline-phase {
+    padding: 1.5rem 2rem;
+    border-right: 1px solid var(--border);
+  }
+
+  .timeline-phase:last-child { border-right: none; }
+
+  .phase-label {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .phase-label.p1 { color: var(--orange); }
+  .phase-label.p2 { color: var(--red); }
+  .phase-label.p3 { color: #8b0000; }
+
+  .phase-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+
+  .phase-desc {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  /* Progress bar component */
+  .progress-bar-wrap {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-top: 0.8rem;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+  }
+
+  .fill-orange { background: var(--orange); animation: grow 1.5s ease forwards; }
+  .fill-red { background: var(--red); animation: grow 1.8s ease forwards; }
+  .fill-dark { background: #8b0000; animation: grow 2.1s ease forwards; }
+
+  @keyframes grow {
+    from { width: 0; }
+  }
+
+  /* Sector grid */
+  .sector-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sector-card {
+    background: var(--surface);
+    padding: 2rem;
+    transition: background 0.2s;
+  }
+
+  .sector-card:hover { background: #111820; }
+
+  .sector-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+  }
+
+  .sector-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .sector-risk {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  .risk-critical { background: rgba(255,58,58,0.15); color: var(--red); border: 1px solid rgba(255,58,58,0.3); }
+  .risk-severe { background: rgba(255,140,0,0.15); color: var(--orange); border: 1px solid rgba(255,140,0,0.3); }
+  .risk-high { background: rgba(240,192,64,0.12); color: var(--yellow); border: 1px solid rgba(240,192,64,0.25); }
+
+  .sector-name {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .sector-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  /* Damage meter */
+  .damage-meter {
+    margin: 1.5rem 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .damage-phase {
+    padding: 0.8rem;
+    background: var(--bg);
+    text-align: center;
+  }
+
+  .damage-phase-label {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .damage-pct {
+    font-family: var(--mono);
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .pct-orange { color: var(--orange); }
+  .pct-red { color: var(--red); }
+  .pct-dark { color: #cc2222; }
+
+  .damage-phase-sub {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+    line-height: 1.3;
+  }
+
+  /* Data points */
+  .data-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .data-points li {
+    font-size: 0.8rem;
+    color: var(--text);
+    line-height: 1.5;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .data-points li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--text-dim);
+    font-size: 0.65rem;
+    top: 0.15rem;
+  }
+
+  .data-points li strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .data-points li .hot { color: var(--red); font-weight: 600; }
+  .data-points li .warm { color: var(--orange); font-weight: 600; }
+  .data-points li .mild { color: var(--yellow); font-weight: 600; }
+
+  /* Cascade chain */
+  .cascade-section {
+    padding: 3rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .section-tag::before {
+    content: '── ';
+    color: var(--border);
+  }
+
+  .section-title {
+    font-family: var(--mono);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  /* Cascade flow */
+  .cascade-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cascade-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .cascade-connector {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 2rem;
+  }
+
+  .connector-line {
+    display: flex;
+    justify-content: center;
+    padding: 0.3rem 0;
+  }
+
+  .connector-line::before {
+    content: '';
+    width: 1px;
+    height: 24px;
+    background: var(--border);
+  }
+
+  .cascade-week {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    padding-top: 1.2rem;
+    text-align: right;
+    letter-spacing: 0.08em;
+  }
+
+  .cascade-event {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 0.3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cascade-event::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+
+  .ce-red::before { background: var(--red); }
+  .ce-orange::before { background: var(--orange); }
+  .ce-yellow::before { background: var(--yellow); }
+
+  .cascade-event-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+
+  .cascade-event-desc {
+    font-size: 0.78rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .cascade-event-impact {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .impact-chip {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  .chip-red { background: rgba(255,58,58,0.1); color: var(--red); }
+  .chip-orange { background: rgba(255,140,0,0.1); color: var(--orange); }
+  .chip-yellow { background: rgba(240,192,64,0.08); color: var(--yellow); }
+  .chip-blue { background: rgba(88,166,255,0.1); color: var(--blue); }
+
+  /* GDP summary table */
+  .gdp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+  }
+
+  .gdp-table th {
+    text-align: left;
+    padding: 0.8rem 1rem;
+    background: #0a0e13;
+    color: var(--text-dim);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+  }
+
+  .gdp-table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+
+  .gdp-table tr:last-child td { border-bottom: none; }
+  .gdp-table tr:hover td { background: rgba(255,255,255,0.01); }
+
+  .gdp-table .sector-col { color: var(--white); font-weight: 500; }
+  .gdp-table .gdp-pct { color: var(--blue); }
+
+  .change-neg-critical { color: var(--red); font-weight: 700; }
+  .change-neg-severe { color: var(--orange); font-weight: 600; }
+  .change-neg-high { color: var(--yellow); }
+  .change-pos { color: var(--green); }
+
+  .bar-cell { 
+    padding: 0.9rem 1rem 0.9rem 0;
+    min-width: 120px;
+  }
+
+  .bar-visual {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bar-visual-fill {
+    height: 100%;
+    border-radius: 3px;
+    position: absolute;
+    left: 0;
+  }
+
+  /* Verdict section */
+  .verdict {
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, rgba(255,58,58,0.04) 0%, transparent 60%);
+    border-top: 1px solid rgba(255,58,58,0.2);
+  }
+
+  .verdict-box {
+    border: 1px solid rgba(255,58,58,0.25);
+    border-radius: 4px;
+    padding: 2rem;
+    max-width: 900px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .verdict-box::before {
+    content: 'FINAL ASSESSMENT';
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: rgba(255,58,58,0.4);
+    letter-spacing: 0.15em;
+  }
+
+  .verdict-box p {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .verdict-box p:last-child { margin-bottom: 0; }
+  .verdict-box strong { color: var(--white); }
+  .verdict-box .critical { color: var(--red); font-weight: 600; }
+
+  /* Animation */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .sector-card { animation: fadeInUp 0.5s ease both; }
+  .sector-card:nth-child(1) { animation-delay: 0.05s; }
+  .sector-card:nth-child(2) { animation-delay: 0.1s; }
+  .sector-card:nth-child(3) { animation-delay: 0.15s; }
+  .sector-card:nth-child(4) { animation-delay: 0.2s; }
+  .sector-card:nth-child(5) { animation-delay: 0.25s; }
+  .sector-card:nth-child(6) { animation-delay: 0.3s; }
+
+  @media (max-width: 768px) {
+    .sector-grid { grid-template-columns: 1fr; }
+    .timeline-bar { grid-template-columns: 1fr; }
+    .timeline-phase { border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-stats { gap: 1.2rem; }
+    .damage-meter { grid-template-columns: 1fr; }
+    .cascade-item, .cascade-connector { grid-template-columns: 80px 1fr; gap: 1rem; }
+    .gdp-table .bar-cell { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Masthead -->
+<div class="masthead">
+  <div class="masthead-left">
+    <div class="alert-dot"></div>
+    <span class="masthead-label">Crisis Intelligence Report — ACTIVE</span>
+  </div>
+  <span class="masthead-date">MARCH 01, 2026 · 90-DAY STRUCTURAL DECLINE ANALYSIS · JAMAICA</span>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-tag">Geopolitical Supply Chain Impact Assessment</div>
+    <h1>JAMAICA: THE BILL <span>ARRIVES</span></h1>
+    <p class="hero-sub">
+      Quantified sector-by-sector structural decline over the 90 days following the U.S.–Israel–Iran kinetic conflict (Feb 28, 2026). 
+      Jamaica did not choose this war. It will pay for it anyway. Every number below is based on real baseline data — the damage estimates are modeled from confirmed oil price elasticity, remittance flow data, food inflation trajectories, and tourism shock precedents.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">$5.4B</div>
+        <div class="hero-stat-label">Annual trade deficit before the crisis</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num orange">87%</div>
+        <div class="hero-stat-label">Electricity from fossil fuels</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num orange">$0.27</div>
+        <div class="hero-stat-label">Current cost per kWh (USD) — already top 20 globally</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num yellow">$4.6B</div>
+        <div class="hero-stat-label">Annual tourism revenue — 50%+ of GDP</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num yellow">17.4%</div>
+        <div class="hero-stat-label">GDP from remittances — 65% from USA</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Timeline phases -->
+<div class="timeline-bar">
+  <div class="timeline-phase">
+    <div class="phase-label p1">Phase 1 — Weeks 1–4</div>
+    <div class="phase-title">Energy & Freight Shock</div>
+    <div class="phase-desc">Oil markets reprice. Fuel bills surge. LNG supply chain disruption begins. JPS forced onto more expensive generation. Import costs spike immediately.</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill fill-orange" style="width:40%"></div></div>
+  </div>
+  <div class="timeline-phase">
+    <div class="phase-label p2">Phase 2 — Weeks 5–8</div>
+    <div class="phase-title">Consumer & Agricultural Collapse</div>
+    <div class="phase-desc">Food prices accelerate. Fertilizer shortages hit local farms. Wheat import costs spike. U.S. recession fears trigger first remittance drops. Tourism forward bookings cancel.</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill fill-red" style="width:70%"></div></div>
+  </div>
+  <div class="timeline-phase">
+    <div class="phase-label p3">Phase 3 — Weeks 9–13</div>
+    <div class="phase-title">Structural Demand Implosion</div>
+    <div class="phase-desc">Tourism arrivals materially down. U.S. war-economy squeezes diaspora household spending. Bauxite industry scales back. Jamaica's foreign exchange buffer begins eroding.</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill fill-dark" style="width:92%"></div></div>
+  </div>
+</div>
+
+<!-- Sector Cards -->
+<div class="sector-grid">
+
+  <!-- ENERGY -->
+  <div class="sector-card">
+    <div class="sector-header">
+      <div>
+        <div class="sector-name">Sector 01 · Energy</div>
+        <div class="sector-title">Electricity & Fuel Costs</div>
+      </div>
+      <div>
+        <div class="sector-icon">⚡</div>
+        <div class="sector-risk risk-critical" style="margin-top:0.5rem">CRITICAL</div>
+      </div>
+    </div>
+
+    <div class="damage-meter">
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 1–4</div>
+        <div class="damage-pct pct-orange">+28%</div>
+        <div class="damage-phase-sub">Electricity bill increase</div>
+      </div>
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 5–8</div>
+        <div class="damage-pct pct-red">+44%</div>
+        <div class="damage-phase-sub">If Hormuz restricted</div>
+      </div>
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 9–13</div>
+        <div class="damage-pct pct-dark">+60%</div>
+        <div class="damage-phase-sub">Full shock absorption</div>
+      </div>
+    </div>
+
+    <ul class="data-points">
+      <li><strong>Starting point:</strong> $0.27/kWh residential — already <span class="hot">171% of world average</span>. Any spike hits from an already-painful base.</li>
+      <li><strong>The mechanism:</strong> Jamaica's electricity mix is <span class="hot">~1/3 oil, ~2/3 LNG.</span> <em>Both</em> are priced off global energy markets. Both are spiking.</li>
+      <li><strong>JPS precedent:</strong> When Hurricane Melissa disrupted fuel in Oct 2025, bills rose <span class="warm">7% in a single month</span> with no war involved. A 40% oil spike is a sustained version of that shock, month after month.</li>
+      <li><strong>Business killer:</strong> Businesses pay $0.21/kWh today. At +60%, that's <span class="hot">$0.34/kWh</span> — a margin-destroying level for every hotel, restaurant, and small business on the island.</li>
+      <li><strong>The trap:</strong> 30% of Jamaicans already don't pay for electricity. As bills spike, non-payment rises further, spreading the fixed cost burden over fewer customers — a death spiral JPS has already warned about.</li>
+    </ul>
+  </div>
+
+  <!-- FOOD -->
+  <div class="sector-card">
+    <div class="sector-header">
+      <div>
+        <div class="sector-name">Sector 02 · Food Security</div>
+        <div class="sector-title">Food Prices & Agricultural Input</div>
+      </div>
+      <div>
+        <div class="sector-icon">🌾</div>
+        <div class="sector-risk risk-critical">CRITICAL</div>
+      </div>
+    </div>
+
+    <div class="damage-meter">
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 1–4</div>
+        <div class="damage-pct pct-orange">+12%</div>
+        <div class="damage-phase-sub">Food inflation vs. 7% baseline</div>
+      </div>
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 5–8</div>
+        <div class="damage-pct pct-red">+22%</div>
+        <div class="damage-phase-sub">Wheat & staple spike</div>
+      </div>
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 9–13</div>
+        <div class="damage-pct pct-dark">+35%</div>
+        <div class="damage-phase-sub">Fertilizer shortage hits local farms</div>
+      </div>
+    </div>
+
+    <ul class="data-points">
+      <li><strong>Pre-crisis baseline:</strong> Food inflation already at <span class="warm">7% YoY</span> in Nov 2025. Shortages of cabbage, callaloo, yams, plantains already documented from Hurricane Melissa.</li>
+      <li><strong>Wheat = everything:</strong> Jamaica's diet is wheat-heavy — bread, patties, dumplings. They grow zero wheat. <span class="hot">100% imported</span>, largely from the USA, where prices track global grain markets.</li>
+      <li><strong>The fertilizer bomb:</strong> Iran is world's 3rd largest urea exporter. Urea disruption raises fertilizer prices globally. Jamaica's remaining farm sector — already hurricane-damaged — gets hit on input costs AND competition for imported food.</li>
+      <li><strong>Oil × food multiplier:</strong> Every 10% rise in crude historically correlates with a 4–6% rise in agricultural commodity futures. Oil at $140 means this multiplier fires on all cylinders simultaneously.</li>
+      <li><strong>No domestic backstop:</strong> Local agricultural production was already insufficient post-hurricane. There is no inventory buffer. Shelves reflect global price shocks within 6–8 weeks.</li>
+    </ul>
+  </div>
+
+  <!-- TOURISM -->
+  <div class="sector-card">
+    <div class="sector-header">
+      <div>
+        <div class="sector-name">Sector 03 · Tourism</div>
+        <div class="sector-title">Visitor Revenue & Hospitality</div>
+      </div>
+      <div>
+        <div class="sector-icon">✈️</div>
+        <div class="sector-risk risk-severe">SEVERE</div>
+      </div>
+    </div>
+
+    <div class="damage-meter">
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 1–4</div>
+        <div class="damage-pct pct-orange">-8%</div>
+        <div class="damage-phase-sub">Forward bookings pause</div>
+      </div>
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 5–8</div>
+        <div class="damage-pct pct-red">-20%</div>
+        <div class="damage-phase-sub">Cancellations accelerate</div>
+      </div>
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 9–13</div>
+        <div class="damage-pct pct-dark">-35%</div>
+        <div class="damage-phase-sub">Sustained demand drop</div>
+      </div>
+    </div>
+
+    <ul class="data-points">
+      <li><strong>The stake:</strong> Tourism contributes an estimated <span class="warm">50%+ of Jamaica's GDP</span> and supports <span class="warm">1 in every 4 jobs</span> directly and indirectly. This is the economy's spine.</li>
+      <li><strong>Source market concentration:</strong> The USA accounts for the majority of Jamaica's stopover tourist arrivals. A U.S. economy entering war-driven inflation is a U.S. consumer spending less on Caribbean vacations.</li>
+      <li><strong>Flight cost multiplier:</strong> Jet fuel is an oil derivative. Airlines pass fuel surcharges to passengers within weeks. A $140/barrel oil price makes Jamaica flights materially more expensive, reducing discretionary travel.</li>
+      <li><strong>The COVID data point:</strong> In 2020, tourism revenue collapsed from <span class="hot">$3.64B to $1.26B — a 65% drop.</span> That precedent exists. This shock is not COVID-level, but it's directionally similar consumer psychology.</li>
+      <li><strong>Q1 was peak season:</strong> Jamaica's <em>strongest</em> quarter is Jan–March. The conflict started Feb 28. The peak earning window is being punctured at its most sensitive moment.</li>
+    </ul>
+  </div>
+
+  <!-- REMITTANCES -->
+  <div class="sector-card">
+    <div class="sector-header">
+      <div>
+        <div class="sector-name">Sector 04 · Remittances</div>
+        <div class="sector-title">Diaspora Income Flows</div>
+      </div>
+      <div>
+        <div class="sector-icon">💸</div>
+        <div class="sector-risk risk-severe">SEVERE</div>
+      </div>
+    </div>
+
+    <div class="damage-meter">
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 1–4</div>
+        <div class="damage-pct pct-orange">-5%</div>
+        <div class="damage-phase-sub">Initial squeeze on senders</div>
+      </div>
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 5–8</div>
+        <div class="damage-pct pct-red">-12%</div>
+        <div class="damage-phase-sub">U.S. inflation bites senders</div>
+      </div>
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 9–13</div>
+        <div class="damage-pct pct-dark">-18%</div>
+        <div class="damage-phase-sub">Deportation + recession pressure</div>
+      </div>
+    </div>
+
+    <ul class="data-points">
+      <li><strong>Scale of exposure:</strong> Remittances = <span class="warm">17.4% of Jamaica's GDP</span>. This is not supplemental income. This IS the income for hundreds of thousands of Jamaican households.</li>
+      <li><strong>Single point of failure:</strong> <span class="hot">65% flows from the USA alone.</span> When U.S. households face $6/gallon gas and 8% food inflation on a war footing, the first thing to compress is discretionary transfers abroad.</li>
+      <li><strong>Already declining:</strong> Remittance inflows dropped at the <span class="warm">steepest rate in 3 years</span> in October 2025 — caused just by Hurricane Melissa disrupting financial channels. The war creates a sustained, structural version of that.</li>
+      <li><strong>Deportation wildcard:</strong> Trump's immigration enforcement already had 5,100+ Jamaicans under active deportation threat. A war economy accelerates enforcement. Every deportee is a remittance sender removed from the pipeline permanently.</li>
+      <li><strong>A -18% flow on 17.4% of GDP = ~3% GDP loss from this channel alone.</strong> That's before touching tourism, food, or energy.</li>
+    </ul>
+  </div>
+
+  <!-- TRADE BALANCE -->
+  <div class="sector-card">
+    <div class="sector-header">
+      <div>
+        <div class="sector-name">Sector 05 · Trade Balance</div>
+        <div class="sector-title">Import Bill vs. Export Earnings</div>
+      </div>
+      <div>
+        <div class="sector-icon">⚖️</div>
+        <div class="sector-risk risk-critical">CRITICAL</div>
+      </div>
+    </div>
+
+    <div class="damage-meter">
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 1–4</div>
+        <div class="damage-pct pct-orange">+$400M</div>
+        <div class="damage-phase-sub">Deficit worsening vs. baseline (annualized)</div>
+      </div>
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 5–8</div>
+        <div class="damage-pct pct-red">+$900M</div>
+        <div class="damage-phase-sub">Full fuel + food repricing</div>
+      </div>
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 9–13</div>
+        <div class="damage-pct pct-dark">+$1.5B</div>
+        <div class="damage-phase-sub">Sustained annualized deficit expansion</div>
+      </div>
+    </div>
+
+    <ul class="data-points">
+      <li><strong>The base problem:</strong> Jamaica already spends <span class="hot">$3.90 in imports for every $1.00 it earns from exports.</span> That ratio gets worse when every imported item costs more and export demand falls.</li>
+      <li><strong>Fuel = ¼ of all imports:</strong> The first 9 months of 2025 saw $1.37B spent on fuel imports alone. At $140/barrel oil, that annualizes toward $2B+ — absorbing virtually all Jamaica's export earnings just on fuel.</li>
+      <li><strong>Export revenues under pressure too:</strong> Alumina — Jamaica's #1 export — is energy-intensive to produce. Higher fuel costs compress margins and production volume. Export earnings fall while import costs rise.</li>
+      <li><strong>Nigeria oil supply risk:</strong> Jamaica diversified its oil sourcing toward Nigeria recently. Nigeria's own production has political/security risks that become acute in a global energy crisis. A second-order supply disruption is not impossible.</li>
+      <li><strong>FX reserves buffer:</strong> Jamaica holds ~5.5 months of import cover in reserves. At accelerated deficit widening, that runway shortens meaningfully — though it doesn't disappear within 90 days.</li>
+    </ul>
+  </div>
+
+  <!-- BAUXITE / INDUSTRY -->
+  <div class="sector-card">
+    <div class="sector-header">
+      <div>
+        <div class="sector-name">Sector 06 · Industry</div>
+        <div class="sector-title">Bauxite, Alumina & Manufacturing</div>
+      </div>
+      <div>
+        <div class="sector-icon">🏭</div>
+        <div class="sector-risk risk-high">HIGH</div>
+      </div>
+    </div>
+
+    <div class="damage-meter">
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 1–4</div>
+        <div class="damage-pct pct-orange">-5%</div>
+        <div class="damage-phase-sub">Output vs. baseline</div>
+      </div>
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 5–8</div>
+        <div class="damage-pct pct-red">-15%</div>
+        <div class="damage-phase-sub">Energy cost squeeze</div>
+      </div>
+      <div class="damage-phase">
+        <div class="damage-phase-label">Wk 9–13</div>
+        <div class="damage-pct pct-dark">-25%</div>
+        <div class="damage-phase-sub">Partial curtailment likely</div>
+      </div>
+    </div>
+
+    <ul class="data-points">
+      <li><strong>Energy-intensive by nature:</strong> The bauxite/alumina industry consumes <span class="warm">37.4% of Jamaica's total national energy.</span> It is the single largest energy consumer on the island. When energy costs spike 40–60%, the economics of production deteriorate rapidly.</li>
+      <li><strong>Already a declining base:</strong> Bauxite/alumina has declined to less than 5% of GDP from a historical peak of 20%+. Any further contraction is economically painful and jobs-costly, even if the headline GDP number is small.</li>
+      <li><strong>Export price paradox:</strong> Alumina prices may rise in a global commodities spike — but if the energy cost of production rises faster than the product price, the operation runs at a loss. This has happened before.</li>
+      <li><strong>Multinational operators:</strong> Jamaica's mines are largely operated by multinationals who will make curtailment decisions based on global margin calculations — not Jamaica's employment needs. If Jamaican operations aren't competitive, they scale back.</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- Cascade Timeline -->
+<div class="cascade-section">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-tag">Week-by-Week</div>
+        <div class="section-title">THE CASCADE SEQUENCE</div>
+      </div>
+    </div>
+
+    <div class="cascade-flow">
+
+      <div class="cascade-item">
+        <div class="cascade-week">Week 1–2<br>Mar 1–14</div>
+        <div class="cascade-event ce-red">
+          <div class="cascade-event-title">Oil markets reprice. JPS fuel surcharge locks in.</div>
+          <div class="cascade-event-desc">Brent at $95–105. LNG spot prices jump. JPS is contractually obligated to pass fuel cost changes to customers monthly. The March billing cycle will already reflect the spike. Jamaicans open their April electricity bills to a shock.</div>
+          <div class="cascade-event-impact">
+            <span class="impact-chip chip-red">Electricity +20–28%</span>
+            <span class="impact-chip chip-orange">Gas prices +18%</span>
+            <span class="impact-chip chip-blue">No tourism impact yet</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cascade-connector">
+        <div></div>
+        <div class="connector-line"></div>
+      </div>
+
+      <div class="cascade-item">
+        <div class="cascade-week">Week 3–4<br>Mar 15–31</div>
+        <div class="cascade-event ce-red">
+          <div class="cascade-event-title">Import freight costs surge. First food price hike at retail.</div>
+          <div class="cascade-event-desc">Container shipping fuel surcharges kick in. Importers of wheat, corn, and consumer goods face immediate cost increases. Supermarkets begin repricing. Bread, flour, and chicken (grain-fed) prices visibly higher. Lower-income Jamaicans feel this first and hardest.</div>
+          <div class="cascade-event-impact">
+            <span class="impact-chip chip-red">Food +8–12%</span>
+            <span class="impact-chip chip-orange">Shipping surcharges +15%</span>
+            <span class="impact-chip chip-yellow">Retail sector margin squeeze</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cascade-connector">
+        <div></div>
+        <div class="connector-line"></div>
+      </div>
+
+      <div class="cascade-item">
+        <div class="cascade-week">Week 5–6<br>Apr 1–14</div>
+        <div class="cascade-event ce-orange">
+          <div class="cascade-event-title">Tourism forward bookings collapse. US consumer confidence drops.</div>
+          <div class="cascade-event-desc">American households are now fully feeling the oil price spike in daily life. Travel search data (historically a leading indicator) shows Caribbean bookings declining. Tour operators begin offering Jamaica packages at discounts to stimulate demand — compressing revenue per visitor even for those who still come.</div>
+          <div class="cascade-event-impact">
+            <span class="impact-chip chip-red">Bookings -15–20%</span>
+            <span class="impact-chip chip-orange">Flight prices +12%</span>
+            <span class="impact-chip chip-yellow">Hotel rates discounted -10%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cascade-connector">
+        <div></div>
+        <div class="connector-line"></div>
+      </div>
+
+      <div class="cascade-item">
+        <div class="cascade-week">Week 7–8<br>Apr 15–30</div>
+        <div class="cascade-event ce-orange">
+          <div class="cascade-event-title">Remittance compression becomes measurable. JMD under pressure.</div>
+          <div class="cascade-event-desc">MoneyGram and Western Union flow data begins showing reduced volumes from US Jamaican diaspora. The Bank of Jamaica's monthly remittance report for April will be the first hard evidence. The Jamaican Dollar faces depreciation pressure as USD inflows shrink. A weaker JMD means imports cost even more — amplifying the food and energy shock already in progress.</div>
+          <div class="cascade-event-impact">
+            <span class="impact-chip chip-red">Remittances -10–12%</span>
+            <span class="impact-chip chip-orange">JMD depreciates 3–5%</span>
+            <span class="impact-chip chip-red">Import cost amplification loop begins</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cascade-connector">
+        <div></div>
+        <div class="connector-line"></div>
+      </div>
+
+      <div class="cascade-item">
+        <div class="cascade-week">Week 9–11<br>May 1–22</div>
+        <div class="cascade-event ce-red">
+          <div class="cascade-event-title">Bauxite curtailment decisions. Agricultural sector hits fertilizer wall.</div>
+          <div class="cascade-event-desc">Multinational alumina operators review quarterly energy cost projections. Curtailment decisions are made 4–8 weeks ahead. Meanwhile Jamaican farmers who would normally be purchasing fertilizer for May-June planting find urea prices up 35–50% globally. Some reduce application rates. The domestic food production shortfall that was caused by Hurricane Melissa now has no recovery path — it extends into 2026/27 harvest cycles.</div>
+          <div class="cascade-event-impact">
+            <span class="impact-chip chip-red">Bauxite output -20–25%</span>
+            <span class="impact-chip chip-orange">Fertilizer prices +35–50%</span>
+            <span class="impact-chip chip-yellow">Domestic crop yields -15%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cascade-connector">
+        <div></div>
+        <div class="connector-line"></div>
+      </div>
+
+      <div class="cascade-item">
+        <div class="cascade-week">Week 12–13<br>May 23 – Jun 1</div>
+        <div class="cascade-event ce-red">
+          <div class="cascade-event-title">Simultaneous pressure across all six sectors. Foreign exchange reserves begin drawing down.</div>
+          <div class="cascade-event-desc">By the 90-day mark, Jamaica is running a materially wider trade deficit, with tourism revenues down, remittances down, fuel costs up, food prices up 25–35%, and the bauxite sector contracting. The Bank of Jamaica begins utilizing foreign exchange reserves to defend the JMD. The fiscal surplus Jamaica worked a decade to build is now being used to absorb an external shock it had no part in creating. Social pressure builds — the cost of living crisis intersects with the political cycle.</div>
+          <div class="cascade-event-impact">
+            <span class="impact-chip chip-red">FX reserves: -$400–600M drawn</span>
+            <span class="impact-chip chip-red">Real GDP growth: 0% to -1.5%</span>
+            <span class="impact-chip chip-orange">Inflation: 12–16% annualized</span>
+            <span class="impact-chip chip-yellow">Government deficit pressure rising</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Summary Table -->
+<div style="padding: 3rem 2rem; border-bottom: 1px solid var(--border);">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-tag">Quantified Summary</div>
+        <div class="section-title">90-DAY DAMAGE SCORECARD</div>
+      </div>
+    </div>
+
+    <div style="overflow-x:auto;">
+      <table class="gdp-table">
+        <thead>
+          <tr>
+            <th style="width:200px">Sector</th>
+            <th>GDP Weight</th>
+            <th>Pre-Crisis Baseline</th>
+            <th>90-Day Projection</th>
+            <th>Change</th>
+            <th class="bar-cell">Severity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="sector-col">⚡ Energy / Electricity</td>
+            <td class="gdp-pct">Indirect — all sectors</td>
+            <td>$0.27/kWh</td>
+            <td>$0.40–0.43/kWh</td>
+            <td class="change-neg-critical">+50–60%</td>
+            <td class="bar-cell">
+              <div class="bar-visual"><div class="bar-visual-fill" style="background:var(--red);width:95%"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="sector-col">🌾 Food Prices (CPI)</td>
+            <td class="gdp-pct">~20% of CPI basket</td>
+            <td>+7% YoY inflation</td>
+            <td>+25–35% YoY rate</td>
+            <td class="change-neg-critical">+28% acceleration</td>
+            <td class="bar-cell">
+              <div class="bar-visual"><div class="bar-visual-fill" style="background:var(--red);width:90%"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="sector-col">✈️ Tourism Revenue</td>
+            <td class="gdp-pct">~50% of GDP</td>
+            <td>$4.6B annually / $1.15B/qtr</td>
+            <td>$750M–850M this quarter</td>
+            <td class="change-neg-critical">-$300–400M / qtr</td>
+            <td class="bar-cell">
+              <div class="bar-visual"><div class="bar-visual-fill" style="background:var(--red);width:85%"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="sector-col">💸 Remittances</td>
+            <td class="gdp-pct">17.4% of GDP</td>
+            <td>~$3.5B annually / $875M/qtr</td>
+            <td>$715–800M this quarter</td>
+            <td class="change-neg-severe">-$75–160M / qtr</td>
+            <td class="bar-cell">
+              <div class="bar-visual"><div class="bar-visual-fill" style="background:var(--orange);width:70%"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="sector-col">⚖️ Trade Balance</td>
+            <td class="gdp-pct">Structural deficit</td>
+            <td>-$5.4B annual deficit</td>
+            <td>-$6.9–7.0B annualized</td>
+            <td class="change-neg-critical">-$1.5B worse</td>
+            <td class="bar-cell">
+              <div class="bar-visual"><div class="bar-visual-fill" style="background:var(--red);width:88%"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="sector-col">🏭 Bauxite / Alumina</td>
+            <td class="gdp-pct">&lt;5% of GDP</td>
+            <td>Stable marginal output</td>
+            <td>-20–25% output reduction</td>
+            <td class="change-neg-severe">-25% production</td>
+            <td class="bar-cell">
+              <div class="bar-visual"><div class="bar-visual-fill" style="background:var(--orange);width:55%"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="sector-col">💰 FX Reserves</td>
+            <td class="gdp-pct">5.5 months import cover</td>
+            <td>~$4.8B</td>
+            <td>~$4.2–4.4B</td>
+            <td class="change-neg-severe">-$400–600M drawn</td>
+            <td class="bar-cell">
+              <div class="bar-visual"><div class="bar-visual-fill" style="background:var(--orange);width:50%"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="sector-col">📊 Real GDP Growth</td>
+            <td class="gdp-pct">Full economy</td>
+            <td>+1.5–2.0% projected 2026</td>
+            <td>0% to -1.5%</td>
+            <td class="change-neg-critical">-2.5 to -3.5 pp swing</td>
+            <td class="bar-cell">
+              <div class="bar-visual"><div class="bar-visual-fill" style="background:var(--red);width:80%"></div></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Final Verdict -->
+<div class="verdict">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-tag">Bottom Line</div>
+        <div class="section-title">THE VERDICT</div>
+      </div>
+    </div>
+    <div class="verdict-box">
+      <p>Jamaica's <strong>fiscal discipline is real and it matters.</strong> The island reduced its debt from 140% to below 50% of GDP over a decade. It has reserves. It has relationships with the IMF and World Bank. It won't collapse within 90 days. That has to be said plainly.</p>
+      <p>But here is the brutal truth: <span class="critical">Jamaica built those buffers to absorb one shock at a time.</span> What is coming in the next 90 days is not one shock. It is six simultaneous shocks — energy, food, tourism, remittances, trade balance, and industry — all triggered by a single geopolitical event that Jamaica had zero vote in and zero ability to influence.</p>
+      <p><strong>The economic pain will not be distributed evenly.</strong> Electricity bills will hit the poor hardest — they spend the highest share of income on utilities. Food price spikes will create nutritional stress in households that were already stretched post-hurricane. Remittance reductions will hit rural communities that depend on diaspora money as primary income. The Jamaican middle class, the hospitality workers, the small vendors near Montego Bay hotels — they absorb the tourism shock directly.</p>
+      <p><strong>The 90-day number that matters most:</strong> Real GDP that was projected to grow at <span class="critical">+1.5–2.0% in 2026 is now tracking toward 0% to -1.5%.</span> That's a swing of 2.5–3.5 percentage points — wiped out entirely by the downstream effects of a war Jamaica is not fighting, over resources Jamaica does not own, in a region Jamaica has no presence in.</p>
+      <p>This is what it looks like when <strong>small, open, import-dependent economies pay the cost of great power competition.</strong> The bill was not addressed to Kingston. It arrived anyway.</p>
+    </div>
+  </div>
+</div>
+
+<div style="padding: 1.5rem 2rem; border-top: 1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+  <span style="font-family:var(--mono); font-size:0.62rem; color:var(--text-dim); letter-spacing:0.1em;">CRISIS INTELLIGENCE REPORT · JAMAICA · MARCH 01, 2026 · 90-DAY STRUCTURAL ANALYSIS</span>
+  <span style="font-family:var(--mono); font-size:0.62rem; color:var(--text-dim);">ALL PROJECTIONS BASED ON DOCUMENTED BASELINE DATA AND ESTABLISHED ECONOMIC ELASTICITY MODELS</span>
+</div>
+
+</body>
+</html>
