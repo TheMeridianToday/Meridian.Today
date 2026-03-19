@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIGNAL BRIEF — MARCH 5, 2026 · DAY 6</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a0a08;--paper:#f2ede4;--paper2:#ede8de;--paper3:#e6e0d4;
+  --red:#c8190f;--red-l:#e8321f;--amber:#c97d00;--amber-l:#f0a020;
+  --green:#1a6640;--rule:#c4bfb4;--rule-s:#8a8478;
+  --text:#1a1916;--dim:#6b6660;--white:#faf8f3;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--text);font-family:'Barlow',sans-serif;font-size:15px;line-height:1.55;overflow-x:hidden}
+
+/* MASTHEAD */
+.mast{background:var(--ink);border-bottom:4px solid var(--red)}
+.mast-top{display:flex;align-items:stretch;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap}
+.brand{padding:1.2rem 2rem;border-right:1px solid rgba(255,255,255,.08)}
+.brand-name{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:.06em;color:var(--white);line-height:1}
+.brand-sub{font-family:'Barlow Condensed',sans-serif;font-size:.65rem;letter-spacing:.22em;color:rgba(255,255,255,.3);text-transform:uppercase;margin-top:.2rem}
+.mast-info{padding:1.2rem 2rem;flex:1;display:flex;flex-direction:column;justify-content:center}
+.ed-label{font-family:'Barlow Condensed',sans-serif;font-size:.62rem;letter-spacing:.2em;color:var(--red-l);text-transform:uppercase}
+.ed-date{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--white);line-height:1}
+.live-pill{padding:1.2rem 2rem;display:flex;align-items:center;gap:.7rem;border-left:1px solid rgba(255,255,255,.08)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--red-l);animation:blink 1.2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
+.live-txt{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:.2em;color:var(--red-l);text-transform:uppercase;font-weight:700}
+
+/* TICKER */
+.ticker{background:var(--red);overflow:hidden;height:32px;display:flex;align-items:center}
+.t-label{background:var(--ink);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.18em;padding:0 1rem;height:100%;display:flex;align-items:center;flex-shrink:0;white-space:nowrap}
+.t-track{display:flex;animation:scroll 55s linear infinite;white-space:nowrap}
+.t-item{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.06em;color:var(--white);padding:0 2rem;text-transform:uppercase;flex-shrink:0}
+.t-item::after{content:' ◆ ';opacity:.5;margin-left:1.5rem}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* LAYOUT */
+.page{max-width:1300px;margin:0 auto;padding:0 1.5rem}
+
+/* HERO */
+.hero{padding:2.5rem 0 2rem;border-bottom:3px double var(--rule-s)}
+.h-kicker{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.25em;color:var(--red);text-transform:uppercase;margin-bottom:.7rem;display:flex;align-items:center;gap:.8rem}
+.h-kicker::before,.h-kicker::after{content:'';height:1px;flex:1;background:var(--red);opacity:.35}
+.h-hed{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,6vw,5rem);line-height:.95;color:var(--ink);margin-bottom:.8rem}
+.h-hed .r{color:var(--red)}
+.h-deck{font-size:1.05rem;font-weight:300;color:var(--dim);font-style:italic;max-width:820px;line-height:1.65;border-left:3px solid var(--rule-s);padding-left:1rem;margin-top:.8rem}
+
+/* ESCALATION BANNER */
+.esc-banner{background:var(--red);color:var(--white);padding:.9rem 1.5rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.esc-label{font-family:'Barlow Condensed',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.7);flex-shrink:0}
+.esc-text{font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:600;letter-spacing:.04em;color:var(--white)}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);background:var(--ink);gap:1px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.s-box{background:var(--paper2);padding:1rem 1.2rem;text-align:center}
+.s-box.dark{background:var(--ink)}
+.s-val{font-family:'Bebas Neue',sans-serif;font-size:2rem;line-height:1;color:var(--ink)}
+.s-box.dark .s-val{color:var(--red-l)}
+.s-lbl{font-family:'Barlow Condensed',sans-serif;font-size:.62rem;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;margin-top:.2rem}
+.s-box.dark .s-lbl{color:rgba(255,255,255,.4)}
+.s-delta{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;color:var(--red);font-weight:700;margin-top:.15rem}
+.s-box.dark .s-delta{color:rgba(255,255,255,.35)}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:1fr 340px;gap:0;border-bottom:2px solid var(--ink)}
+.main{border-right:1px solid var(--rule-s);padding:2rem 2rem 2rem 0}
+.side{padding:2rem 0 2rem 2rem}
+
+/* SECTIONS */
+.sec{margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--rule);animation:up .5s ease both}
+.sec:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.sec:nth-child(1){animation-delay:.05s}.sec:nth-child(2){animation-delay:.1s}.sec:nth-child(3){animation-delay:.15s}.sec:nth-child(4){animation-delay:.2s}
+@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.s-tag{font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--white);background:var(--ink);display:inline-block;padding:.15rem .6rem;margin-bottom:.8rem}
+.s-tag.r{background:var(--red)}.s-tag.a{background:var(--amber)}.s-tag.g{background:var(--green)}
+.s-hed{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;letter-spacing:.02em;color:var(--ink);line-height:1.15;margin-bottom:.8rem;text-transform:uppercase}
+.body{font-size:.88rem;line-height:1.75;color:var(--text)}
+.body p{margin-bottom:.8rem}.body p:last-child{margin-bottom:0}
+.body strong{font-weight:700;color:var(--ink)}
+.body .hot{color:var(--red);font-weight:600}
+.body .wrn{color:var(--amber);font-weight:600}
+.body .ok{color:var(--green);font-weight:600}
+
+/* PULL QUOTE */
+.pq{border-left:4px solid var(--red);padding:.8rem 1.2rem;margin:1.2rem 0;background:var(--paper2)}
+.pq p{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:600;line-height:1.4;color:var(--ink);margin:0}
+.pq cite{display:block;font-family:'Barlow',sans-serif;font-size:.7rem;color:var(--dim);font-style:normal;margin-top:.35rem;letter-spacing:.05em;text-transform:uppercase}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-family:'Barlow Condensed',sans-serif;font-size:.82rem;margin-top:1rem}
+.tbl th{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--white);background:var(--ink);padding:.5rem .8rem;text-align:left;font-weight:600}
+.tbl td{padding:.6rem .8rem;border-bottom:1px solid var(--rule);color:var(--text);font-weight:500}
+.tbl tr:nth-child(even) td{background:var(--paper2)}
+.tbl .neg{color:var(--red);font-weight:700}.tbl .pos{color:var(--green);font-weight:700}.tbl .wrn{color:var(--amber);font-weight:700}.tbl .lbl{font-weight:600;color:var(--ink)}
+
+/* INFRASTRUCTURE HIT LIST */
+.hit-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--rule-s);margin:1.2rem 0}
+.hit-row{display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:.8rem;padding:.7rem 1rem;border-bottom:1px solid var(--rule);background:var(--paper2)}
+.hit-row:last-child{border-bottom:none}
+.hit-row.critical{background:rgba(200,25,15,.04)}
+.hit-num{font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;color:var(--red);line-height:1}
+.hit-name{font-size:.82rem;font-weight:600;color:var(--ink)}
+.hit-detail{font-size:.75rem;color:var(--dim);margin-top:.1rem}
+.hit-status{font-family:'Barlow Condensed',sans-serif;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .5rem;border-radius:2px;white-space:nowrap}
+.hs-hit{background:rgba(200,25,15,.12);color:var(--red);border:1px solid rgba(200,25,15,.2)}
+.hs-intercept{background:rgba(45,166,64,.1);color:var(--green);border:1px solid rgba(45,166,64,.2)}
+.hs-damage{background:rgba(201,125,0,.12);color:var(--amber);border:1px solid rgba(201,125,0,.2)}
+
+/* SIDEBAR CARDS */
+.card{border:1px solid var(--rule-s);margin-bottom:1.5rem;background:var(--paper2);overflow:hidden}
+.card:last-child{margin-bottom:0}
+.c-head{background:var(--ink);color:var(--white);padding:.6rem 1rem;font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.c-head.r{background:var(--red)}.c-head.a{background:var(--amber)}.c-head.g{background:var(--green)}
+.c-body{padding:1rem}
+.c-body p{font-size:.82rem;line-height:1.6;color:var(--text);margin-bottom:.6rem}
+.c-body p:last-child{margin-bottom:0}
+
+/* BULLETS */
+.blist{list-style:none;padding:0}
+.blist li{font-size:.82rem;line-height:1.55;color:var(--text);padding:.45rem 0 .45rem 1rem;border-bottom:1px solid var(--rule);position:relative}
+.blist li:last-child{border-bottom:none}
+.blist li::before{content:'▸';position:absolute;left:0;color:var(--red);font-size:.6rem;top:.55rem}
+.blist li strong{font-weight:700;color:var(--ink)}
+.blist .num{color:var(--red);font-weight:700}
+
+/* THREAT BARS */
+.t-meter{margin:.8rem 0}
+.t-row{display:flex;align-items:center;gap:.8rem;margin-bottom:.5rem}
+.t-lbl{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:600;color:var(--ink);width:110px;flex-shrink:0}
+.t-bar{flex:1;height:8px;background:var(--rule);overflow:hidden}
+.t-fill{height:100%;animation:exp 1.5s ease both}
+@keyframes exp{from{width:0}}
+.f-dark{background:#7a0f0a}.f-red{background:var(--red)}.f-amb{background:var(--amber-l)}.f-grn{background:var(--green)}
+.t-pct{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;font-weight:700;color:var(--ink);width:36px;text-align:right;flex-shrink:0}
+
+/* EUROPE MAP CARD */
+.europe-grid{display:flex;flex-direction:column;gap:0}
+.eu-row{display:flex;align-items:center;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--rule);font-size:.8rem}
+.eu-row:last-child{border-bottom:none}
+.eu-country{font-weight:600;color:var(--ink)}
+.eu-status{font-family:'Barlow Condensed',sans-serif;font-size:.65rem;letter-spacing:.08em;padding:.15rem .5rem;border-radius:2px}
+.eu-in{background:rgba(200,25,15,.1);color:var(--red);border:1px solid rgba(200,25,15,.2)}
+.eu-partial{background:rgba(201,125,0,.1);color:var(--amber);border:1px solid rgba(201,125,0,.2)}
+.eu-out{background:rgba(26,102,64,.1);color:var(--green);border:1px solid rgba(26,102,64,.2)}
+.eu-watch{background:rgba(100,100,100,.1);color:var(--dim);border:1px solid var(--rule)}
+
+/* SUCCESSION */
+.succ-box{background:var(--ink);color:var(--white);padding:1.2rem;margin:1.2rem 0}
+.succ-label{font-family:'Barlow Condensed',sans-serif;font-size:.6rem;letter-spacing:.18em;color:var(--red-l);text-transform:uppercase;margin-bottom:.5rem}
+.succ-name{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--white);letter-spacing:.04em;line-height:1;margin-bottom:.4rem}
+.succ-desc{font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.6}
+
+/* VERDICT */
+.verdict{background:var(--ink);color:var(--white);padding:2.5rem;position:relative;overflow:hidden}
+.verdict::before{content:'"';position:absolute;top:-1rem;left:1.5rem;font-family:'Bebas Neue',sans-serif;font-size:12rem;color:rgba(255,255,255,.04);line-height:1;pointer-events:none}
+.v-tag{font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--red-l);margin-bottom:.8rem}
+.v-hed{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:.04em;color:var(--white);line-height:1;margin-bottom:1.2rem}
+.v-body{font-size:.9rem;line-height:1.8;color:rgba(255,255,255,.75);max-width:900px}
+.v-body p{margin-bottom:.9rem}.v-body p:last-child{margin-bottom:0}
+.v-body strong{color:var(--white)}
+.v-body .hot{color:var(--red-l);font-weight:600}
+.v-body .wrn{color:var(--amber-l);font-weight:600}
+.v-body .ok{color:#6ab55e;font-weight:600}
+
+/* FOOTER */
+.footer{padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--rule);flex-wrap:wrap;gap:.5rem}
+.footer span{font-family:'Barlow Condensed',sans-serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+  .main{border-right:none;padding:2rem 0;border-bottom:2px solid var(--ink)}
+  .side{padding:2rem 0}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .hit-row{grid-template-columns:28px 1fr}
+  .hit-status{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="mast-top">
+    <div class="brand">
+      <div class="brand-name">SIGNAL BRIEF</div>
+      <div class="brand-sub">Meridian · Global Crisis Intelligence</div>
+    </div>
+    <div class="mast-info">
+      <div class="ed-label">Morning Edition · Day 6 · Operation Epic Fury</div>
+      <div class="ed-date">Thursday, March 5, 2026</div>
+    </div>
+    <div class="live-pill">
+      <div class="dot"></div>
+      <span class="live-txt">Active Conflict</span>
+    </div>
+  </div>
+  <div class="ticker">
+    <div class="t-label">DAY 6</div>
+    <div class="t-track">
+      <span class="t-item">1,230+ killed in Iran · war enters Day 6</span>
+      <span class="t-item">All of south Beirut suburbs ordered evacuated</span>
+      <span class="t-item">Iran fires 14 ballistic missiles at Doha, Qatar</span>
+      <span class="t-item">Bahrain oil refinery struck by Iranian missile</span>
+      <span class="t-item">NATO intercepts Iranian missile over Turkey — first time in history</span>
+      <span class="t-item">Hegseth: US is "accelerating, not decelerating"</span>
+      <span class="t-item">France sends aircraft carrier to Mediterranean</span>
+      <span class="t-item">Trump: Khamenei's son "unacceptable" as new leader</span>
+      <span class="t-item">Brent crude day range $80.30–$84.47</span>
+      <span class="t-item">Dow futures -1.80% · S&P futures -1.78% pre-market</span>
+      <span class="t-item">Iran warns EU: "You will pay the price"</span>
+      <span class="t-item">Oil tanker struck at Iraqi port of Khor al-Zubair</span>
+      <span class="t-item">1,230+ killed in Iran · war enters Day 6</span>
+      <span class="t-item">All of south Beirut suburbs ordered evacuated</span>
+      <span class="t-item">Iran fires 14 ballistic missiles at Doha, Qatar</span>
+      <span class="t-item">Bahrain oil refinery struck by Iranian missile</span>
+      <span class="t-item">NATO intercepts Iranian missile over Turkey — first time in history</span>
+      <span class="t-item">Hegseth: US is "accelerating, not decelerating"</span>
+      <span class="t-item">France sends aircraft carrier to Mediterranean</span>
+      <span class="t-item">Trump: Khamenei's son "unacceptable" as new leader</span>
+    </div>
+  </div>
+</header>
+
+<!-- ESCALATION BANNER -->
+<div class="esc-banner">
+  <div class="esc-label">⚠ New Development</div>
+  <div class="esc-text">NATO has intercepted an Iranian ballistic missile over Turkey — the first time in history NATO forces have engaged an Iranian munition targeting a member state. Europe is no longer a bystander.</div>
+</div>
+
+<div class="page">
+  <div class="hero">
+    <div class="h-kicker">Morning Briefing · Day 6 · March 5 2026</div>
+    <h1 class="h-hed">THE WAR <span class="r">GOES GLOBAL</span><br>EUROPE ENTERS THE FRAME</h1>
+    <p class="h-deck">Six days in and the war has now crossed every boundary analysts said it wouldn't. Iran is firing ballistic missiles at Qatar. A refinery in Bahrain is burning. NATO is intercepting Iranian munitions over Turkey. France has dispatched its aircraft carrier. Canada won't rule out participation. And Washington's posture today: accelerating, not decelerating. Here is everything that matters this morning.</p>
+  </div>
+</div>
+
+<!-- STAT STRIP -->
+<div class="stats">
+  <div class="s-box dark">
+    <div class="s-val">1,230+</div>
+    <div class="s-lbl">Killed in Iran</div>
+    <div class="s-delta">6,000+ wounded · Day 6</div>
+  </div>
+  <div class="s-box">
+    <div class="s-val">$84.47</div>
+    <div class="s-lbl">Brent high today</div>
+    <div class="s-delta">Day range $80.30–$84.47</div>
+  </div>
+  <div class="s-box">
+    <div class="s-val">14</div>
+    <div class="s-lbl">Missiles fired at Doha</div>
+    <div class="s-delta">Qatar capital targeted</div>
+  </div>
+  <div class="s-box">
+    <div class="s-val">NATO</div>
+    <div class="s-lbl">Now intercepting Iranian missiles</div>
+    <div class="s-delta">First time in history</div>
+  </div>
+  <div class="s-box dark">
+    <div class="s-val">5+</div>
+    <div class="s-lbl">European nations mobilising</div>
+    <div class="s-delta">UK · France · Canada watching</div>
+  </div>
+</div>
+
+<!-- CONTENT GRID -->
+<div class="page">
+<div class="grid">
+
+<div class="main">
+
+  <!-- WAR UPDATE -->
+  <div class="sec">
+    <div class="s-tag r">War · Day 6 · Morning Update</div>
+    <h2 class="s-hed">Iran Is Now Hitting Every Gulf Capital Simultaneously</h2>
+    <div class="body">
+      <p>The death toll inside Iran has crossed <strong>1,230 killed and over 6,000 wounded</strong> since Saturday. Israel announced a new "wave of strikes" against military infrastructure in Tehran overnight. Explosions were reported across Iran — in Tehran, in the holy city of Qom, in Sanandaj. US and Western officials stated that they have <strong>"effectively neutralised" a significant portion of Iran's military capabilities</strong> in six days. Iran's navy, air force, air detection, and radar systems have been described by Trump as largely destroyed.</p>
+
+      <div class="pq">
+        <p>"America is winning. We are accelerating, not decelerating. The operation is only four days old — metrics are shifting, dust is settling and more forces are arriving."</p>
+        <cite>— Defense Secretary Pete Hegseth, Pentagon briefing, March 4, 2026</cite>
+      </div>
+
+      <p>But Iran's ability to strike back has not been neutralised. Today Iran fired <strong>14 ballistic missiles and 4 drones at Doha, Qatar</strong> — the capital of the nation that hosts the US Fifth Fleet's air operations hub at Al Udeid Air Base. Qatar's air defences intercepted 13 of the 14 missiles. One fell in Qatari territorial waters. Qatar's interior ministry ordered evacuations near the US Embassy in Doha. Authorities sent an <strong>"elevated" emergency alert to all Doha residents</strong> — the kind sent when attacks are imminent or active.</p>
+
+      <p>Bahrain's state-run oil refinery was struck by an Iranian missile. Fire extinguished, facility still operational — but the strategic message is clear: <span class="hot">Iran is now targeting Gulf energy infrastructure directly.</span> An oil tanker flying the Bahamas flag was struck by a boat at the Iraqi port of Khor al-Zubair, causing damage and an oil spill. Oman reported one of its oil storage tanks damaged in an "incident." This is now a coordinated campaign against the region's energy export infrastructure, not just military assets.</p>
+
+      <p>The Lebanon front: Israel expanded its evacuation orders to cover <strong>the entirety of Beirut's southern suburbs</strong> — home to hundreds of thousands of people. Israel then struck Tripoli in northern Lebanon for the first time in this conflict, killing a Hamas commander. Far-right Finance Minister Smotrich warned southern Beirut "will be turned to rubble." A Kurdish ground offensive in northwest Iran is also underway, with US officials reportedly asking Iraqi Kurds to assist in cross-border operations.</p>
+    </div>
+  </div>
+
+  <!-- INFRASTRUCTURE STRIKES -->
+  <div class="sec">
+    <div class="s-tag r">Infrastructure · Target Map</div>
+    <h2 class="s-hed">Energy And Economic Centres Now In The Crosshairs</h2>
+    <div class="body">
+      <p>Iran has explicitly warned it will target <strong>"all economic centres in the region."</strong> Today it made good on that threat. This is the running infrastructure damage log from the past 24 hours:</p>
+    </div>
+    <div class="hit-list">
+      <div class="hit-row critical">
+        <div class="hit-num">01</div>
+        <div><div class="hit-name">Bahrain State Oil Refinery</div><div class="hit-detail">Iranian missile direct hit · fire extinguished · facility operational</div></div>
+        <div class="hit-status hs-damage">Damaged</div>
+      </div>
+      <div class="hit-row critical">
+        <div class="hit-num">02</div>
+        <div><div class="hit-name">Qatar — Doha Capital, 14 Missiles</div><div class="hit-detail">13 of 14 ballistic missiles intercepted · 1 landed in territorial waters · Doha residents sent emergency alert</div></div>
+        <div class="hit-status hs-intercept">Mostly intercepted</div>
+      </div>
+      <div class="hit-row">
+        <div class="hit-num">03</div>
+        <div><div class="hit-name">Iraqi Port — Khor al-Zubair Oil Tanker</div><div class="hit-detail">Boat struck Bahamas-flagged tanker · damage confirmed · oil spill reported</div></div>
+        <div class="hit-status hs-hit">Struck</div>
+      </div>
+      <div class="hit-row">
+        <div class="hit-num">04</div>
+        <div><div class="hit-name">Oman Oil Storage Tank</div><div class="hit-detail">Storage facility damaged in "incident" · Oman Oil Marketing Company confirms · preliminary: minor</div></div>
+        <div class="hit-status hs-damage">Damaged</div>
+      </div>
+      <div class="hit-row">
+        <div class="hit-num">05</div>
+        <div><div class="hit-name">US Victoria Airbase — Baghdad Airport</div><div class="hit-detail">Drone targeted airbase overnight · intercepted by Iraqi forces before reaching target</div></div>
+        <div class="hit-status hs-intercept">Intercepted</div>
+      </div>
+      <div class="hit-row">
+        <div class="hit-num">06</div>
+        <div><div class="hit-name">Saudi Arabia — al-Jawf Region</div><div class="hit-detail">Drone shot down · Saudi MOD also intercepted 3 drones near al-Kharj governorate</div></div>
+        <div class="hit-status hs-intercept">Intercepted</div>
+      </div>
+      <div class="hit-row">
+        <div class="hit-num">07</div>
+        <div><div class="hit-name">Kuwait — Tanker Explosion</div><div class="hit-detail">Explosion near tanker anchored 30 nautical miles southeast of Mubarak al-Kabeer</div></div>
+        <div class="hit-status hs-hit">Struck</div>
+      </div>
+    </div>
+    <div class="body" style="margin-top:1rem">
+      <p><span class="hot">The pattern today is unmistakable:</span> Iran is no longer restricting retaliation to US military assets. It is targeting oil refineries, tankers, storage tanks, and ports across every Gulf state simultaneously. The stated goal is to make the economic cost of hosting US forces unbearable for Gulf governments. Bahrain, Qatar, Kuwait, Saudi Arabia, Oman — all of them are now in the active damage zone. <strong>75 missiles and 123 drones have been destroyed by Bahrain's defence forces alone since Day 1.</strong></p>
+    </div>
+  </div>
+
+  <!-- EUROPE ENTERS -->
+  <div class="sec">
+    <div class="s-tag a">Geopolitics · The Europe Shift</div>
+    <h2 class="s-hed">NATO Fires On Iran. Europe Can No Longer Stay Out.</h2>
+    <div class="body">
+      <p>The single most significant geopolitical development of Day 6 is not another strike on Tehran. It is this: <strong>NATO air defence systems intercepted an Iranian ballistic missile traveling toward Turkey's airspace</strong> — passing through Iraqi and Syrian airspace before it reached a NATO member state. That is the first time in history NATO forces have engaged an Iranian munition targeting a member country. Iran denied firing at Turkey. NATO says it happened. The alliance is now, functionally, a participant.</p>
+
+      <p>Europe's other moves today: <strong>France authorised the US to use French military bases</strong> and sent its aircraft carrier toward the Mediterranean. The UK has permitted the US to use British bases for defensive operations. Canada's Prime Minister Mark Carney said he <span class="hot">"cannot categorically rule out participation."</span> Germany's Merz said there remain "many questions" but declared firm support for the operation's goals.</p>
+
+      <p>Against this: Spain explicitly <strong>denied the use of its military bases for US flights connected to an offensive against Iran</strong>. Trump has threatened economic retaliation. Ukraine — already fighting its own war — offered to deploy drone-defence experts to the Gulf to help defend against Iranian drone swarms. The world is drawing battle lines. Every country is being forced to pick a posture.</p>
+
+      <p>Iran's Foreign Ministry warned today that <span class="hot">EU countries "will pay the price, sooner or later"</span> if they remain silent over the US-Israeli attacks. That message, paired with the NATO intercept, makes European diplomatic neutrality mathematically impossible to sustain.</p>
+    </div>
+  </div>
+
+  <!-- MARKETS -->
+  <div class="sec">
+    <div class="s-tag a">Markets · Energy</div>
+    <h2 class="s-hed">Oil Volatile. Wall Street Uncertain. Pre-Market Red.</h2>
+    <div class="body">
+      <p>Brent crude traded in a <strong>$80.30–$84.47 range today</strong> — a 5.2% intraday swing — reflecting the market's whiplash between Iranian strikes on Gulf energy infrastructure and the hope that Trump's tanker escort announcements hold. As of afternoon trading Brent settled near $81.29. The 52-week high is $85.12. We are close.</p>
+      <p>Pre-market futures are telling a different story than yesterday's equity recovery: <strong>S&P 500 futures down 1.78%, Dow futures down 1.80%, Nasdaq futures down 2.16%.</strong> The VIX fear index spiked to 26.21 pre-market, up 22% — fear is back. Wall Street's Wednesday relief rally is being unwound this morning as the reality of Iranian strikes on Doha and Gulf refineries lands in the price.</p>
+    </div>
+    <table class="tbl">
+      <thead><tr><th>Asset</th><th>Level</th><th>Move</th><th>Signal</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">Brent Crude</td><td>$81.29</td><td class="wrn">Range $80.30–$84.47</td><td class="neg">High volatility</td></tr>
+        <tr><td class="lbl">S&P 500 Futures</td><td>6,765</td><td class="neg">▼ −1.78% pre-mkt</td><td class="neg">Selling resumes</td></tr>
+        <tr><td class="lbl">Dow Futures</td><td>48,064</td><td class="neg">▼ −1.80% pre-mkt</td><td class="neg">881 pts down</td></tr>
+        <tr><td class="lbl">Nasdaq Futures</td><td>24,485</td><td class="neg">▼ −2.16% pre-mkt</td><td class="neg">Tech selling</td></tr>
+        <tr><td class="lbl">VIX (Fear Index)</td><td>26.21</td><td class="neg">▲ +22.38%</td><td class="neg">Fear re-entering</td></tr>
+        <tr><td class="lbl">Gold</td><td>$5,158</td><td class="neg">▼ −2.88%</td><td class="wrn">Profit-taking</td></tr>
+        <tr><td class="lbl">Brent 52-wk High</td><td>$85.12</td><td class="wrn">Today's high: $84.47</td><td class="neg">Near ceiling</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- SIDEBAR -->
+<div class="side">
+
+  <div class="card">
+    <div class="c-head">Threat Zones · Day 6</div>
+    <div class="c-body">
+      <div class="t-meter">
+        <div class="t-row"><div class="t-lbl">Iran</div><div class="t-bar"><div class="t-fill f-dark" style="width:99%"></div></div><div class="t-pct">99%</div></div>
+        <div class="t-row"><div class="t-lbl">Lebanon</div><div class="t-bar"><div class="t-fill f-dark" style="width:94%"></div></div><div class="t-pct">94%</div></div>
+        <div class="t-row"><div class="t-lbl">Hormuz</div><div class="t-bar"><div class="t-fill f-red" style="width:88%"></div></div><div class="t-pct">88%</div></div>
+        <div class="t-row"><div class="t-lbl">Qatar / Doha</div><div class="t-bar"><div class="t-fill f-red" style="width:82%"></div></div><div class="t-pct">82%</div></div>
+        <div class="t-row"><div class="t-lbl">Bahrain</div><div class="t-bar"><div class="t-fill f-red" style="width:78%"></div></div><div class="t-pct">78%</div></div>
+        <div class="t-row"><div class="t-lbl">Kuwait</div><div class="t-bar"><div class="t-fill f-amb" style="width:70%"></div></div><div class="t-pct">70%</div></div>
+        <div class="t-row"><div class="t-lbl">Turkey / NATO</div><div class="t-bar"><div class="t-fill f-amb" style="width:55%"></div></div><div class="t-pct">55%</div></div>
+        <div class="t-row"><div class="t-lbl">Europe</div><div class="t-bar"><div class="t-fill f-amb" style="width:38%"></div></div><div class="t-pct">38%</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUCCESSION WATCH -->
+  <div class="card">
+    <div class="c-head r">Iran · Succession Watch</div>
+    <div class="c-body">
+      <div class="succ-box">
+        <div class="succ-label">Leading Contender</div>
+        <div class="succ-name">Mojtaba Khamenei</div>
+        <div class="succ-desc">Son of the late Supreme Leader. Has spent years cultivating influence within the establishment and forging close ties with the IRGC. Emerged as the front-runner as the Assembly of Experts — now partially destroyed by Israeli strikes — attempts to convene.</div>
+      </div>
+      <p>Trump said he <strong>must be involved in choosing Iran's next supreme leader</strong> — and that Mojtaba Khamenei would be <span style="color:var(--red);font-weight:600">"unacceptable."</span> The US striking the Assembly of Experts mid-session on Day 4 was the operation to prevent exactly this kind of orderly succession. The contradiction — destroying the succession process and then demanding a say in its outcome — is the defining paradox of this war's end-game.</p>
+    </div>
+  </div>
+
+  <!-- EUROPE STATUS -->
+  <div class="card">
+    <div class="c-head a">Europe · Force Status</div>
+    <div class="c-body">
+      <div class="europe-grid">
+        <div class="eu-row"><div class="eu-country">🇫🇷 France</div><div class="eu-status eu-in">Aircraft carrier deployed</div></div>
+        <div class="eu-row"><div class="eu-country">🇬🇧 United Kingdom</div><div class="eu-status eu-in">US bases authorised</div></div>
+        <div class="eu-row"><div class="eu-country">🇩🇪 Germany</div><div class="eu-status eu-partial">Political support only</div></div>
+        <div class="eu-row"><div class="eu-country">🇨🇦 Canada</div><div class="eu-status eu-partial">"Won't rule out" joining</div></div>
+        <div class="eu-row"><div class="eu-country">🇹🇷 Turkey (NATO)</div><div class="eu-status eu-in">Intercepted Iranian missile</div></div>
+        <div class="eu-row"><div class="eu-country">🇪🇸 Spain</div><div class="eu-status eu-out">Bases denied · Trump angry</div></div>
+        <div class="eu-row"><div class="eu-country">🇺🇦 Ukraine</div><div class="eu-status eu-watch">Offering drone experts to Gulf</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAMAICA MODEL -->
+  <div class="card">
+    <div class="c-head r">🇯🇲 Jamaica · Model Update</div>
+    <div class="c-body">
+      <p>Brent touched <strong>$84.47 today</strong> — within $0.65 of the 52-week high of $85.12. Our model's $100 threshold where GDP damage exceeds 2% annually is now plausible within 2 weeks if Gulf refinery and tanker strikes escalate.</p>
+      <ul class="blist">
+        <li><strong>Bahrain refinery hit</strong> → Gulf refining capacity tightens → premium on refined products → Jamaica import costs rising</li>
+        <li><strong>Qatar Doha targeted</strong> → LNG supply remains disrupted → European gas prices stay elevated → global freight costs stay high</li>
+        <li><strong>Oil tanker at Iraqi port struck</strong> → shipping insurance surcharges climbing → Caribbean import freight markups accelerating</li>
+        <li><strong>VIX at 26+</strong> → US consumer confidence taking a hit → tourism forward bookings for Jamaica softening</li>
+      </ul>
+      <p style="font-size:.78rem;color:var(--dim);font-style:italic;margin-top:.6rem">Cumulative GDP damage: ~$127M annualized already baked in at current Brent levels. $100 oil = $469M annual damage. We are 6 days into a conflict with no exit date.</p>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+<!-- VERDICT -->
+<div class="verdict">
+  <div class="page">
+    <div class="v-tag">Morning Verdict · March 5, 2026 · Day 6</div>
+    <div class="v-hed">THE WAR JUST GOT BIGGER. AGAIN.</div>
+    <div class="v-body">
+      <p>Six days. The war has now crossed every containment boundary that was drawn. Iran is hitting Doha with ballistic missiles. A refinery in Bahrain is on fire. NATO has intercepted an Iranian munition over a member state for the first time in history. France's aircraft carrier is moving. Canada won't rule out joining. Ukraine is offering its drone experts to Gulf states. This is no longer a Middle East story. <span class="hot">This is a global story with a Middle East epicentre.</span></p>
+      <p>The succession crisis is the most dangerous variable nobody is talking about. Iran's Assembly of Experts was bombed mid-session on Day 4. Mojtaba Khamenei — the late leader's son — is emerging as the front-runner. Trump is already saying his selection would be "unacceptable" and insisting the US must have a role in choosing Iran's next leader. That is an extraordinary claim that has no historical precedent in international relations. It tells you the US sees this not as a military operation with an end, but as a regime-replacement project. <strong>Regime replacement in a country with Iran's geography, its proxies, its nuclear-adjacent infrastructure, and its IRGC units spread across four countries is not a 4-week operation.</strong> It is a generational one.</p>
+      <p>For the Global South — for Jamaica, for the Caribbean, for every small economy watching from outside the blast radius — the pattern today is the one that matters most. <span class="wrn">Iran is targeting economic infrastructure, not just military targets.</span> A refinery in Bahrain. A tanker in Iraqi waters. Storage tanks in Oman. This is a deliberate campaign to make energy exports from the Gulf unreliable, expensive, and dangerous. Every barrel of Jamaican import-dependent fuel, every containerised food shipment, every airline fuel uplift at Kingston — all of it is priced against a market that is now being systematically attacked. The war didn't come to the Caribbean. But its bill did.</p>
+    </div>
+  </div>
+</div>
+
+<footer class="footer page">
+  <span>Signal Brief · Meridian · Global Crisis Intelligence · Day 6 · March 5, 2026</span>
+  <span>Sources: Al Jazeera · CNN · CBS News · NBC · Wikipedia 2026 Iran Conflict · Yahoo Finance · Investing.com</span>
+</footer>
+
+</body>
+</html>
