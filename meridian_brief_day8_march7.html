@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERIDIAN — Day 8 Brief · March 7, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#0e1208;--f2:#111709;--f3:#16200d;--f4:#1b2711;--f5:#202d14;
+  --gold:#c9a84c;--gold-l:#e0c46e;--gold-d:#7a6020;--gold-f:rgba(201,168,76,.07);
+  --mg:#4a7c3f;--mg-l:#6aaa5e;--mg-d:rgba(74,124,63,.12);
+  --red:#c84c3f;--red-l:#e07060;--red-f:rgba(200,76,63,.08);
+  --amber:#d4890a;--amb-l:#f0a820;
+  --rule:rgba(201,168,76,.1);--rule2:rgba(201,168,76,.05);
+  --text:#9aaa90;--dim:#4f5d47;--white:#eef2e6;
+  --serif:'Cormorant Garamond',serif;
+  --sans:'Outfit',sans-serif;
+  --mono:'DM Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--forest);color:var(--text);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(201,168,76,.016) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.016) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+
+/* ─── MASTHEAD ─── */
+.masthead{position:relative;z-index:1;border-bottom:1px solid var(--rule);padding:2rem 2.5rem 1.5rem}
+.mh-inner{max-width:1280px;margin:0 auto}
+.mh-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.2rem;flex-wrap:wrap;gap:1rem}
+.mh-brand{font-family:var(--serif);font-size:3.5rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;line-height:1}
+.mh-brand em{font-style:italic;font-weight:400;font-size:2.5rem;color:var(--gold-l)}
+.mh-tag{font-family:var(--serif);font-size:.9rem;font-style:italic;color:var(--dim);margin-top:.3rem}
+.mh-dateline{text-align:right}
+.mhd-day{font-family:var(--serif);font-size:2.5rem;font-weight:700;color:var(--white);line-height:1}
+.mhd-date{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-top:.2rem}
+.mhd-live{display:flex;align-items:center;gap:.4rem;justify-content:flex-end;margin-top:.4rem}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--red-l);animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.2;transform:scale(.7)}}
+.mhd-live-txt{font-family:var(--mono);font-size:.55rem;letter-spacing:.16em;color:var(--red-l);text-transform:uppercase}
+.mh-rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold-d),transparent);margin:.6rem 0}
+.mh-meta{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;justify-content:space-between}
+.mhm-left{display:flex;gap:1rem;flex-wrap:wrap}
+.mhm-pill{font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;padding:.22rem .65rem;border-radius:2px;border:1px solid}
+.mp-red{color:var(--red-l);border-color:rgba(200,76,63,.25);background:var(--red-f)}
+.mp-gold{color:var(--gold);border-color:var(--gold-d);background:var(--gold-f)}
+.mp-green{color:var(--mg-l);border-color:rgba(74,124,63,.25);background:var(--mg-d)}
+.mhm-price{font-family:var(--mono);font-size:.9rem;font-weight:700;color:var(--amb-l)}
+.mhm-price span{font-size:.55rem;letter-spacing:.1em;color:var(--dim);margin-right:.3rem;text-transform:uppercase}
+
+/* ─── TICKER ─── */
+.ticker{background:var(--f2);border-bottom:1px solid var(--rule);overflow:hidden;white-space:nowrap;position:relative;z-index:1;height:32px;display:flex;align-items:center}
+.ticker-inner{display:inline-flex;animation:tick 40s linear infinite;gap:3rem;padding:0 2rem}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tick-item{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.ti-label{color:var(--dim)}
+.ti-val{color:var(--white);font-weight:700}
+.ti-up{color:var(--red-l)}.ti-down{color:var(--mg-l)}.ti-neutral{color:var(--gold)}
+.tick-sep{color:var(--gold-d);font-size:.9rem}
+
+/* ─── LAYOUT ─── */
+.page{max-width:1280px;margin:0 auto;padding:2.5rem 2.5rem 5rem;position:relative;z-index:1}
+.two-col{display:grid;grid-template-columns:1fr 340px;gap:2.5rem;align-items:start}
+.main-col{display:flex;flex-direction:column;gap:2.5rem}
+.side-col{display:flex;flex-direction:column;gap:1.5rem;position:sticky;top:1rem}
+
+/* ─── SECTION LABELS ─── */
+.sec-eye{display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem}
+.se-line{width:20px;height:1px;background:var(--gold-d)}
+.se-txt{font-family:var(--mono);font-size:.55rem;letter-spacing:.22em;color:var(--gold);text-transform:uppercase}
+.sec-rule{height:1px;background:var(--rule);margin:1.5rem 0}
+
+/* ─── HEADLINE STORY ─── */
+.headline-story{background:var(--f3);border:1px solid var(--rule);padding:2.5rem;position:relative;overflow:hidden}
+.hs-decor{position:absolute;right:-1rem;top:-1rem;font-family:var(--serif);font-size:8rem;font-weight:700;color:rgba(201,168,76,.03);line-height:1;pointer-events:none;user-select:none}
+.hs-kicker{font-family:var(--mono);font-size:.55rem;letter-spacing:.2em;color:var(--red-l);text-transform:uppercase;margin-bottom:.7rem;display:flex;align-items:center;gap:.6rem}
+.hs-kicker::before{content:'';width:16px;height:1px;background:var(--red-l)}
+.hs-hed{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;color:var(--white);line-height:1.05;letter-spacing:-.01em;margin-bottom:.8rem}
+.hs-hed .gold{color:var(--gold);font-style:italic}
+.hs-hed .red{color:var(--red-l)}
+.hs-deck{font-size:.9rem;color:var(--text);line-height:1.85;margin-bottom:1.5rem;font-weight:300;max-width:680px}
+.hs-deck strong{color:var(--white)}
+.hs-deck .hot{color:var(--red-l);font-weight:600}
+.hs-deck .warn{color:var(--amb-l);font-weight:600}
+.hs-deck .ok{color:var(--mg-l);font-weight:600}
+
+/* SIGNAL CARDS */
+.signal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border-top:1px solid var(--rule)}
+.sig-card{background:var(--f4);padding:1rem 1.2rem}
+.sc-val{font-family:var(--serif);font-size:1.5rem;font-weight:700;line-height:1;margin-bottom:.2rem}
+.scv-red{color:var(--red-l)}.scv-gold{color:var(--gold-l)}.scv-white{color:var(--white)}.scv-green{color:var(--mg-l)}.scv-amb{color:var(--amb-l)}
+.sc-lbl{font-family:var(--mono);font-size:.5rem;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;line-height:1.4}
+
+/* ─── STORY BLOCKS ─── */
+.story-block{border-left:2px solid var(--rule);padding-left:1.5rem;margin-bottom:1.5rem}
+.story-block:last-child{margin-bottom:0}
+.sb-flag{font-family:var(--mono);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem}
+.sbf-red{color:var(--red-l)}.sbf-gold{color:var(--gold)}.sbf-green{color:var(--mg-l)}.sbf-amb{color:var(--amb-l)}
+.sb-hed{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--white);line-height:1.15;margin-bottom:.4rem}
+.sb-body{font-size:.82rem;color:var(--text);line-height:1.8}
+.sb-body strong{color:var(--white)}
+.sb-body .hot{color:var(--red-l);font-weight:600}
+.sb-body .warn{color:var(--amb-l);font-weight:600}
+.sb-body .ok{color:var(--mg-l);font-weight:600}
+
+/* BLOCK HEADER */
+.block-head{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.bh-title{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--white)}
+.bh-line{flex:1;height:1px;background:var(--rule)}
+.bh-tag{font-family:var(--mono);font-size:.52rem;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;white-space:nowrap}
+
+/* SECTION PANEL */
+.panel{background:var(--f3);border:1px solid var(--rule);padding:2rem}
+.panel + .panel{margin-top:.5rem}
+
+/* ─── REGION SECTION ─── */
+.region-flag{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem}
+.rf-icon{font-size:1.2rem}
+.rf-label{font-family:var(--mono);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.country-row{display:flex;align-items:flex-start;gap:.8rem;padding:.8rem 0;border-bottom:1px solid var(--rule2)}
+.country-row:last-child{border-bottom:none;padding-bottom:0}
+.cr-flag{font-size:1.1rem;flex-shrink:0;margin-top:.15rem}
+.cr-body{flex:1}
+.cr-name{font-family:var(--sans);font-size:.82rem;font-weight:600;color:var(--white);margin-bottom:.2rem}
+.cr-txt{font-size:.77rem;color:var(--text);line-height:1.7}
+.cr-txt strong{color:var(--white)}
+.cr-txt .hot{color:var(--red-l);font-weight:600}
+.cr-txt .warn{color:var(--amb-l);font-weight:600}
+.cr-txt .ok{color:var(--mg-l);font-weight:600}
+.cr-badge{font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .4rem;border-radius:2px;border:1px solid;white-space:nowrap;flex-shrink:0;margin-top:.15rem}
+.crb-red{color:var(--red-l);border-color:rgba(200,76,63,.25);background:var(--red-f)}
+.crb-amb{color:var(--amb-l);border-color:rgba(212,137,10,.2);background:rgba(212,137,10,.06)}
+.crb-gold{color:var(--gold-l);border-color:var(--gold-d);background:var(--gold-f)}
+.crb-green{color:var(--mg-l);border-color:rgba(74,124,63,.25);background:var(--mg-d)}
+
+/* ─── SIDEBAR ─── */
+.side-card{background:var(--f3);border:1px solid var(--rule)}
+.sc-head{padding:.8rem 1.2rem;border-bottom:1px solid var(--rule);font-family:var(--mono);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.5rem}
+.sc-head::before{content:'';width:8px;height:8px;background:var(--gold-d);border-radius:50%}
+.sc-body{padding:1rem 1.2rem}
+
+/* MARKET STRIP */
+.mkt-row{display:flex;justify-content:space-between;align-items:center;padding:.45rem 0;border-bottom:1px solid var(--rule2);font-size:.78rem}
+.mkt-row:last-child{border-bottom:none;padding-bottom:0}
+.mr-asset{color:var(--text);font-weight:500}
+.mr-val{font-family:var(--mono);font-weight:700;font-size:.75rem}
+.mv-red{color:var(--red-l)}.mv-green{color:var(--mg-l)}.mv-gold{color:var(--gold-l)}.mv-amb{color:var(--amb-l)}
+
+/* ESCALATION METER */
+.esc-meter{padding:1rem 1.2rem}
+.em-label{font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;margin-bottom:.6rem}
+.em-track{height:10px;background:rgba(255,255,255,.04);overflow:hidden;border-radius:1px}
+.em-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--amber),var(--red-l));border-radius:1px;animation:fill 2s ease both}
+@keyframes fill{from{width:0}}
+.em-pct{font-family:var(--serif);font-size:1.8rem;font-weight:700;color:var(--red-l);line-height:1;margin-top:.6rem}
+.em-caption{font-size:.72rem;color:var(--dim);margin-top:.2rem;line-height:1.5}
+
+/* TIMELINE */
+.tl-row{display:flex;gap:.8rem;align-items:flex-start;padding:.5rem 0;border-bottom:1px solid var(--rule2);font-size:.77rem}
+.tl-row:last-child{border-bottom:none;padding-bottom:0}
+.tl-time{font-family:var(--mono);font-size:.58rem;color:var(--dim);white-space:nowrap;padding-top:.1rem;min-width:40px}
+.tl-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:.4rem}
+.td-red{background:var(--red-l)}.td-gold{background:var(--gold)}.td-amb{background:var(--amb-l)}.td-green{background:var(--mg-l)}
+.tl-txt{color:var(--text);line-height:1.6}
+.tl-txt strong{color:var(--white)}
+
+/* QUOTE BLOCK */
+.quote-block{background:var(--f4);border-left:3px solid var(--gold);padding:1rem 1.2rem;margin:.8rem 0}
+.qb-text{font-family:var(--serif);font-size:.95rem;font-style:italic;color:var(--white);line-height:1.7;margin-bottom:.4rem}
+.qb-source{font-family:var(--mono);font-size:.52rem;letter-spacing:.12em;color:var(--dim);text-transform:uppercase}
+
+/* WHAT TO WATCH */
+.watch-list{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.watch-item{display:flex;align-items:flex-start;gap:.6rem;font-size:.78rem;color:var(--text);line-height:1.6}
+.wi-num{font-family:var(--mono);font-size:.55rem;color:var(--gold);font-weight:700;flex-shrink:0;padding-top:.15rem}
+
+/* VERDICT */
+.verdict{background:var(--f2);border:1px solid var(--rule);border-left:3px solid var(--red-l);padding:1.8rem;position:relative;overflow:hidden}
+.vd-decor{position:absolute;right:-2rem;top:-2rem;font-size:7rem;opacity:.03;pointer-events:none;font-family:var(--serif);font-weight:700;color:var(--white);line-height:1;user-select:none}
+.vd-label{font-family:var(--mono);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red-l);margin-bottom:.6rem}
+.vd-hed{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--white);line-height:1.15;margin-bottom:.7rem}
+.vd-body{font-size:.82rem;color:var(--text);line-height:1.8}
+.vd-body strong{color:var(--white)}
+.vd-body .hot{color:var(--red-l);font-weight:600}
+.vd-body .ok{color:var(--mg-l);font-weight:600}
+.vd-body .warn{color:var(--amb-l);font-weight:600}
+
+/* FOOTER */
+footer{border-top:1px solid var(--rule);background:var(--f2);padding:1.8rem 2.5rem;position:relative;z-index:1}
+.ft-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.ft-logo{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.ft-tag{font-family:var(--serif);font-size:.78rem;font-style:italic;color:var(--dim)}
+.ft-meta{font-family:var(--mono);font-size:.5rem;letter-spacing:.08em;color:var(--dim);text-align:right;line-height:1.9;text-transform:uppercase}
+
+/* ─── BIAS NOTE ─── */
+.bias-note{background:rgba(58,90,201,.05);border:1px solid rgba(58,90,201,.15);border-left:3px solid #5a9fdf;padding:1.2rem 1.5rem;margin-bottom:2rem}
+.bn-label{font-family:var(--mono);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:#5a9fdf;margin-bottom:.5rem}
+.bn-body{font-size:.8rem;color:var(--text);line-height:1.75}
+.bn-body strong{color:var(--white)}
+
+@media(max-width:980px){.two-col{grid-template-columns:1fr}.side-col{position:static}}
+@media(max-width:620px){.signal-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="mh-inner">
+    <div class="mh-top">
+      <div>
+        <div class="mh-brand">Meridian <em>Brief</em></div>
+        <div class="mh-tag">Intelligence from the South. For the South.</div>
+      </div>
+      <div class="mh-dateline">
+        <div class="mhd-day">Day 8</div>
+        <div class="mhd-date">Saturday, March 7, 2026 · Week Two Opens</div>
+        <div class="mhd-live"><div class="live-dot"></div><div class="mhd-live-txt">Active conflict · Ongoing</div></div>
+      </div>
+    </div>
+    <div class="mh-rule"></div>
+    <div class="mh-meta">
+      <div class="mhm-left">
+        <span class="mhm-pill mp-red">Operation Epic Fury · Day 8</span>
+        <span class="mhm-pill mp-gold">Hormuz Near-Closed</span>
+        <span class="mhm-pill mp-gold">UK Formally Joins</span>
+        <span class="mhm-pill mp-red">Dubai Airport Hit</span>
+        <span class="mhm-pill mp-gold">Iran: Will Not Surrender</span>
+      </div>
+      <div><span class="mhm-price"><span>Brent</span>~$90</span>&nbsp;&nbsp;<span class="mhm-price"><span>WTI</span>~$88</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <div class="tick-item"><span class="ti-label">Brent</span><span class="ti-val ti-up">~$90</span></div>
+    <span class="tick-sep">·</span>
+    <div class="tick-item"><span class="ti-label">WTI</span><span class="ti-val ti-up">~$88</span></div>
+    <span class="tick-sep">·</span>
+    <div class="tick-item"><span class="ti-label">Week 1 Gain</span><span class="ti-val ti-up">WTI +35.6% · Brent +28%</span></div>
+    <span class="tick-sep">·</span>
+    <div class="tick-item"><span class="ti-label">Strikes on Iran</span><span class="ti-val">3,000+ targets hit</span></div>
+    <span class="tick-sep">·</span>
+    <div class="tick-item"><span class="ti-label">Iran death toll</span><span class="ti-val ti-up">1,332+ confirmed</span></div>
+    <span class="tick-sep">·</span>
+    <div class="tick-item"><span class="ti-label">Hormuz</span><span class="ti-val ti-up">Near-closed · 150+ tankers stranded</span></div>
+    <span class="tick-sep">·</span>
+    <div class="tick-item"><span class="ti-label">Qatar Energy Minister</span><span class="ti-val ti-up">Gulf exports could halt "within weeks"</span></div>
+    <span class="tick-sep">·</span>
+    <div class="tick-item"><span class="ti-label">Dubai Airport</span><span class="ti-val ti-up">Hit by Iranian drone today</span></div>
+    <span class="tick-sep">·</span>
+    <div class="tick-item"><span class="ti-label">UK RAF Fairford</span><span class="ti-val">B-1 Lancer deployed</span></div>
+    <span class="tick-sep">·</span>
+    <div class="tick-item"><span class="ti-label">Pakistan fuel prices</span><span class="ti-val ti-up">+20% as of today</span></div>
+    <span class="tick-sep">·</span>
+    <div class="tick-item"><span class="ti-label">JPMorgan warns</span><span class="ti-val ti-up">6M bpd cuts possible by next week</span></div>
+    <span class="tick-sep">·</span>
+    <!-- duplicate for seamless loop -->
+    <div class="tick-item"><span class="ti-label">Brent</span><span class="ti-val ti-up">~$90</span></div>
+    <span class="tick-sep">·</span>
+    <div class="tick-item"><span class="ti-label">WTI</span><span class="ti-val ti-up">~$88</span></div>
+    <span class="tick-sep">·</span>
+    <div class="tick-item"><span class="ti-label">Week 1 Gain</span><span class="ti-val ti-up">WTI +35.6% · Brent +28%</span></div>
+    <span class="tick-sep">·</span>
+    <div class="tick-item"><span class="ti-label">Strikes on Iran</span><span class="ti-val">3,000+ targets hit</span></div>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+
+  <!-- BIAS NOTE -->
+  <div class="bias-note">
+    <div class="bn-label">📌 Editorial Note · Meridian Format v2.0</div>
+    <div class="bn-body">From Day 8 forward, Meridian Brief applies the <strong>Global South regional framework</strong> across all coverage. No single country receives a dedicated section — all nations appear within their regional context. The Caribbean is one region among several. This brief covers the Dominican Republic, Trinidad, Guyana, Barbados, and Jamaica on equal editorial footing alongside West Africa, South Asia, and Southeast Asia. This is how a publication that serves the Global South should read.</div>
+  </div>
+
+  <div class="two-col">
+  <div class="main-col">
+
+    <!-- HEADLINE -->
+    <div class="headline-story">
+      <div class="hs-decor">8</div>
+      <div class="hs-kicker">Week Two Opens · The War Widens</div>
+      <h1 class="hs-hed">Iran Says No Surrender.<br><span class="red">Dubai Airport Burns.</span><br>UK Enters the War.</h1>
+      <p class="hs-deck">The second week of Operation Epic Fury opens with three signals that define where this is going. <strong>Iran's President Pezeshkian declared unconditional surrender "a dream they must take to the grave"</strong> — the clearest public statement yet that Tehran intends to fight indefinitely. Hours after announcing it would stop striking neighbouring states, <span class="hot">Iranian drones hit Dubai International Airport</span>, the world's busiest by international passenger traffic. And Britain formally joined the conflict — a B-1 Lancer bomber landed at RAF Fairford, authorised for what Downing Street called "defensive US action" against Iranian missile sites. The war is no longer a US-Israel bilateral. <strong>It is becoming a coalition.</strong></p>
+      <div class="signal-grid">
+        <div class="sig-card"><div class="sc-val scv-red">3,000+</div><div class="sc-lbl">US-Israeli targets struck<br>inside Iran total</div></div>
+        <div class="sig-card"><div class="sc-val scv-red">43</div><div class="sc-lbl">Iranian warships destroyed<br>(US Central Command)</div></div>
+        <div class="sig-card"><div class="sc-val scv-amb">$891M</div><div class="sc-lbl">Cost per day<br>Operation Epic Fury (CSIS)</div></div>
+        <div class="sig-card"><div class="sc-val scv-red">1,332+</div><div class="sc-lbl">Confirmed dead in Iran<br>181 are children (UNICEF)</div></div>
+        <div class="sig-card"><div class="sc-val scv-gold">6,668+</div><div class="sc-lbl">Civilian units struck<br>incl. schools, hospitals</div></div>
+        <div class="sig-card"><div class="sc-val scv-white">Week 2</div><div class="sc-lbl">No ceasefire mechanism.<br>No talks. No path visible.</div></div>
+      </div>
+    </div>
+
+    <!-- TODAY'S STORIES -->
+    <div class="panel">
+      <div class="block-head">
+        <div class="bh-title">Today's Intelligence</div>
+        <div class="bh-line"></div>
+        <div class="bh-tag">Day 8 · Key Developments</div>
+      </div>
+
+      <div class="story-block" style="border-left-color:var(--red-l)">
+        <div class="sb-flag sbf-red">● Break · Dubai Airport</div>
+        <div class="sb-hed">The Ceasefire Lasted Hours</div>
+        <div class="sb-body">Iran's president announced this morning it would stop striking neighbouring states unless attacks originated from there — framed as a de-escalation toward Gulf nations who had been caught in the crossfire. Within hours, <span class="hot">Iranian drones struck Dubai International Airport</span>. The world's busiest international aviation hub, handling 90M+ passengers per year, took a direct hit. <strong>The gap between Iran's diplomatic statements and its operational actions is now confirmed.</strong> Gulf state governments — who had begun cautiously accepting Tehran's gesture — now face a politically impossible position. Trump immediately declared Iran had "surrendered to its neighbours" based on the statement — a framing Iran's IRGC publicly rejected.</div>
+      </div>
+
+      <div class="story-block" style="border-left-color:var(--amb-l)">
+        <div class="sb-flag sbf-amb">● Escalation · United Kingdom</div>
+        <div class="sb-hed">Britain's Entry Changes the Coalition Calculus</div>
+        <div class="sb-body">A US B-1 Lancer bomber landed at RAF Fairford in Gloucestershire on Friday evening. Prime Minister Keir Starmer granted permission for what Downing Street framed as "defensive US action" against Iranian missile sites — under significant political pressure from Trump and domestic opposition leader Kemi Badenoch, who had criticised the delay. <strong>Britain is now operationally in the war.</strong> France, Spain, and Italy have provided various levels of defensive military support to Gulf allies. Iran's deputy foreign minister has placed all of them on notice: <span class="warn">European nations participating "will become legitimate targets."</span> Cyprus specifically: Turkey is now considering deploying F-16s for protection of the island. The war's geographic footprint is expanding north and west.</div>
+      </div>
+
+      <div class="story-block" style="border-left-color:var(--gold-d)">
+        <div class="sb-flag sbf-gold">● Trump · Expansion Signal</div>
+        <div class="sb-hed">"Areas Not Previously Considered for Targeting"</div>
+        <div class="sb-body">Trump posted on Truth Social overnight: <em>"Under serious consideration for complete destruction and certain death, because of Iran's bad behavior, are areas and groups of people that were not considered for targeting up until this moment in time."</em> <strong>He did not specify what those areas or groups are.</strong> Intelligence analysts are reading this in three possible directions: expanded strikes against civilian infrastructure inside Iran, strikes on IRGC-aligned forces in Iraq or Syria, or escalation against Iranian proxies in Yemen. Iran's foreign minister simultaneously rejected any ceasefire or new talks with the Trump administration, and said Tehran is <span class="warn">prepared for a US ground invasion.</span> Ali Larijani added that Iranian forces are "waiting" for that scenario and would capture and kill "thousands of US troops."</div>
+      </div>
+
+      <div class="story-block" style="border-left-color:var(--red-l)">
+        <div class="sb-flag sbf-red">● Energy · Supply Shock</div>
+        <div class="sb-hed">JPMorgan: Six Million Barrels Per Day Could Vanish Next Week</div>
+        <div class="sb-body">JPMorgan's head of global commodities research warned clients Friday that production cuts could <span class="hot">approach 6 million barrels per day by end of next week</span> if the Strait of Hormuz remains closed. Iraq has already shut 1.5M bpd. Kuwait is cutting after storage filled. UAE is expected to show supply constraints next week. Qatar's energy minister told the Financial Times Gulf exports could halt entirely "within weeks" if the war continues — and that oil could reach $150/barrel, <strong>"bring down the economies of the world."</strong> The US created a $20B insurance program for oil tankers in the Gulf — it did nothing to calm markets. Morgan Stanley revised its 2026 Brent forecast upward, but the market has already blown past their revised numbers. Brent is currently near $90. The next threshold traders are watching is $100.</div>
+      </div>
+
+      <div class="story-block" style="border-left-color:var(--dim)">
+        <div class="sb-flag" style="color:var(--text);font-family:var(--mono);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem">● Intelligence · Russia</div>
+        <div class="sb-hed">Russia: Not a Bystander</div>
+        <div class="sb-body">Russia confirmed the war has created "significant demand" for its energy exports — framing the conflict as a commercial windfall. This follows earlier confirmation that Russian intelligence services are feeding Iran real-time data on US warship and aircraft locations. Putin spoke with Iranian President Pezeshkian, expressing condolences and receiving a full operational briefing. <strong>This is not neutrality.</strong> India received a 30-day waiver from US sanctions to continue Russian oil imports — signalling Washington is managing India's alignment carefully, aware that New Delhi refusing Russian crude would cause its own supply crisis. The India waiver is a sign the US knows the oil shock is already severe enough to require exemptions for friendly importers.</div>
+      </div>
+    </div>
+
+    <!-- REGIONAL IMPACT: THE SOUTH -->
+    <div class="panel">
+      <div class="block-head">
+        <div class="bh-title">The South Carries the Cost</div>
+        <div class="bh-line"></div>
+        <div class="bh-tag">Global South · Regional Impact Update</div>
+      </div>
+      <p style="font-size:.82rem;color:var(--dim);line-height:1.75;margin-bottom:1.5rem">Brent near $90. Hormuz near-closed. No ceasefire visible. This is how Day 8 reads across the regions that did not start this war and have no vote in how it ends.</p>
+
+      <!-- CARIBBEAN -->
+      <div class="region-flag">
+        <div class="rf-icon">🌊</div>
+        <div class="rf-label">Caribbean Region</div>
+      </div>
+
+      <div class="country-row">
+        <div class="cr-flag">🇹🇹</div>
+        <div class="cr-body">
+          <div class="cr-name">Trinidad & Tobago</div>
+          <div class="cr-txt"><span class="ok">The region's only net beneficiary at current prices.</span> LNG export revenues climbing. But Trinidad's refinery closure in 2018 means it still imports refined petroleum products — so domestic fuel prices are rising even as export revenue grows. The paradox: <strong>T&T profits from the crisis in US dollars and pays for it in TTD at the pump.</strong></div>
+        </div>
+        <span class="cr-badge crb-green">Net beneficiary</span>
+      </div>
+
+      <div class="country-row">
+        <div class="cr-flag">🇬🇾</div>
+        <div class="cr-body">
+          <div class="cr-name">Guyana</div>
+          <div class="cr-txt">ExxonMobil's Stabroek block producing ~700K bpd. <span class="ok">Every dollar on Brent adds directly to Guyana's Natural Resource Fund.</span> The country that was the hemisphere's poorest a decade ago is now its fastest-growing economy — and this crisis is compounding that. Watching for: whether high prices accelerate investment in new offshore blocks or create Dutch disease pressures on non-oil sectors.</div>
+        </div>
+        <span class="cr-badge crb-green">Major beneficiary</span>
+      </div>
+
+      <div class="country-row">
+        <div class="cr-flag">🇩🇴</div>
+        <div class="cr-body">
+          <div class="cr-name">Dominican Republic</div>
+          <div class="cr-txt">60%+ of energy runs on hydrocarbons. 41% electricity system losses — meaning every oil price increase hits harder and wastes more. <span class="warn">Tourism (significant GDP share) and manufacturing free zones both exposed to a stagflating US economy.</span> The DR had strong growth forecasts for 2026 — those numbers are now under pressure from both energy costs and softening US demand.</div>
+        </div>
+        <span class="cr-badge crb-amb">High exposure</span>
+      </div>
+
+      <div class="country-row">
+        <div class="cr-flag">🇯🇲</div>
+        <div class="cr-body">
+          <div class="cr-name">Jamaica</div>
+          <div class="cr-txt">100% oil import dependent. Tourism (~50% GDP) draws 50% of arrivals from a US economy that just printed −92,000 jobs. Remittances (17.4% GDP) flow 65% from the same stagflating US. <strong>Electricity at $0.27/kWh pre-crisis — already 171% of world average.</strong> At $90 Brent, the annualised GDP damage estimate sits above $315M. The $100 threshold — which triggers JPS emergency surcharges — is $10 away. <span class="hot">No strategic petroleum reserve. No buffer.</span></div>
+        </div>
+        <span class="cr-badge crb-red">Critical exposure</span>
+      </div>
+
+      <div class="country-row">
+        <div class="cr-flag">🇧🇧</div>
+        <div class="cr-body">
+          <div class="cr-name">Barbados</div>
+          <div class="cr-txt">Post-IMF reform trajectory now colliding with an exogenous oil shock. <span class="warn">Tourism (~40% GDP) draws heavily from UK visitors — who are now in a country that formally entered the war today.</span> Any European economic slowdown from energy costs compresses UK discretionary travel directly. The IMF program gave Barbados fiscal tools — but those tools were not designed for $90+ oil.</div>
+        </div>
+        <span class="cr-badge crb-amb">High exposure</span>
+      </div>
+
+      <div class="country-row">
+        <div class="cr-flag">🇭🇹</div>
+        <div class="cr-body">
+          <div class="cr-name">Haiti</div>
+          <div class="cr-txt"><span class="hot">The most exposed nation in the hemisphere.</span> 77% electricity grid losses. Active gang control of Port-au-Prince. Fuel imported by truck from Dominican Republic. Any further DR supply disruption or price escalation hits hospitals, water pumps, and food supply simultaneously. Zero fiscal capacity to respond. This is not a macroeconomic story — it is a humanitarian one being buried under coverage of the war itself.</div>
+        </div>
+        <span class="cr-badge crb-red">Humanitarian risk</span>
+      </div>
+
+      <div class="sec-rule"></div>
+
+      <!-- WEST AFRICA -->
+      <div class="region-flag" style="margin-top:.5rem">
+        <div class="rf-icon">🌍</div>
+        <div class="rf-label">West Africa</div>
+      </div>
+
+      <div class="country-row">
+        <div class="cr-flag">🇳🇬</div>
+        <div class="cr-body">
+          <div class="cr-name">Nigeria</div>
+          <div class="cr-txt">Africa's largest oil exporter is seeing revenue climb — but the Dangote refinery is only partially online, meaning domestic consumers still pay world prices for refined fuel despite the country sitting on crude. <span class="warn">Domestic inflation and pump price pressure rising in parallel with export revenue.</span> The net position is positive for government budgets but painful for households. Watch: whether Abuja uses windfall to rebuild reserves or service political patronage.</div>
+        </div>
+        <span class="cr-badge crb-green">Net beneficiary (strained)</span>
+      </div>
+
+      <div class="country-row">
+        <div class="cr-flag">🇬🇭</div>
+        <div class="cr-body">
+          <div class="cr-name">Ghana</div>
+          <div class="cr-txt"><span class="hot">Among the most dangerous combinations on the map: active IMF debt restructuring arriving simultaneously with a sustained oil shock.</span> Ghana defaulted in 2022 and is still in recovery. It produces modest crude but imports refined products — so every dollar on Brent widens the fiscal hole the IMF is trying to close. Gold and cocoa exports provide partial offset, but the structural mismatch is severe. The IMF program's conditions become harder to meet as fuel subsidies balloon or pump prices rise.</div>
+        </div>
+        <span class="cr-badge crb-red">Critical — debt + oil shock</span>
+      </div>
+
+      <div class="country-row">
+        <div class="cr-flag">🇸🇳</div>
+        <div class="cr-body">
+          <div class="cr-name">Senegal</div>
+          <div class="cr-txt"><span class="ok">First oil production year (2024, Sangomar field) positions Senegal as one of the war's unlikely beneficiaries in West Africa.</span> BP/Kosmos LNG development becomes more financially attractive at $90 oil. Short-term: still importing refined fuel and feeling domestic price pressure. Medium-term: high prices accelerate offshore investment and improve revenue projections for a country that desperately needs fiscal space.</div>
+        </div>
+        <span class="cr-badge crb-green">Emerging beneficiary</span>
+      </div>
+
+      <div class="sec-rule"></div>
+
+      <!-- SOUTH ASIA -->
+      <div class="region-flag" style="margin-top:.5rem">
+        <div class="rf-icon">🌏</div>
+        <div class="rf-label">South Asia</div>
+      </div>
+
+      <div class="country-row">
+        <div class="cr-flag">🇮🇳</div>
+        <div class="cr-body">
+          <div class="cr-name">India</div>
+          <div class="cr-txt">The world's third-largest oil importer absorbs this at scale no other Global South country matches. <strong>$15–18B added to the import bill per $10 rise in Brent.</strong> India received a 30-day US waiver to continue Russian oil purchases — Washington's acknowledgement that cutting India's Russian supply would be too destabilising. But Hormuz carries 90% of oil flowing to Asian markets. India's non-Russian supply runs through it. <span class="warn">The waiver protects one channel. It does not protect the Strait.</span> Fertilizer import exposure is also severe — planting season has begun.</div>
+        </div>
+        <span class="cr-badge crb-amb">High — scale exposure</span>
+      </div>
+
+      <div class="country-row">
+        <div class="cr-flag">🇵🇰</div>
+        <div class="cr-body">
+          <div class="cr-name">Pakistan</div>
+          <div class="cr-txt"><span class="hot">Petrol price raised 20% today to PKR 321/litre.</span> Pakistan is on its third IMF program. Thin foreign reserves. 4M+ workers in Saudi Arabia, UAE, Qatar, and Kuwait — the exact countries under Iranian missile attack. The Gulf remittances sustaining Pakistan's FX position are now geographically inside the conflict zone. LNG prices spiking as Qatar's exports halt. <strong>Pakistan's electricity grid is LNG-dependent.</strong> This is a multi-vector shock hitting an economy with no cushion.</div>
+        </div>
+        <span class="cr-badge crb-red">Critical — multi-vector</span>
+      </div>
+
+      <div class="country-row">
+        <div class="cr-flag">🇱🇰</div>
+        <div class="cr-body">
+          <div class="cr-name">Sri Lanka</div>
+          <div class="cr-txt">Sri Lanka's 2022 economic collapse was triggered by a foreign exchange crisis that made fuel unaffordable — queues, blackouts, political revolution. The country is in fragile recovery under IMF supervision. <span class="hot">The conditions that caused 2022 are re-emerging: fuel import costs spiking, FX reserves thin, external account under pressure.</span> Additionally: the US Navy sank an Iranian frigate south of Sri Lanka last week. The Indian Ocean is now an active naval theatre adjacent to the island's coastline.</div>
+        </div>
+        <span class="cr-badge crb-red">2022 conditions returning</span>
+      </div>
+
+      <div class="sec-rule"></div>
+
+      <!-- SOUTHEAST ASIA -->
+      <div class="region-flag" style="margin-top:.5rem">
+        <div class="rf-icon">🌴</div>
+        <div class="rf-label">Southeast Asia</div>
+      </div>
+
+      <div class="country-row">
+        <div class="cr-flag">🇵🇭</div>
+        <div class="cr-body">
+          <div class="cr-name">Philippines</div>
+          <div class="cr-txt">The most underreported exposure in this brief. <strong>2M+ Overseas Filipino Workers in Saudi Arabia, UAE, Qatar, and Kuwait — remittances equal ~10% of Philippine GDP.</strong> Those workers are geographically inside the conflict zone. If Gulf economies contract and reduce employment, or if workers evacuate, the Philippines faces a simultaneous oil price shock and remittance collapse. The BPO sector provides partial buffer — but it cannot absorb a 10% GDP hit.</div>
+        </div>
+        <span class="cr-badge crb-red">Critical — OFW exposure</span>
+      </div>
+    </div>
+
+    <!-- VERDICT -->
+    <div class="verdict">
+      <div class="vd-decor">⚑</div>
+      <div class="vd-label">Meridian · Day 8 Assessment</div>
+      <div class="vd-hed">Week Two: The War Is Getting Larger, Not Smaller</div>
+      <div class="vd-body">
+        <p>Day 8 is the day the war structurally widened. Britain entered. Turkey is mobilising. Iran hit Dubai after pledging restraint. Trump is threatening targets "not previously considered." The de-escalation signals that briefly appeared yesterday have inverted. <strong>Every indicator points toward escalation continuing through at least Week Three.</strong></p>
+        <p>For the Global South, the oil number is the number. <span class="warn">$90 Brent is already above the critical thresholds for Pakistan, Sri Lanka, Haiti, Ghana, and the Eastern Caribbean.</span> JPMorgan's warning of 6M bpd in additional production cuts by end of next week — if accurate — would push Brent toward $110–$120 in a market that is already structurally short. At that level the Caribbean's economic damage models move from "serious" to "systemic." At $120, Jamaica's alumina refineries become unviable. Sri Lanka's 2022 replay becomes a question of timing, not probability. Ghana's IMF program stalls.</p>
+        <p><span class="ok">The only structural good news in this brief: Guyana and Trinidad are accumulating revenue windfalls that — if governed well — could fund a decade of infrastructure.</span> The opportunity for Caribbean energy solidarity exists in this moment. Whether regional governments move to exploit it is a political question. The intelligence is clear. <strong>The window is open. It will not stay open.</strong></p>
+      </div>
+    </div>
+
+  </div><!-- /main-col -->
+
+  <!-- SIDEBAR -->
+  <div class="side-col">
+
+    <!-- ESCALATION METER -->
+    <div class="side-card">
+      <div class="sc-head">Escalation Index</div>
+      <div class="esc-meter">
+        <div class="em-label">War Escalation Level · Day 8</div>
+        <div class="em-track"><div class="em-fill" style="width:82%"></div></div>
+        <div class="em-pct">82 / 100</div>
+        <div class="em-caption">UK enters. Dubai Airport hit. Trump threatens new targets. Iran refuses surrender. No ceasefire mechanism active. Coalition expanding on both sides.</div>
+      </div>
+    </div>
+
+    <!-- MARKETS -->
+    <div class="side-card">
+      <div class="sc-head">Markets · Day 8</div>
+      <div class="sc-body">
+        <div class="mkt-row"><span class="mr-asset">Brent Crude</span><span class="mr-val mv-red">~$90.00</span></div>
+        <div class="mkt-row"><span class="mr-asset">WTI Crude</span><span class="mr-val mv-red">~$88.00</span></div>
+        <div class="mkt-row"><span class="mr-asset">WTI Week 1 Gain</span><span class="mr-val mv-red">+35.63%</span></div>
+        <div class="mkt-row"><span class="mr-asset">Brent Week 1 Gain</span><span class="mr-val mv-red">+28%</span></div>
+        <div class="mkt-row"><span class="mr-asset">Gold</span><span class="mr-val mv-gold">~$5,180</span></div>
+        <div class="mkt-row"><span class="mr-asset">US VIX</span><span class="mr-val mv-red">29.49 ↑</span></div>
+        <div class="mkt-row"><span class="mr-asset">$100 Brent threshold</span><span class="mr-val mv-amb">~$10 away</span></div>
+        <div class="mkt-row"><span class="mr-asset">Pakistan fuel hike</span><span class="mr-val mv-red">+20% today</span></div>
+        <div class="mkt-row"><span class="mr-asset">JPMorgan prod. cut warning</span><span class="mr-val mv-red">6M bpd</span></div>
+      </div>
+    </div>
+
+    <!-- KEY QUOTES -->
+    <div class="side-card">
+      <div class="sc-head">Voices of Day 8</div>
+      <div class="sc-body" style="display:flex;flex-direction:column;gap:.8rem">
+        <div class="quote-block" style="margin:0">
+          <div class="qb-text">"That we surrender unconditionally is a dream they must take with themselves to the grave."</div>
+          <div class="qb-source">Masoud Pezeshkian · Iran President</div>
+        </div>
+        <div class="quote-block" style="margin:0;border-left-color:var(--red-l)">
+          <div class="qb-text">"Under serious consideration for complete destruction...areas and groups not previously considered for targeting."</div>
+          <div class="qb-source">Donald Trump · Truth Social · Mar 7</div>
+        </div>
+        <div class="quote-block" style="margin:0;border-left-color:var(--amb-l)">
+          <div class="qb-text">"GDP growth around the world will be impacted...there will be a chain reaction of factories that cannot supply."</div>
+          <div class="qb-source">Saad al-Kaabi · Qatar Energy Minister · FT</div>
+        </div>
+        <div class="quote-block" style="margin:0;border-left-color:var(--dim)">
+          <div class="qb-text">"Production cuts could approach 6 million bpd by end of next week if the Strait is not open."</div>
+          <div class="qb-source">Natasha Kaneva · JPMorgan Global Commodities</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TODAY'S TIMELINE -->
+    <div class="side-card">
+      <div class="sc-head">Day 8 Timeline</div>
+      <div class="sc-body">
+        <div class="tl-row"><span class="tl-time">Early AM</span><div class="tl-dot td-red"></div><div class="tl-txt"><strong>Tehran pounded</strong> — explosions across capital, Mehrabad Airport area hit</div></div>
+        <div class="tl-row"><span class="tl-time">Morning</span><div class="tl-dot td-gold"></div><div class="tl-txt"><strong>Pezeshkian</strong> announces Iran will halt strikes on neighbouring states</div></div>
+        <div class="tl-row"><span class="tl-time">Morning</span><div class="tl-dot td-red"></div><div class="tl-txt"><strong>Dubai Airport</strong> hit by Iranian drone — hours after the ceasefire pledge</div></div>
+        <div class="tl-row"><span class="tl-time">Morning</span><div class="tl-dot td-red"></div><div class="tl-txt"><strong>Trump</strong> threatens new unspecified targets. Says Iran "surrendered" to neighbours</div></div>
+        <div class="tl-row"><span class="tl-time">Overnight</span><div class="tl-dot td-amb"></div><div class="tl-txt"><strong>RAF Fairford</strong> — B-1 Lancer arrives; UK formally enters conflict</div></div>
+        <div class="tl-row"><span class="tl-time">Overnight</span><div class="tl-dot td-amb"></div><div class="tl-txt"><strong>Israel</strong> launches "broad wave" of strikes on Tehran regime infrastructure</div></div>
+        <div class="tl-row"><span class="tl-time">Friday</span><div class="tl-dot td-gold"></div><div class="tl-txt"><strong>Pakistan</strong> raises petrol price 20% to PKR 321/litre — war's first direct retail impact in South Asia</div></div>
+        <div class="tl-row"><span class="tl-time">Friday</span><div class="tl-dot td-red"></div><div class="tl-txt"><strong>Iran Red Crescent</strong> reports 6,668+ civilian units struck total; 181 children among the dead (UNICEF)</div></div>
+        <div class="tl-row"><span class="tl-time">Friday</span><div class="tl-dot td-amb"></div><div class="tl-txt"><strong>Turkey</strong> begins considering F-16 deployment to Cyprus — NATO creep</div></div>
+      </div>
+    </div>
+
+    <!-- WHAT TO WATCH -->
+    <div class="side-card">
+      <div class="sc-head">What to Watch · Week 2</div>
+      <div class="sc-body">
+        <ul class="watch-list">
+          <li class="watch-item"><span class="wi-num">01</span><span>Will Brent breach <strong>$100</strong>? That number activates emergency surcharge mechanisms in the Caribbean, Sri Lanka, and Pakistan simultaneously.</span></li>
+          <li class="watch-item"><span class="wi-num">02</span><span><strong>Dubai Airport</strong> operational status. If it closes or downgrades, Gulf aviation and freight logistics face a systemic event.</span></li>
+          <li class="watch-item"><span class="wi-num">03</span><span>What are Trump's new <strong>"areas and groups not previously considered"?</strong> Yemen? Iraqi PMF? Syrian infrastructure? The answer reshapes the conflict map entirely.</span></li>
+          <li class="watch-item"><span class="wi-num">04</span><span>Will <strong>France and Spain</strong> escalate past their current "defensive support" position? Iran has put them on notice as targets.</span></li>
+          <li class="watch-item"><span class="wi-num">05</span><span><strong>Northern Hemisphere planting season</strong> begins this month. Fertilizer supply through Hormuz is 25–35% of global trade. Every week of closure extends the agricultural shock into the next harvest.</span></li>
+          <li class="watch-item"><span class="wi-num">06</span><span><strong>CARICOM emergency session.</strong> No Caribbean government has formally addressed this crisis with regional coordinated policy. That silence is itself a story.</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /side-col -->
+  </div><!-- /two-col -->
+
+</div><!-- /page -->
+
+<footer>
+  <div class="ft-inner">
+    <div>
+      <div class="ft-logo">Meridian</div>
+      <div class="ft-tag">Intelligence from the South. For the South.</div>
+    </div>
+    <div class="ft-meta">
+      Day 8 Brief · Saturday, March 7, 2026 · Week Two<br>
+      Sources: Al Jazeera · NPR · CNBC · Reuters · FT · CSIS · JPMorgan · Morgan Stanley<br>
+      Meridian Brief v2.0 · Global South Regional Framework · No single-country spotlight
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
