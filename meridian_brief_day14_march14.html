@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERIDIAN · Day 14 · March 14, 2026 · Kharg Island</title>
+<meta name="description" content="Day 14: US strikes Kharg Island — 90% of Iran's oil exports. Trump threatens to destroy oil infrastructure. Houthis announce Hour Zero. Lebanon 773 dead. Fujairah energy installation burning.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#0b0f07;--f2:#0f1409;--f3:#14190c;--f4:#191f10;
+  --gold:#c9a84c;--gold-l:#e0c46e;--gold-d:#7a6020;--gold-f:rgba(201,168,76,.07);
+  --mg:#4a7c3f;--mg-l:#6aaa5e;--mg-d:rgba(74,124,63,.12);
+  --red:#c84c3f;--red-l:#e07060;--red-f:rgba(200,76,63,.08);
+  --amb:#d4890a;--amb-l:#f0a820;--amb-f:rgba(212,137,10,.07);
+  --blue:#3a7abf;--blue-l:#5a9fdf;
+  --rule:rgba(201,168,76,.1);--rule2:rgba(201,168,76,.04);
+  --text:#98a88e;--dim:#4a5840;--white:#eaf2e2;
+  --serif:'Cormorant Garamond',serif;--sans:'Outfit',sans-serif;--mono:'DM Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--forest);color:var(--text);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(201,168,76,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.018) 1px,transparent 1px);
+  background-size:52px 52px;pointer-events:none;z-index:0}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.2;transform:scale(.8)}}
+@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(200,76,63,.6)}70%{box-shadow:0 0 0 8px rgba(200,76,63,0)}100%{box-shadow:0 0 0 0 rgba(200,76,63,0)}}
+@keyframes tickerMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes barFill{from{width:0}to{width:var(--fill)}}
+@keyframes scanLine{0%{transform:translateY(-100%)}100%{transform:translateY(900%)}}
+
+.ticker{background:var(--red);position:relative;z-index:10;overflow:hidden;height:32px;display:flex;align-items:center}
+.t-badge{font-family:var(--mono);font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;padding:0 1rem 0 .8rem;background:rgba(0,0,0,.4);height:100%;display:flex;align-items:center;gap:.5rem;white-space:nowrap;flex-shrink:0}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#fff;flex-shrink:0;animation:pulse 1.6s ease-in-out infinite,pulseRing 1.6s ease-out infinite}
+.t-track{display:flex;animation:tickerMove 75s linear infinite;white-space:nowrap}
+.t-item{font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.92);padding:0 2rem}
+.t-item::after{content:'◆';font-size:.32rem;padding-left:2rem;color:rgba(255,255,255,.3)}
+
+.mast{position:relative;z-index:1;background:var(--f2);border-bottom:1px solid var(--rule);overflow:hidden}
+.mast::after{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:linear-gradient(180deg,transparent,var(--gold),transparent);animation:scanLine 4.5s ease-in-out infinite;pointer-events:none}
+.mast-inner{max-width:1280px;margin:0 auto;padding:0 2.5rem}
+.mast-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.6rem 0 1rem;gap:1.5rem}
+.brand-name{font-family:var(--serif);font-size:2.9rem;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;line-height:.9}
+.brand-name em{font-weight:400;font-style:italic;font-size:.68em;color:var(--gold-l);letter-spacing:.06em}
+.brand-tag{font-family:var(--serif);font-size:.76rem;font-style:italic;color:var(--dim);margin-top:.15rem}
+.brand-live{display:inline-flex;align-items:center;gap:.4rem;margin-top:.4rem;font-family:var(--mono);font-size:.46rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red-l)}
+.brand-live .ld{width:6px;height:6px;border-radius:50%;background:var(--red-l);animation:pulse 1.4s ease-in-out infinite}
+.day-block{text-align:center;display:flex;flex-direction:column;align-items:center;gap:.25rem}
+.db-pre{font-family:var(--mono);font-size:.46rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.db-num{font-family:var(--serif);font-size:3.8rem;font-weight:700;color:var(--white);line-height:.85}
+.db-sub{font-family:var(--mono);font-size:.44rem;letter-spacing:.12em;color:var(--dim);text-transform:uppercase}
+.db-date{font-family:var(--serif);font-size:.8rem;font-style:italic;color:var(--gold-l);margin-top:.1rem}
+.esc-block{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem}
+.esc-label{font-family:var(--mono);font-size:.46rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.esc-track{width:180px;height:10px;background:rgba(255,255,255,.04);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.esc-fill{height:100%;background:linear-gradient(90deg,var(--gold-d),var(--amb-l),var(--red-l));border-radius:2px;animation:barFill .8s .3s ease-out both;--fill:97%;width:97%}
+.esc-val{font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--red-l);line-height:1}
+.esc-val span{font-size:1rem;color:var(--dim);font-weight:400}
+.esc-note{font-family:var(--mono);font-size:.43rem;letter-spacing:.08em;color:var(--dim);text-transform:uppercase;text-align:right}
+.mast-rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold-d) 30%,var(--gold) 50%,var(--gold-d) 70%,transparent);margin:.4rem 0}
+
+.market-strip{display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid var(--rule2);border-bottom:1px solid var(--rule2)}
+.ms-cell{padding:.7rem .5rem;text-align:center;border-right:1px solid var(--rule2);transition:background .2s}
+.ms-cell:last-child{border-right:none}
+.ms-cell:hover{background:rgba(201,168,76,.03)}
+.msc-val{font-family:var(--mono);font-size:.76rem;font-weight:700;line-height:1;margin-bottom:.15rem}
+.mv-r{color:var(--red-l)}.mv-g{color:var(--mg-l)}.mv-a{color:var(--amb-l)}.mv-w{color:var(--white)}.mv-gold{color:var(--gold-l)}
+.msc-lbl{font-family:var(--mono);font-size:.4rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;line-height:1.5}
+
+.headline-strip{background:var(--f3);border-bottom:1px solid var(--rule);position:relative;z-index:1}
+.hs-inner{max-width:1280px;margin:0 auto;padding:2.2rem 2.5rem}
+.hs-kicker{display:flex;align-items:center;gap:.7rem;font-family:var(--mono);font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:var(--red-l);margin-bottom:.8rem}
+.hs-kicker::before{content:'';width:18px;height:1px;background:var(--red-l)}
+.hs-kicker .ld{width:5px;height:5px;border-radius:50%;background:var(--red-l);animation:pulse 1.4s ease-in-out infinite}
+.hs-hed{font-family:var(--serif);font-size:clamp(2rem,4vw,3.6rem);font-weight:700;color:var(--white);line-height:.97;letter-spacing:-.02em;margin-bottom:.9rem}
+.hs-hed .g{color:var(--gold);font-style:italic}.hs-hed .r{color:var(--red-l)}.hs-hed .a{color:var(--amb-l)}
+.hs-deck{font-size:.86rem;color:var(--text);line-height:1.9;max-width:900px;font-weight:300}
+.hs-deck strong{color:var(--white)}
+.hs-deck .hot{color:var(--red-l);font-weight:600}
+.hs-deck .warn{color:var(--amb-l);font-weight:600}
+
+.page{max-width:1280px;margin:0 auto;padding:2.5rem 2.5rem 6rem;position:relative;z-index:1}
+.layout{display:grid;grid-template-columns:1fr 355px;gap:2.5rem;align-items:start}
+
+.sec{display:flex;align-items:center;gap:.7rem;margin-bottom:1.3rem;margin-top:2rem}
+.sec:first-child{margin-top:0}
+.sec-rule{width:18px;height:1px;background:var(--gold-d)}
+.sec-txt{font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+
+.story{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--rule2)}
+.story:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-kicker{display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.48rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.45rem}
+.kd{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.kd-r{background:var(--red-l)}.kd-a{background:var(--amb-l)}.kd-g{background:var(--mg-l)}.kd-gold{background:var(--gold)}.kd-b{background:var(--blue-l)}
+.kt-r{color:var(--red-l)}.kt-a{color:var(--amb-l)}.kt-g{color:var(--mg-l)}.kt-gold{color:var(--gold)}.kt-b{color:var(--blue-l)}
+.s-hed{font-family:var(--serif);font-size:clamp(1.35rem,2.3vw,2rem);font-weight:700;color:var(--white);line-height:1.05;letter-spacing:-.01em;margin-bottom:.65rem}
+.s-hed .g{color:var(--gold);font-style:italic}.s-hed .r{color:var(--red-l)}.s-hed .a{color:var(--amb-l)}
+.s-body{font-size:.82rem;color:var(--text);line-height:1.9}
+.s-body p{margin-bottom:.75rem}.s-body p:last-child{margin-bottom:0}
+.s-body strong{color:var(--white)}
+.s-body .hot{color:var(--red-l);font-weight:600}
+.s-body .warn{color:var(--amb-l);font-weight:600}
+.s-body .ok{color:var(--mg-l);font-weight:600}
+.s-body em{font-style:italic;color:var(--gold-l)}
+
+.insight{border:1px solid var(--rule);border-left:3px solid;padding:1rem 1.3rem;margin:1rem 0;background:var(--f4)}
+.i-r{border-left-color:var(--red-l)}.i-a{border-left-color:var(--amb-l)}.i-gold{border-left-color:var(--gold)}.i-g{border-left-color:var(--mg-l)}.i-b{border-left-color:var(--blue-l)}
+.ins-lbl{font-family:var(--mono);font-size:.44rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.35rem}
+.il-r{color:var(--red-l)}.il-a{color:var(--amb-l)}.il-gold{color:var(--gold)}.il-g{color:var(--mg-l)}.il-b{color:var(--blue-l)}
+.ins-body{font-size:.78rem;color:var(--text);line-height:1.8}
+.ins-body strong{color:var(--white)}
+.ins-body .hot{color:var(--red-l)}.ins-body .warn{color:var(--amb-l)}.ins-body .ok{color:var(--mg-l)}
+
+.qblock{background:var(--f4);border-left:3px solid var(--gold);padding:.85rem 1.2rem;margin:.9rem 0}
+.qb-txt{font-family:var(--serif);font-size:.92rem;font-style:italic;color:var(--white);line-height:1.7;margin-bottom:.2rem}
+.qb-src{font-family:var(--mono);font-size:.42rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
+
+.region-row{display:flex;align-items:flex-start;gap:.8rem;padding:.65rem 0;border-bottom:1px solid var(--rule2)}
+.region-row:last-child{border-bottom:none}
+.rr-flag{font-size:1.1rem;flex-shrink:0;padding-top:.05rem}
+.rr-body{flex:1;font-size:.79rem;color:var(--text);line-height:1.7}
+.rr-body strong{color:var(--white)}
+.rr-body .hot{color:var(--red-l);font-weight:600}
+.rr-body .warn{color:var(--amb-l);font-weight:600}
+.rr-body .ok{color:var(--mg-l);font-weight:600}
+.rr-badge{font-family:var(--mono);font-size:.42rem;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .3rem;border:1px solid;border-radius:2px;white-space:nowrap;flex-shrink:0;margin-top:.15rem}
+.b-r{color:var(--red-l);border-color:rgba(200,76,63,.25);background:var(--red-f)}
+.b-a{color:var(--amb-l);border-color:rgba(212,137,10,.2);background:var(--amb-f)}
+.b-g{color:var(--mg-l);border-color:rgba(74,124,63,.25);background:var(--mg-d)}
+
+.sidebar{display:flex;flex-direction:column;gap:1.4rem;position:sticky;top:1rem}
+.s-card{background:var(--f3);border:1px solid var(--rule)}
+.sc-head{padding:.65rem 1.1rem;border-bottom:1px solid var(--rule2);font-family:var(--mono);font-size:.48rem;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem}
+.sch-r{color:var(--red-l)}.sch-a{color:var(--amb-l)}.sch-g{color:var(--mg-l)}.sch-gold{color:var(--gold)}
+.sc-head .ld2{width:5px;height:5px;border-radius:50%;flex-shrink:0;animation:pulse 1.6s ease-in-out infinite}
+.ld2-r{background:var(--red-l)}.ld2-a{background:var(--amb-l)}
+.sc-body{padding:.85rem 1.1rem}
+.stat-big{padding:.55rem 0;border-bottom:1px solid var(--rule2);display:flex;flex-direction:column;gap:.08rem}
+.stat-big:last-child{border-bottom:none;padding-bottom:0}
+.sb-val{font-family:var(--serif);font-size:1.45rem;font-weight:700;line-height:1}
+.sbv-r{color:var(--red-l)}.sbv-a{color:var(--amb-l)}.sbv-g{color:var(--mg-l)}.sbv-gold{color:var(--gold-l)}.sbv-w{color:var(--white)}
+.sb-lbl{font-family:var(--mono);font-size:.42rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);line-height:1.6}
+.drow{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;padding:.42rem 0;border-bottom:1px solid var(--rule2)}
+.drow:last-child{border-bottom:none;padding-bottom:0}
+.dr-lbl{color:var(--dim);flex:1;line-height:1.4;font-size:.7rem}
+.dr-val{font-family:var(--mono);font-size:.66rem;font-weight:700;white-space:nowrap;flex-shrink:0}
+.dv-r{color:var(--red-l)}.dv-g{color:var(--mg-l)}.dv-a{color:var(--amb-l)}.dv-gold{color:var(--gold-l)}.dv-w{color:var(--white)}
+
+.conclusion{background:var(--f2);border:1px solid var(--rule);border-top:3px solid var(--gold);padding:2.6rem;margin-top:2.8rem;position:relative;overflow:hidden}
+.concl-ghost{position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:12rem;font-weight:700;color:rgba(201,168,76,.022);line-height:1;pointer-events:none;user-select:none}
+.concl-lbl{display:flex;align-items:center;gap:.7rem;font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.65rem}
+.concl-lbl::before{content:'';width:14px;height:1px;background:var(--gold-d)}
+.concl-hed{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.6rem);font-weight:700;color:var(--white);line-height:1.02;margin-bottom:1.1rem}
+.concl-hed .g{color:var(--gold);font-style:italic}.concl-hed .r{color:var(--red-l)}
+.concl-body{font-size:.82rem;color:var(--text);line-height:1.95;max-width:1000px}
+.concl-body p{margin-bottom:.8rem}.concl-body p:last-child{margin-bottom:0}
+.concl-body strong{color:var(--white)}
+.concl-body .hot{color:var(--red-l);font-weight:600}
+.concl-body .warn{color:var(--amb-l);font-weight:600}
+.concl-body .ok{color:var(--mg-l);font-weight:600}
+.concl-body em{color:var(--gold-l);font-style:italic}
+
+footer{border-top:1px solid var(--rule);padding:1.4rem 2.5rem;position:relative;z-index:1;background:var(--f2)}
+.ft-i{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.ft-brand{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.ft-tag{font-family:var(--serif);font-size:.7rem;font-style:italic;color:var(--dim);margin-top:.1rem}
+.ft-meta{font-family:var(--mono);font-size:.42rem;letter-spacing:.08em;color:var(--dim);text-align:right;line-height:1.9;text-transform:uppercase}
+
+@media(max-width:1000px){.layout{grid-template-columns:1fr}.sidebar{position:static}}
+@media(max-width:700px){.market-strip{grid-template-columns:repeat(4,1fr)}.mast-top{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="t-badge"><div class="live-dot"></div>Day 14 · Breaking</div>
+  <div class="t-track">
+    <div class="t-item">US STRIKES KHARG ISLAND · 90% OF IRAN'S OIL EXPORTS · TRUMP THREATENS OIL INFRASTRUCTURE NEXT</div>
+    <div class="t-item">IRAN: "US-LINKED OIL FACILITIES WILL BE A PILE OF ASHES" IF KHARG OIL INFRASTRUCTURE HIT</div>
+    <div class="t-item">HOUTHIS ANNOUNCE "HOUR ZERO" · THREATENING BAB AL-MANDAB STRAIT · SECOND CHOKEPOINT</div>
+    <div class="t-item">FUJAIRAH ENERGY INSTALLATION STRUCK · SMOKE VISIBLE FROM UAE PORT CITY · SOURCE: AFP</div>
+    <div class="t-item">KUWAIT: 2 MISSILES HIT AHMAD AL-JABER AIR BASE · 3 SOLDIERS WOUNDED · 7 DRONES OVER 24 HRS</div>
+    <div class="t-item">LEBANON: 773 DEAD SINCE MAR 2 · 12 MEDICAL STAFF KILLED IN SINGLE STRIKE · UNIFIL BASE HIT</div>
+    <div class="t-item">US BAGHDAD EMBASSY HELIPAD HIT BY MISSILE · IRAQ CONFIRMED</div>
+    <div class="t-item">ISFAHAN: US-ISRAELI STRIKE KILLS 15 · CENTRAL IRAN · SOURCE: FARS NEWS AGENCY</div>
+    <div class="t-item">2,200 US MARINES DEPLOYING FROM OKINAWA TO MIDDLE EAST</div>
+    <div class="t-item">CENTCOM: 6,000 TARGETS STRUCK IN IRAN · 90+ VESSELS DESTROYED OR DAMAGED</div>
+    <div class="t-item">IRAN FM: "NO PROBLEM WITH NEW SUPREME LEADER" · HEGSETH: "WOUNDED AND LIKELY DISFIGURED"</div>
+    <div class="t-item">IRAN CONSIDERING YUAN-DENOMINATED PASSAGE THROUGH HORMUZ · CNN SOURCE</div>
+    <div class="t-item">DAWN (PAKISTAN): HOUTHI "HOUR ZERO" COULD CLOSE SECOND GLOBAL CHOKEPOINT</div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<div class="mast">
+  <div class="mast-inner">
+    <div class="mast-top">
+      <div>
+        <div class="brand-name">Meridian <em>Brief</em></div>
+        <div class="brand-tag">Intelligence from the South. For the South.</div>
+        <div class="brand-live"><div class="ld"></div>Operation Epic Fury · Third Week</div>
+      </div>
+      <div class="day-block">
+        <div class="db-pre">Iran War · Day</div>
+        <div class="db-num">14</div>
+        <div class="db-sub">Two weeks at war</div>
+        <div class="db-date">Saturday · March 14, 2026</div>
+      </div>
+      <div class="esc-block">
+        <div class="esc-label">Escalation Index</div>
+        <div class="esc-track"><div class="esc-fill"></div></div>
+        <div class="esc-val">97<span>/100</span></div>
+        <div class="esc-note">Kharg struck · 2nd chokepoint threatened · Oil infra ultimatum</div>
+      </div>
+    </div>
+    <div class="mast-rule"></div>
+    <div class="market-strip">
+      <div class="ms-cell"><div class="msc-val mv-r">$90+</div><div class="msc-lbl">Brent current<br>Kharg premium building</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">90%</div><div class="msc-lbl">Iran crude exports<br>Through Kharg Island</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">773</div><div class="msc-lbl">Lebanon dead<br>Since March 2</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">1,444</div><div class="msc-lbl">Iranian civilians dead<br>18,551 injured · Health Ministry</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">6,000</div><div class="msc-lbl">Targets struck in Iran<br>CENTCOM · Day 14</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">2</div><div class="msc-lbl">Chokepoints threatened<br>Hormuz + Bab al-Mandab</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">Day 14</div><div class="msc-lbl">CARICOM<br>Still silent</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADLINE -->
+<div class="headline-strip">
+  <div class="hs-inner">
+    <div class="hs-kicker"><div class="ld"></div>March 14, 2026 · The War Enters Its Third Week</div>
+    <div class="hs-hed">Kharg Island struck.<br>Oil infrastructure <span class="r">threatened next.</span><br>A second chokepoint <span class="a">announced.</span></div>
+    <div class="hs-deck">
+      The United States bombed military targets on Iran's Kharg Island overnight — the single facility that handles 90% of Iran's crude oil exports. <strong>Trump explicitly threatened to destroy the oil infrastructure next if Iran does not allow free passage through the Strait of Hormuz.</strong> Iran answered by threatening to reduce US-linked oil facilities across the Gulf to "a pile of ashes." Hours later, Houthi senior officials announced "Hour Zero" — a threat to close the Bab al-Mandab Strait, the Red Sea chokepoint. <span class="hot">Two chokepoints. Simultaneously. The cascade the Global South feared most is now visible on the horizon.</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+<div class="layout">
+<div>
+
+<!-- STORY 1: KHARG -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Kharg Island · The War's Most Consequential Strike</div></div>
+<div class="story">
+  <div class="s-kicker kt-r"><div class="kd kd-r"></div>US Military · March 14 · Iran's Economic Heartbeat</div>
+  <div class="s-hed">90% of Iran's oil<br>loads here. The US<br><span class="r">struck it overnight.</span></div>
+  <div class="s-body">
+    <p>In the early hours of Saturday, US forces struck military installations on Kharg Island — a five-mile coral island in the northern Persian Gulf that handles approximately 90% of Iran's total crude oil exports, processing around 950 million barrels per year. More than 15 explosions were reported on the island. Targets confirmed by Iran's own Fars News Agency included air defences, the Joshen Sea Naval Base, an airport control tower, and a helicopter hangar. <strong>Fars reported that no oil infrastructure on Kharg was damaged.</strong></p>
+    <p>Trump announced the strike on Truth Social: <em>"We have totally obliterated every military target on Kharg Island. One of the most powerful bombing raids in the History of the Middle East."</em> He confirmed he chose, for now, not to destroy the oil infrastructure. <span class="hot">"However, should Iran, or anyone else, do anything to interfere with the Free and Safe Passage of Ships through the Strait of Hormuz, I will immediately reconsider this decision."</span></p>
+    <p>Iran's answer was immediate. Its military stated that if US forces strike Kharg's oil infrastructure, <strong>US-linked oil facilities across the Gulf region would be reduced to "a pile of ashes."</strong> The Iranian Parliament Speaker had previously warned that Iran would "abandon all restraint" if any Persian Gulf islands were attacked. Iranian lawmakers said the strike made ceasefire talks significantly more difficult.</p>
+  </div>
+
+  <div class="insight i-gold">
+    <div class="ins-lbl il-gold">What Kharg Is — And Why The Globe Held Its Breath</div>
+    <div class="ins-body">
+      Kharg Island loads approximately 7 million barrels per day with 30 million barrels of storage capacity. Around 80% of its shipments go to China. If Kharg's oil infrastructure is destroyed, <strong>Iran's oil exports effectively stop</strong> — a move that would simultaneously remove Iranian leverage over prices and devastate China's supply position. A retired US Army brigadier general told CNN the strike escalated the war from "take out the military" to potentially "take out the economic lifeblood" of the country. <span class="warn">A former White House Situation Room chief said Trump is holding the island "hostage" to force Hormuz open.</span> Pakistan's Zohaib Ahmed of Synorix told The National: "Expectations of surrender or unrestricted maritime passage are unrealistic. From Iran's perspective, this conflict is framed as a war of survival." Source: <em>The National · Al Jazeera · CNN · Dawn</em>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 2: SECOND CHOKEPOINT -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">The Second Chokepoint · Hour Zero</div></div>
+<div class="story">
+  <div class="s-kicker kt-r"><div class="kd kd-r"></div>Houthis · Bab al-Mandab · Red Sea · March 14</div>
+  <div class="s-hed">Hormuz is closed.<br>The Houthis just announced<br><span class="r">"Hour Zero."</span></div>
+  <div class="s-body">
+    <p>Senior Houthi officials announced Saturday that their movement has decided to militarily align with Iran and will soon declare what they called "Hour Zero" — language widely interpreted as a threat to close the Bab al-Mandab Strait, the chokepoint connecting the Red Sea to the Gulf of Aden. It is the entry point for all shipping passing through the Suez Canal. <strong>If Bab al-Mandab closes alongside Hormuz, there is no viable shipping corridor from the Indo-Pacific to Europe and the Americas.</strong></p>
+    <p>The Houthis had previously held back, constrained by a 2025 ceasefire with the United States in Yemen. <span class="warn">Dawn's Pakistan-based national security correspondent reported that the Kharg Island strike appears to have changed that calculus.</span> The Houthis framed the Hormuz disruption as "political and emotional solidarity" — but Hour Zero would be operational. Dawn noted the announcement "hinted at the possible closure of another maritime chokepoint," which "would compound the impact of disruptions already affecting the Strait of Hormuz."</p>
+    <p>For the Global South: the Cape of Good Hope reroute that is already adding approximately $1 million per voyage is available as long as Bab al-Mandab remains open. If it closes, there is no viable reroute at commercial scale. Every major shipping lane connecting the producing world to the consuming world would be disrupted simultaneously. Source: <em>Dawn.com · Al Jazeera</em></p>
+  </div>
+
+  <div class="insight i-r">
+    <div class="ins-lbl il-r">The Two-Chokepoint Scenario · What It Means</div>
+    <div class="ins-body">
+      Hormuz: 20% of global oil and gas. Bab al-Mandab: 12% of global trade, all Suez Canal traffic. <strong>Together they represent the single most consequential pair of maritime chokepoints on Earth.</strong> The Global South economies most exposed are those that import energy AND depend on export access through both routes simultaneously: Bangladesh (garment exports + LNG imports), Sri Lanka, Pakistan, East Africa, the Caribbean. If both close, Cape rerouting becomes the only option for all global shipping — at all-time high VLCC rates already at $423K/day. The cost does not stay in the shipping companies. It passes through immediately to the end consumer. That consumer, in every case that matters to Meridian, has zero buffer left.
+    </div>
+  </div>
+</div>
+
+<!-- STORY 3: GULF STRIKES -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">The Gulf · Strikes Spread Across Every State</div></div>
+<div class="story">
+  <div class="s-kicker kt-r"><div class="kd kd-r"></div>Regional Strikes · UAE · Kuwait · Iraq · Lebanon</div>
+  <div class="s-hed">Fujairah burning.<br>Kuwait base hit.<br><span class="r">Baghdad embassy struck.</span></div>
+  <div class="s-body">
+    <p>Hours after the Kharg Island strike, smoke rose from the direction of a major energy installation in Fujairah — the UAE's east coast oil export hub, which routes crude outside the Persian Gulf entirely. AFP photographers captured images of the smoke. The Fujairah installation handles oil loaded via pipeline from Abu Dhabi, designed precisely as a Hormuz bypass. <strong>If the Hormuz bypass itself is targeted, the Gulf's only alternative export route is gone.</strong></p>
+    <p>Kuwait's Defence Ministry confirmed that two missiles struck the perimeter of Ahmad Al-Jaber Air Base — one of the country's key installations housing US forces — wounding three Kuwaiti soldiers. Air defences detected seven missiles and drones over the past 24 hours; three were destroyed, two crashed outside the threat zone. Separately, Iraq confirmed a missile struck the helipad at the US Embassy in Baghdad. Iran's IRGC formally notified the UAE that US "hideouts" in the region are now "legitimate targets" following the Kharg strike.</p>
+    <p>In Israel, explosions struck near a pro-government rally in Tehran attended by Foreign Minister Abbas Araghchi, President Pezeshkian, and security chief Ali Larijani — senior Iranian officials visible in public on International Quds Day for the first time since the war began. One person was killed. Iran promised to deliver an "unforgettable lesson." <span class="hot">CENTCOM data: 6,000 targets struck inside Iran, 90+ vessels destroyed or damaged since February 28.</span></p>
+  </div>
+</div>
+
+<!-- STORY 4: LEBANON + HUMANITARIAN -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Lebanon · Humanitarian · The Numbers That Keep Rising</div></div>
+<div class="story">
+  <div class="s-kicker kt-b"><div class="kd kd-b"></div>Lebanon · Medical Workers · UNIFIL · Iran Civilian Toll</div>
+  <div class="s-hed">12 doctors and nurses<br>killed in one strike.<br><span class="r">UNIFIL base shelled.</span></div>
+  <div class="s-body">
+    <p>Israel struck a healthcare centre in Borj Qalaouiye in southern Lebanon, killing 12 medical staff — doctors, nurses, and paramedics. Lebanon's Health Ministry strongly condemned the attack. Separately, Israeli artillery shells struck the headquarters of a Nepalese peacekeeping battalion serving with UNIFIL in the town of Meiss el-Jabal. Lebanese President Joseph Aoun is now pushing for a one-month temporary ceasefire and has asked the US ambassador in Beirut to pressure Israel — proposing that Lebanon begin implementing full state control over all weapons in the country, including Hezbollah's. <strong>The total Lebanese death toll since March 2 has reached 773.</strong></p>
+    <p>Iran's Health Ministry counts 1,444 killed and 18,551 injured by US-Israeli attacks since February 28 — victims ranging in age from eight months to 88 years old. Isfahan: a US-Israeli strike on the central Iranian city killed 15 people, according to Fars News Agency. Hezbollah leader Naim Qassem stated his group is prepared for a "long confrontation" and frames the conflict as defence against 15 months of unaddressed Israeli actions. <span class="warn">More than 250 US organisations signed a letter calling on Congress to halt war funding, arguing the $11.3 billion spent in the first six days is diverting funds from domestic food benefits and urgent social needs.</span></p>
+  </div>
+
+  <div class="qblock">
+    <div class="qb-txt">"The immediate consequence of strikes is therefore more likely to be volatility in global energy markets. Iran views this conflict as a war of survival — expectations of surrender or unrestricted maritime passage are unrealistic."</div>
+    <div class="qb-src">Zohaib Ahmed, Founder, Synorix · Pakistan-based consultancy · The National, March 14, 2026</div>
+  </div>
+</div>
+
+<!-- STORY 5: GLOBAL SOUTH -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Global South · Two Weeks In, Zero Buffer Left</div></div>
+<div class="story">
+  <div class="s-kicker kt-gold"><div class="kd kd-gold"></div>Regional Impact · All Regions · Day 14</div>
+  <div class="s-hed">Pakistan calls it<br>a war of survival.<br><span class="a">The South agrees.</span></div>
+  <div class="s-body"><p>Kharg Island's strikes introduce a new variable for every oil-importing Global South economy: oil infrastructure is now explicitly on the table as a military target. Even if it hasn't been destroyed yet, the premium for that risk is already pricing in. Houthi "Hour Zero" makes the shipping dimension worse. Two weeks in, there is no economy in the Global South with buffer remaining.</p></div>
+
+  <div style="margin-top:1.2rem">
+    <div class="region-row">
+      <div class="rr-flag">🇵🇰</div>
+      <div class="rr-body"><strong>Pakistan</strong> — Dawn's national security correspondent is the only Southern newspaper with a named correspondent covering this war's strategic dimensions. Pakistan's 220 million people are absorbing energy prices, grid stress from Qatar LNG force majeure, and domestic political unrest simultaneously. <span class="hot">Dawn explicitly identified the Houthi "Hour Zero" threat as a potential second chokepoint threatening Pakistani shipping lanes.</span> No government statement on the Kharg strike. Central bank rate hike expected this week.</div>
+      <div class="rr-badge b-r">Acute</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇵🇭</div>
+      <div class="rr-body"><strong>Philippines</strong> — 50–60 days of oil reserves. 2 million OFW workers in active Gulf strike zones. The Fujairah installation — designed as a Hormuz bypass — is now under attack. The Philippines' only routing alternative for Gulf crude imports is threatened. Four-day government workweek still active. Peso hovering near record low.</div>
+      <div class="rr-badge b-r">Critical</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇮🇳</div>
+      <div class="rr-body"><strong>India</strong> — US Russia oil waiver provides some cushion but Chabahar port — India's strategic infrastructure investment in Iran — is now in an active conflict zone. India's LNG import costs remain elevated. The country quietly issued evacuation guidance to nationals in active Gulf states.</div>
+      <div class="rr-badge b-a">Watching</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇧🇩🇱🇰</div>
+      <div class="rr-body"><strong>Bangladesh · Sri Lanka</strong> — Both dependent on Gulf LNG and both exposed to both chokepoints for garment export shipping. If Bab al-Mandab closes, Bangladesh's garment sector — which exports through Suez — faces the same route disruption that forced European rerouting in 2024–25. Sri Lanka's 2022 conditions are reassembling.</div>
+      <div class="rr-badge b-r">Acute</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇪🇬</div>
+      <div class="rr-body"><strong>Egypt</strong> — Suez Canal revenue already disrupted by Houthi activity in 2024–25. A Bab al-Mandab closure would eliminate the remaining Suez traffic entirely. Egypt's economy cannot absorb another round of canal revenue collapse alongside the current oil shock and IMF programme strain.</div>
+      <div class="rr-badge b-r">Critical</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇰🇪🇩🇯🇸🇴</div>
+      <div class="rr-body"><strong>East Africa</strong> — Kenya, Djibouti, Somalia. All three sit directly on the Bab al-Mandab corridor. Djibouti's port is Africa's most important logistics hub for the Horn. <span class="hot">A Bab al-Mandab closure doesn't just disrupt their trade — it shuts their own port access to global shipping.</span></div>
+      <div class="rr-badge b-r">Frontline</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇭🇹🇯🇲🇧🇧🇹🇹🇬🇾</div>
+      <div class="rr-body"><strong>Caribbean</strong> — Oil at $90+. Electricity surcharges active. Airlines in route review. Kharg premium not yet fully priced in. <span class="hot">CARICOM: Day 14. No statement. No emergency session. No coordinated regional response of any kind. T&T and Guyana oil windfall: undeployed.</span></div>
+      <div class="rr-badge b-r">Silent</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 6: DIPLOMACY -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Diplomacy · The Yuan Offer And The Exit Ramp</div></div>
+<div class="story">
+  <div class="s-kicker kt-g"><div class="kd kd-g"></div>Ceasefire Track · China · Iran · Trump</div>
+  <div class="s-hed">Iran offered to open<br>Hormuz — if ships<br><span class="g">pay in Chinese yuan.</span></div>
+  <div class="s-body">
+    <p>A senior Iranian official told CNN that Tehran is considering allowing some vessels to pass through the Strait of Hormuz on one condition: cargo must be traded in Chinese yuan. The offer has not been formally presented. It has not been accepted. But its existence frames exactly what Iran's exit ramp looks like from Tehran's perspective — not a military surrender, but a restructuring of the global energy payment system away from the US dollar.</p>
+    <p>Trump separately said he believes US Navy escorts for tankers through Hormuz will happen "soon." He told Axios the war would end "soon" because there is "practically nothing left to target" in Iran — while US forces were simultaneously carrying out their most intense strikes yet on Kharg Island and central Tehran. Lebanese President Aoun is pushing for a one-month ceasefire independently. <strong>Iran's three formal ceasefire conditions — rights recognition, reparations, and binding future guarantees — remain officially on the table with no US response.</strong></p>
+    <p><span class="warn">The Kharg Island strike makes a ceasefire harder to reach, not easier.</span> Iranian lawmakers said publicly that the Kharg attack had complicated negotiations. The IRGC's threat to destroy Gulf oil infrastructure if Kharg's oil terminals are hit means any accidental escalation — a single errant strike — now triggers a Gulf-wide energy infrastructure war. That is the environment in which the IMO emergency session convenes in London on March 18.</p>
+  </div>
+</div>
+
+<!-- CONCLUSION -->
+<div class="conclusion">
+  <div class="concl-ghost">14</div>
+  <div class="concl-lbl">Meridian · Day 14 · March 14, 2026</div>
+  <div class="concl-hed">Two chokepoints.<br>One ultimatum.<br><span class="g">One yuan offer.</span></div>
+  <div class="concl-body">
+    <p>Kharg Island is the war's most consequential strike because it changed the nature of the threat. For thirteen days, the war destroyed military infrastructure. On Day 14, the US announced that 90% of Iran's oil export capacity is now within the scope of the threat. Iran answered that Gulf oil infrastructure broadly — not just Iranian — is now within the scope of its response. <strong>The war shifted from a conflict over Iran's military capacity to a direct contest over the global energy supply chain.</strong></p>
+    <p>The Houthi "Hour Zero" is not confirmed and not yet operational. But Hormuz was also theoretical before February 28. The pattern of this war is that every threat eventually executes. If Bab al-Mandab closes, Egypt loses its remaining Suez revenue. Bangladesh loses its garment export route. East Africa loses its port access. The Caribbean faces a shipping shock compounded on top of a fuel shock on top of a food shock that hasn't landed yet.</p>
+    <p>Iran's yuan offer to reopen Hormuz is the most structurally significant diplomatic signal of the war. It is not a ceasefire — it is a proposal to restructure who controls the financial architecture of global energy trade. <span class="warn">China, which buys 80% of Kharg's exports, which operates the China Lane through Hormuz, which has a ceasefire envoy in the region, and which is now being offered control of the payment system for Hormuz passage, is the most powerful non-combatant in this war.</span> The exit runs through Beijing — and Beijing knows it.</p>
+    <p><em>Two weeks in. The Global South did not start this war. It is absorbing it at every level — fuel prices, food security, currency depreciation, shipping disruption, remittance compression, and now the threat that the two maritime corridors connecting it to the world economy may both close simultaneously. Day 14. The cascade continues.</em></p>
+  </div>
+</div>
+
+</div><!-- /left -->
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+  <div class="s-card">
+    <div class="sc-head sch-r"><div class="ld2 ld2-r"></div>Day 14 · Numbers</div>
+    <div class="sc-body">
+      <div class="stat-big"><div class="sb-val sbv-r">97/100</div><div class="sb-lbl">Escalation index<br>Highest of the war</div></div>
+      <div class="stat-big"><div class="sb-val sbv-r">6,000</div><div class="sb-lbl">Targets struck in Iran<br>CENTCOM · Day 14</div></div>
+      <div class="stat-big"><div class="sb-val sbv-r">1,444</div><div class="sb-lbl">Iranian civilians dead<br>18,551 injured · Health Ministry</div></div>
+      <div class="stat-big"><div class="sb-val sbv-r">773</div><div class="sb-lbl">Lebanon dead since Mar 2<br>12 medical staff in one strike</div></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-r">Kharg Island · The Numbers</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">Iran crude exports through Kharg</span><span class="dr-val dv-r">~90%</span></div>
+      <div class="drow"><span class="dr-lbl">Loading capacity</span><span class="dr-val dv-w">7M bbl/day</span></div>
+      <div class="drow"><span class="dr-lbl">Storage capacity</span><span class="dr-val dv-w">30M barrels</span></div>
+      <div class="drow"><span class="dr-lbl">Annual throughput</span><span class="dr-val dv-w">~950M bbl/yr</span></div>
+      <div class="drow"><span class="dr-lbl">Exports to China</span><span class="dr-val dv-a">~80%</span></div>
+      <div class="drow"><span class="dr-lbl">Oil infrastructure hit?</span><span class="dr-val dv-g">No · "for now"</span></div>
+      <div class="drow"><span class="dr-lbl">Military targets hit</span><span class="dr-val dv-r">15+ explosions</span></div>
+      <div class="drow"><span class="dr-lbl">Trump's condition to spare oil</span><span class="dr-val dv-r">Open Hormuz</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-a">Chokepoint Status · Real-Time</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">Hormuz vessels/day</span><span class="dr-val dv-r">13 vs 153 pre-war</span></div>
+      <div class="drow"><span class="dr-lbl">Hormuz insurance</span><span class="dr-val dv-r">Withdrawn · Still closed</span></div>
+      <div class="drow"><span class="dr-lbl">Bab al-Mandab status</span><span class="dr-val dv-a">Open · "Hour Zero" warned</span></div>
+      <div class="drow"><span class="dr-lbl">Fujairah bypass</span><span class="dr-val dv-r">Smoke · Strike reported</span></div>
+      <div class="drow"><span class="dr-lbl">Suez Canal traffic</span><span class="dr-val dv-a">Reduced but open</span></div>
+      <div class="drow"><span class="dr-lbl">Cape reroute cost</span><span class="dr-val dv-r">~$1M/voyage added</span></div>
+      <div class="drow"><span class="dr-lbl">VLCC day rate</span><span class="dr-val dv-r">$423K/day · Record</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-gold">Diplomacy · Status Board</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">Iran's ceasefire terms</span><span class="dr-val dv-a">On table · US silent</span></div>
+      <div class="drow"><span class="dr-lbl">Yuan-for-Hormuz offer</span><span class="dr-val dv-a">Informal · CNN source</span></div>
+      <div class="drow"><span class="dr-lbl">China envoy active</span><span class="dr-val dv-gold">Yes</span></div>
+      <div class="drow"><span class="dr-lbl">Lebanon ceasefire push</span><span class="dr-val dv-gold">Aoun · 1 month proposal</span></div>
+      <div class="drow"><span class="dr-lbl">IMO emergency session</span><span class="dr-val dv-gold">Mar 18–19 · London</span></div>
+      <div class="drow"><span class="dr-lbl">Kharg effect on talks</span><span class="dr-val dv-r">Complicated · Iran MPs</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-gold">Watch · Next 48 Hours</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">Houthi "Hour Zero" operationalised</span><span class="dr-val dv-r">Critical watch</span></div>
+      <div class="drow"><span class="dr-lbl">Iran strikes Gulf oil infrastructure</span><span class="dr-val dv-r">Threatened · Active</span></div>
+      <div class="drow"><span class="dr-lbl">Fujairah damage assessment</span><span class="dr-val dv-a">Unconfirmed</span></div>
+      <div class="drow"><span class="dr-lbl">Khamenei video or audio</span><span class="dr-val dv-r">Day 7: still absent</span></div>
+      <div class="drow"><span class="dr-lbl">China response to yuan offer</span><span class="dr-val dv-a">Watch Beijing</span></div>
+      <div class="drow"><span class="dr-lbl">US Marines deployment ETA</span><span class="dr-val dv-a">2,200 · From Okinawa</span></div>
+      <div class="drow"><span class="dr-lbl">CARICOM</span><span class="dr-val dv-r">Day 14 · Zero</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-r">The Human Number · Day 14</div>
+    <div style="padding:1.1rem">
+      <div style="font-family:var(--serif);font-size:.95rem;font-style:italic;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:.6rem">Twelve doctors, nurses, and paramedics. One healthcare centre. Borj Qalaouiye, southern Lebanon. One Israeli strike.</div>
+      <div style="font-size:.74rem;color:var(--text);line-height:1.75">Lebanon's Health Ministry strongly condemned the attack. A Nepalese UN peacekeeper's base was shelled the same day. <strong style="color:var(--white)">The healthcare infrastructure of a country is not a military target under international humanitarian law. It was struck anyway.</strong></div>
+    </div>
+  </div>
+
+</div><!-- /sidebar -->
+</div><!-- /layout -->
+</div><!-- /page -->
+
+<footer>
+  <div class="ft-i">
+    <div>
+      <div class="ft-brand">Meridian</div>
+      <div class="ft-tag">Intelligence from the South. For the South.</div>
+    </div>
+    <div class="ft-meta">
+      Day 14 · March 14, 2026 · Operation Epic Fury<br>
+      Sources: Al Jazeera · CNN · Dawn (Pakistan) · The National · AP · Britannica · CENTCOM · AFP<br>
+      @Meridiantoday_ · @meridian.today · meridian.today
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
