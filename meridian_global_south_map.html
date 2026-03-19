@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERIDIAN — Global South Oil Shock Impact Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#0e1208;--forest2:#121a0a;--forest3:#192110;--forest4:#1e2814;--forest5:#242f18;
+  --gold:#c9a84c;--gold-l:#e0c46e;--gold-d:#7a6020;--gold-faint:rgba(201,168,76,.07);
+  --mgreen:#4a7c3f;--mgreen-l:#6aaa5e;--mgreen-d:rgba(74,124,63,.12);
+  --red:#c84c3f;--red-l:#e07060;--red-faint:rgba(200,76,63,.08);
+  --amber:#d4890a;--amber-l:#f0a820;
+  --rule:rgba(201,168,76,.1);--rule2:rgba(201,168,76,.05);
+  --text:#a8b8a0;--dim:#5a6852;--white:#eef2e6;
+  --serif:'Cormorant Garamond',serif;
+  --sans:'Outfit',sans-serif;
+  --mono:'DM Mono',monospace;
+
+  /* Risk colours */
+  --risk-critical:rgba(200,76,63,1);
+  --risk-high:rgba(212,137,10,1);
+  --risk-moderate:rgba(201,168,76,1);
+  --risk-benefit:rgba(74,124,63,1);
+  --risk-major:rgba(45,160,80,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--forest);color:var(--text);font-family:var(--sans);overflow-x:hidden;line-height:1.6;min-height:100vh}
+
+/* GRID BG */
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(201,168,76,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.02) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:300;background:rgba(14,18,8,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--rule)}
+.nav-inner{max-width:1400px;margin:0 auto;padding:.75rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.nav-logo em{font-style:italic;font-weight:400;color:var(--gold-l)}
+.nav-tag{font-family:var(--serif);font-size:.85rem;font-style:italic;color:var(--dim)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-pill{font-family:var(--mono);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;padding:.25rem .7rem;border-radius:2px;border:1px solid}
+.np-gold{color:var(--gold);border-color:var(--gold-d);background:rgba(201,168,76,.06)}
+.np-red{color:var(--red-l);border-color:rgba(200,76,63,.2);background:var(--red-faint);display:flex;align-items:center;gap:.4rem}
+.live-dot{width:5px;height:5px;border-radius:50%;background:var(--red-l);animation:livep 1.5s ease-in-out infinite}
+@keyframes livep{0%,100%{opacity:1}50%{opacity:.15}}
+
+/* HERO */
+.hero{position:relative;z-index:1;padding:4rem 2rem 3rem;border-bottom:1px solid var(--rule);overflow:hidden}
+.hero-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(201,168,76,.06) 0%,transparent 60%)}
+.hero-inner{max-width:1400px;margin:0 auto;position:relative}
+.hero-eye{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.he-line{flex:1;height:1px;background:linear-gradient(90deg,var(--gold-d),transparent)}
+.he-txt{font-family:var(--mono);font-size:.58rem;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;white-space:nowrap}
+.hero-hed{font-family:var(--serif);font-size:clamp(2.5rem,5vw,5rem);font-weight:700;color:var(--white);line-height:.95;letter-spacing:-.01em;margin-bottom:.8rem}
+.hero-hed .gold{color:var(--gold);font-style:italic}
+.hero-deck{font-size:.95rem;color:var(--dim);max-width:680px;line-height:1.8;font-weight:300}
+
+/* LEGEND */
+.legend{max-width:1400px;margin:0 auto;padding:1.5rem 2rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;border-bottom:1px solid var(--rule);position:relative;z-index:1}
+.leg-label{font-family:var(--mono);font-size:.55rem;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-right:.4rem}
+.leg-item{display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;color:var(--text)}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.leg-sep{width:1px;height:14px;background:var(--rule);margin:0 .4rem}
+
+/* FILTER BAR */
+.filter-bar{max-width:1400px;margin:0 auto;padding:1.2rem 2rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;position:relative;z-index:1}
+.filter-btn{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:.35rem .9rem;border-radius:2px;border:1px solid var(--rule);background:transparent;color:var(--dim);cursor:pointer;transition:all .2s}
+.filter-btn:hover,.filter-btn.active{background:rgba(201,168,76,.08);border-color:var(--gold-d);color:var(--gold)}
+.filter-btn.active{font-weight:700}
+
+/* MAIN GRID */
+.grid-wrap{max-width:1400px;margin:0 auto;padding:1.5rem 2rem 4rem;position:relative;z-index:1}
+
+/* REGION BLOCK */
+.region{margin-bottom:3rem}
+.region-header{display:flex;align-items:center;gap:1.2rem;margin-bottom:1.5rem}
+.rh-label{font-family:var(--mono);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.rh-line{flex:1;height:1px;background:linear-gradient(90deg,var(--gold-d),transparent)}
+.rh-count{font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;color:var(--dim);white-space:nowrap}
+.country-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--rule)}
+
+/* COUNTRY CARD */
+.ccard{background:var(--forest3);padding:0;cursor:pointer;transition:background .2s;position:relative;overflow:hidden}
+.ccard:hover{background:var(--forest4)}
+.ccard.open{background:var(--forest4)}
+.cc-top{padding:1.5rem;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start}
+.cc-flag-name{display:flex;align-items:center;gap:.8rem}
+.cc-flag{font-size:1.6rem;flex-shrink:0;line-height:1}
+.cc-name{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--white);line-height:1.1}
+.cc-sub{font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;margin-top:.2rem}
+.cc-badge{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem}
+.risk-pill{font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border-radius:2px;font-weight:700;white-space:nowrap}
+.rp-critical{background:rgba(200,76,63,.15);color:var(--red-l);border:1px solid rgba(200,76,63,.25)}
+.rp-high{background:rgba(212,137,10,.12);color:var(--amber-l);border:1px solid rgba(212,137,10,.2)}
+.rp-moderate{background:rgba(201,168,76,.1);color:var(--gold-l);border:1px solid rgba(201,168,76,.2)}
+.rp-benefit{background:rgba(74,124,63,.12);color:var(--mgreen-l);border:1px solid rgba(74,124,63,.2)}
+.rp-major{background:rgba(45,160,80,.15);color:#7add8e;border:1px solid rgba(45,160,80,.25)}
+
+/* RISK BAR */
+.cc-riskbar{height:3px;width:100%}
+.rb-critical{background:var(--red-l)}.rb-high{background:var(--amber-l)}.rb-moderate{background:var(--gold)}.rb-benefit{background:var(--mgreen-l)}.rb-major{background:#7add8e}
+
+/* QUICK STATS */
+.cc-stats{padding:0 1.5rem 1.2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);margin:0 0 1px}
+.cc-stat{background:var(--forest3);padding:.6rem .7rem;text-align:center}
+.ccard.open .cc-stat{background:var(--forest4)}
+.css-val{font-family:var(--serif);font-size:1.1rem;font-weight:700;line-height:1;margin-bottom:.1rem}
+.css-red{color:var(--red-l)}.css-amber{color:var(--amber-l)}.css-gold{color:var(--gold-l)}.css-green{color:var(--mgreen-l)}.css-bright{color:#7add8e}
+.css-lbl{font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;line-height:1.4}
+
+/* EXPAND TOGGLE */
+.cc-toggle{display:flex;align-items:center;justify-content:center;padding:.6rem;border-top:1px solid var(--rule2);font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;gap:.4rem;transition:color .2s}
+.ccard:hover .cc-toggle,.ccard.open .cc-toggle{color:var(--gold)}
+.toggle-arrow{transition:transform .3s;display:inline-block;font-size:.7rem}
+.ccard.open .toggle-arrow{transform:rotate(180deg)}
+
+/* EXPANDED DETAIL */
+.cc-detail{display:none;border-top:1px solid var(--rule);background:var(--forest2)}
+.ccard.open .cc-detail{display:block}
+.detail-inner{padding:1.5rem}
+.detail-section{margin-bottom:1.2rem}
+.detail-section:last-child{margin-bottom:0}
+.ds-title{font-family:var(--mono);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
+.ds-title::after{content:'';flex:1;height:1px;background:var(--gold-d)}
+.ds-body{font-size:.8rem;color:var(--text);line-height:1.75}
+.ds-body strong{color:var(--white)}
+.ds-body .hot{color:var(--red-l);font-weight:600}
+.ds-body .warn{color:var(--amber-l);font-weight:600}
+.ds-body .ok{color:var(--mgreen-l);font-weight:600}
+
+/* METER BARS */
+.meter-list{display:flex;flex-direction:column;gap:.45rem;margin-top:.5rem}
+.meter-row{display:flex;align-items:center;gap:.8rem}
+.meter-lbl{font-family:var(--mono);font-size:.6rem;color:var(--text);width:130px;flex-shrink:0}
+.meter-track{flex:1;height:5px;background:rgba(255,255,255,.05);overflow:hidden}
+.meter-fill{height:100%;animation:mfill 1.5s ease both}
+@keyframes mfill{from{width:0}}
+.mf-red{background:var(--red-l)}.mf-amber{background:var(--amber-l)}.mf-gold{background:var(--gold)}.mf-green{background:var(--mgreen-l)}.mf-bright{background:#7add8e}
+.meter-val{font-family:var(--mono);font-size:.58rem;color:var(--dim);width:32px;text-align:right}
+
+/* VERDICT CHIPS */
+.verdict-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.6rem}
+.vchip{font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;padding:.2rem .6rem;border-radius:2px;border:1px solid}
+.vc-red{background:var(--red-faint);border-color:rgba(200,76,63,.2);color:var(--red-l)}
+.vc-amber{background:rgba(212,137,10,.07);border-color:rgba(212,137,10,.18);color:var(--amber-l)}
+.vc-gold{background:var(--gold-faint);border-color:rgba(201,168,76,.2);color:var(--gold-l)}
+.vc-green{background:var(--mgreen-d);border-color:rgba(74,124,63,.2);color:var(--mgreen-l)}
+.vc-bright{background:rgba(45,160,80,.08);border-color:rgba(45,160,80,.2);color:#7add8e}
+
+/* SUMMARY STRIP */
+.summary-strip{background:var(--forest2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);position:relative;z-index:1}
+.ss-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+.ss-box{padding:1.5rem 1.2rem;text-align:center;border-right:1px solid var(--rule)}
+.ss-box:last-child{border-right:none}
+.ss-val{font-family:var(--serif);font-size:2rem;font-weight:700;line-height:1;margin-bottom:.3rem}
+.ss-val.red{color:var(--red-l)}.ss-val.gold{color:var(--gold-l)}.ss-val.green{color:var(--mgreen-l)}.ss-val.bright{color:#7add8e}
+.ss-lbl{font-family:var(--mono);font-size:.52rem;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;line-height:1.5}
+
+/* FOOTER */
+footer{padding:2.5rem 2rem;border-top:1px solid var(--rule);position:relative;z-index:1}
+.footer-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.fl-logo{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.fl-tag{font-family:var(--serif);font-size:.8rem;font-style:italic;color:var(--dim)}
+.fl-meta{font-family:var(--mono);font-size:.52rem;letter-spacing:.08em;color:var(--dim);text-align:right;line-height:1.9;text-transform:uppercase}
+
+@media(max-width:700px){
+  .country-grid{grid-template-columns:1fr}
+  .ss-inner{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap">
+      <div class="nav-logo">Meridian <em>Brief</em></div>
+      <div class="nav-tag">Intelligence from the South. For the South.</div>
+    </div>
+    <div class="nav-right">
+      <div class="nav-pill np-gold">Global South · Impact Map</div>
+      <div class="nav-pill np-red"><div class="live-dot"></div>Day 7 · March 6</div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eye">
+      <div class="he-line"></div>
+      <div class="he-txt">Meridian Regional Analysis · $92.69 Brent · Day 7</div>
+      <div class="he-line" style="background:linear-gradient(270deg,var(--gold-d),transparent)"></div>
+    </div>
+    <h1 class="hero-hed">The War's Bill.<br><span class="gold">Who Pays It.</span></h1>
+    <p class="hero-deck">Operation Epic Fury is not a Middle East story. It is a global economic event with a Middle East epicentre. Sixteen countries across the Caribbean and Global South — their oil exposure, economic vulnerabilities, and real-time impact profiles at $92.69 Brent crude. Click any country to open its full analysis.</p>
+  </div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <span class="leg-label">Risk Rating</span>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--red-l)"></div>Critical Exposure</div>
+  <div class="leg-sep"></div>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--amber-l)"></div>High Exposure</div>
+  <div class="leg-sep"></div>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--gold)"></div>Moderate Exposure</div>
+  <div class="leg-sep"></div>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--mgreen-l)"></div>Net Beneficiary</div>
+  <div class="leg-sep"></div>
+  <div class="leg-item"><div class="leg-dot" style="background:#7add8e"></div>Major Beneficiary</div>
+</div>
+
+<!-- FILTERS -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterCards('all',this)">All Regions</button>
+  <button class="filter-btn" onclick="filterCards('caribbean',this)">Caribbean</button>
+  <button class="filter-btn" onclick="filterCards('westafrica',this)">West Africa</button>
+  <button class="filter-btn" onclick="filterCards('eastafrica',this)">East Africa</button>
+  <button class="filter-btn" onclick="filterCards('southasia',this)">South Asia</button>
+  <button class="filter-btn" onclick="filterCards('southeastasia',this)">Southeast Asia</button>
+  <button class="filter-btn" onclick="filterCards('benefit',this)">Beneficiaries Only</button>
+  <button class="filter-btn" onclick="filterCards('critical',this)">Critical Risk Only</button>
+</div>
+
+<!-- SUMMARY STRIP -->
+<div class="summary-strip">
+  <div class="ss-inner">
+    <div class="ss-box"><div class="ss-val red">12</div><div class="ss-lbl">Countries in<br>net-negative exposure</div></div>
+    <div class="ss-box"><div class="ss-val bright">4</div><div class="ss-lbl">Countries that<br>benefit from high oil</div></div>
+    <div class="ss-box"><div class="ss-val gold">$92.69</div><div class="ss-lbl">Brent crude<br>Day 7 close</div></div>
+    <div class="ss-box"><div class="ss-val red">$100</div><div class="ss-lbl">Critical threshold<br>entering range</div></div>
+    <div class="ss-box"><div class="ss-val gold">16</div><div class="ss-lbl">Countries mapped<br>across 5 regions</div></div>
+  </div>
+</div>
+
+<!-- GRID -->
+<div class="grid-wrap">
+
+  <!-- CARIBBEAN -->
+  <div class="region" data-region="caribbean">
+    <div class="region-header">
+      <div class="rh-label">◆ Caribbean Region</div>
+      <div class="rh-line"></div>
+      <div class="rh-count">8 Countries</div>
+    </div>
+    <div class="country-grid">
+
+      <!-- TRINIDAD -->
+      <div class="ccard" data-region="caribbean" data-risk="benefit" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-benefit"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇹🇹</div><div><div class="cc-name">Trinidad & Tobago</div><div class="cc-sub">LNG · Petrochemicals · Oil exporter</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-benefit">Net Beneficiary</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-bright">+18%</div><div class="css-lbl">Revenue gain<br>at $92 oil</div></div>
+          <div class="cc-stat"><div class="css-val css-green">LNG</div><div class="css-lbl">Sole Caribbean<br>LNG exporter</div></div>
+          <div class="cc-stat"><div class="css-val css-amber">High</div><div class="css-lbl">Refined fuel<br>import exposure</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">The region's only energy exporter and sole LNG producer. Trinidad supplies LNG to Argentina, Chile, Brazil, Spain and the US. <strong>High oil prices generate direct revenue gains</strong> for the state-owned energy company and the national budget. But paradox: T&T imports a significant share of its refined petroleum products since its refinery closure in 2018. <span class="warn">It benefits from high crude prices but pays more for refined imports.</span></div>
+          </div>
+          <div class="detail-section">
+            <div class="ds-title">Exposure Metrics</div>
+            <div class="meter-list">
+              <div class="meter-row"><div class="meter-lbl">Oil revenue gain</div><div class="meter-track"><div class="meter-fill mf-bright" style="width:78%"></div></div><div class="meter-val">High</div></div>
+              <div class="meter-row"><div class="meter-lbl">Refined import cost</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:55%"></div></div><div class="meter-val">Med</div></div>
+              <div class="meter-row"><div class="meter-lbl">Food price risk</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:50%"></div></div><div class="meter-val">Med</div></div>
+              <div class="meter-row"><div class="meter-lbl">Tourism exposure</div><div class="meter-track"><div class="meter-fill mf-gold" style="width:30%"></div></div><div class="meter-val">Low</div></div>
+            </div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-bright">LNG Revenue ↑</span><span class="vchip vc-amber">Refinery gap</span><span class="vchip vc-gold">Budget surplus likely</span><span class="vchip vc-amber">Petrochem squeeze</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- GUYANA -->
+      <div class="ccard" data-region="caribbean" data-risk="major" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-major"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇬🇾</div><div><div class="cc-name">Guyana</div><div class="cc-sub">New oil producer · ExxonMobil · Fastest growing</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-major">Major Beneficiary</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-bright">+10–12%</div><div class="css-lbl">2026 GDP growth<br>projection</div></div>
+          <div class="cc-stat"><div class="css-val css-bright">~700K</div><div class="css-lbl">Barrels/day<br>production</div></div>
+          <div class="cc-stat"><div class="css-val css-green">$52K</div><div class="css-lbl">GDP per capita<br>PPP (regional #1)</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">Five years ago Guyana was one of the poorest countries in the hemisphere. Today it is the fastest-growing economy in the region and the world, led by ExxonMobil's Stabroek offshore block. <strong>Every $1 rise in Brent crude adds tens of millions to Guyana's Natural Resource Fund.</strong> At $92 oil this country is in a structurally different economic position than all its Caribbean neighbours. <span class="ok">This is a historic oil windfall compounded by a historic oil shock.</span></div>
+          </div>
+          <div class="detail-section">
+            <div class="ds-title">Exposure Metrics</div>
+            <div class="meter-list">
+              <div class="meter-row"><div class="meter-lbl">Revenue windfall</div><div class="meter-track"><div class="meter-fill mf-bright" style="width:95%"></div></div><div class="meter-val">Max</div></div>
+              <div class="meter-row"><div class="meter-lbl">Food import risk</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:45%"></div></div><div class="meter-val">Med</div></div>
+              <div class="meter-row"><div class="meter-lbl">Freight cost rise</div><div class="meter-track"><div class="meter-fill mf-gold" style="width:35%"></div></div><div class="meter-val">Low</div></div>
+              <div class="meter-row"><div class="meter-lbl">Currency pressure</div><div class="meter-track"><div class="meter-fill mf-green" style="width:15%"></div></div><div class="meter-val">Min</div></div>
+            </div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-bright">Windfall revenue</span><span class="vchip vc-bright">NRF growing</span><span class="vchip vc-gold">Infrastructure push</span><span class="vchip vc-amber">Dutch disease risk</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- DOMINICAN REPUBLIC -->
+      <div class="ccard" data-region="caribbean" data-risk="high" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-high"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇩🇴</div><div><div class="cc-name">Dominican Republic</div><div class="cc-sub">Tourism · Manufacturing · Free zones</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-high">High Exposure</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-amber">60%+</div><div class="css-lbl">Hydrocarbons share<br>of energy mix</div></div>
+          <div class="cc-stat"><div class="css-val css-amber">4–5%</div><div class="css-lbl">2026 growth at<br>risk if oil holds</div></div>
+          <div class="cc-stat"><div class="css-val css-amber">41%</div><div class="css-lbl">Electricity grid<br>system losses</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">The Caribbean's largest electricity market and fastest-growing large economy — but <strong>60%+ of its energy runs on hydrocarbons.</strong> Tourism is a major pillar (significant share of GDP) with heavy US visitor dependency. Its manufacturing and free zones export to the US — both exposed to a stagflating American economy. <span class="warn">Electricity grid efficiency is among the worst in the region at 41% system losses, meaning oil price spikes hit both harder and more wastefully.</span></div>
+          </div>
+          <div class="detail-section">
+            <div class="ds-title">Exposure Metrics</div>
+            <div class="meter-list">
+              <div class="meter-row"><div class="meter-lbl">Fuel import cost</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:75%"></div></div><div class="meter-val">High</div></div>
+              <div class="meter-row"><div class="meter-lbl">Electricity cost rise</div><div class="meter-track"><div class="meter-fill mf-red" style="width:80%"></div></div><div class="meter-val">High</div></div>
+              <div class="meter-row"><div class="meter-lbl">Tourism risk</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:65%"></div></div><div class="meter-val">Med</div></div>
+              <div class="meter-row"><div class="meter-lbl">US trade exposure</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:70%"></div></div><div class="meter-val">High</div></div>
+            </div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-red">Electricity crisis risk</span><span class="vchip vc-amber">Tourism slowdown</span><span class="vchip vc-red">Grid inefficiency</span><span class="vchip vc-gold">Diversified buffer</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- BAHAMAS -->
+      <div class="ccard" data-region="caribbean" data-risk="high" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-high"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇧🇸</div><div><div class="cc-name">The Bahamas</div><div class="cc-sub">USD-pegged · Tourism-only · US-dependent</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-high">High Exposure</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-amber">~50%</div><div class="css-lbl">GDP from<br>tourism alone</div></div>
+          <div class="cc-stat"><div class="css-val css-amber">~80%</div><div class="css-lbl">Visitors from<br>United States</div></div>
+          <div class="cc-stat"><div class="css-val css-amber">100%</div><div class="css-lbl">Oil import<br>dependent</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">The highest GDP per capita in the Caribbean — but built almost entirely on US tourist spending and offshore finance. <strong>80% of visitors are American.</strong> A stagflating US economy — negative jobs + $90 oil — directly reduces American discretionary travel. The Bahamas has zero domestic energy production. The dollar peg protects inflation to a degree but means <span class="warn">all oil import costs pass directly to consumers and businesses.</span></div>
+          </div>
+          <div class="detail-section">
+            <div class="ds-title">Exposure Metrics</div>
+            <div class="meter-list">
+              <div class="meter-row"><div class="meter-lbl">US tourist dependency</div><div class="meter-track"><div class="meter-fill mf-red" style="width:80%"></div></div><div class="meter-val">Crit</div></div>
+              <div class="meter-row"><div class="meter-lbl">Fuel import cost</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:72%"></div></div><div class="meter-val">High</div></div>
+              <div class="meter-row"><div class="meter-lbl">Aviation route risk</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:65%"></div></div><div class="meter-val">High</div></div>
+              <div class="meter-row"><div class="meter-lbl">Financial sector buffer</div><div class="meter-track"><div class="meter-fill mf-green" style="width:55%"></div></div><div class="meter-val">Med+</div></div>
+            </div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-red">US tourism shock</span><span class="vchip vc-red">100% oil import</span><span class="vchip vc-gold">Finance sector buffer</span><span class="vchip vc-amber">Dollar peg holds</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- BARBADOS -->
+      <div class="ccard" data-region="caribbean" data-risk="high" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-high"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇧🇧</div><div><div class="cc-name">Barbados</div><div class="cc-sub">Tourism · Services · IMF reform economy</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-high">High Exposure</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-amber">60%+</div><div class="css-lbl">Hydrocarbon share<br>of energy</div></div>
+          <div class="cc-stat"><div class="css-val css-amber">~40%</div><div class="css-lbl">GDP from<br>tourism</div></div>
+          <div class="cc-stat"><div class="css-val css-gold">3%</div><div class="css-lbl">2026 growth<br>forecast at risk</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">Post-IMF reform Barbados was one of the region's most stable recovery stories — but its energy matrix runs over 60% on hydrocarbons with minimal local production. <strong>Tourism accounts for ~40% of GDP</strong>, overwhelmingly from UK, US, and European visitors — all of whom face rising fuel and living costs that will compress travel budgets. Barbados imports LNG but has tiny proven reserves. <span class="warn">The successful reform trajectory is now exposed to an exogenous oil shock it cannot control.</span></div>
+          </div>
+          <div class="detail-section">
+            <div class="ds-title">Exposure Metrics</div>
+            <div class="meter-list">
+              <div class="meter-row"><div class="meter-lbl">Energy import cost</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:72%"></div></div><div class="meter-val">High</div></div>
+              <div class="meter-row"><div class="meter-lbl">Tourism slowdown</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:65%"></div></div><div class="meter-val">High</div></div>
+              <div class="meter-row"><div class="meter-lbl">Electricity cost rise</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:68%"></div></div><div class="meter-val">High</div></div>
+              <div class="meter-row"><div class="meter-lbl">Fiscal buffer</div><div class="meter-track"><div class="meter-fill mf-gold" style="width:40%"></div></div><div class="meter-val">Low</div></div>
+            </div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-amber">Reform gains at risk</span><span class="vchip vc-red">UK/EU visitor squeeze</span><span class="vchip vc-amber">No energy buffer</span><span class="vchip vc-gold">Stable institutions</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- HAITI -->
+      <div class="ccard" data-region="caribbean" data-risk="critical" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-critical"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇭🇹</div><div><div class="cc-name">Haiti</div><div class="cc-sub">Poorest · Gang crisis · Zero reserves</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-critical">Critical Exposure</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-red">77%</div><div class="css-lbl">Electricity grid<br>system losses</div></div>
+          <div class="cc-stat"><div class="css-val css-red">$3,500</div><div class="css-lbl">GDP per capita<br>PPP · lowest in region</div></div>
+          <div class="cc-stat"><div class="css-val css-red">Zero</div><div class="css-lbl">Foreign reserve<br>buffer capacity</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">The most exposed nation in the hemisphere. Haiti was already in humanitarian crisis before Day 1 — active gang control of Port-au-Prince, collapsed institutions, 77% electricity grid losses (highest in the region), and zero strategic reserves. <span class="hot">An oil shock for Haiti is not a macroeconomic event — it is a survival event.</span> Haiti imports fuel by truck from the Dominican Republic. Any disruption in Dominican supply chains or further price escalation hits food, water pumping, and generator-powered hospitals simultaneously.</div>
+          </div>
+          <div class="detail-section">
+            <div class="ds-title">Exposure Metrics</div>
+            <div class="meter-list">
+              <div class="meter-row"><div class="meter-lbl">Food security</div><div class="meter-track"><div class="meter-fill mf-red" style="width:98%"></div></div><div class="meter-val">Crit</div></div>
+              <div class="meter-row"><div class="meter-lbl">Energy access</div><div class="meter-track"><div class="meter-fill mf-red" style="width:97%"></div></div><div class="meter-val">Crit</div></div>
+              <div class="meter-row"><div class="meter-lbl">Supply chain fragility</div><div class="meter-track"><div class="meter-fill mf-red" style="width:95%"></div></div><div class="meter-val">Crit</div></div>
+              <div class="meter-row"><div class="meter-lbl">Institutional capacity</div><div class="meter-track"><div class="meter-fill mf-red" style="width:92%"></div></div><div class="meter-val">Crit</div></div>
+            </div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-red">Humanitarian crisis</span><span class="vchip vc-red">Zero fiscal buffer</span><span class="vchip vc-red">Gang-controlled supply</span><span class="vchip vc-red">No reserves</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- BELIZE -->
+      <div class="ccard" data-region="caribbean" data-risk="moderate" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-moderate"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇧🇿</div><div><div class="cc-name">Belize</div><div class="cc-sub">Small oil producer · Tourism · Agriculture</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-moderate">Moderate Exposure</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-gold">~2K</div><div class="css-lbl">Barrels/day<br>domestic output</div></div>
+          <div class="cc-stat"><div class="css-val css-gold">Mixed</div><div class="css-lbl">Oil producer &<br>importer (net)</div></div>
+          <div class="cc-stat"><div class="css-val css-amber">High</div><div class="css-lbl">Tourism &<br>agri dependency</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">Belize produces modest crude oil (~2,000 bpd) — not enough to insulate it from global price moves, but a partial buffer compared to pure importers. Agriculture (sugar, citrus, shrimp) and eco-tourism are the economic pillars. <strong>The agriculture sector could face fertilizer cost pressure as Hormuz blocks nitrogen compound flows.</strong> Tourism is exposed to US visitor compression. Overall a moderate risk profile with some natural hedges.</div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-gold">Partial oil producer</span><span class="vchip vc-amber">Fertilizer cost risk</span><span class="vchip vc-amber">US tourism pressure</span><span class="vchip vc-gold">Agri buffer</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- SURINAME -->
+      <div class="ccard" data-region="caribbean" data-risk="benefit" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-benefit"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇸🇷</div><div><div class="cc-name">Suriname</div><div class="cc-sub">Oil &amp; mining · TotalEnergies offshore · IMF program</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-benefit">Net Beneficiary</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-green">2–3%</div><div class="css-lbl">2026 growth<br>forecast</div></div>
+          <div class="css-val css-green"></div>
+          <div class="cc-stat"><div class="css-val css-green">Offshore</div><div class="css-lbl">TotalEnergies block<br>development active</div></div>
+          <div class="cc-stat"><div class="css-val css-amber">IMF</div><div class="css-lbl">Debt program<br>ongoing — constraint</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">Suriname's offshore oil block (TotalEnergies) is still in development — production expected to ramp through 2027. <strong>High oil prices make the fiscal case for the offshore project stronger and attract more investment.</strong> However, Suriname is still in an IMF program following its 2021 debt default, meaning the oil windfall benefit is partially absorbed by debt servicing. Net: more positive than negative, but constrained by structural fiscal conditions.</div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-green">Offshore investment upside</span><span class="vchip vc-amber">IMF constraints</span><span class="vchip vc-gold">Mining revenue also rising</span>
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEST AFRICA -->
+  <div class="region" data-region="westafrica">
+    <div class="region-header">
+      <div class="rh-label">◆ West Africa</div>
+      <div class="rh-line"></div>
+      <div class="rh-count">3 Countries</div>
+    </div>
+    <div class="country-grid">
+
+      <!-- NIGERIA -->
+      <div class="ccard" data-region="westafrica" data-risk="benefit" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-benefit"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇳🇬</div><div><div class="cc-name">Nigeria</div><div class="cc-sub">Africa's largest oil exporter · Refinery gap</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-benefit">Net Beneficiary</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-green">~1.4M</div><div class="css-lbl">Barrels/day<br>export capacity</div></div>
+          <div class="cc-stat"><div class="css-val css-amber">Import</div><div class="css-lbl">Still imports refined<br>fuel products</div></div>
+          <div class="cc-stat"><div class="css-val css-green">Major</div><div class="css-lbl">Forex revenue<br>windfall coming</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">Africa's largest oil producer and exporter — nominally the biggest beneficiary in Sub-Saharan Africa from a sustained oil price surge. <strong>But Nigeria's refinery paradox makes this complicated:</strong> it exports crude but imports refined petroleum products, so domestic pump prices rise with global oil even when foreign exchange revenues climb. The Dangote refinery (partially online) should partially close this gap. <span class="ok">Net: significantly positive for government revenue and FX reserves, but inflationary for domestic consumers.</span></div>
+          </div>
+          <div class="detail-section">
+            <div class="ds-title">Exposure Metrics</div>
+            <div class="meter-list">
+              <div class="meter-row"><div class="meter-lbl">Export revenue gain</div><div class="meter-track"><div class="meter-fill mf-bright" style="width:85%"></div></div><div class="meter-val">High</div></div>
+              <div class="meter-row"><div class="meter-lbl">Domestic fuel cost</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:65%"></div></div><div class="meter-val">High</div></div>
+              <div class="meter-row"><div class="meter-lbl">Food inflation risk</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:60%"></div></div><div class="meter-val">Med</div></div>
+              <div class="meter-row"><div class="meter-lbl">FX reserve build</div><div class="meter-track"><div class="meter-fill mf-bright" style="width:80%"></div></div><div class="meter-val">High</div></div>
+            </div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-bright">FX windfall</span><span class="vchip vc-amber">Refinery gap problem</span><span class="vchip vc-amber">Domestic inflation</span><span class="vchip vc-green">Dangote partial fix</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- GHANA -->
+      <div class="ccard" data-region="westafrica" data-risk="critical" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-critical"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇬🇭</div><div><div class="cc-name">Ghana</div><div class="cc-sub">Post-default · IMF program · Fuel importer</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-critical">Critical Exposure</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-red">2022</div><div class="css-lbl">Debt default year<br>still in recovery</div></div>
+          <div class="cc-stat"><div class="css-val css-red">IMF</div><div class="css-lbl">Active bailout<br>program ongoing</div></div>
+          <div class="cc-stat"><div class="css-val css-red">High</div><div class="css-lbl">Fuel import<br>cost exposure</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">Ghana defaulted on its external debt in 2022 and is in an active IMF recovery program. It produces modest crude (Jubilee field) but is a <strong>net importer of refined petroleum products.</strong> Every dollar on Brent widens its fuel subsidy bill or pushes pump prices to consumers already squeezed by post-default austerity. <span class="hot">A sustained oil shock at $90+ arriving into an economy mid-debt-restructuring is among the most dangerous combinations on this map.</span> Gold and cocoa exports provide some offset.</div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-red">Debt restructuring + oil shock</span><span class="vchip vc-red">IMF program at risk</span><span class="vchip vc-gold">Gold export offset</span><span class="vchip vc-amber">Cocoa hedge partial</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- SENEGAL -->
+      <div class="ccard" data-region="westafrica" data-risk="benefit" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-benefit"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇸🇳</div><div><div class="cc-name">Senegal</div><div class="cc-sub">New oil producer 2024 · BP/Kosmos LNG</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-benefit">Net Beneficiary</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-green">2024</div><div class="css-lbl">First oil production<br>year — Sangomar</div></div>
+          <div class="cc-stat"><div class="css-val css-green">LNG</div><div class="css-lbl">BP/Kosmos offshore<br>gas development</div></div>
+          <div class="cc-stat"><div class="css-val css-amber">Import</div><div class="css-lbl">Still net fuel<br>importer short-term</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">Senegal began producing oil from the Sangomar offshore field in 2024 — making it one of the newest entrants into the global oil producer club. BP and Kosmos Energy are developing a major offshore LNG project that will significantly change Senegal's energy export profile. <strong>High oil prices make these projects more valuable and attract additional investment.</strong> In the short term, Senegal still imports refined fuel and faces domestic price pressure, but the trajectory is net positive as production scales.</div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-bright">New producer windfall</span><span class="vchip vc-green">LNG development active</span><span class="vchip vc-amber">Short-term fuel costs</span><span class="vchip vc-gold">Investment magnet</span>
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EAST AFRICA -->
+  <div class="region" data-region="eastafrica">
+    <div class="region-header">
+      <div class="rh-label">◆ East Africa</div>
+      <div class="rh-line"></div>
+      <div class="rh-count">2 Countries</div>
+    </div>
+    <div class="country-grid">
+
+      <!-- KENYA -->
+      <div class="ccard" data-region="eastafrica" data-risk="high" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-high"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇰🇪</div><div><div class="cc-name">Kenya</div><div class="cc-sub">Tourism · Remittances · 100% fuel import</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-high">High Exposure</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-amber">100%</div><div class="css-lbl">Oil import<br>dependent</div></div>
+          <div class="cc-stat"><div class="css-val css-amber">~14%</div><div class="css-lbl">GDP from<br>tourism</div></div>
+          <div class="cc-stat"><div class="css-val css-amber">High</div><div class="css-lbl">Middle East<br>remittance exposure</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">East Africa's largest economy is 100% oil import dependent. Tourism — a significant GDP contributor — draws heavily from Europe and the Middle East, both of which are economically disrupted by this war. <strong>Kenya has a large diaspora in the Gulf states</strong> — remittance flows from Kenyans working in Qatar, UAE, and Saudi Arabia are directly at risk as those economies absorb war costs. The Kenya shilling is also under pressure from global dollar strengthening during risk-off environments. <span class="warn">A simultaneous tourism, remittance, and fuel import shock represents serious GDP exposure.</span></div>
+          </div>
+          <div class="detail-section">
+            <div class="ds-title">Exposure Metrics</div>
+            <div class="meter-list">
+              <div class="meter-row"><div class="meter-lbl">Fuel import bill</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:78%"></div></div><div class="meter-val">High</div></div>
+              <div class="meter-row"><div class="meter-lbl">Gulf remittances</div><div class="meter-track"><div class="meter-fill mf-red" style="width:72%"></div></div><div class="meter-val">High</div></div>
+              <div class="meter-row"><div class="meter-lbl">Tourism slowdown</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:60%"></div></div><div class="meter-val">Med</div></div>
+              <div class="meter-row"><div class="meter-lbl">Currency pressure</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:65%"></div></div><div class="meter-val">High</div></div>
+            </div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-red">Gulf remittance risk</span><span class="vchip vc-amber">Tourism channel hit</span><span class="vchip vc-red">100% fuel import</span><span class="vchip vc-gold">Agri export buffer</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- ETHIOPIA -->
+      <div class="ccard" data-region="eastafrica" data-risk="critical" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-critical"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇪🇹</div><div><div class="cc-name">Ethiopia</div><div class="cc-sub">100M+ population · Food insecure · Post-conflict</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-critical">Critical Exposure</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-red">100%</div><div class="css-lbl">Oil import<br>dependent</div></div>
+          <div class="cc-stat"><div class="css-val css-red">22M+</div><div class="css-lbl">People needing<br>food assistance</div></div>
+          <div class="cc-stat"><div class="css-val css-red">High</div><div class="css-lbl">Wheat import<br>dependency</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">Africa's second-most populous nation is in one of the most dangerous positions on this map. <strong>22+ million people already requiring food assistance, post-Tigray reconstruction underway, 100% oil import dependent</strong>, and now a fertilizer supply shock arriving into an agricultural economy heading into planting season. Ethiopia imports wheat from Ukraine and Russia — both supply chains already disrupted before this war. The Hormuz fertilizer blockage is a direct second-order hit. <span class="hot">This is not a macroeconomic story. It is a food security emergency in the making.</span></div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-red">Food security emergency</span><span class="vchip vc-red">Fertilizer shock</span><span class="vchip vc-red">Wheat supply disrupted</span><span class="vchip vc-red">Zero fiscal buffer</span>
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SOUTH ASIA -->
+  <div class="region" data-region="southasia">
+    <div class="region-header">
+      <div class="rh-label">◆ South Asia</div>
+      <div class="rh-line"></div>
+      <div class="rh-count">3 Countries</div>
+    </div>
+    <div class="country-grid">
+
+      <!-- INDIA -->
+      <div class="ccard" data-region="southasia" data-risk="high" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-high"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇮🇳</div><div><div class="cc-name">India</div><div class="cc-sub">3rd largest oil importer · 5M bpd · $150B/yr</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-high">High Exposure</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-amber">85%</div><div class="css-lbl">Oil import<br>dependency rate</div></div>
+          <div class="cc-stat"><div class="css-val css-amber">~5M</div><div class="css-lbl">Barrels/day<br>imported</div></div>
+          <div class="cc-stat"><div class="css-val css-amber">$150B</div><div class="css-lbl">Annual fuel<br>import bill</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">The world's third-largest oil importer absorbs this shock at a systemic scale that no other Global South economy matches. A $10 rise in Brent adds approximately <strong>$15–18 billion to India's annual import bill.</strong> At $92 Brent that is a $210B+ annualised fuel bill — a significant current account pressure. India has been buying discounted Russian crude since 2022, partially buffering its exposure. <span class="warn">But Hormuz carries 90% of the oil flowing to Asian markets — including India's non-Russian supply.</span> The fertilizer compound is also severe: India is a major urea importer.</div>
+          </div>
+          <div class="detail-section">
+            <div class="ds-title">Exposure Metrics</div>
+            <div class="meter-list">
+              <div class="meter-row"><div class="meter-lbl">Fuel import cost</div><div class="meter-track"><div class="meter-fill mf-red" style="width:85%"></div></div><div class="meter-val">Crit</div></div>
+              <div class="meter-row"><div class="meter-lbl">Current account</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:75%"></div></div><div class="meter-val">High</div></div>
+              <div class="meter-row"><div class="meter-lbl">Fertilizer import</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:70%"></div></div><div class="meter-val">High</div></div>
+              <div class="meter-row"><div class="meter-lbl">Russian discount buffer</div><div class="meter-track"><div class="meter-fill mf-green" style="width:45%"></div></div><div class="meter-val">Part</div></div>
+            </div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-red">$18B/yr per $10 rise</span><span class="vchip vc-amber">Rupee pressure</span><span class="vchip vc-gold">Russian discount buffer</span><span class="vchip vc-amber">Fertilizer import hit</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- PAKISTAN -->
+      <div class="ccard" data-region="southasia" data-risk="critical" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-critical"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇵🇰</div><div><div class="cc-name">Pakistan</div><div class="cc-sub">IMF program · Zero reserves · 100% oil import</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-critical">Critical Exposure</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-red">IMF</div><div class="css-lbl">Active bailout<br>3rd program 2023</div></div>
+          <div class="cc-stat"><div class="css-val css-red">~$3B</div><div class="css-lbl">Thin FX reserves<br>buffer</div></div>
+          <div class="cc-stat"><div class="css-val css-red">High</div><div class="css-lbl">Gulf remittance<br>dependency</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">Pakistan entered this war already on life support. Third IMF bailout. Thin foreign reserves. Structurally dependent on Gulf remittances from ~4 million workers in Saudi Arabia, UAE, Qatar, and Kuwait — all countries now under active Iranian missile attack. <span class="hot">A sustained Gulf crisis directly threatens both the remittance flows that sustain Pakistan's FX position AND the safety of its workers in the region.</span> Pakistan also faces electricity sector collapse risks as LNG prices spike (Qatar LNG is still halted).</div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-red">Gulf remittances at risk</span><span class="vchip vc-red">LNG price spike</span><span class="vchip vc-red">IMF program stress</span><span class="vchip vc-red">Workers in conflict zone</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- SRI LANKA -->
+      <div class="ccard" data-region="southasia" data-risk="critical" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-critical"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇱🇰</div><div><div class="cc-name">Sri Lanka</div><div class="cc-sub">Post-2022 collapse · Fragile recovery · Tourism</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-critical">Critical Exposure</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-red">2022</div><div class="css-lbl">Economic collapse<br>— still rebuilding</div></div>
+          <div class="css-val"></div>
+          <div class="cc-stat"><div class="css-val css-red">Fuel</div><div class="css-lbl">2022 crisis was<br>triggered by fuel</div></div>
+          <div class="cc-stat"><div class="css-val css-red">Indian</div><div class="css-lbl">Ocean on Iran<br>naval fire line</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">Sri Lanka's 2022 economic collapse was triggered primarily by <strong>a foreign exchange crisis that made fuel unaffordable</strong> — queues at petrol stations, blackouts, political revolution. The country emerged from that crisis through IMF intervention and is still in fragile recovery. <span class="hot">A sustained oil shock at $90+ directly threatens to repeat the exact conditions that caused the 2022 collapse.</span> Additionally: the US Navy sank an Iranian frigate south of Sri Lanka in this war. The Indian Ocean is now an active naval theatre adjacent to Sri Lanka's coastline.</div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-red">2022 crisis conditions returning</span><span class="vchip vc-red">Active naval zone nearby</span><span class="vchip vc-amber">IMF program ongoing</span><span class="vchip vc-red">FX reserves thin</span>
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SOUTHEAST ASIA -->
+  <div class="region" data-region="southeastasia">
+    <div class="region-header">
+      <div class="rh-label">◆ Southeast Asia</div>
+      <div class="rh-line"></div>
+      <div class="rh-count">2 Countries</div>
+    </div>
+    <div class="country-grid">
+
+      <!-- PHILIPPINES -->
+      <div class="ccard" data-region="southeastasia" data-risk="critical" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-critical"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇵🇭</div><div><div class="cc-name">Philippines</div><div class="cc-sub">Gulf OFW workers · Remittance dependent · 100% oil import</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-critical">Critical Exposure</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-red">~2M+</div><div class="css-lbl">OFW workers<br>in Gulf states</div></div>
+          <div class="cc-stat"><div class="css-val css-red">~10%</div><div class="css-lbl">GDP from<br>remittances</div></div>
+          <div class="cc-stat"><div class="css-val css-red">100%</div><div class="css-lbl">Oil import<br>dependent</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">One of the most specific and underreported exposures on this map. The Philippines has over 2 million Overseas Filipino Workers (OFWs) in Saudi Arabia, UAE, Qatar, and Kuwait — the exact countries now under active Iranian missile attack. <strong>Their remittances represent approximately 10% of Philippine GDP.</strong> If the Gulf war escalates and those workers evacuate — or if Gulf economies contract and reduce employment — the Philippine economy faces a dual shock: <span class="hot">rising oil import costs AND collapsing remittance inflows simultaneously.</span></div>
+          </div>
+          <div class="detail-section">
+            <div class="ds-title">Exposure Metrics</div>
+            <div class="meter-list">
+              <div class="meter-row"><div class="meter-lbl">OFW remittance risk</div><div class="meter-track"><div class="meter-fill mf-red" style="width:90%"></div></div><div class="meter-val">Crit</div></div>
+              <div class="meter-row"><div class="meter-lbl">Fuel import cost</div><div class="meter-track"><div class="meter-fill mf-red" style="width:82%"></div></div><div class="meter-val">High</div></div>
+              <div class="meter-row"><div class="meter-lbl">Worker evacuation risk</div><div class="meter-track"><div class="meter-fill mf-amber" style="width:55%"></div></div><div class="meter-val">Med</div></div>
+              <div class="meter-row"><div class="meter-lbl">BPO/services buffer</div><div class="meter-track"><div class="meter-fill mf-green" style="width:40%"></div></div><div class="meter-val">Part</div></div>
+            </div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-red">Gulf OFW crisis</span><span class="vchip vc-red">10% GDP at risk</span><span class="vchip vc-red">100% oil import</span><span class="vchip vc-gold">BPO sector buffer</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- INDONESIA -->
+      <div class="ccard" data-region="southeastasia" data-risk="moderate" onclick="toggleCard(this)">
+        <div class="cc-riskbar rb-moderate"></div>
+        <div class="cc-top">
+          <div class="cc-flag-name"><div class="cc-flag">🇮🇩</div><div><div class="cc-name">Indonesia</div><div class="cc-sub">Coal exporter · Net oil importer · Large domestic market</div></div></div>
+          <div class="cc-badge"><span class="risk-pill rp-moderate">Moderate Exposure</span></div>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="css-val css-amber">Net import</div><div class="css-lbl">Oil importer<br>since 2004</div></div>
+          <div class="cc-stat"><div class="css-val css-green">Coal ↑</div><div class="css-lbl">World's largest<br>thermal coal exporter</div></div>
+          <div class="cc-stat"><div class="css-val css-gold">Partial</div><div class="css-lbl">Natural hedge from<br>coal & nickel</div></div>
+        </div>
+        <div class="cc-toggle"><span>Full Profile</span><span class="toggle-arrow">▾</span></div>
+        <div class="cc-detail"><div class="detail-inner">
+          <div class="detail-section">
+            <div class="ds-title">Position</div>
+            <div class="ds-body">Indonesia left OPEC in 2004 when it became a net oil importer. But it is the world's largest thermal coal exporter and a major nickel producer — and high oil prices typically drive coal and industrial metal demand. <strong>The partial hedge means Indonesia is moderately exposed rather than critically.</strong> Its large domestic market (~280M people) and commodity diversification give it more resilience than most other Global South importers. <span class="warn">Fuel subsidies — already expensive — will be further strained at $90 oil.</span></div>
+          </div>
+          <div class="verdict-chips">
+            <span class="vchip vc-amber">Fuel subsidy strain</span><span class="vchip vc-green">Coal export gain</span><span class="vchip vc-green">Nickel demand up</span><span class="vchip vc-gold">Domestic market buffer</span>
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="fl-logo">Meridian</div>
+      <div class="fl-tag">Intelligence from the South. For the South.</div>
+    </div>
+    <div class="fl-meta">
+      Global South Impact Map · Day 7 · March 6, 2026 · Brent $92.69<br>
+      16 Countries · 5 Regions · Caribbean · West Africa · East Africa · South Asia · SE Asia<br>
+      Sources: IDB · OECD · IMF · World Bank · IEA · EPCM Holdings
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleCard(el){
+  const wasOpen = el.classList.contains('open');
+  // close all
+  document.querySelectorAll('.ccard.open').forEach(c => c.classList.remove('open'));
+  if(!wasOpen) el.classList.add('open');
+}
+
+function filterCards(filter, btn){
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const regions = document.querySelectorAll('.region');
+  const allCards = document.querySelectorAll('.ccard');
+
+  if(filter === 'all'){
+    regions.forEach(r => r.style.display = '');
+    allCards.forEach(c => c.style.display = '');
+    return;
+  }
+  if(filter === 'benefit'){
+    regions.forEach(r => {
+      const cards = r.querySelectorAll('.ccard');
+      let anyVisible = false;
+      cards.forEach(c => {
+        const risk = c.dataset.risk;
+        const show = risk === 'benefit' || risk === 'major';
+        c.style.display = show ? '' : 'none';
+        if(show) anyVisible = true;
+      });
+      r.style.display = anyVisible ? '' : 'none';
+    });
+    return;
+  }
+  if(filter === 'critical'){
+    regions.forEach(r => {
+      const cards = r.querySelectorAll('.ccard');
+      let anyVisible = false;
+      cards.forEach(c => {
+        const show = c.dataset.risk === 'critical';
+        c.style.display = show ? '' : 'none';
+        if(show) anyVisible = true;
+      });
+      r.style.display = anyVisible ? '' : 'none';
+    });
+    return;
+  }
+  // region filter
+  regions.forEach(r => {
+    const match = r.dataset.region === filter;
+    r.style.display = match ? '' : 'none';
+    if(match) r.querySelectorAll('.ccard').forEach(c => c.style.display = '');
+  });
+}
+</script>
+</body>
+</html>
