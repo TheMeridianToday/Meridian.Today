@@ -5,172 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MERIDIAN — Global South Oil Shock Impact Map</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --forest:#0e1208;--forest2:#121a0a;--forest3:#192110;--forest4:#1e2814;--forest5:#242f18;
-  --gold:#c9a84c;--gold-l:#e0c46e;--gold-d:#7a6020;--gold-faint:rgba(201,168,76,.07);
-  --mgreen:#4a7c3f;--mgreen-l:#6aaa5e;--mgreen-d:rgba(74,124,63,.12);
-  --red:#c84c3f;--red-l:#e07060;--red-faint:rgba(200,76,63,.08);
-  --amber:#d4890a;--amber-l:#f0a820;
-  --rule:rgba(201,168,76,.1);--rule2:rgba(201,168,76,.05);
-  --text:#a8b8a0;--dim:#5a6852;--white:#eef2e6;
-  --serif:'Cormorant Garamond',serif;
-  --sans:'Outfit',sans-serif;
-  --mono:'DM Mono',monospace;
-
-  /* Risk colours */
-  --risk-critical:rgba(200,76,63,1);
-  --risk-high:rgba(212,137,10,1);
-  --risk-moderate:rgba(201,168,76,1);
-  --risk-benefit:rgba(74,124,63,1);
-  --risk-major:rgba(45,160,80,1);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--forest);color:var(--text);font-family:var(--sans);overflow-x:hidden;line-height:1.6;min-height:100vh}
-
-/* GRID BG */
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(201,168,76,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.02) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
-
-/* NAV */
-nav{position:sticky;top:0;z-index:300;background:rgba(14,18,8,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--rule)}
-.nav-inner{max-width:1400px;margin:0 auto;padding:.75rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
-.nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
-.nav-logo em{font-style:italic;font-weight:400;color:var(--gold-l)}
-.nav-tag{font-family:var(--serif);font-size:.85rem;font-style:italic;color:var(--dim)}
-.nav-right{display:flex;align-items:center;gap:1rem}
-.nav-pill{font-family:var(--mono);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;padding:.25rem .7rem;border-radius:2px;border:1px solid}
-.np-gold{color:var(--gold);border-color:var(--gold-d);background:rgba(201,168,76,.06)}
-.np-red{color:var(--red-l);border-color:rgba(200,76,63,.2);background:var(--red-faint);display:flex;align-items:center;gap:.4rem}
-.live-dot{width:5px;height:5px;border-radius:50%;background:var(--red-l);animation:livep 1.5s ease-in-out infinite}
-@keyframes livep{0%,100%{opacity:1}50%{opacity:.15}}
-
-/* HERO */
-.hero{position:relative;z-index:1;padding:4rem 2rem 3rem;border-bottom:1px solid var(--rule);overflow:hidden}
-.hero-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(201,168,76,.06) 0%,transparent 60%)}
-.hero-inner{max-width:1400px;margin:0 auto;position:relative}
-.hero-eye{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
-.he-line{flex:1;height:1px;background:linear-gradient(90deg,var(--gold-d),transparent)}
-.he-txt{font-family:var(--mono);font-size:.58rem;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;white-space:nowrap}
-.hero-hed{font-family:var(--serif);font-size:clamp(2.5rem,5vw,5rem);font-weight:700;color:var(--white);line-height:.95;letter-spacing:-.01em;margin-bottom:.8rem}
-.hero-hed .gold{color:var(--gold);font-style:italic}
-.hero-deck{font-size:.95rem;color:var(--dim);max-width:680px;line-height:1.8;font-weight:300}
-
-/* LEGEND */
-.legend{max-width:1400px;margin:0 auto;padding:1.5rem 2rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;border-bottom:1px solid var(--rule);position:relative;z-index:1}
-.leg-label{font-family:var(--mono);font-size:.55rem;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-right:.4rem}
-.leg-item{display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;color:var(--text)}
-.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.leg-sep{width:1px;height:14px;background:var(--rule);margin:0 .4rem}
-
-/* FILTER BAR */
-.filter-bar{max-width:1400px;margin:0 auto;padding:1.2rem 2rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;position:relative;z-index:1}
-.filter-btn{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:.35rem .9rem;border-radius:2px;border:1px solid var(--rule);background:transparent;color:var(--dim);cursor:pointer;transition:all .2s}
-.filter-btn:hover,.filter-btn.active{background:rgba(201,168,76,.08);border-color:var(--gold-d);color:var(--gold)}
-.filter-btn.active{font-weight:700}
-
-/* MAIN GRID */
-.grid-wrap{max-width:1400px;margin:0 auto;padding:1.5rem 2rem 4rem;position:relative;z-index:1}
-
-/* REGION BLOCK */
-.region{margin-bottom:3rem}
-.region-header{display:flex;align-items:center;gap:1.2rem;margin-bottom:1.5rem}
-.rh-label{font-family:var(--mono);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
-.rh-line{flex:1;height:1px;background:linear-gradient(90deg,var(--gold-d),transparent)}
-.rh-count{font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;color:var(--dim);white-space:nowrap}
-.country-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--rule)}
-
-/* COUNTRY CARD */
-.ccard{background:var(--forest3);padding:0;cursor:pointer;transition:background .2s;position:relative;overflow:hidden}
-.ccard:hover{background:var(--forest4)}
-.ccard.open{background:var(--forest4)}
-.cc-top{padding:1.5rem;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start}
-.cc-flag-name{display:flex;align-items:center;gap:.8rem}
-.cc-flag{font-size:1.6rem;flex-shrink:0;line-height:1}
-.cc-name{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--white);line-height:1.1}
-.cc-sub{font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;margin-top:.2rem}
-.cc-badge{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem}
-.risk-pill{font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border-radius:2px;font-weight:700;white-space:nowrap}
-.rp-critical{background:rgba(200,76,63,.15);color:var(--red-l);border:1px solid rgba(200,76,63,.25)}
-.rp-high{background:rgba(212,137,10,.12);color:var(--amber-l);border:1px solid rgba(212,137,10,.2)}
-.rp-moderate{background:rgba(201,168,76,.1);color:var(--gold-l);border:1px solid rgba(201,168,76,.2)}
-.rp-benefit{background:rgba(74,124,63,.12);color:var(--mgreen-l);border:1px solid rgba(74,124,63,.2)}
-.rp-major{background:rgba(45,160,80,.15);color:#7add8e;border:1px solid rgba(45,160,80,.25)}
-
-/* RISK BAR */
-.cc-riskbar{height:3px;width:100%}
-.rb-critical{background:var(--red-l)}.rb-high{background:var(--amber-l)}.rb-moderate{background:var(--gold)}.rb-benefit{background:var(--mgreen-l)}.rb-major{background:#7add8e}
-
-/* QUICK STATS */
-.cc-stats{padding:0 1.5rem 1.2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);margin:0 0 1px}
-.cc-stat{background:var(--forest3);padding:.6rem .7rem;text-align:center}
-.ccard.open .cc-stat{background:var(--forest4)}
-.css-val{font-family:var(--serif);font-size:1.1rem;font-weight:700;line-height:1;margin-bottom:.1rem}
-.css-red{color:var(--red-l)}.css-amber{color:var(--amber-l)}.css-gold{color:var(--gold-l)}.css-green{color:var(--mgreen-l)}.css-bright{color:#7add8e}
-.css-lbl{font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;line-height:1.4}
-
-/* EXPAND TOGGLE */
-.cc-toggle{display:flex;align-items:center;justify-content:center;padding:.6rem;border-top:1px solid var(--rule2);font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;gap:.4rem;transition:color .2s}
-.ccard:hover .cc-toggle,.ccard.open .cc-toggle{color:var(--gold)}
-.toggle-arrow{transition:transform .3s;display:inline-block;font-size:.7rem}
-.ccard.open .toggle-arrow{transform:rotate(180deg)}
-
-/* EXPANDED DETAIL */
-.cc-detail{display:none;border-top:1px solid var(--rule);background:var(--forest2)}
-.ccard.open .cc-detail{display:block}
-.detail-inner{padding:1.5rem}
-.detail-section{margin-bottom:1.2rem}
-.detail-section:last-child{margin-bottom:0}
-.ds-title{font-family:var(--mono);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
-.ds-title::after{content:'';flex:1;height:1px;background:var(--gold-d)}
-.ds-body{font-size:.8rem;color:var(--text);line-height:1.75}
-.ds-body strong{color:var(--white)}
-.ds-body .hot{color:var(--red-l);font-weight:600}
-.ds-body .warn{color:var(--amber-l);font-weight:600}
-.ds-body .ok{color:var(--mgreen-l);font-weight:600}
-
-/* METER BARS */
-.meter-list{display:flex;flex-direction:column;gap:.45rem;margin-top:.5rem}
-.meter-row{display:flex;align-items:center;gap:.8rem}
-.meter-lbl{font-family:var(--mono);font-size:.6rem;color:var(--text);width:130px;flex-shrink:0}
-.meter-track{flex:1;height:5px;background:rgba(255,255,255,.05);overflow:hidden}
-.meter-fill{height:100%;animation:mfill 1.5s ease both}
-@keyframes mfill{from{width:0}}
-.mf-red{background:var(--red-l)}.mf-amber{background:var(--amber-l)}.mf-gold{background:var(--gold)}.mf-green{background:var(--mgreen-l)}.mf-bright{background:#7add8e}
-.meter-val{font-family:var(--mono);font-size:.58rem;color:var(--dim);width:32px;text-align:right}
-
-/* VERDICT CHIPS */
-.verdict-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.6rem}
-.vchip{font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;padding:.2rem .6rem;border-radius:2px;border:1px solid}
-.vc-red{background:var(--red-faint);border-color:rgba(200,76,63,.2);color:var(--red-l)}
-.vc-amber{background:rgba(212,137,10,.07);border-color:rgba(212,137,10,.18);color:var(--amber-l)}
-.vc-gold{background:var(--gold-faint);border-color:rgba(201,168,76,.2);color:var(--gold-l)}
-.vc-green{background:var(--mgreen-d);border-color:rgba(74,124,63,.2);color:var(--mgreen-l)}
-.vc-bright{background:rgba(45,160,80,.08);border-color:rgba(45,160,80,.2);color:#7add8e}
-
-/* SUMMARY STRIP */
-.summary-strip{background:var(--forest2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);position:relative;z-index:1}
-.ss-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:0}
-.ss-box{padding:1.5rem 1.2rem;text-align:center;border-right:1px solid var(--rule)}
-.ss-box:last-child{border-right:none}
-.ss-val{font-family:var(--serif);font-size:2rem;font-weight:700;line-height:1;margin-bottom:.3rem}
-.ss-val.red{color:var(--red-l)}.ss-val.gold{color:var(--gold-l)}.ss-val.green{color:var(--mgreen-l)}.ss-val.bright{color:#7add8e}
-.ss-lbl{font-family:var(--mono);font-size:.52rem;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;line-height:1.5}
-
-/* FOOTER */
-footer{padding:2.5rem 2rem;border-top:1px solid var(--rule);position:relative;z-index:1}
-.footer-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.fl-logo{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
-.fl-tag{font-family:var(--serif);font-size:.8rem;font-style:italic;color:var(--dim)}
-.fl-meta{font-family:var(--mono);font-size:.52rem;letter-spacing:.08em;color:var(--dim);text-align:right;line-height:1.9;text-transform:uppercase}
-
-@media(max-width:700px){
-  .country-grid{grid-template-columns:1fr}
-  .ss-inner{grid-template-columns:repeat(3,1fr)}
-}
-</style>
+<link rel="stylesheet" href="../assets/meridian.css">
+<script defer data-domain="meridian.today" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
+<div class="scroll-progress"><div class="scroll-bar" id="scrollBar"></div></div>
+<div id="m-header"></div>
 
 <nav>
   <div class="nav-inner">
@@ -893,5 +733,7 @@ function filterCards(filter, btn){
   });
 }
 </script>
+<div id="m-footer"></div>
+<script src="../assets/meridian.js"></script>
 </body>
 </html>
