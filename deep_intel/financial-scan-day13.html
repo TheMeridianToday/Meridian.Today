@@ -6,197 +6,12 @@
 <title>MERIDIAN · Financial Scan · Day 13 · March 13, 2026</title>
 <meta name="description" content="Day 13 financial scan: JSE R2 trillion wipeout, Samsung −10%, PSEi at 6,113, Sasol +40%, Petrobras bullish, QatarEnergy force majeure, KOSPI circuit breakers. Real numbers from Southern sources.">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --forest:#0b0f07;--f2:#0f1409;--f3:#14190c;--f4:#191f10;
-  --gold:#c9a84c;--gold-l:#e0c46e;--gold-d:#7a6020;--gold-f:rgba(201,168,76,.07);
-  --mg:#4a7c3f;--mg-l:#6aaa5e;--mg-d:rgba(74,124,63,.12);
-  --red:#c84c3f;--red-l:#e07060;--red-f:rgba(200,76,63,.08);
-  --amb:#d4890a;--amb-l:#f0a820;--amb-f:rgba(212,137,10,.07);
-  --blue:#3a7abf;--blue-l:#5a9fdf;--blue-f:rgba(58,122,191,.08);
-  --rule:rgba(201,168,76,.1);--rule2:rgba(201,168,76,.04);
-  --text:#98a88e;--dim:#4a5840;--white:#eaf2e2;
-  --serif:'Cormorant Garamond',serif;--sans:'Outfit',sans-serif;--mono:'DM Mono',monospace;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--forest);color:var(--text);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;
-  background-image:linear-gradient(rgba(201,168,76,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.018) 1px,transparent 1px);
-  background-size:52px 52px;pointer-events:none;z-index:0}
-
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
-@keyframes tickerMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-@keyframes barFill{from{width:0}to{width:var(--w)}}
-@keyframes scanLine{0%{transform:translateY(-100%)}100%{transform:translateY(900%)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-/* TICKER */
-.ticker{background:var(--red);overflow:hidden;height:32px;display:flex;align-items:center;position:relative;z-index:10}
-.t-badge{font-family:var(--mono);font-size:.47rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;padding:0 1rem 0 .8rem;background:rgba(0,0,0,.4);height:100%;display:flex;align-items:center;gap:.5rem;white-space:nowrap;flex-shrink:0}
-.ld{width:7px;height:7px;border-radius:50%;background:#fff;animation:pulse 1.5s ease-in-out infinite}
-.t-track{display:flex;animation:tickerMove 70s linear infinite;white-space:nowrap}
-.t-item{font-family:var(--mono);font-size:.47rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.92);padding:0 2rem}
-.t-item::after{content:'◆';font-size:.3rem;padding-left:2rem;color:rgba(255,255,255,.28)}
-
-/* MASTHEAD */
-.mast{background:var(--f2);border-bottom:1px solid var(--rule);position:relative;z-index:1;overflow:hidden}
-.mast::after{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:linear-gradient(180deg,transparent,var(--gold),transparent);animation:scanLine 4.5s ease-in-out infinite;pointer-events:none}
-.mast-i{max-width:1320px;margin:0 auto;padding:0 2.5rem}
-.mast-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.5rem 0 .8rem;gap:2rem}
-.brand{display:flex;flex-direction:column;gap:.15rem}
-.brand-name{font-family:var(--serif);font-size:2.6rem;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;line-height:.9}
-.brand-name em{font-weight:400;font-style:italic;font-size:.65em;color:var(--gold-l)}
-.brand-tag{font-family:var(--serif);font-size:.74rem;font-style:italic;color:var(--dim)}
-.brand-live{font-family:var(--mono);font-size:.45rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amb-l);display:flex;align-items:center;gap:.4rem;margin-top:.2rem}
-.brand-live .ld2{width:5px;height:5px;border-radius:50%;background:var(--amb-l);animation:pulse 1.4s ease-in-out infinite}
-.day-c{text-align:center}
-.day-pre{font-family:var(--mono);font-size:.45rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
-.day-n{font-family:var(--serif);font-size:3.2rem;font-weight:700;color:var(--white);line-height:.85}
-.day-sub{font-family:var(--mono);font-size:.44rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;margin-top:.15rem}
-.day-d{font-family:var(--serif);font-size:.78rem;font-style:italic;color:var(--gold-l);margin-top:.1rem}
-.scan-badge{background:var(--gold-f);border:1px solid var(--gold-d);padding:.4rem .9rem;font-family:var(--mono);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);text-align:center}
-.scan-badge .sb-s{font-family:var(--serif);font-size:1.3rem;font-weight:700;font-style:italic;color:var(--gold-l);display:block;line-height:1;margin-top:.1rem}
-.mast-rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold-d) 30%,var(--gold) 50%,var(--gold-d) 70%,transparent);margin:.3rem 0}
-
-/* MARKET STRIP */
-.mkt-strip{display:grid;grid-template-columns:repeat(8,1fr);border-top:1px solid var(--rule2);border-bottom:1px solid var(--rule2)}
-.mkt-cell{padding:.65rem .4rem;text-align:center;border-right:1px solid var(--rule2);transition:background .2s;cursor:default}
-.mkt-cell:last-child{border-right:none}
-.mkt-cell:hover{background:rgba(201,168,76,.03)}
-.mc-val{font-family:var(--mono);font-size:.72rem;font-weight:700;line-height:1;margin-bottom:.12rem}
-.mc-chg{font-family:var(--mono);font-size:.46rem;font-weight:500;margin-bottom:.1rem}
-.mc-lbl{font-family:var(--mono);font-size:.39rem;letter-spacing:.09em;color:var(--dim);text-transform:uppercase;line-height:1.5}
-.vr{color:var(--red-l)}.vg{color:var(--mg-l)}.va{color:var(--amb-l)}.vw{color:var(--white)}.vgold{color:var(--gold-l)}
-.cr{color:var(--red-l)}.cg{color:var(--mg-l)}
-
-/* PAGE */
-.page{max-width:1320px;margin:0 auto;padding:2.5rem 2.5rem 6rem;position:relative;z-index:1}
-
-/* SECTION HEADER */
-.sec-h{display:flex;align-items:center;gap:.8rem;margin-bottom:1.8rem;padding-bottom:.75rem;border-bottom:1px solid var(--rule)}
-.sh-rule{width:20px;height:1px;background:var(--gold-d)}
-.sh-txt{font-family:var(--mono);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
-.sh-sub{font-family:var(--serif);font-size:.74rem;font-style:italic;color:var(--dim);margin-left:.4rem}
-.sh-src{font-family:var(--mono);font-size:.42rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-left:auto}
-
-/* MARKET CARD GRID */
-.mkt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem}
-.mkt-card{background:var(--f3);border:1px solid var(--rule);border-top:3px solid;transition:transform .2s;animation:fadeUp .35s ease-out both}
-.mkt-card:hover{transform:translateY(-2px)}
-.mc-r{border-top-color:var(--red-l)}.mc-g{border-top-color:var(--mg-l)}.mc-a{border-top-color:var(--amb-l)}.mc-gold{border-top-color:var(--gold)}
-.card-top{padding:1rem 1.2rem .7rem;border-bottom:1px solid var(--rule2)}
-.ct-flag{font-size:1.1rem;margin-bottom:.25rem}
-.ct-market{font-family:var(--mono);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.15rem}
-.ct-index{font-family:var(--serif);font-size:1.6rem;font-weight:700;line-height:1}
-.ct-change{font-family:var(--mono);font-size:.65rem;font-weight:700;margin-top:.1rem}
-.ct-src{font-family:var(--mono);font-size:.4rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-top:.2rem}
-.card-rows{padding:.7rem 1.2rem}
-.crow{display:flex;justify-content:space-between;padding:.3rem 0;border-bottom:1px solid var(--rule2);font-size:.73rem;align-items:flex-start;gap:.5rem}
-.crow:last-child{border-bottom:none}
-.cl{color:var(--dim);font-size:.68rem;flex:1;line-height:1.4}
-.cv{font-family:var(--mono);font-size:.65rem;font-weight:700;white-space:nowrap}
-.cv-r{color:var(--red-l)}.cv-g{color:var(--mg-l)}.cv-a{color:var(--amb-l)}.cv-gold{color:var(--gold-l)}.cv-w{color:var(--white)}
-
-/* COMPANY TABLE */
-.co-table{width:100%;border-collapse:collapse;margin-bottom:3rem}
-.co-table th{font-family:var(--mono);font-size:.44rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);padding:.5rem .8rem;text-align:left;border-bottom:1px solid var(--rule);background:var(--f3)}
-.co-table th:last-child,.co-table td:last-child{text-align:right}
-.co-table td{padding:.6rem .8rem;border-bottom:1px solid var(--rule2);font-size:.76rem;vertical-align:top}
-.co-table tr:hover td{background:rgba(201,168,76,.02)}
-.co-flag{font-size:.95rem;margin-right:.3rem}
-.co-name{font-family:var(--serif);font-weight:700;color:var(--white);font-size:.85rem}
-.co-ticker{font-family:var(--mono);font-size:.5rem;color:var(--dim);letter-spacing:.08em}
-.co-sector{font-family:var(--mono);font-size:.46rem;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .25rem;border:1px solid;border-radius:2px}
-.cs-e{color:var(--amb-l);border-color:rgba(212,137,10,.25);background:var(--amb-f)}
-.cs-t{color:var(--blue-l);border-color:rgba(58,122,191,.2);background:var(--blue-f)}
-.cs-f{color:var(--mg-l);border-color:rgba(74,124,63,.2);background:var(--mg-d)}
-.cs-s{color:var(--gold);border-color:rgba(201,168,76,.2);background:var(--gold-f)}
-.cs-m{color:var(--red-l);border-color:rgba(200,76,63,.2);background:var(--red-f)}
-.chg-cell{font-family:var(--mono);font-size:.72rem;font-weight:700;white-space:nowrap}
-.note-cell{font-size:.7rem;color:var(--text);line-height:1.55;max-width:320px}
-.note-cell strong{color:var(--white)}
-.note-cell .hot{color:var(--red-l)}.note-cell .ok{color:var(--mg-l)}.note-cell .warn{color:var(--amb-l)}
-
-/* SECTOR SCAN */
-.sector-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-bottom:3rem}
-.sector-card{background:var(--f3);border:1px solid var(--rule);padding:1.4rem}
-.sc-hed{display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem}
-.sch-icon{font-size:1.2rem}
-.sch-name{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--white)}
-.sch-verdict{font-family:var(--mono);font-size:.44rem;letter-spacing:.1em;text-transform:uppercase;padding:.1rem .3rem;border:1px solid;border-radius:2px;margin-left:auto}
-.sv-r{color:var(--red-l);border-color:rgba(200,76,63,.25);background:var(--red-f)}
-.sv-g{color:var(--mg-l);border-color:rgba(74,124,63,.25);background:var(--mg-d)}
-.sv-a{color:var(--amb-l);border-color:rgba(212,137,10,.2);background:var(--amb-f)}
-.sc-body{font-size:.78rem;color:var(--text);line-height:1.8}
-.sc-body p{margin-bottom:.5rem}.sc-body p:last-child{margin-bottom:0}
-.sc-body strong{color:var(--white)}
-.sc-body .hot{color:var(--red-l)}.sc-body .ok{color:var(--mg-l)}.sc-body .warn{color:var(--amb-l)}
-
-/* CURRENCY TABLE */
-.fx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:3rem}
-.fx-card{background:var(--f3);border:1px solid var(--rule);padding:.9rem 1rem}
-.fxc-pair{font-family:var(--mono);font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.15rem}
-.fxc-rate{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--white);line-height:1}
-.fxc-chg{font-family:var(--mono);font-size:.58rem;font-weight:700;margin-top:.1rem}
-.fxc-note{font-family:var(--mono);font-size:.42rem;letter-spacing:.06em;color:var(--dim);text-transform:uppercase;margin-top:.3rem;line-height:1.5}
-
-/* INSIGHT */
-.insight{border:1px solid var(--rule);border-left:3px solid;padding:1rem 1.3rem;margin:1.2rem 0;background:var(--f4)}
-.i-r{border-left-color:var(--red-l)}.i-a{border-left-color:var(--amb-l)}.i-gold{border-left-color:var(--gold)}.i-g{border-left-color:var(--mg-l)}
-.ins-lbl{font-family:var(--mono);font-size:.44rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.35rem}
-.il-r{color:var(--red-l)}.il-a{color:var(--amb-l)}.il-gold{color:var(--gold)}.il-g{color:var(--mg-l)}
-.ins-body{font-size:.78rem;color:var(--text);line-height:1.8}
-.ins-body strong{color:var(--white)}
-.ins-body .hot{color:var(--red-l)}.ins-body .warn{color:var(--amb-l)}.ins-body .ok{color:var(--mg-l)}
-
-/* WIN/LOSE */
-.winlose{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:3rem}
-.wl-card{background:var(--f3);border:1px solid var(--rule)}
-.wlc-head{padding:.7rem 1.1rem;border-bottom:1px solid var(--rule2);font-family:var(--mono);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem}
-.wl-r{color:var(--red-l)}.wl-g{color:var(--mg-l)}
-.wlc-body{padding:.7rem 1.1rem;display:flex;flex-direction:column;gap:.1rem}
-.wl-row{display:flex;align-items:flex-start;gap:.7rem;padding:.35rem 0;border-bottom:1px solid var(--rule2)}
-.wl-row:last-child{border-bottom:none}
-.wl-flag{font-size:.9rem;flex-shrink:0}
-.wl-name{font-size:.75rem;flex:1;line-height:1.45}
-.wl-name strong{color:var(--white);font-size:.78rem}
-.wl-num{font-family:var(--mono);font-size:.65rem;font-weight:700;white-space:nowrap;flex-shrink:0}
-
-/* CONCLUSION */
-.conclusion{background:var(--f2);border:1px solid var(--rule);border-top:3px solid var(--gold);padding:2.4rem;margin-top:2.5rem;position:relative;overflow:hidden}
-.concl-ghost{position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:11rem;font-weight:700;color:rgba(201,168,76,.022);line-height:1;pointer-events:none;user-select:none}
-.concl-lbl{font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.7rem;margin-bottom:.6rem}
-.concl-lbl::before{content:'';width:14px;height:1px;background:var(--gold-d)}
-.concl-hed{font-family:var(--serif);font-size:clamp(1.6rem,2.8vw,2.4rem);font-weight:700;color:var(--white);line-height:1.02;margin-bottom:1rem}
-.concl-hed .g{color:var(--gold);font-style:italic}.concl-hed .r{color:var(--red-l)}
-.concl-body{font-size:.82rem;color:var(--text);line-height:1.95;max-width:1000px}
-.concl-body p{margin-bottom:.8rem}.concl-body p:last-child{margin-bottom:0}
-.concl-body strong{color:var(--white)}
-.concl-body .hot{color:var(--red-l);font-weight:600}.concl-body .warn{color:var(--amb-l);font-weight:600}.concl-body .ok{color:var(--mg-l);font-weight:600}
-.concl-body em{color:var(--gold-l);font-style:italic}
-
-footer{border-top:1px solid var(--rule);padding:1.4rem 2.5rem;position:relative;z-index:1;background:var(--f2)}
-.ft-i{max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.ft-brand{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
-.ft-tag{font-family:var(--serif);font-size:.7rem;font-style:italic;color:var(--dim);margin-top:.1rem}
-.ft-meta{font-family:var(--mono);font-size:.42rem;letter-spacing:.08em;color:var(--dim);text-align:right;line-height:1.9;text-transform:uppercase}
-
-/* BAR CHART */
-.bar-chart{display:flex;flex-direction:column;gap:.55rem;margin-top:.8rem}
-.bar-row{display:flex;align-items:center;gap:.7rem}
-.bar-label{font-family:var(--mono);font-size:.48rem;letter-spacing:.08em;color:var(--dim);width:130px;flex-shrink:0;text-transform:uppercase}
-.bar-track{flex:1;height:8px;background:rgba(255,255,255,.04);border:1px solid var(--rule2);border-radius:2px;overflow:hidden}
-.bar-fill{height:100%;border-radius:2px;animation:barFill .8s ease-out both}
-.bf-r{background:var(--red-l)}.bf-g{background:var(--mg-l)}.bf-a{background:var(--amb-l)}.bf-gold{background:var(--gold)}
-.bar-val{font-family:var(--mono);font-size:.52rem;font-weight:700;width:60px;flex-shrink:0;text-align:right}
-.bv-r{color:var(--red-l)}.bv-g{color:var(--mg-l)}.bv-a{color:var(--amb-l)}.bv-gold{color:var(--gold)}
-
-@media(max-width:1100px){.mkt-grid{grid-template-columns:repeat(2,1fr)}.co-table{display:none}}
-@media(max-width:800px){.mkt-grid,.sector-grid,.winlose,.fx-grid{grid-template-columns:1fr}.mast-top{grid-template-columns:1fr}.mkt-strip{grid-template-columns:repeat(4,1fr)}}
-</style>
+<link rel="stylesheet" href="../assets/meridian.css">
+<script defer data-domain="meridian.today" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
+<div class="scroll-progress"><div class="scroll-bar" id="scrollBar"></div></div>
+<div id="m-header"></div>
 
 <!-- TICKER -->
 <div class="ticker">
@@ -732,5 +547,7 @@ footer{border-top:1px solid var(--rule);padding:1.4rem 2.5rem;position:relative;
   </div>
 </footer>
 
+<div id="m-footer"></div>
+<script src="../assets/meridian.js"></script>
 </body>
 </html>
