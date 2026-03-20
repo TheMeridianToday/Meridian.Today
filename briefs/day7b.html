@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERIDIAN BRIEF — MARCH 6, 2026 · DAY 7</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e1208;--bg2:#141a0c;--surface:#1a2210;--s2:#1f2914;--s3:#242f18;
+  --gold:#c9a84c;--gold-l:#e8c96a;--gold-d:#8a6f2e;--gold-faint:rgba(201,168,76,.07);
+  --green:#4a7c3f;--green-l:#6ab55e;--green-d:#0d3020;
+  --red:#c84c3f;--red-l:#e87060;--red-faint:rgba(200,76,63,.08);
+  --amber:#d4890a;--amber-l:#f0a820;
+  --cream:#f5f0e8;--rule:rgba(201,168,76,.12);--rule2:rgba(201,168,76,.06);
+  --text:#c8cede;--dim:#6a7060;--white:#eef2e8;
+  --serif:'Playfair Display',serif;
+  --sans:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden;min-height:100vh}
+
+/* GRID TEXTURE */
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(201,168,76,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.025) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(14,18,8,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);padding:.75rem 2.5rem;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;font-weight:900;color:var(--gold);letter-spacing:.06em}
+.nav-meta{display:flex;align-items:center;gap:1.5rem}
+.nav-day{font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;color:var(--dim);text-transform:uppercase}
+.nav-live{display:flex;align-items:center;gap:.5rem}
+.ndot{width:6px;height:6px;border-radius:50%;background:var(--red-l);animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.8)}}
+.nlive{font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;color:var(--red-l);text-transform:uppercase;font-weight:700}
+
+/* TICKER */
+.ticker{background:var(--surface);border-bottom:1px solid var(--rule);overflow:hidden;height:30px;display:flex;align-items:center;position:relative;z-index:1;margin-top:44px}
+.t-label{background:var(--gold);color:var(--bg);font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.2em;padding:0 1rem;height:100%;display:flex;align-items:center;flex-shrink:0;white-space:nowrap;text-transform:uppercase}
+.t-wrap{overflow:hidden;flex:1}
+.t-track{display:flex;animation:ticker 60s linear infinite;white-space:nowrap}
+.t-item{font-family:var(--mono);font-size:.65rem;color:var(--text);padding:0 2rem;flex-shrink:0;letter-spacing:.04em}
+.t-item .hi{color:var(--gold-l)}
+.t-item::after{content:' ·· ';color:var(--gold-d);margin-left:1.5rem}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* HERO */
+.hero{position:relative;z-index:1;padding:5rem 2.5rem 4rem;overflow:hidden;border-bottom:1px solid var(--rule)}
+.hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 30%,rgba(74,124,63,.08) 0%,transparent 65%),radial-gradient(ellipse 40% 30% at 15% 70%,rgba(201,168,76,.04) 0%,transparent 50%);pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;position:relative}
+.hero-top{display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.hero-left{flex:1;min-width:300px}
+.hero-kicker{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
+.kicker-line{width:32px;height:1px;background:var(--gold);opacity:.5}
+.kicker-text{font-family:var(--mono);font-size:.6rem;letter-spacing:.25em;color:var(--gold);text-transform:uppercase}
+.hero-title{font-family:var(--serif);font-size:clamp(3rem,7vw,6rem);font-weight:900;line-height:.92;color:var(--white);letter-spacing:-.02em;margin-bottom:1rem}
+.hero-title .gold{color:var(--gold);font-style:italic}
+.hero-title .red{color:var(--red-l)}
+.hero-deck{font-size:1rem;color:var(--dim);max-width:640px;line-height:1.8;font-weight:300;border-left:2px solid var(--gold-d);padding-left:1rem}
+
+/* TRUMP QUOTE — HERO CARD */
+.surrender-card{background:var(--red-faint);border:1px solid rgba(200,76,63,.2);border-left:4px solid var(--red-l);padding:1.5rem 2rem;max-width:380px;flex-shrink:0;position:relative;overflow:hidden}
+.surrender-card::before{content:'!!';position:absolute;top:-.5rem;right:.5rem;font-family:var(--serif);font-size:5rem;color:rgba(200,76,63,.08);line-height:1;font-weight:900}
+.sc-label{font-family:var(--mono);font-size:.55rem;letter-spacing:.2em;color:var(--red-l);text-transform:uppercase;margin-bottom:.6rem}
+.sc-quote{font-family:var(--serif);font-size:1.5rem;font-weight:900;color:var(--white);line-height:1.1;letter-spacing:-.01em;margin-bottom:.5rem}
+.sc-source{font-family:var(--mono);font-size:.6rem;color:rgba(255,255,255,.4);letter-spacing:.08em;text-transform:uppercase}
+
+/* STAT STRIP */
+.stat-strip{background:var(--surface);border-bottom:1px solid var(--rule);position:relative;z-index:1}
+.stat-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr);gap:0}
+.stat{padding:1.2rem 1.5rem;border-right:1px solid var(--rule);text-align:center;position:relative}
+.stat:last-child{border-right:none}
+.stat.alarm{background:rgba(200,76,63,.06)}
+.stat.gold-bg{background:rgba(201,168,76,.05)}
+.stat-val{font-family:var(--serif);font-size:1.9rem;font-weight:900;line-height:1;margin-bottom:.25rem}
+.stat-val.gold{color:var(--gold-l)}
+.stat-val.red{color:var(--red-l)}
+.stat-val.green{color:var(--green-l)}
+.stat-val.white{color:var(--white)}
+.stat-lbl{font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;line-height:1.4}
+.stat-delta{font-family:var(--mono);font-size:.6rem;margin-top:.2rem;font-weight:700}
+.d-red{color:var(--red-l)}.d-gold{color:var(--gold)}.d-green{color:var(--green-l)}.d-amber{color:var(--amber-l)}
+
+/* CONTENT LAYOUT */
+.content{max-width:1200px;margin:0 auto;padding:3rem 2.5rem;display:grid;grid-template-columns:1fr 320px;gap:3rem;position:relative;z-index:1}
+
+/* SECTIONS */
+.article{margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid var(--rule2)}
+.article:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.art-kicker{font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.6rem;display:flex;align-items:center;gap:.6rem}
+.ak-line{width:16px;height:1px}
+.ak-red .ak-line{background:var(--red-l)}.ak-red .ak-text{color:var(--red-l)}
+.ak-gold .ak-line{background:var(--gold)}.ak-gold .ak-text{color:var(--gold)}
+.ak-green .ak-line{background:var(--green-l)}.ak-green .ak-text{color:var(--green-l)}
+.ak-amber .ak-line{background:var(--amber-l)}.ak-amber .ak-text{color:var(--amber-l)}
+.art-hed{font-family:var(--serif);font-size:clamp(1.3rem,2.5vw,1.9rem);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:1rem;letter-spacing:-.01em}
+.art-body{font-size:.88rem;line-height:1.85;color:var(--text)}
+.art-body p{margin-bottom:.9rem}.art-body p:last-child{margin-bottom:0}
+.art-body strong{color:var(--white);font-weight:600}
+.art-body .hot{color:var(--red-l);font-weight:600}
+.art-body .warn{color:var(--amber-l);font-weight:600}
+.art-body .ok{color:var(--green-l);font-weight:600}
+.art-body .gold{color:var(--gold);font-weight:600}
+
+/* PULL QUOTE */
+.pq{border-left:3px solid var(--gold);padding:1rem 1.5rem;margin:1.5rem 0;background:var(--gold-faint)}
+.pq-text{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--white);line-height:1.4;font-style:italic;margin-bottom:.4rem}
+.pq-source{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
+
+/* CALLOUT BOX */
+.callout{background:var(--s2);border:1px solid var(--rule);padding:1.5rem;margin:1.5rem 0;border-left:3px solid var(--amber-l)}
+.callout-title{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;color:var(--amber-l);text-transform:uppercase;margin-bottom:.6rem}
+.callout-body{font-size:.83rem;color:var(--text);line-height:1.7}
+.callout-body strong{color:var(--white)}
+
+/* DATA TABLE */
+.dtbl{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.78rem;margin-top:1.2rem}
+.dtbl th{font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);background:var(--s3);padding:.6rem .9rem;text-align:left;font-weight:500;border-bottom:1px solid var(--rule)}
+.dtbl td{padding:.65rem .9rem;border-bottom:1px solid var(--rule2);color:var(--text)}
+.dtbl tr:hover td{background:rgba(201,168,76,.03)}
+.dtbl .lbl{color:var(--white);font-weight:500}
+.dtbl .neg{color:var(--red-l);font-weight:700}
+.dtbl .pos{color:var(--green-l);font-weight:700}
+.dtbl .warn{color:var(--amber-l);font-weight:700}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:1.5rem}
+.card{background:var(--surface);border:1px solid var(--rule);overflow:hidden}
+.card-head{padding:.7rem 1.2rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;display:flex;align-items:center;justify-content:space-between}
+.card-head.gold{background:rgba(201,168,76,.1);border-bottom:1px solid var(--rule);color:var(--gold)}
+.card-head.red{background:rgba(200,76,63,.1);border-bottom:1px solid rgba(200,76,63,.15);color:var(--red-l)}
+.card-head.green{background:rgba(74,124,63,.1);border-bottom:1px solid rgba(74,124,63,.15);color:var(--green-l)}
+.card-head.amber{background:rgba(212,137,10,.1);border-bottom:1px solid rgba(212,137,10,.15);color:var(--amber-l)}
+.card-body{padding:1.2rem}
+.card-body p{font-size:.8rem;color:var(--text);line-height:1.65;margin-bottom:.6rem}
+.card-body p:last-child{margin-bottom:0}
+.card-body strong{color:var(--white)}
+.card-body .hot{color:var(--red-l);font-weight:600}
+
+/* BARS */
+.bar-list{display:flex;flex-direction:column;gap:.6rem}
+.bar-row{display:flex;align-items:center;gap:.8rem}
+.bar-lbl{font-family:var(--mono);font-size:.65rem;color:var(--text);width:100px;flex-shrink:0;font-weight:500}
+.bar-track{flex:1;height:6px;background:rgba(255,255,255,.06);overflow:hidden}
+.bar-fill{height:100%;animation:grow 1.5s ease both}
+@keyframes grow{from{width:0}}
+.bf-gold{background:var(--gold)}
+.bf-red{background:var(--red-l)}
+.bf-amber{background:var(--amber-l)}
+.bf-green{background:var(--green-l)}
+.bf-dark{background:#6a1010}
+.bar-val{font-family:var(--mono);font-size:.65rem;color:var(--dim);width:32px;text-align:right;flex-shrink:0}
+
+/* BLIST */
+.blist{list-style:none}
+.blist li{font-size:.8rem;color:var(--text);padding:.5rem 0 .5rem 1.2rem;border-bottom:1px solid var(--rule2);position:relative;line-height:1.55}
+.blist li:last-child{border-bottom:none}
+.blist li::before{content:'›';position:absolute;left:0;color:var(--gold);font-size:.9rem;top:.45rem;line-height:1}
+.blist li strong{color:var(--white);font-weight:600}
+.blist .num{color:var(--red-l);font-weight:700}
+
+/* JAMAICA IMPACT METER */
+.impact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:.8rem}
+.ig-cell{background:var(--surface);padding:.8rem 1rem;text-align:center}
+.ig-val{font-family:var(--serif);font-size:1.4rem;font-weight:900;color:var(--gold-l);line-height:1;margin-bottom:.2rem}
+.ig-val.red{color:var(--red-l)}
+.ig-lbl{font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;line-height:1.4}
+
+/* FERTILIZER SECTION */
+.food-grid{display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:1.2rem}
+.fg-row{background:var(--surface);display:grid;grid-template-columns:1fr auto;align-items:center;padding:.7rem 1rem;gap:1rem}
+.fg-row:hover{background:var(--s2)}
+.fg-item{font-size:.8rem;color:var(--text);font-weight:500}
+.fg-item span{font-size:.72rem;color:var(--dim);display:block;margin-top:.1rem}
+.fg-pill{font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;padding:.2rem .5rem;border-radius:2px;white-space:nowrap}
+.fp-red{background:var(--red-faint);color:var(--red-l);border:1px solid rgba(200,76,63,.2)}
+.fp-amber{background:rgba(212,137,10,.08);color:var(--amber-l);border:1px solid rgba(212,137,10,.2)}
+
+/* RUSSIA CALLOUT */
+.russia-box{background:rgba(74,124,63,.06);border:1px solid rgba(74,124,63,.15);border-left:3px solid var(--green-l);padding:1.2rem}
+.rb-label{font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;color:var(--green-l);text-transform:uppercase;margin-bottom:.5rem}
+.rb-body{font-size:.82rem;color:var(--text);line-height:1.65}
+.rb-body strong{color:var(--white)}
+
+/* VERDICT */
+.verdict{background:var(--bg2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:4rem 2.5rem;position:relative;z-index:1;overflow:hidden}
+.verdict::before{content:'MERIDIAN';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--serif);font-size:18rem;font-weight:900;color:rgba(201,168,76,.025);white-space:nowrap;letter-spacing:.1em;pointer-events:none;line-height:1}
+.verdict-inner{max-width:1000px;margin:0 auto;position:relative}
+.v-eyebrow{display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem}
+.v-line{flex:1;height:1px;background:linear-gradient(90deg,var(--gold-d),transparent)}
+.v-tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;white-space:nowrap}
+.v-hed{font-family:var(--serif);font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:var(--white);line-height:1;letter-spacing:-.02em;margin-bottom:1.5rem}
+.v-hed .gold{color:var(--gold);font-style:italic}
+.v-body{font-size:.92rem;line-height:1.9;color:rgba(255,255,255,.65)}
+.v-body p{margin-bottom:1rem}.v-body p:last-child{margin-bottom:0}
+.v-body strong{color:var(--white)}
+.v-body .hot{color:var(--red-l);font-weight:600}
+.v-body .warn{color:var(--amber-l);font-weight:600}
+.v-body .gold{color:var(--gold);font-weight:600}
+
+/* WEEK IN NUMBERS */
+.week-strip{max-width:1200px;margin:0 auto;padding:2rem 2.5rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border-top:1px solid var(--rule);position:relative;z-index:1}
+.wn-box{background:var(--bg);padding:1.5rem;text-align:center}
+.wn-num{font-family:var(--serif);font-size:2.2rem;font-weight:900;color:var(--gold);line-height:1;margin-bottom:.3rem}
+.wn-lbl{font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;line-height:1.5}
+
+/* FOOTER */
+footer{padding:2.5rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;position:relative;z-index:1;border-top:1px solid var(--rule)}
+.f-logo{font-family:var(--serif);font-size:1.1rem;font-weight:900;color:var(--gold);letter-spacing:.06em}
+.f-meta{font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;line-height:1.8}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.article{animation:fadeUp .6s ease both}
+.article:nth-child(1){animation-delay:.1s}.article:nth-child(2){animation-delay:.15s}.article:nth-child(3){animation-delay:.2s}.article:nth-child(4){animation-delay:.25s}
+
+@media(max-width:960px){
+  .content{grid-template-columns:1fr;gap:2rem}
+  .stat-inner{grid-template-columns:repeat(3,1fr)}
+  .hero-top{flex-direction:column}
+  .surrender-card{max-width:100%;width:100%}
+  .week-strip{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .stat-inner{grid-template-columns:repeat(2,1fr)}
+  .hero-title{font-size:2.8rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MERIDIAN</div>
+  <div class="nav-meta">
+    <div class="nav-day">Day 7 · March 6, 2026</div>
+    <div class="nav-live"><div class="ndot"></div><span class="nlive">Active Conflict</span></div>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="t-label">Breaking</div>
+  <div class="t-wrap">
+    <div class="t-track">
+      <span class="t-item">Brent Crude settles at <span class="hi">$92.87</span> — up 8.73% — highest since Sept 2023</span>
+      <span class="t-item">Trump: <span class="hi">"UNCONDITIONAL SURRENDER"</span> — no deal with Iran on any other terms</span>
+      <span class="t-item"><span class="hi">Russia feeding Iran intel</span> on US warship and aircraft positions</span>
+      <span class="t-item">1,332+ killed in Iran — 181 children confirmed dead by UNICEF</span>
+      <span class="t-item">US payrolls: <span class="hi">−92,000 jobs</span> in February — first negative print since 2020</span>
+      <span class="t-item">Qatar Energy Minister: oil could hit <span class="hi">$100–$200</span> if Gulf producers halt exports</span>
+      <span class="t-item">2,500 Israeli strikes — 80% of Iran air defence destroyed — IDF claims "near-complete air superiority"</span>
+      <span class="t-item">CSIS: Operation cost <span class="hi">$3.7B in first 100 hours</span> — $891M per day</span>
+      <span class="t-item">CIA arming Iranian Kurdish forces to foment popular uprising inside Iran</span>
+      <span class="t-item">Fertiliser supply crisis emerging — planting season threatened as Hormuz blocks ammonia/urea flows</span>
+      <span class="t-item">Dow −453 pts · S&P 500 −1.33% · VIX <span class="hi">+24% to 29.49</span></span>
+      <span class="t-item">Lebanon: 95,000+ displaced · 123 killed since war began</span>
+      <span class="t-item">UN Secretary-General: situation <span class="hi">"could spiral beyond anyone's control"</span></span>
+      <span class="t-item">Brent Crude settles at <span class="hi">$92.87</span> — up 8.73% — highest since Sept 2023</span>
+      <span class="t-item">Trump: <span class="hi">"UNCONDITIONAL SURRENDER"</span> — no deal with Iran on any other terms</span>
+      <span class="t-item"><span class="hi">Russia feeding Iran intel</span> on US warship and aircraft positions</span>
+      <span class="t-item">1,332+ killed in Iran — 181 children confirmed dead by UNICEF</span>
+      <span class="t-item">US payrolls: <span class="hi">−92,000 jobs</span> in February — first negative print since 2020</span>
+      <span class="t-item">Qatar Energy Minister: oil could hit <span class="hi">$100–$200</span> if Gulf producers halt exports</span>
+      <span class="t-item">2,500 Israeli strikes — 80% of Iran air defence destroyed — IDF claims "near-complete air superiority"</span>
+      <span class="t-item">CSIS: Operation cost <span class="hi">$3.7B in first 100 hours</span> — $891M per day</span>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-top">
+      <div class="hero-left">
+        <div class="hero-kicker">
+          <div class="kicker-line"></div>
+          <div class="kicker-text">The Meridian Brief · Day 7 · March 6, 2026</div>
+          <div class="kicker-line"></div>
+        </div>
+        <h1 class="hero-title">OIL BREAKS<br><span class="gold">$90.</span> JOBS GO<br><span class="red">NEGATIVE.</span></h1>
+        <p class="hero-deck">Seven days in and today delivered the double detonation markets most feared: Brent crude settled at $92.87 — its highest level since 2023 — on the same afternoon the US economy reported its first negative payrolls print since 2020. Stagflation is no longer a forecast. It is a Friday closing price.</p>
+      </div>
+      <div class="surrender-card">
+        <div class="sc-label">Trump · Truth Social · March 6</div>
+        <div class="sc-quote">"UNCONDITIONAL SURRENDER!"</div>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.6;margin-top:.5rem">No deal with Iran until full surrender. After that — US and allies will help rebuild. Trump also told CNN he is not concerned whether Iran becomes a democratic state.</div>
+        <div class="sc-source" style="margin-top:.8rem">Source: CNN interview · Truth Social post</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-inner">
+    <div class="stat alarm">
+      <div class="stat-val red">$92.87</div>
+      <div class="stat-lbl">Brent Crude · settle</div>
+      <div class="stat-delta d-red">▲ +8.73% · day range $83–$94.55</div>
+    </div>
+    <div class="stat alarm">
+      <div class="stat-val red">$90.90</div>
+      <div class="stat-lbl">WTI US Crude</div>
+      <div class="stat-delta d-red">▲ +12.2% · first $90 since 2023</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val red">−92K</div>
+      <div class="stat-lbl">US jobs lost · Feb</div>
+      <div class="stat-delta d-red">First negative since 2020</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val white">1,332</div>
+      <div class="stat-lbl">Killed in Iran</div>
+      <div class="stat-delta d-amber">181 children · UNICEF</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val white">29.49</div>
+      <div class="stat-lbl">VIX fear index</div>
+      <div class="stat-delta d-red">▲ +24.17% on the day</div>
+    </div>
+    <div class="stat gold-bg">
+      <div class="stat-val gold">$891M</div>
+      <div class="stat-lbl">War cost per day (CSIS)</div>
+      <div class="stat-delta d-gold">$3.7B total · first 100hrs</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+<div class="main-col">
+
+  <!-- WAR -->
+  <div class="article">
+    <div class="art-kicker ak-red"><div class="ak-line"></div><div class="ak-text">War · Day 7</div></div>
+    <h2 class="art-hed">The Campaign Intensifies. Russia Enters The Intelligence War.</h2>
+    <div class="art-body">
+      <p><strong>Israel claims to have achieved "near-complete air superiority"</strong> over Iran after 2,500 strikes across seven days. The IDF says 80% of Iran's air defence systems have been destroyed. US B-2 bombers dropped dozens of 2,000-pound penetrating bombs on deeply buried Iranian ballistic missile launchers. Iran's 23rd wave of retaliatory strikes was announced by the IRGC today — ballistic missiles and drones continuing toward Israel, the Gulf states, and US-linked infrastructure across the region.</p>
+
+      <div class="russia-box">
+        <div class="rb-label">⚠ New · Escalation Signal</div>
+        <div class="rb-body"><strong>Russia is providing Iran with real-time intelligence on the locations of American warships and aircraft.</strong> This is confirmed by US intelligence sources. It means every carrier group, every destroyer, every F-35 sortie happening right now — Russia knows it and is feeding those coordinates to Iran. This is not a neutral posture. This is active assistance to a nation in open hostilities with the United States. The rules of the new world order are being written in real time.</div>
+      </div>
+
+      <p>The CIA is now arming Iranian Kurdish forces with the explicit aim of fomenting a popular uprising inside Iran — multiple sources confirmed this to CNN. Halliburton's compounds and oil refineries in Basra, Iraq were struck by Iranian missiles. <strong>Iran's Ali Larijani — secretary of the Supreme National Security Council — warned that Iranian forces are "waiting" for any US ground invasion attempt</strong> and threatened the capture and killing of thousands of American troops.</p>
+
+      <p>The succession crisis deepens. Trump told CNN he intends to play a direct role in selecting Iran's next leader. He called Mojtaba Khamenei — the leading contender — "unacceptable." He also said he is <span class="hot">not concerned whether Iran becomes a democratic state</span> — only that it is led by someone who treats the US, Israel, and Gulf allies well. This is regime replacement with explicit American management of the outcome. <span class="warn">The UN Secretary-General António Guterres warned Friday the situation "could spiral beyond anyone's control."</span></p>
+    </div>
+  </div>
+
+  <!-- OIL + MARKETS -->
+  <div class="article">
+    <div class="art-kicker ak-gold"><div class="ak-line"></div><div class="ak-text">Energy Markets · Critical</div></div>
+    <h2 class="art-hed">Brent At $92.87. The Model's $100 Threshold Is Now A Near-Term Event.</h2>
+    <div class="art-body">
+      <p><strong>Brent crude settled at $92.87 per barrel today — up 8.73% in a single session.</strong> At its intraday peak it briefly touched $94.55. WTI US crude crossed $90 for the first time since 2023. Brent is now up more than 21% from its level of $78 one week ago when the war began. Bloomberg described Hormuz as being at a "near-total halt." That is the Strait carrying 20% of the world's daily oil supply.</p>
+
+      <div class="pq">
+        <div class="pq-text">"Oil could easily sprint above $100, onwards to $200."</div>
+        <div class="pq-source">— Qatar Energy Minister Saad al-Kaabi, Financial Times, March 6, 2026</div>
+      </div>
+
+      <p>The double body blow that closed Wall Street's worst week since October: <span class="hot">oil above $90</span> and a US jobs report showing <span class="hot">−92,000 payroll losses in February</span> — the first negative print since 2020. One analyst summarised the moment simply: <em>"You can't sugarcoat this report. A negative payrolls number combined with a big jump in oil prices will have traders worrying about stagflation risks."</em> The Federal Reserve has no tool that fixes a stagnating economy and rising inflation simultaneously. That is the trap the US has walked into.</p>
+    </div>
+    <table class="dtbl">
+      <thead><tr><th>Asset</th><th>Close</th><th>Daily Move</th><th>Weekly Move</th><th>Signal</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">Brent Crude</td><td>$92.87</td><td class="neg">▲ +8.73%</td><td class="neg">▲ +21%+</td><td class="neg">Crisis level</td></tr>
+        <tr><td class="lbl">WTI US Crude</td><td>$90.90</td><td class="neg">▲ +12.2%</td><td class="neg">▲ +23%</td><td class="neg">First $90 since 2023</td></tr>
+        <tr><td class="lbl">S&P 500</td><td>6,740.02</td><td class="neg">▼ −1.33%</td><td class="neg">Worst week since Oct</td><td class="neg">Risk-off</td></tr>
+        <tr><td class="lbl">Dow Jones</td><td>47,501.55</td><td class="neg">▼ −453 pts</td><td class="neg">▼ −0.95%</td><td class="neg">Selling</td></tr>
+        <tr><td class="lbl">Nasdaq</td><td>22,387.68</td><td class="neg">▼ −1.59%</td><td class="neg">Tech hardest hit</td><td class="neg">Risk-off</td></tr>
+        <tr><td class="lbl">VIX Fear Index</td><td>29.49</td><td class="neg">▲ +24.17%</td><td class="neg">4-month high</td><td class="neg">Fear regime</td></tr>
+        <tr><td class="lbl">Gold</td><td>$5,179.40</td><td class="pos">▲ +1.98%</td><td class="pos">Safe-haven active</td><td class="warn">Hedge demand</td></tr>
+        <tr><td class="lbl">Energy Sector (S&P)</td><td>+0.30%</td><td class="pos">Only sector green</td><td class="pos">War beneficiary</td><td class="warn">Diverging</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FOOD + FERTILIZER -->
+  <div class="article">
+    <div class="art-kicker ak-amber"><div class="ak-line"></div><div class="ak-text">Food Security · Emerging Crisis</div></div>
+    <h2 class="art-hed">The Strait Is Blocking More Than Oil. It Is Blocking Food For The Global South.</h2>
+    <div class="art-body">
+      <p>A development that has been largely missing from mainstream coverage but is critical for Caribbean and Global South audiences: <strong>the Hormuz closure is not only an energy crisis. It is a food supply crisis arriving at the worst possible moment.</strong> The Strait is a key corridor for transporting fertilizer ingredients — ammonia, urea, and potash — to the world. Iran is the world's third-largest urea exporter. The Strait carries 25–35% of globally traded fertilizer.</p>
+
+      <p>And this blockage is arriving just as the Northern Hemisphere enters <span class="warn">planting season</span>. Farms that cannot source fertilizer at planting do not produce at harvest. Traders are already pricing this: <strong>fertilizer companies CF Industries (+5.08%), Bunge (+3.14%), and Archer Daniels Midland (+1.37%)</strong> were among the only stocks in the green on Wall Street today as markets began to grasp the food supply chain consequences of a sustained Hormuz closure. Packaged food companies also advanced.</p>
+    </div>
+    <div class="food-grid">
+      <div class="fg-row"><div class="fg-item">Iran urea exports<span>World's 3rd largest exporter</span></div><div class="fg-pill fp-red">Fully offline</div></div>
+      <div class="fg-row"><div class="fg-item">Hormuz fertilizer transit<span>25–35% of globally traded ammonia/urea</span></div><div class="fg-pill fp-red">Blocked</div></div>
+      <div class="fg-row"><div class="fg-item">Northern Hemisphere planting season<span>Starts March–April</span></div><div class="fg-pill fp-amber">At risk</div></div>
+      <div class="fg-row"><div class="fg-item">Caribbean food import costs<span>Wheat, staples, packaged goods</span></div><div class="fg-pill fp-amber">Rising now</div></div>
+      <div class="fg-row"><div class="fg-item">Global wheat supply buffer<span>Russia-Ukraine + Iran disruption compounding</span></div><div class="fg-pill fp-red">Dual shock</div></div>
+    </div>
+    <div class="callout">
+      <div class="callout-title">Jamaica Direct Impact</div>
+      <div class="callout-body">Jamaica is <strong>100% wheat import dependent</strong>. It imports the majority of its fertilizer. A sustained Hormuz blockage hitting both oil prices AND fertilizer supply simultaneously is the dual shock our 90-day model did not fully price in. Local agricultural output — already depleted by Hurricane Melissa in October 2025 — now faces a fertilizer cost spike layered on top of an energy cost spike. The food inflation trajectory we projected at 36–42% for the $140 oil scenario may arrive faster and harder if fertilizer compounds the shock.</div>
+    </div>
+  </div>
+
+  <!-- WEEK ONE ASSESSMENT -->
+  <div class="article">
+    <div class="art-kicker ak-green"><div class="ak-line"></div><div class="ak-text">Week One · Assessment</div></div>
+    <h2 class="art-hed">Seven Days. $3.7 Billion Spent. The "Big Wave" Still Loading.</h2>
+    <div class="art-body">
+      <p>CSIS put the cost of Operation Epic Fury's first 100 hours at <strong>$3.7 billion — or $891 million per day. $3.5 billion of that was unbudgeted.</strong> At that pace, 30 days of war costs $26.7 billion. 90 days: $80 billion. None of this includes the economic damage to the global economy — the oil shock, the freight costs, the supply chain disruption, the tourist cancellations, the remittance compression hitting every Caribbean household.</p>
+      <p>What Operation Epic Fury has accomplished in seven days: destroyed a significant portion of Iran's conventional military capacity, eliminated Khamenei and much of the IRGC command structure, achieved near-complete air superiority over Iranian airspace, and opened a second front in Lebanon. What it has not accomplished: closing the Hormuz threat, establishing a successor leadership in Iran, securing Russian neutrality, preventing Iranian strikes on Gulf economic infrastructure, or defining an exit. <span class="gold">The operation is militarily ahead of schedule. Politically, it has no schedule at all.</span></p>
+    </div>
+  </div>
+
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+  <div class="card">
+    <div class="card-head gold">Conflict Intensity · Day 7</div>
+    <div class="card-body">
+      <div class="bar-list">
+        <div class="bar-row"><div class="bar-lbl">Iran</div><div class="bar-track"><div class="bar-fill bf-dark" style="width:99%"></div></div><div class="bar-val">99%</div></div>
+        <div class="bar-row"><div class="bar-lbl">Lebanon</div><div class="bar-track"><div class="bar-fill bf-red" style="width:93%"></div></div><div class="bar-val">93%</div></div>
+        <div class="bar-row"><div class="bar-lbl">Hormuz</div><div class="bar-track"><div class="bar-fill bf-dark" style="width:91%"></div></div><div class="bar-val">91%</div></div>
+        <div class="bar-row"><div class="bar-lbl">Gulf States</div><div class="bar-track"><div class="bar-fill bf-red" style="width:80%"></div></div><div class="bar-val">80%</div></div>
+        <div class="bar-row"><div class="bar-lbl">Israel</div><div class="bar-track"><div class="bar-fill bf-red" style="width:78%"></div></div><div class="bar-val">78%</div></div>
+        <div class="bar-row"><div class="bar-lbl">Russia (intel)</div><div class="bar-track"><div class="bar-fill bf-amber" style="width:60%"></div></div><div class="bar-val">60%</div></div>
+        <div class="bar-row"><div class="bar-lbl">Europe</div><div class="bar-track"><div class="bar-fill bf-amber" style="width:45%"></div></div><div class="bar-val">45%</div></div>
+        <div class="bar-row"><div class="bar-lbl">Food Supply</div><div class="bar-track"><div class="bar-fill bf-amber" style="width:55%"></div></div><div class="bar-val">55%</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head red">Human Toll · Cumulative</div>
+    <div class="card-body">
+      <ul class="blist">
+        <li><strong>Iran:</strong> <span class="num">1,332 dead</span> · 6,000+ wounded · <span class="num">181 children</span> confirmed killed (UNICEF)</li>
+        <li><strong>Lebanon:</strong> <span class="num">123 killed</span> · 600+ wounded · 95,000+ displaced</li>
+        <li><strong>Israel:</strong> <span class="num">~12 killed</span> from Iranian retaliatory strikes</li>
+        <li><strong>US military:</strong> <span class="num">6 service members killed</span> · confirmed by CENTCOM</li>
+        <li><strong>Ghana UN peacekeepers:</strong> 2 critically injured by missile fire in south Lebanon</li>
+        <li><strong>WHO:</strong> 13 Iranian health facilities struck. 1 in Lebanon.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" style="background:rgba(201,168,76,.08);border-bottom:1px solid var(--rule);color:var(--gold)">🇯🇲 Jamaica · Week One Impact</div>
+    <div class="card-body">
+      <div class="impact-grid">
+        <div class="ig-cell"><div class="ig-val red">$315M</div><div class="ig-lbl">Annualised GDP<br>damage · at $92 Brent</div></div>
+        <div class="ig-cell"><div class="ig-val">+32%</div><div class="ig-lbl">Electricity cost<br>trajectory vs baseline</div></div>
+        <div class="ig-cell"><div class="ig-val">$14.87</div><div class="ig-lbl">ΔO above<br>$78 baseline (Week 1)</div></div>
+        <div class="ig-cell"><div class="ig-val red">$100</div><div class="ig-lbl">Model inflection<br>threshold · now close</div></div>
+      </div>
+      <p style="margin-top:1rem">Our model's critical $100/barrel threshold — where GDP damage exceeds $469M annually — is <strong>$7.13 away</strong> from today's close. Qatar's Energy Minister said today that $100 is the floor if Gulf producers halt exports. The fertilizer shock was not in the original model. It is additive.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head amber">Stagflation Signal · US</div>
+    <div class="card-body">
+      <p>Friday delivered both triggers simultaneously: <strong>oil above $90</strong> and <strong>payrolls −92,000</strong>. The Federal Reserve has no good tool for this combination — cutting rates to fight the job losses would pour fuel on inflation already being driven by oil. The Fed is paralysed. <span class="hot">That paralysis is itself a risk to the Caribbean</span> — US consumer spending compression directly reduces tourism bookings and remittance flows to the region.</p>
+      <p style="font-size:.75rem;color:var(--dim);font-style:italic;margin-top:.5rem">Brian Jacobsen, Annex Wealth Management: "A negative payrolls number combined with a big jump in oil prices will have traders worrying about stagflation risks."</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" style="background:rgba(74,124,63,.08);border-bottom:1px solid rgba(74,124,63,.15);color:var(--green-l)">Off-Ramp · Week One Status</div>
+    <div class="card-body">
+      <p><strong>"Unconditional surrender."</strong> That is not a negotiating position. That is the elimination of negotiation as a concept. Trump also told CNN he is not concerned whether Iran becomes a democratic state post-war. The CIA is arming Kurdish forces to foment internal uprising. The Assembly of Experts was bombed. The succession body has no building to meet in.</p>
+      <p>Iran's President Pezeshkian said Friday: <em>"Mediation should address those who underestimated the Iranian people and ignited this conflict."</em> There is a signal there — but there is no channel for it.</p>
+      <p style="font-size:.75rem;color:var(--dim);margin-top:.5rem;font-style:italic">Assessment: Ceasefire probability within 14 days — very low. The political architecture for one does not exist.</p>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- WEEK IN NUMBERS -->
+<div class="week-strip">
+  <div class="wn-box">
+    <div class="wn-num">+21%</div>
+    <div class="wn-lbl">Brent crude rise<br>in 7 days ($78 → $92.87)</div>
+  </div>
+  <div class="wn-box">
+    <div class="wn-num">2,500</div>
+    <div class="wn-lbl">Israeli strikes on Iran<br>in 7 days</div>
+  </div>
+  <div class="wn-box">
+    <div class="wn-num">$3.7B</div>
+    <div class="wn-lbl">US war cost<br>first 100 hours alone</div>
+  </div>
+  <div class="wn-box">
+    <div class="wn-num">1,332</div>
+    <div class="wn-lbl">Confirmed dead in Iran<br>181 of them children</div>
+  </div>
+</div>
+
+<!-- VERDICT -->
+<div class="verdict">
+  <div class="verdict-inner">
+    <div class="v-eyebrow">
+      <div class="v-line"></div>
+      <div class="v-tag">Meridian · Week One Verdict · March 6, 2026</div>
+      <div class="v-line"></div>
+    </div>
+    <h2 class="v-hed">THE <span class="gold">BILL</span> IS ARRIVING.<br>NOBODY ORDERED THIS.</h2>
+    <div class="v-body">
+      <p>One week ago this was a war between three militaries in the Middle East. Today it is something more dangerous: an economic event affecting every nation on Earth simultaneously. <strong>Oil at $92.87. US jobs negative. The Fed paralysed. Fertilizer blocked. Food prices rising. The Strait of Hormuz near-closed. Russia actively feeding Iran the coordinates of American ships.</strong> The VIX at 29. Wall Street's worst week since October. That is the seven-day account of Operation Epic Fury — and the "big wave" Trump warned about has still not arrived.</p>
+      <p>The Russia intelligence-sharing revelation is the development that changes the strategic calculus most profoundly. This is no longer the US and Israel versus Iran. <span class="hot">Russia is now an active participant in the intelligence layer of this war.</span> It is providing targeting data to a nation that is firing at US military assets and Gulf oil infrastructure. That is not neutrality. That is a geopolitical alignment that was always coming — but has now been confirmed in the most explicit possible way. Every NATO meeting, every European base authorisation decision, every Canadian "won't rule out" statement — all of it exists inside this new context.</p>
+      <p>For the Global South — for Jamaica, for the Caribbean, for Nigeria, for Kenya, for every economy that runs on imported energy and imported food — <strong>today confirmed what the models suggested last week: the fertilizer shock is real, it is additive, and it was not in the original projections.</strong> Oil prices hitting food prices is in every model. Oil prices hitting fertilizer, which hits next season's harvest, which hits food prices six months from now — <span class="warn">that second-order food supply shock is not yet priced into Caribbean economic policy planning.</span> It should be.</p>
+      <p><span class="gold">One week down. No exit. No off-ramp. No successor. No negotiation channel. $7.13 from $100 oil. And a war that its architects say is still accelerating.</span> That is the world as of Friday, March 6, 2026.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="f-logo">MERIDIAN</div>
+  <div class="f-meta">
+    The Meridian Brief · Global South Crisis Intelligence · Day 7 · March 6, 2026<br>
+    Sources: Al Jazeera · CNN · NPR · CBS News · CNBC · Bloomberg · Yahoo Finance · TheStreet · NCRI · Wikipedia 2026 Iran Conflict
+  </div>
+</footer>
+
+</body>
+</html>
