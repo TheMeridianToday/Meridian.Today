@@ -1,0 +1,42 @@
+{
+  "lastUpdated": "2026-03-19T00:00:00Z",
+  "warDay": 19,
+  "escalationIndex": 97,
+  "markets": {
+    "brent": { "value": 115.00, "change": "+64%", "label": "vs pre-war Feb 27" },
+    "wti": { "value": 109.50, "change": "+58%", "label": "vs pre-war" },
+    "jetFuel": { "value": 175.00, "change": "+101%", "label": "IATA monitor" },
+    "natGas": { "value": 9.42, "change": "+9.3%", "label": "EU TTF benchmark" }
+  },
+  "humanitarian": {
+    "iranianCiviliansKilled": 1444,
+    "iranianMilitaryKilled": 4800,
+    "iranianDisplaced": 3000000,
+    "lebaneseKilled": 850,
+    "lebaneseDisplaced": 820000,
+    "totalWarDead": 2300
+  },
+  "hormuz": {
+    "dailyVessels": 13,
+    "preWarVessels": 153,
+    "reductionPercent": 91
+  },
+  "thresholds": {
+    "100": { "crossed": true, "date": "2026-03-08" },
+    "110": { "crossed": true, "date": "2026-03-12" },
+    "115": { "crossed": true, "date": "2026-03-19" },
+    "120": { "crossed": false },
+    "150": { "crossed": false }
+  },
+  "caricom": {
+    "daysOfSilence": 19,
+    "statements": 0,
+    "emergencySessions": 0
+  },
+  "aviation": {
+    "jetFuelBbl": 175,
+    "preWarJetFuel": 87,
+    "fareIncreaseTranscontinental": "+100%",
+    "airNZFlightsCancelled": 1100
+  }
+}
