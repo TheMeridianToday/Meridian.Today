@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERIDIAN · Day 16 · March 16, 2026 · The Gulf Widens</title>
+<meta name="description" content="Day 16: Iran strikes all six Gulf states. Houthis operationalize Hour Zero. US rejects mediation. Lebanon ground war begins. CARICOM still silent.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#0b0f07;--f2:#0f1409;--f3:#14190c;--f4:#191f10;
+  --gold:#c9a84c;--gold-l:#e0c46e;--gold-d:#7a6020;--gold-f:rgba(201,168,76,.07);
+  --mg:#4a7c3f;--mg-l:#6aaa5e;--mg-d:rgba(74,124,63,.12);
+  --red:#c84c3f;--red-l:#e07060;--red-f:rgba(200,76,63,.08);
+  --amb:#d4890a;--amb-l:#f0a820;--amb-f:rgba(212,137,10,.07);
+  --blue:#3a7abf;--blue-l:#5a9fdf;
+  --rule:rgba(201,168,76,.1);--rule2:rgba(201,168,76,.04);
+  --text:#98a88e;--dim:#4a5840;--white:#eaf2e2;
+  --serif:'Cormorant Garamond',serif;--sans:'Outfit',sans-serif;--mono:'DM Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--forest);color:var(--text);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(201,168,76,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.018) 1px,transparent 1px);
+  background-size:52px 52px;pointer-events:none;z-index:0}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.2;transform:scale(.8)}}
+@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(200,76,63,.6)}70%{box-shadow:0 0 0 8px rgba(200,76,63,0)}100%{box-shadow:0 0 0 0 rgba(200,76,63,0)}}
+@keyframes tickerMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes barFill{from{width:0}to{width:var(--fill)}}
+@keyframes scanLine{0%{transform:translateY(-100%)}100%{transform:translateY(900%)}}
+
+.ticker{background:var(--red);position:relative;z-index:10;overflow:hidden;height:32px;display:flex;align-items:center}
+.t-badge{font-family:var(--mono);font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;padding:0 1rem 0 .8rem;background:rgba(0,0,0,.4);height:100%;display:flex;align-items:center;gap:.5rem;white-space:nowrap;flex-shrink:0}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#fff;flex-shrink:0;animation:pulse 1.6s ease-in-out infinite,pulseRing 1.6s ease-out infinite}
+.t-track{display:flex;animation:tickerMove 75s linear infinite;white-space:nowrap}
+.t-item{font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.92);padding:0 2rem}
+.t-item::after{content:'◆';font-size:.32rem;padding-left:2rem;color:rgba(255,255,255,.3)}
+
+.mast{position:relative;z-index:1;background:var(--f2);border-bottom:1px solid var(--rule);overflow:hidden}
+.mast::after{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:linear-gradient(180deg,transparent,var(--gold),transparent);animation:scanLine 4.5s ease-in-out infinite;pointer-events:none}
+.mast-inner{max-width:1280px;margin:0 auto;padding:0 2.5rem}
+.mast-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.6rem 0 1rem;gap:1.5rem}
+.brand-name{font-family:var(--serif);font-size:2.9rem;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;line-height:.9}
+.brand-name em{font-weight:400;font-style:italic;font-size:.68em;color:var(--gold-l);letter-spacing:.06em}
+.brand-tag{font-family:var(--serif);font-size:.76rem;font-style:italic;color:var(--dim);margin-top:.15rem}
+.brand-live{display:inline-flex;align-items:center;gap:.4rem;margin-top:.4rem;font-family:var(--mono);font-size:.46rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red-l)}
+.brand-live .ld{width:6px;height:6px;border-radius:50%;background:var(--red-l);animation:pulse 1.4s ease-in-out infinite}
+.day-block{text-align:center;display:flex;flex-direction:column;align-items:center;gap:.25rem}
+.db-pre{font-family:var(--mono);font-size:.46rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.db-num{font-family:var(--serif);font-size:3.8rem;font-weight:700;color:var(--white);line-height:.85}
+.db-sub{font-family:var(--mono);font-size:.44rem;letter-spacing:.12em;color:var(--dim);text-transform:uppercase}
+.db-date{font-family:var(--serif);font-size:.8rem;font-style:italic;color:var(--gold-l);margin-top:.1rem}
+.esc-block{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem}
+.esc-label{font-family:var(--mono);font-size:.46rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.esc-track{width:180px;height:10px;background:rgba(255,255,255,.04);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.esc-fill{height:100%;background:linear-gradient(90deg,var(--gold-d),var(--amb-l),var(--red-l));border-radius:2px;animation:barFill .8s .3s ease-out both;--fill:99%;width:99%}
+.esc-val{font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--red-l);line-height:1}
+.esc-val span{font-size:1rem;color:var(--dim);font-weight:400}
+.esc-note{font-family:var(--mono);font-size:.43rem;letter-spacing:.08em;color:var(--dim);text-transform:uppercase;text-align:right}
+.mast-rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold-d) 30%,var(--gold) 50%,var(--gold-d) 70%,transparent);margin:.4rem 0}
+
+.market-strip{display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid var(--rule2);border-bottom:1px solid var(--rule2)}
+.ms-cell{padding:.7rem .5rem;text-align:center;border-right:1px solid var(--rule2);transition:background .2s}
+.ms-cell:last-child{border-right:none}
+.ms-cell:hover{background:rgba(201,168,76,.03)}
+.msc-val{font-family:var(--mono);font-size:.76rem;font-weight:700;line-height:1;margin-bottom:.15rem}
+.mv-r{color:var(--red-l)}.mv-g{color:var(--mg-l)}.mv-a{color:var(--amb-l)}.mv-w{color:var(--white)}.mv-gold{color:var(--gold-l)}
+.msc-lbl{font-family:var(--mono);font-size:.4rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;line-height:1.5}
+
+.headline-strip{background:var(--f3);border-bottom:1px solid var(--rule);position:relative;z-index:1}
+.hs-inner{max-width:1280px;margin:0 auto;padding:2.2rem 2.5rem}
+.hs-kicker{display:flex;align-items:center;gap:.7rem;font-family:var(--mono);font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:var(--red-l);margin-bottom:.8rem}
+.hs-kicker::before{content:'';width:18px;height:1px;background:var(--red-l)}
+.hs-kicker .ld{width:5px;height:5px;border-radius:50%;background:var(--red-l);animation:pulse 1.4s ease-in-out infinite}
+.hs-hed{font-family:var(--serif);font-size:clamp(2rem,4vw,3.6rem);font-weight:700;color:var(--white);line-height:.97;letter-spacing:-.02em;margin-bottom:.9rem}
+.hs-hed .g{color:var(--gold);font-style:italic}.hs-hed .r{color:var(--red-l)}.hs-hed .a{color:var(--amb-l)}
+.hs-deck{font-size:.86rem;color:var(--text);line-height:1.9;max-width:900px;font-weight:300}
+.hs-deck strong{color:var(--white)}
+.hs-deck .hot{color:var(--red-l);font-weight:600}
+.hs-deck .warn{color:var(--amb-l);font-weight:600}
+
+.page{max-width:1280px;margin:0 auto;padding:2.5rem 2.5rem 6rem;position:relative;z-index:1}
+.layout{display:grid;grid-template-columns:1fr 355px;gap:2.5rem;align-items:start}
+
+.sec{display:flex;align-items:center;gap:.7rem;margin-bottom:1.3rem;margin-top:2rem}
+.sec:first-child{margin-top:0}
+.sec-rule{width:18px;height:1px;background:var(--gold-d)}
+.sec-txt{font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+
+.story{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--rule2)}
+.story:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-kicker{display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.48rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.45rem}
+.kd{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.kd-r{background:var(--red-l)}.kd-a{background:var(--amb-l)}.kd-g{background:var(--mg-l)}.kd-gold{background:var(--gold)}.kd-b{background:var(--blue-l)}
+.kt-r{color:var(--red-l)}.kt-a{color:var(--amb-l)}.kt-g{color:var(--mg-l)}.kt-gold{color:var(--gold)}.kt-b{color:var(--blue-l)}
+.s-hed{font-family:var(--serif);font-size:clamp(1.35rem,2.3vw,2rem);font-weight:700;color:var(--white);line-height:1.05;letter-spacing:-.01em;margin-bottom:.65rem}
+.s-hed .g{color:var(--gold);font-style:italic}.s-hed .r{color:var(--red-l)}.s-hed .a{color:var(--amb-l)}
+.s-body{font-size:.82rem;color:var(--text);line-height:1.9}
+.s-body p{margin-bottom:.75rem}.s-body p:last-child{margin-bottom:0}
+.s-body strong{color:var(--white)}
+.s-body .hot{color:var(--red-l);font-weight:600}
+.s-body .warn{color:var(--amb-l);font-weight:600}
+.s-body .ok{color:var(--mg-l);font-weight:600}
+.s-body em{font-style:italic;color:var(--gold-l)}
+
+.insight{border:1px solid var(--rule);border-left:3px solid;padding:1rem 1.3rem;margin:1rem 0;background:var(--f4)}
+.i-r{border-left-color:var(--red-l)}.i-a{border-left-color:var(--amb-l)}.i-gold{border-left-color:var(--gold)}.i-g{border-left-color:var(--mg-l)}.i-b{border-left-color:var(--blue-l)}
+.ins-lbl{font-family:var(--mono);font-size:.44rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.35rem}
+.il-r{color:var(--red-l)}.il-a{color:var(--amb-l)}.il-gold{color:var(--gold)}.il-g{color:var(--mg-l)}.il-b{color:var(--blue-l)}
+.ins-body{font-size:.78rem;color:var(--text);line-height:1.8}
+.ins-body strong{color:var(--white)}
+.ins-body .hot{color:var(--red-l)}.ins-body .warn{color:var(--amb-l)}.ins-body .ok{color:var(--mg-l)}
+
+.qblock{background:var(--f4);border-left:3px solid var(--gold);padding:.85rem 1.2rem;margin:.9rem 0}
+.qb-txt{font-family:var(--serif);font-size:.92rem;font-style:italic;color:var(--white);line-height:1.7;margin-bottom:.2rem}
+.qb-src{font-family:var(--mono);font-size:.42rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
+
+.region-row{display:flex;align-items:flex-start;gap:.8rem;padding:.65rem 0;border-bottom:1px solid var(--rule2)}
+.region-row:last-child{border-bottom:none}
+.rr-flag{font-size:1.1rem;flex-shrink:0;padding-top:.05rem}
+.rr-body{flex:1;font-size:.79rem;color:var(--text);line-height:1.7}
+.rr-body strong{color:var(--white)}
+.rr-body .hot{color:var(--red-l);font-weight:600}
+.rr-body .warn{color:var(--amb-l);font-weight:600}
+.rr-body .ok{color:var(--mg-l);font-weight:600}
+.rr-badge{font-family:var(--mono);font-size:.42rem;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .3rem;border:1px solid;border-radius:2px;white-space:nowrap;flex-shrink:0;margin-top:.15rem}
+.b-r{color:var(--red-l);border-color:rgba(200,76,63,.25);background:var(--red-f)}
+.b-a{color:var(--amb-l);border-color:rgba(212,137,10,.2);background:var(--amb-f)}
+.b-g{color:var(--mg-l);border-color:rgba(74,124,63,.25);background:var(--mg-d)}
+
+.sidebar{display:flex;flex-direction:column;gap:1.4rem;position:sticky;top:1rem}
+.s-card{background:var(--f3);border:1px solid var(--rule)}
+.sc-head{padding:.65rem 1.1rem;border-bottom:1px solid var(--rule2);font-family:var(--mono);font-size:.48rem;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem}
+.sch-r{color:var(--red-l)}.sch-a{color:var(--amb-l)}.sch-g{color:var(--mg-l)}.sch-gold{color:var(--gold)}
+.sc-head .ld2{width:5px;height:5px;border-radius:50%;flex-shrink:0;animation:pulse 1.6s ease-in-out infinite}
+.ld2-r{background:var(--red-l)}.ld2-a{background:var(--amb-l)}
+.sc-body{padding:.85rem 1.1rem}
+.stat-big{padding:.55rem 0;border-bottom:1px solid var(--rule2);display:flex;flex-direction:column;gap:.08rem}
+.stat-big:last-child{border-bottom:none;padding-bottom:0}
+.sb-val{font-family:var(--serif);font-size:1.45rem;font-weight:700;line-height:1}
+.sbv-r{color:var(--red-l)}.sbv-a{color:var(--amb-l)}.sbv-g{color:var(--mg-l)}.sbv-gold{color:var(--gold-l)}.sbv-w{color:var(--white)}
+.sb-lbl{font-family:var(--mono);font-size:.42rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);line-height:1.6}
+.drow{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;padding:.42rem 0;border-bottom:1px solid var(--rule2)}
+.drow:last-child{border-bottom:none;padding-bottom:0}
+.dr-lbl{color:var(--dim);flex:1;line-height:1.4;font-size:.7rem}
+.dr-val{font-family:var(--mono);font-size:.66rem;font-weight:700;white-space:nowrap;flex-shrink:0}
+.dv-r{color:var(--red-l)}.dv-g{color:var(--mg-l)}.dv-a{color:var(--amb-l)}.dv-gold{color:var(--gold-l)}.dv-w{color:var(--white)}
+
+.conclusion{background:var(--f2);border:1px solid var(--rule);border-top:3px solid var(--gold);padding:2.6rem;margin-top:2.8rem;position:relative;overflow:hidden}
+.concl-ghost{position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:12rem;font-weight:700;color:rgba(201,168,76,.022);line-height:1;pointer-events:none;user-select:none}
+.concl-lbl{display:flex;align-items:center;gap:.7rem;font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.65rem}
+.concl-lbl::before{content:'';width:14px;height:1px;background:var(--gold-d)}
+.concl-hed{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.6rem);font-weight:700;color:var(--white);line-height:1.02;margin-bottom:1.1rem}
+.concl-hed .g{color:var(--gold);font-style:italic}.concl-hed .r{color:var(--red-l)}
+.concl-body{font-size:.82rem;color:var(--text);line-height:1.95;max-width:1000px}
+.concl-body p{margin-bottom:.8rem}.concl-body p:last-child{margin-bottom:0}
+.concl-body strong{color:var(--white)}
+.concl-body .hot{color:var(--red-l);font-weight:600}
+.concl-body .warn{color:var(--amb-l);font-weight:600}
+.concl-body .ok{color:var(--mg-l);font-weight:600}
+.concl-body em{color:var(--gold-l);font-style:italic}
+
+footer{border-top:1px solid var(--rule);padding:1.4rem 2.5rem;position:relative;z-index:1;background:var(--f2)}
+.ft-i{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.ft-brand{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.ft-tag{font-family:var(--serif);font-size:.7rem;font-style:italic;color:var(--dim);margin-top:.1rem}
+.ft-meta{font-family:var(--mono);font-size:.42rem;letter-spacing:.08em;color:var(--dim);text-align:right;line-height:1.9;text-transform:uppercase}
+
+@media(max-width:1000px){.layout{grid-template-columns:1fr}.sidebar{position:static}}
+@media(max-width:700px){.market-strip{grid-template-columns:repeat(4,1fr)}.mast-top{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="t-badge"><div class="live-dot"></div>Day 16 · Breaking</div>
+  <div class="t-track">
+    <div class="t-item">IRAN STRIKES ALL SIX GULF STATES · FIRST TIME IN CONFLICT · UAE, SAUDI, QATAR, KUWAIT, BAHRAIN, OMAN TARGETED</div>
+    <div class="t-item">HOUTHIS OPERATIONALIZE "HOUR ZERO" · BAB AL-MANDAB CLOSURE BEGINS · RED SEA SHIPPING HALTED</div>
+    <div class="t-item">US REJECTS OMAN/EGYPT MEDIATION · TRUMP: "NO CEASEFIRE UNTIL TOTAL SURRENDER" · SOURCE: AXIOS</div>
+    <div class="t-item">LEBANON GROUND WAR BEGINS · ISRAEL CROSSES LITANI RIVER · "SIGNIFICANT EXPANSION" CONFIRMED</div>
+    <div class="t-item">KATAIB HEZBOLLAH COMMANDER KILLED · US DRONE STRIKE BAGHDAD · IRAQ VOWES REVENGE</div>
+    <div class="t-item">BRENT CRUDE TOUCHES $94 · KHARG PREMIUM FULLY PRICED IN · IEA RELEASES 60M BARRELS</div>
+    <div class="t-item">CHINA LANE THROUGH HORMUZ · 12 VESSELS PASS UNDER YUAN TERMS · BEIJING SILENT ON OFFICIAL ROLE</div>
+    <div class="t-item">PAKISTAN CENTRAL BANK RAISES RATE 200BPS · ENERGY INFLATION AT 34% · IMF TALKS SUSPENDED</div>
+    <div class="t-item">PHILIPPINES DECLARES ENERGY EMERGENCY · 45-DAY OIL RESERVES REMAINING · OFW EVACUATIONS BEGIN</div>
+    <div class="t-item">CARICOM DAY 16 · STILL SILENT · T&T GUYANA OIL WINDFALL UNDEPLOYED · ELECTRICITY SURCHARGES 40%+</div>
+    <div class="t-item">DJIBOUTI PORT CLOSURE IMMINENT · BAB AL-MANDAB BLOCKADE EXTENDS TO HORN OF AFRICA</div>
+    <div class="t-item">INDIA EVACUATES 15,000 FROM GULF · OPERATION SAMUDRA SETU 2.0 · CHABAHAR PORT ABANDONED</div>
+    <div class="t-item">EGYPT SUEZ REVENUE ZERO FOR THIRD DAY · IMF PROGRAMME IN JEOPARDY · POUND DEPEGUES</div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<div class="mast">
+  <div class="mast-inner">
+    <div class="mast-top">
+      <div>
+        <div class="brand-name">Meridian <em>Brief</em></div>
+        <div class="brand-tag">Intelligence from the South. For the South.</div>
+        <div class="brand-live"><div class="ld"></div>Operation Epic Fury · Day 16</div>
+      </div>
+      <div class="day-block">
+        <div class="db-pre">Iran War · Day</div>
+        <div class="db-num">16</div>
+        <div class="db-sub">The Gulf widens</div>
+        <div class="db-date">Monday · March 16, 2026</div>
+      </div>
+      <div class="esc-block">
+        <div class="esc-label">Escalation Index</div>
+        <div class="esc-track"><div class="esc-fill"></div></div>
+        <div class="esc-val">99<span>/100</span></div>
+        <div class="esc-note">All Gulf states hit · 2nd chokepoint active · Diplomatic track collapsed</div>
+      </div>
+    </div>
+    <div class="mast-rule"></div>
+    <div class="market-strip">
+      <div class="ms-cell"><div class="msc-val mv-r">$94.20</div><div class="msc-lbl">Brent spike<br>IEA release triggered</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">Zero</div><div class="msc-lbl">Suez revenue<br>Third day</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">6</div><div class="msc-lbl">Gulf states struck<br>First time</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">1,892</div><div class="msc-lbl">Iranian civilians dead<br>Health Ministry</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">8,400</div><div class="msc-lbl">Targets struck<br>CENTCOM · Day 16</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">2</div><div class="msc-lbl">Chokepoints closed<br>Hormuz + Bab al-Mandab</div></div>
+      <div class="ms-cell"><div class="msc-val mv-r">Day 16</div><div class="msc-lbl">CARICOM<br>Still silent</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADLINE -->
+<div class="headline-strip">
+  <div class="hs-inner">
+    <div class="hs-kicker"><div class="ld"></div>March 16, 2026 · The War Consumes the Gulf</div>
+    <div class="hs-hed">All six Gulf states<br>struck in 24 hours.<br><span class="r">Hour Zero is here.</span></div>
+    <div class="hs-deck">
+      Iran has expanded its attacks to include <strong>all six Gulf Cooperation Council states</strong> for the first time — Saudi Arabia, UAE, Qatar, Kuwait, Bahrain, and Oman. The Houthis have operationalized "Hour Zero," closing the Bab al-Mandab Strait and halting all Red Sea shipping. <span class="hot">The United States explicitly rejected mediation offers from Oman and Egypt, with Trump stating there will be "no ceasefire until total surrender."</span> Israel has begun its "significant expansion" across the Litani River in Lebanon. The two-chokepoint scenario the Global South feared is now operational reality. There is no remaining buffer. There is no remaining route. There is no remaining silence that can hold.
+    </div>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+<div class="layout">
+<div>
+
+<!-- STORY 1: GULF WIDENS -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">The Gulf · All Six States Under Fire</div></div>
+<div class="story">
+  <div class="s-kicker kt-r"><div class="kd kd-r"></div>Regional Escalation · March 16 · Unprecedented</div>
+  <div class="s-hed">For the first time,<br>every GCC state<br><span class="r">is in the war.</span></div>
+  <div class="s-body">
+    <p>Between midnight Sunday and midnight Monday, Iranian forces or Iranian-backed militias struck targets in all six Gulf Cooperation Council states — the first time the entire Arab Gulf has been simultaneously under fire. The expansion represents a fundamental shift in Iran's strategy from military retaliation to economic warfare against the region's energy infrastructure.</p>
+    <p><strong>Saudi Arabia:</strong> Aramco's Abqaiq processing facility — the world's largest oil processing plant — was struck by a swarm of drones. Damage is assessed as "moderate but operational," though Saudi sources report a 15% reduction in capacity. The Ras Tanura terminal was also targeted but intercepted.</p>
+    <p><strong>UAE:</strong> Following the Fujairah strike on Day 14, Iran's IRGC formally notified Abu Dhabi that "all US hideouts and economic assets" are now legitimate targets. The Jebel Ali port — the largest man-made harbor in the world and the busiest in the Middle East — received a missile warning salvo. No direct hits, but shipping suspended.</p>
+    <p><strong>Qatar:</strong> The Al Udeid Air Base — headquarters of US Central Command forward operations — was struck by ballistic missiles. US Patriot batteries intercepted most, but one hit the perimeter, wounding four American personnel. QatarEnergy suspended all LNG loadings "until further notice."</p>
+    <p><strong>Kuwait:</strong> A second strike on Ahmad Al-Jaber Air Base in 48 hours, this time with casualties — three Kuwaiti soldiers killed, seven wounded. The Emir has recalled the ambassador from Tehran.</p>
+    <p><strong>Bahrain:</strong> The US Fifth Fleet headquarters in Manama was targeted by drone swarms. Naval Support Activity Bahrain entered lockdown. The Bapco refinery was also struck, causing a fire visible across the capital.</p>
+    <p><strong>Oman:</strong> The most shocking expansion. Oman had served as the primary backchannel between Washington and Tehran since the war began. The Muscat port authority building was struck, and the Sultan Qaboos Port received a missile warning. <span class="hot">The message was clear: there is no neutral ground.</span></p>
+  </div>
+
+  <div class="insight i-r">
+    <div class="ins-lbl il-r">Why All Six? The Economic War Logic</div>
+    <div class="ins-body">
+      Iran's expansion to all GCC states represents a calculated shift from military to economic warfare. By threatening every oil exporter simultaneously, Iran is not seeking military victory — it is seeking to demonstrate that <strong>no Gulf state can profit from or remain safe during a war that targets Iran's economic heart</strong>. The Kharg Island strike on Day 14 made Iran's oil infrastructure a hostage; the Day 16 expansion makes every Gulf state's infrastructure a counter-hostage. The calculation is brutal: if Iran cannot export, no one exports. If Iran burns, the Gulf burns with it. This is the "pile of ashes" promise made manifest. Source: <em>Regional diplomatic sources · Reuters · Al Jazeera</em>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 2: HOUR ZERO ACTIVE -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Hour Zero · The Second Chokepoint Closes</div></div>
+<div class="story">
+  <div class="s-kicker kt-r"><div class="kd kd-r"></div>Houthis · Bab al-Mandab · Operational</div>
+  <div class="s-hed">The Red Sea<br>is closed.<br><span class="r">No warning. No passage.</span></div>
+  <div class="s-body">
+    <p>At 04:30 local time Monday, Houthi military spokesperson Yahya Saree announced that "Hour Zero" had begun. Within hours, three commercial vessels attempting transit through the Bab al-Mandab Strait were targeted — one hit, two turned back. By 14:00, all major shipping lines had suspended Red Sea operations.</p>
+    <p>The closure is total. Unlike the 2024-2025 Houthi campaign, which targeted specific vessels linked to Israel or its allies, <strong>Hour Zero applies to all traffic regardless of flag or cargo</strong>. The Houthis have deployed naval mines, anti-ship missiles, and drone boats across the 32-kilometer strait. US and coalition naval forces in the region have issued warnings that they cannot guarantee safe passage.</p>
+    <p>For the Global South, this is the catastrophic scenario. <span class="warn">The Cape of Good Hope reroute — already adding $1 million per voyage and 14 days transit time — is now the only option for Indo-Pacific-Europe trade.</span> But with Hormuz also effectively closed to most traffic, the Cape route is overwhelmed. There are not enough vessels. There is not enough insurance. There is not enough time.</p>
+    <p>Djibouti, the port that serves as the logistics hub for the Horn of Africa and hosts military bases from the US, China, France, and Japan, announced it would close to commercial traffic within 48 hours due to security concerns. <strong>East Africa is being severed from global shipping.</strong></p>
+  </div>
+
+  <div class="insight i-r">
+    <div class="ins-lbl il-r">The Two-Chokepoint Reality · No Route Left</div>
+    <div class="ins-body">
+      Hormuz: 20% of global oil. Bab al-Mandab: 12% of global trade, 30% of container traffic. <strong>Together they represent the only viable maritime corridor between the Indo-Pacific and Europe/Americas.</strong> With both closed, the Cape of Good Hope becomes the only option — but the Cape cannot absorb 100% of redirected traffic. There are 5,900 vessels that transit Hormuz annually; 19,000 that transit Bab al-Mandab. The Cape route can handle, at maximum capacity, 60% of that volume. The remaining 40% simply cannot move. This is not a price shock. This is a supply chain cessation. The last time both chokepoints were simultaneously closed was never. Source: <em>IMO emergency briefing · Lloyd's List · Dawn</em>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 3: DIPLOMACY COLLAPSED -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Diplomacy · The Rejection</div></div>
+<div class="story">
+  <div class="s-kicker kt-a"><div class="kd kd-a"></div>US Position · Mediation Rejected · March 16</div>
+  <div class="s-hed">Oman and Egypt<br>offered a path.<br><span class="a">Trump said no.</span></div>
+  <div class="s-body">
+    <p>On Sunday, Oman and Egypt presented a joint mediation proposal to the Trump administration: a 72-hour humanitarian ceasefire to allow civilian evacuation from Kharg Island and Gulf port cities, followed by talks in Muscat on "maritime security arrangements." The proposal was backed by Qatar and quietly supported by China.</p>
+    <p>The US response came within hours. <span class="hot">"There will be no ceasefire until total surrender," Trump told Axios. "Iran must unconditionally give up its nuclear program, release all hostages, and pay reparations for every ship they've harassed. Then we'll talk."</span></p>
+    <p>The rejection has frozen the diplomatic track. Iran's Foreign Minister Araghchi, who had indicated flexibility on the yuan-for-passage proposal, stated Monday that "the United States has chosen war over peace. We will oblige them." The Iranian Parliament voted unanimously to authorize the IRGC to strike "any economic asset of any state providing material support to US forces."</p>
+    <p>The IMO emergency session scheduled for March 18-19 in London is now in doubt. Several shipping associations have announced they will not attend, citing security concerns. <strong>The yuan-for-Hormuz offer remains on the table — 12 Chinese-flagged vessels passed through Hormuz Monday under apparent yuan-clearance terms — but Beijing has made no official statement.</strong></p>
+  </div>
+</div>
+
+<!-- STORY 4: LEBANON GROUND WAR -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Lebanon · The Ground War Begins</div></div>
+<div class="story">
+  <div class="s-kicker kt-r"><div class="kd kd-r"></div>Israel · Litani River · March 16</div>
+  <div class="s-hed">Israel crosses<br>the Litani.<br><span class="r">"Significant expansion."</span></div>
+  <div class="s-body">
+    <p>Israeli forces crossed the Litani River in force early Monday, beginning what Defense Minister Israel Katz termed a "significant expansion" of operations in southern Lebanon. The move comes 48 hours after Lebanese President Joseph Aoun's proposal for a one-month ceasefire and state control of Hezbollah weapons was rejected by both Israel and Hezbollah.</p>
+    <p>The crossing represents the deepest Israeli penetration into Lebanon since the 2006 war. Targets include the towns of Marjayoun, Khiam, and Nabatieh — areas previously considered under the control of the Lebanese Armed Forces. <span class="hot">The Israeli military has ordered the evacuation of 28 villages south of the Awali River, suggesting the operation aims to establish a 15-kilometer "security zone" extending well beyond the Blue Line.</span></p>
+    <p>Hezbollah leader Naim Qassem, in a televised address Monday, declared that "the resistance is prepared for a long war of liberation." Rocket fire into northern Israel intensified, with 47 projectiles launched in a 12-hour period. The death toll in Lebanon since March 2 has reached 1,247.</p>
+    <p>For the Global South, the Lebanon expansion matters because it closes the last potential maritime alternative. <strong>Beirut port — already crippled by the 2020 explosion — was the only remaining viable harbor for relief supplies to Syria and northern Lebanon.</strong> With Israeli forces approaching the Beirut-Damascus highway, that corridor is now severed.</p>
+  </div>
+</div>
+
+<!-- STORY 5: GLOBAL SOUTH IMPACT -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">Global South · The Cascade Accelerates</div></div>
+<div class="story">
+  <div class="s-kicker kt-gold"><div class="kd kd-gold"></div>Regional Impact · Day 16 · Zero Buffer</div>
+  <div class="s-hed">No routes.<br>No reserves.<br><span class="a">No response.</span></div>
+  <div class="s-body"><p>Day 16 marks the point where the Global South's absorption capacity is exceeded. The two-chokepoint closure, the Gulf-wide strikes, and the diplomatic freeze have created a supply shock that cannot be mitigated by reserves, rerouting, or rationing. The following represents real-time status:</p></div>
+
+  <div style="margin-top:1.2rem">
+    <div class="region-row">
+      <div class="rr-flag">🇵🇰</div>
+      <div class="rr-body"><strong>Pakistan</strong> — Central Bank raised rates 200bps to 15.5% as energy inflation hits 34%. IMF talks suspended. Grid stress from Qatar LNG force majeure has caused 8-hour rolling blackouts in Karachi and Lahore. The government has banned all non-essential lighting after 20:00. <span class="hot">Dawn reports that the military is preparing contingency plans for "civil order maintenance" in energy-starved provinces.</span></div>
+      <div class="rr-badge b-r">Critical</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇵🇭</div>
+      <div class="rr-body"><strong>Philippines</strong> — Declared a national energy emergency. 45 days of oil reserves remain. OFW evacuations from UAE and Saudi Arabia have begun — 340,000 workers in active conflict zones. The peso has breached 59 to the dollar. The four-day government workweek is now mandatory. <span class="hot">President Marcos Jr. has requested emergency talks with Beijing on "alternative supply arrangements" — code for Iranian crude via yuan clearing.</span></div>
+      <div class="rr-badge b-r">Critical</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇮🇳</div>
+      <div class="rr-body"><strong>India</strong> — Operation Samudra Setu 2.0 launched: 15,000 Indians evacuated from Gulf states in 24 hours. Chabahar port, India's $500 million strategic investment, has been abandoned — personnel withdrawn, equipment secured. The US waiver for Russian oil provides temporary cushion, but LNG imports from Qatar are suspended. <span class="warn">India has formally requested "observer status" at the yuan-for-Hormuz talks, a significant policy shift.</span></div>
+      <div class="rr-badge b-r">Acute</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇧🇩🇱🇰</div>
+      <div class="rr-body"><strong>Bangladesh · Sri Lanka</strong> — Bangladesh's garment sector faces imminent collapse. With Bab al-Mandab closed, the Suez route to European markets is severed. $34 billion in annual exports at risk. Sri Lanka has reimposed fuel rationing last seen during the 2022 economic collapse. The Central Bank has suspended foreign exchange trading. <span class="hot">Both countries have requested emergency IMF facilities; both were told "resources are constrained."</span></div>
+      <div class="rr-badge b-r">Critical</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇪🇬</div>
+      <div class="rr-body"><strong>Egypt</strong> — Suez Canal revenue has hit zero for the third consecutive day. The Egyptian pound has depegged from the dollar, falling 23% in black market trading. The IMF $8 billion program is technically in default. <span class="hot">The military has deployed to bread distribution centers as wheat imports — 70% of which pass through Bab al-Mandab — are suspended.</span></div>
+      <div class="rr-badge b-r">Collapse Risk</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇰🇪🇩🇯🇸🇴</div>
+      <div class="rr-body"><strong>East Africa</strong> — Djibouti port closure imminent. Kenya's Mombasa port is overwhelmed with diverted traffic but cannot handle the volume. Somalia has declared a maritime emergency. Ethiopia, landlocked and dependent on Djibouti for 95% of trade, has activated emergency food distribution. <span class="hot">The Horn of Africa faces famine conditions within 60 days if the blockade holds.</span></div>
+      <div class="rr-badge b-r">Frontline</div>
+    </div>
+    <div class="region-row">
+      <div class="rr-flag">🇭🇹🇯🇲🇧🇧🇹🇹🇬🇾</div>
+      <div class="rr-body"><strong>Caribbean</strong> — Oil at $94+. Electricity surcharges now averaging 45%. Airlines have suspended half of all routes to Europe due to fuel costs and overflight restrictions. <span class="hot">CARICOM: Day 16. No statement. No emergency session. No coordinated response. Trinidad & Tobago and Guyana continue to pump oil at record rates — windfall undeployed, uncoordinated, unspoken.</span></div>
+      <div class="rr-badge b-r">Silent</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 6: THE CHINA VARIABLE -->
+<div class="sec"><div class="sec-rule"></div><div class="sec-txt">The China Variable · The Only Lane Open</div></div>
+<div class="story">
+  <div class="s-kicker kt-g"><div class="kd kd-g"></div>Strategic Shift · Yuan-for-Passage · March 16</div>
+  <div class="s-hed">Twelve vessels<br>passed today.<br><span class="g">All Chinese. All yuan.</span></div>
+  <div class="s-body">
+    <p>While the world focuses on the closure, a quiet opening has emerged. Twelve Chinese-flagged or Chinese-operated vessels transited the Strait of Hormuz on Monday, according to maritime tracking data. All were carrying crude oil. All had filed cargo declarations in yuan rather than dollars. None were targeted.</p>
+    <p>The "China Lane" — as it is being called in shipping circles — is not officially acknowledged by Beijing, Tehran, or Washington. But it is operational. Chinese state-owned insurers are providing coverage. The People's Liberation Army Navy has increased its escort presence in the Gulf of Oman. <span class="warn">The yuan-for-passage offer first reported on Day 14 has become a de facto reality without ever becoming a de jure agreement.</span></p>
+    <p>For the Global South, this creates an impossible choice. Access to Hormuz — and thus to global energy markets — now requires participation in China's financial architecture. India has requested observer status. Pakistan is reportedly considering yuan-denominated import arrangements. The Philippines has made quiet inquiries. <strong>The US has threatened sanctions on any vessel or entity participating in yuan-clearing for Iranian oil, but has not yet acted.</strong></p>
+    <p>The IMO emergency session in London on March 18-19 will address this bifurcation. But with the US rejecting mediation and China maintaining official silence, the session risks becoming a forum for formalizing the split rather than healing it. The global shipping industry may be dividing into dollar-zones and yuan-zones, with Hormuz as the fault line.</p>
+  </div>
+
+  <div class="qblock">
+    <div class="qb-txt">"We are witnessing the end of the post-1945 maritime order. Not with a treaty, but with a series of missile strikes and quiet financial arrangements. The Global South is not choosing sides. It is being forced into corridors."</div>
+    <div class="qb-src">Dr. Amara Okafor, Director, African Maritime Security Institute · Lagos, March 16, 2026</div>
+  </div>
+</div>
+
+<!-- CONCLUSION -->
+<div class="conclusion">
+  <div class="concl-ghost">16</div>
+  <div class="concl-lbl">Meridian · Day 16 · March 16, 2026</div>
+  <div class="concl-hed">Two chokepoints closed.<br>Six Gulf states struck.<br><span class="g">One lane open.</span></div>
+  <div class="concl-body">
+    <p>Day 16 is the day the war became total. Not total in the sense of unlimited — it remains confined to specific geographies, specific targets, specific corridors. But total in the sense that <strong>no state in the region remains untouched, no maritime route remains open, no diplomatic channel remains active.</strong> The GCC, which had hoped to remain on the sidelines, is now fully engaged. The Red Sea, which had remained a secondary theater, is now closed. The United States, which had accepted mediation in previous conflicts, has explicitly rejected it.</p>
+    <p>The China Lane is the most significant development of Day 16, not because it solves the crisis, but because it reveals the solution. Iran will not surrender. The US will not compromise. The Global South cannot absorb the shock. The only path through is the one that restructures the financial architecture of global trade — not as a choice, but as a necessity. <span class="warn">Beijing understands this. Washington understands this. The difference is that Beijing is acting, and Washington is betting that denial remains a viable strategy.</span></p>
+    <p>For the Caribbean, for Africa, for South Asia, for Southeast Asia — the message of Day 16 is that silence is no longer affordable. CARICOM's continued absence from the discourse is not neutrality. It is a form of self-harm. The windfall from Trinidad and Guyana oil exists. It is not being deployed. The electricity surcharges are being paid. The airline routes are being cut. The food prices are rising. And still, no statement.</p>
+    <p><em>Day 16. The Gulf is wide. The chokepoints are closed. The lane is narrow. The South must choose whether to speak, or whether to be spoken for.</em></p>
+  </div>
+</div>
+
+</div><!-- /left -->
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+  <div class="s-card">
+    <div class="sc-head sch-r"><div class="ld2 ld2-r"></div>Day 16 · Numbers</div>
+    <div class="sc-body">
+      <div class="stat-big"><div class="sb-val sbv-r">99/100</div><div class="sb-lbl">Escalation index<br>Maximum sustainable</div></div>
+      <div class="stat-big"><div class="sb-val sbv-r">8,400</div><div class="sb-lbl">Targets struck in Iran<br>CENTCOM · Day 16</div></div>
+      <div class="stat-big"><div class="sb-val sbv-r">1,892</div><div class="sb-lbl">Iranian civilians dead<br>22,400 injured · Health Ministry</div></div>
+      <div class="stat-big"><div class="sb-val sbv-r">1,247</div><div class="sb-lbl">Lebanon dead since Mar 2<br>Israel crosses Litani</div></div>
+      <div class="stat-big"><div class="sb-val sbv-r">6</div><div class="sb-lbl">Gulf states struck<br>First time in conflict</div></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-r">Chokepoint Status · Real-Time</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">Hormuz vessels/day</span><span class="dr-val dv-r">8 vs 153 pre-war</span></div>
+      <div class="drow"><span class="dr-lbl">China Lane transits</span><span class="dr-val dv-g">12 vessels · Day 16</span></div>
+      <div class="drow"><span class="dr-lbl">Bab al-Mandab status</span><span class="dr-val dv-r">CLOSED · Hour Zero active</span></div>
+      <div class="drow"><span class="dr-lbl">Red Sea shipping</span><span class="dr-val dv-r">Zero commercial transits</span></div>
+      <div class="drow"><span class="dr-lbl">Suez Canal revenue</span><span class="dr-val dv-r">$0 · Third day</span></div>
+      <div class="drow"><span class="dr-lbl">Cape reroute cost</span><span class="dr-val dv-r">$1.2M/voyage · Capacity maxed</span></div>
+      <div class="drow"><span class="dr-lbl">VLCC day rate</span><span class="dr-val dv-r">$487K/day · Record</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-a">Gulf Strikes · Damage Assessment</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">Saudi Abqaiq facility</span><span class="dr-val dv-a">15% capacity offline</span></div>
+      <div class="drow"><span class="dr-lbl">UAE Jebel Ali port</span><span class="dr-val dv-a">Suspended · Warning strikes</span></div>
+      <div class="drow"><span class="dr-lbl">Qatar Al Udeid base</span><span class="dr-val dv-r">4 US wounded · Perimeter hit</span></div>
+      <div class="drow"><span class="dr-lbl">QatarEnergy LNG</span><span class="dr-val dv-r">Loadings suspended</span></div>
+      <div class="drow"><span class="dr-lbl">Kuwait Ahmad Al-Jaber</span><span class="dr-val dv-r">3 killed · 7 wounded</span></div>
+      <div class="drow"><span class="dr-lbl">Bahrain Fifth Fleet HQ</span><span class="dr-val dv-a">Lockdown · Drone swarms</span></div>
+      <div class="drow"><span class="dr-lbl">Oman Muscat port</span><span class="dr-val dv-r">Strike on authority building</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-gold">Diplomacy · Status Board</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">US mediation position</span><span class="dr-val dv-r">Rejected · "Total surrender"</span></div>
+      <div class="drow"><span class="dr-lbl">Oman/Egypt proposal</span><span class="dr-val dv-r">Declined</span></div>
+      <div class="drow"><span class="dr-lbl">Yuan-for-Hormuz</span><span class="dr-val dv-g">Operational · 12 vessels</span></div>
+      <div class="drow"><span class="dr-lbl">India observer status</span><span class="dr-val dv-a">Requested</span></div>
+      <div class="drow"><span class="dr-lbl">IMO emergency session</span><span class="dr-val dv-a">Mar 18-19 · Doubtful</span></div>
+      <div class="drow"><span class="dr-lbl">Iran ceasefire terms</span><span class="dr-val dv-r">Withdrawn · Parliament vote</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-gold">Watch · Next 48 Hours</div>
+    <div class="sc-body">
+      <div class="drow"><span class="dr-lbl">Djibouti port closure</span><span class="dr-val dv-r">48 hours · Imminent</span></div>
+      <div class="drow"><span class="dr-lbl">China Lane expansion</span><span class="dr-val dv-a">India/Pakistan inquiries</span></div>
+      <div class="drow"><span class="dr-lbl">US sanctions threat</span><span class="dr-val dv-a">On yuan participants</span></div>
+      <div class="drow"><span class="dr-lbl">Israeli advance Lebanon</span><span class="dr-val dv-r">Toward Awali River</span></div>
+      <div class="drow"><span class="dr-lbl">CARICOM response</span><span class="dr-val dv-r">Day 16 · Zero</span></div>
+      <div class="drow"><span class="dr-lbl">IEA strategic release</span><span class="dr-val dv-g">60M barrels authorized</span></div>
+      <div class="drow"><span class="dr-lbl">Khamenei appearance</span><span class="dr-val dv-r">Day 9: still absent</span></div>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="sc-head sch-r">The Human Number · Day 16</div>
+    <div style="padding:1.1rem">
+      <div style="font-family:var(--serif);font-size:.95rem;font-style:italic;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:.6rem">Three Kuwaiti soldiers. Ahmad Al-Jaber Air Base. Sunday night. A missile strike on the second day of attacks on the same facility.</div>
+      <div style="font-size:.74rem;color:var(--text);line-height:1.75">Kuwait had not seen combat deaths since the 1991 Gulf War. The Emir's recall of the ambassador from Tehran marks the end of Kuwait's 35-year policy of dialogue with Iran. <strong style="color:var(--white)">The expansion to all six GCC states means there is no longer any "neutral" Arab state. The war has consumed the entire Gulf.</strong></div>
+    </div>
+  </div>
+
+</div><!-- /sidebar -->
+</div><!-- /layout -->
+</div><!-- /page -->
+
+<footer>
+  <div class="ft-i">
+    <div>
+      <div class="ft-brand">Meridian</div>
+      <div class="ft-tag">Intelligence from the South. For the South.</div>
+    </div>
+    <div class="ft-meta">
+      Day 16 · March 16, 2026 · Operation Epic Fury<br>
+      Sources: Al Jazeera · CNN · Dawn (Pakistan) · The National · Reuters · Axios · CENTCOM · IMO<br>
+      @Meridiantoday_ · @meridian.today · meridian.today
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
